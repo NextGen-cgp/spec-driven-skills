@@ -1,0 +1,35 @@
+{
+  "name": "sdd-documentation-pr",
+  "version": "1.0.0",
+  "description": "Final documentation and PR packaging skill for Spec Driven Development workflows.",
+  "entrypoint": "SKILL.md",
+  "stage": "documentation_pr",
+  "after": [
+    "sdd-final-review"
+  ],
+  "before": [
+    "READY_FOR_PR",
+    "DONE"
+  ],
+  "required_inputs": [
+    "final-review-report.md",
+    "merge-readiness-decision.md",
+    "test-report.md",
+    "acceptance-validation-report.md",
+    "implementation-report.md"
+  ],
+  "required_outputs": [
+    "pr-summary.md",
+    "changelog-entry.md",
+    "release-notes.md",
+    "merge-package.md",
+    "sdd-closeout-report.md",
+    "final-artifact-index.md"
+  ],
+  "decisions": [
+    "DOCUMENTATION_READY_FOR_PR",
+    "DOCUMENTATION_READY_WITH_NOTES",
+    "DOCUMENTATION_CHANGES_REQUESTED",
+    "DOCUMENTATION_BLOCKED"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/sdd/documentation-pr.schema.json",
+  "title": "SDD Documentation PR Result",
+  "type": "object",
+  "required": [
+    "skill",
+    "version",
+    "decision",
+    "state",
+    "feature_name",
+    "generated_artifacts",
+    "pr_readiness",
+    "required_next_route"
+  ],
+  "properties": {
+    "skill": {
+      "const": "sdd-documentation-pr"
+    },
+    "version": {
+      "type": "string"
+    },
+    "feature_name": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "DOCUMENTATION_READY_FOR_PR",
+        "DOCUMENTATION_READY_WITH_NOTES",
+        "DOCUMENTATION_CHANGES_REQUESTED",
+        "DOCUMENTATION_BLOCKED"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "READY_FOR_PR",
+        "READY_FOR_PR_WITH_NOTES",
+        "DOCUMENTATION_REVISION_REQUIRED",
+        "BLOCKED_PENDING_EVIDENCE",
+        "BLOCKED_PENDING_REVIEW"
+      ]
+    },
+    "generated_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "missing_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pr_readiness": {
+      "type": "string",
+      "enum": [
+        "READY_FOR_PR",
+        "READY_FOR_PR_WITH_NOTES",
+        "BLOCKED"
+      ]
+    },
+    "required_next_route": {
+      "type": "string",
+      "enum": [
+        "none",
+        "sdd-orchestrator",
+        "sdd-final-review",
+        "sdd-test",
+        "sdd-implementation",
+        "sdd-documentation-pr"
+      ]
+    },
+    "risk_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "human_action": {
+      "type": "string",
+      "enum": [
+        "open_pull_request",
+        "update_documentation",
+        "resolve_blocker",
+        "none"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

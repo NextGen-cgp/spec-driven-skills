@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SDD Context Analysis",
+  "type": "object",
+  "required": [
+    "feature_name",
+    "status",
+    "stack_detected",
+    "repository_structure",
+    "affected_modules",
+    "technical_risks",
+    "recommended_next_skill"
+  ],
+  "properties": {
+    "feature_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "CONTEXT_ANALYSIS_READY",
+        "CONTEXT_ANALYSIS_PARTIAL",
+        "NEEDS_MORE_CONTEXT",
+        "BLOCKED_BY_MISSING_REPOSITORY_ACCESS"
+      ]
+    },
+    "context_confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "stack_detected": {
+      "type": "object",
+      "properties": {
+        "languages": { "type": "array", "items": { "type": "string" } },
+        "frontend": { "type": "array", "items": { "type": "string" } },
+        "backend": { "type": "array", "items": { "type": "string" } },
+        "database": { "type": "array", "items": { "type": "string" } },
+        "orm": { "type": "array", "items": { "type": "string" } },
+        "auth": { "type": "array", "items": { "type": "string" } },
+        "testing": { "type": "array", "items": { "type": "string" } },
+        "deployment": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "repository_structure": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "observed_purpose"],
+        "properties": {
+          "path": { "type": "string" },
+          "observed_purpose": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+    "affected_modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["area", "reason", "confidence"],
+        "properties": {
+          "area": { "type": "string" },
+          "candidate_paths": { "type": "array", "items": { "type": "string" } },
+          "reason": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+    "technical_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk", "severity", "mitigation_hint"],
+        "properties": {
+          "risk": { "type": "string" },
+          "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+          "mitigation_hint": { "type": "string" }
+        }
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "recommended_next_skill": {
+      "type": "string",
+      "enum": [
+        "user-story-enrichment",
+        "technical-specification",
+        "api-contract-specification",
+        "migration-rollback-planning",
+        "security-permissions-review",
+        "blocked"
+      ]
+    }
+  }
+}

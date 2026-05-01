@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "user-story-enrichment.schema.json",
+  "title": "SDD User Story Enrichment",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "source_request",
+    "classification",
+    "actors",
+    "user_stories",
+    "business_rules",
+    "acceptance_criteria",
+    "exit_state",
+    "next_skill"
+  ],
+  "properties": {
+    "feature_id": {
+      "type": "string"
+    },
+    "source_request": {
+      "type": "string"
+    },
+    "context_summary": {
+      "type": "string"
+    },
+    "classification": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "feature",
+          "bugfix",
+          "permissions",
+          "ui_change",
+          "api_change",
+          "database_change",
+          "business_rule",
+          "critical_calculation",
+          "workflow_change",
+          "documentation",
+          "unknown"
+        ]
+      }
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "role",
+          "responsibilities"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "responsibilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "permissions_summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "user_stories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "actor",
+          "story",
+          "value"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "story": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "must",
+              "should",
+              "could",
+              "wont"
+            ]
+          }
+        }
+      }
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "actor",
+          "main_flow",
+          "expected_result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "main_flow": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "alternative_flows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected_result": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "business_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "rule",
+          "verification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "string"
+          },
+          "verification": {
+            "type": "string"
+          },
+          "risk": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        }
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "given",
+          "when",
+          "then",
+          "verification_type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "given": {
+            "type": "string"
+          },
+          "when": {
+            "type": "string"
+          },
+          "then": {
+            "type": "string"
+          },
+          "verification_type": {
+            "type": "string",
+            "enum": [
+              "unit_test",
+              "integration_test",
+              "e2e_test",
+              "manual_review",
+              "ui_check",
+              "api_test"
+            ]
+          }
+        }
+      }
+    },
+    "functional_states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "edge_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "out_of_scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_later_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exit_state": {
+      "type": "string",
+      "enum": [
+        "READY_FOR_FUNCTIONAL_SPEC",
+        "NEEDS_CLARIFICATION",
+        "BLOCKED"
+      ]
+    },
+    "next_skill": {
+      "type": "string"
+    }
+  }
+}

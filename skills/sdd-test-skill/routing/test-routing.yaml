@@ -1,0 +1,155 @@
+routing:
+  skill: sdd-test
+  stage: testing
+
+entry_conditions:
+  mandatory:
+    - implementation-report.md exists
+    - code-change-log.md exists
+    - patch-summary.md exists
+    - deviation-log.md exists
+    - acceptance-criteria.md exists
+    - technical-spec.md exists
+  accepted_implementation_decisions:
+    - IMPLEMENTATION_DONE
+    - IMPLEMENTATION_PARTIAL
+  blocking_if_missing:
+    decision: TEST_BLOCKED
+    route_to: sdd-implementation
+
+preflight_checks:
+  implementation_handoff:
+    required_artifacts:
+      - implementation-report.md
+      - code-change-log.md
+      - patch-summary.md
+      - deviation-log.md
+    if_missing:
+      decision: TEST_BLOCKED
+      route_to: sdd-implementation
+      reason: Testing cannot start without a complete implementation handoff.
+
+  acceptance_criteria:
+    required_artifacts:
+      - acceptance-criteria.md
+    if_missing:
+      decision: TEST_BLOCKED
+      route_to: sdd-functional-spec
+      reason: Tests must validate explicit acceptance criteria.
+
+  api_changes:
+    condition: affects_api == true
+    required_artifacts:
+      - api-contract.md
+      - contract-test-plan.md
+    if_missing:
+      decision: TEST_BLOCKED
+      route_to: sdd-api-contract
+
+  data_changes:
+    condition: affects_database == true
+    required_artifacts:
+      - migration-plan.md
+      - rollback-plan.md
+    if_missing:
+      decision: TEST_BLOCKED
+      route_to: sdd-migration-rollback
+
+  authorization_changes:
+    condition: affects_auth_or_roles == true
+    required_artifacts:
+      - operation-permissions-contract.md
+      - authz-test-plan.md
+    if_missing:
+      decision: TEST_BLOCKED
+      route_to: sdd-security-permissions-review
+
+test_flow:
+  - verify_implementation_handoff
+  - read_acceptance_criteria_and_specs
+  - build_final_test_plan
+  - discover_project_test_commands
+  - run_sanity_build_typecheck
+  - run_unit_tests
+  - run_integration_tests
+  - run_contract_tests_if_applicable
+  - run_authorization_tests_if_applicable
+  - run_migration_tests_if_applicable
+  - run_functional_or_manual_validation
+  - run_regression_checks
+  - map_results_to_acceptance_criteria
+  - emit_test_decision
+
+routing_decisions:
+  test_passed_with_security_scope:
+    next_skill: sdd-security-permissions-review
+    conditions:
+      - decision is TEST_PASSED
+      - affects_auth_or_roles == true or touches_sensitive_data == true or writes_protected_data == true
+      - authz-test-report.md complete when applicable
+
+  test_passed_without_security_scope:
+    next_skill: sdd-review
+    conditions:
+      - decision is TEST_PASSED
+      - no authorization, sensitive data or protected write scope remains
+      - test-report.md complete
+      - acceptance-validation-report.md complete
+
+  test_failed_by_implementation:
+    next_skill: sdd-implementation
+    conditions:
+      - acceptance criterion failed
+      - regression introduced
+      - build/typecheck/lint failed due to code change
+      - contract mismatch caused by implementation
+
+  test_failed_by_functional_spec_gap:
+    next_skill: sdd-functional-spec
+    conditions:
+      - expected behavior undefined
+      - acceptance criterion contradictory
+      - user flow cannot be validated because functional behavior is incomplete
+
+  test_failed_by_technical_spec_gap:
+    next_skill: sdd-technical-spec
+    conditions:
+      - implementation approach cannot satisfy spec safely
+      - validation rule missing
+      - component responsibility ambiguous
+
+  test_failed_by_api_contract_gap:
+    next_skill: sdd-api-contract
+    conditions:
+      - payload or response undefined
+      - error behavior unclear
+      - frontend/backend contract disagreement detected
+
+  test_failed_by_migration_gap:
+    next_skill: sdd-migration-rollback
+    conditions:
+      - migration cannot be applied
+      - rollback is unsafe or undefined
+      - backfill behavior incomplete
+
+  test_failed_by_security_gap:
+    next_skill: sdd-security-permissions-review
+    conditions:
+      - role permission mismatch
+      - backend authorization missing
+      - data exposure detected
+
+  test_blocked:
+    next_skill: sdd-orchestrator
+    conditions:
+      - environment unavailable
+      - missing test data
+      - missing essential artifact
+      - command discovery failed
+
+  test_partial:
+    next_skill: sdd-orchestrator
+    conditions:
+      - subset validated successfully
+      - remaining scope untested
+      - explicit decision needed before proceeding

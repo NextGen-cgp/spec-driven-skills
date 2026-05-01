@@ -1,0 +1,145 @@
+skill: sdd-security-permissions-review
+version: 1.0.0
+
+purpose: >
+  Gate de seguridad y autorización del flujo SDD. Determina si una especificación, contrato,
+  plan de migración o implementación puede avanzar sin riesgos evidentes de permisos,
+  exposición de datos o validación insuficiente.
+
+entry_conditions:
+  required_artifacts:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - technical-spec.md
+  recommended_artifacts:
+    - permissions-matrix.md
+    - state-model.md
+    - validation-rules.md
+    - api-contract.md
+    - data-contract.md
+    - operation-permissions-contract.md
+    - migration-plan.md
+    - rollback-plan.md
+
+mandatory_triggers:
+  - affects_authentication
+  - affects_authorization
+  - affects_roles_or_permissions
+  - affects_admin_or_analyst_panels
+  - affects_backend_write_operations
+  - affects_api_endpoints
+  - affects_state_transitions
+  - affects_master_data
+  - affects_sensitive_or_critical_data
+  - affects_database_migrations
+  - exposes_search_or_listing_data
+
+routing_rules:
+  - condition: missing_functional_spec
+    action: route_to_sdd_functional_spec
+    exit_state: NEEDS_FUNCTIONAL_SPEC
+    reason: Security review requires business roles, flows and acceptance criteria.
+
+  - condition: missing_technical_spec
+    action: route_to_sdd_technical_spec
+    exit_state: NEEDS_TECHNICAL_SPEC
+    reason: Security review requires technical operations and affected layers.
+
+  - condition: affects_api_without_api_contract
+    action: route_to_sdd_api_contract
+    exit_state: NEEDS_API_CONTRACT
+    reason: Endpoints and backend actions require explicit authorization contracts.
+
+  - condition: affects_persistence_without_migration_plan
+    action: route_to_sdd_migration_rollback
+    exit_state: NEEDS_MIGRATION_ROLLBACK
+    reason: Persistent changes require data integrity and rollback assessment.
+
+  - condition: only_documentation_change
+    action: skip_security_review
+    exit_state: NOT_APPLICABLE
+    next_skill: sdd-spec-validation
+
+  - condition: no_findings_or_only_info
+    action: approve
+    exit_state: SECURITY_APPROVED
+    next_skill: sdd-spec-validation
+
+  - condition: low_or_medium_findings_without_blockers
+    action: approve_with_warnings
+    exit_state: SECURITY_APPROVED_WITH_WARNINGS
+    next_skill: sdd-spec-validation
+
+  - condition: missing_backend_authorization_or_validation
+    action: require_changes
+    exit_state: SECURITY_CHANGES_REQUIRED
+    next_skill: sdd-technical-spec
+
+  - condition: api_contract_missing_operation_permissions
+    action: require_contract_changes
+    exit_state: SECURITY_CHANGES_REQUIRED
+    next_skill: sdd-api-contract
+
+  - condition: destructive_migration_or_data_loss_risk
+    action: block
+    exit_state: SECURITY_BLOCKED
+    next_skill: sdd-migration-rollback
+
+  - condition: critical_privilege_escalation_risk
+    action: block
+    exit_state: SECURITY_BLOCKED
+    next_skill: sdd-technical-spec
+
+gates:
+  before_spec_validation:
+    required_outputs:
+      - security-permissions-review.md
+      - security-review-report.md
+    allowed_states:
+      - SECURITY_APPROVED
+      - SECURITY_APPROVED_WITH_WARNINGS
+      - NOT_APPLICABLE
+
+  before_implementation:
+    block_if:
+      - SECURITY_CHANGES_REQUIRED
+      - SECURITY_BLOCKED
+      - BLOCKED_BY_AMBIGUITY
+
+  before_final_review:
+    post_implementation_review_required_when:
+      - implementation_changed_authz_logic
+      - implementation_changed_guards_or_middlewares
+      - implementation_changed_role_checks
+      - implementation_changed_data_filtering
+
+severity_policy:
+  CRITICAL:
+    blocks_flow: true
+    examples:
+      - unauthorized_role_can_modify_data
+      - backend_authorization_missing_for_critical_operation
+      - sensitive_data_exposed_to_wrong_role
+      - destructive_migration_without_rollback
+  HIGH:
+    blocks_flow: true
+    examples:
+      - frontend_only_permission_control
+      - missing_forbidden_response_contract
+      - unrestricted_search_endpoint
+  MEDIUM:
+    blocks_flow: false
+    examples:
+      - incomplete_auditability
+      - ambiguous_scope_rules
+      - inconsistent_error_contract
+  LOW:
+    blocks_flow: false
+    examples:
+      - naming_inconsistency
+      - hardening_recommendation
+  INFO:
+    blocks_flow: false
+    examples:
+      - documentation_note

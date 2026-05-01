@@ -1,0 +1,110 @@
+routing:
+  skill: sdd-implementation
+  stage: implementation
+
+entry_conditions:
+  mandatory:
+    - implementation-gate-decision.md exists
+    - spec-validation-report.md exists
+    - technical-spec.md exists
+    - functional-spec.md exists
+    - acceptance-criteria.md exists
+    - decision is READY_FOR_IMPLEMENTATION
+  blocking_if_missing:
+    decision: IMPLEMENTATION_BLOCKED
+    route_to: sdd-spec-validation
+
+preflight_checks:
+  gate_decision:
+    expected: READY_FOR_IMPLEMENTATION
+    if_missing_or_not_ready:
+      decision: IMPLEMENTATION_BLOCKED
+      route_to: sdd-spec-validation
+      reason: Implementation cannot start without a passed implementation gate.
+
+  api_changes:
+    condition: affects_api == true
+    required_artifacts:
+      - api-contract.md
+      - error-contract.md
+    if_missing:
+      decision: IMPLEMENTATION_BLOCKED
+      route_to: sdd-api-contract
+
+  data_changes:
+    condition: affects_database == true
+    required_artifacts:
+      - migration-plan.md
+      - rollback-plan.md
+    if_missing:
+      decision: IMPLEMENTATION_BLOCKED
+      route_to: sdd-migration-rollback
+
+  authorization_changes:
+    condition: affects_auth_or_roles == true
+    required_artifacts:
+      - security-permissions-review.md
+      - operation-permissions-contract.md
+    if_missing:
+      decision: IMPLEMENTATION_BLOCKED
+      route_to: sdd-security-permissions-review
+
+implementation_flow:
+  - verify_gate
+  - read_validated_specs
+  - create_implementation_plan
+  - implement_incrementally
+  - update_change_log
+  - record_deviations
+  - prepare_handoff_to_test
+
+routing_decisions:
+  implementation_done:
+    next_skill: sdd-test
+    conditions:
+      - all scoped changes implemented
+      - no blocking deviations
+      - implementation-report.md complete
+      - code-change-log.md complete
+
+  implementation_partial:
+    next_skill: sdd-test
+    conditions:
+      - usable subset implemented
+      - remaining work is explicitly documented
+      - no critical blocker prevents tests of implemented scope
+
+  implementation_blocked_by_ambiguity:
+    next_skill: sdd-orchestrator
+    conditions:
+      - product decision needed
+      - contradictory requirements
+      - hidden scope discovered
+
+  implementation_blocked_by_missing_technical_detail:
+    next_skill: sdd-technical-spec
+    conditions:
+      - affected component unspecified
+      - architecture assumption invalid
+      - validation rules incomplete
+
+  implementation_blocked_by_api_contract:
+    next_skill: sdd-api-contract
+    conditions:
+      - endpoint undefined
+      - payload undefined
+      - response or error behavior undefined
+
+  implementation_blocked_by_data_change:
+    next_skill: sdd-migration-rollback
+    conditions:
+      - schema change discovered
+      - backfill required but not planned
+      - rollback unclear
+
+  implementation_blocked_by_security:
+    next_skill: sdd-security-permissions-review
+    conditions:
+      - permission model insufficient
+      - protected operation lacks backend guard
+      - sensitive data exposure discovered

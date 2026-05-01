@@ -1,0 +1,70 @@
+context_analysis_routing:
+  default_next_skill: user-story-enrichment
+
+  state_outputs:
+    context_ready:
+      status: CONTEXT_ANALYSIS_READY
+      meaning: Hay suficiente contexto para continuar el flujo SDD.
+
+    context_partial:
+      status: CONTEXT_ANALYSIS_PARTIAL
+      meaning: Hay contexto suficiente para avanzar con cautela, pero existen incertidumbres.
+
+    needs_more_context:
+      status: NEEDS_MORE_CONTEXT
+      meaning: Falta información crítica para generar una spec fiable.
+
+    blocked_missing_repository:
+      status: BLOCKED_BY_MISSING_REPOSITORY_ACCESS
+      meaning: No se ha podido analizar el repositorio o los archivos necesarios.
+
+  route_rules:
+    vague_request:
+      when:
+        - original_request_is_vague: true
+        - acceptance_criteria_missing: true
+      route_to: user-story-enrichment
+      reason: La historia debe refinarse antes de especificar técnicamente.
+
+    clear_technical_request:
+      when:
+        - original_request_is_specific: true
+        - affected_modules_identified: true
+      route_to: technical-specification
+      reason: El cambio ya tiene suficiente claridad funcional y requiere diseño técnico.
+
+    affects_api:
+      when:
+        - affected_area_contains: api
+      route_to: api-contract-specification
+      reason: Es necesario definir contrato entre frontend, backend o consumidores externos.
+
+    affects_database:
+      when:
+        - affected_area_contains: database
+      route_to: migration-rollback-planning
+      reason: Es necesario definir migración, compatibilidad y rollback.
+
+    affects_auth_or_roles:
+      when:
+        - affected_area_contains_any:
+            - authentication
+            - authorization
+            - roles
+            - permissions
+      route_to: security-permissions-review
+      reason: El cambio requiere revisión temprana de permisos y seguridad.
+
+    missing_repo_access:
+      when:
+        - repository_accessible: false
+      route_to: blocked
+      reason: Sin acceso al repositorio no se puede hacer análisis de contexto fiable.
+
+  orchestrator_update:
+    required_fields:
+      - current_state
+      - last_completed_skill
+      - recommended_next_skill
+      - context_confidence
+      - blocking_issues

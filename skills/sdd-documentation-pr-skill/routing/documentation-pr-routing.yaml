@@ -1,0 +1,87 @@
+routing:
+  skill: sdd-documentation-pr
+  stage: documentation_pr
+
+  entry_conditions:
+    required_state:
+      - FINAL_REVIEW_APPROVED
+      - FINAL_REVIEW_APPROVED_WITH_NOTES
+    required_artifacts:
+      - final-review-report.md
+      - merge-readiness-decision.md
+      - test-report.md
+      - acceptance-validation-report.md
+      - implementation-report.md
+
+  decisions:
+    DOCUMENTATION_READY_FOR_PR:
+      when:
+        - final_review_approved: true
+        - required_artifacts_present: true
+        - pr_summary_complete: true
+        - changelog_complete: true
+        - closeout_report_complete: true
+      route_to: none
+      next_state: READY_FOR_PR
+
+    DOCUMENTATION_READY_WITH_NOTES:
+      when:
+        - final_review_approved_with_notes: true
+        - notes_are_documented: true
+        - no_blocking_evidence_missing: true
+      route_to: none
+      next_state: READY_FOR_PR_WITH_NOTES
+
+    DOCUMENTATION_CHANGES_REQUESTED:
+      when:
+        - documentation_incomplete: true
+        - evidence_available: true
+        - correction_is_documentation_only: true
+      route_to: sdd-documentation-pr
+      next_state: DOCUMENTATION_REVISION_REQUIRED
+
+    DOCUMENTATION_BLOCKED:
+      when_any:
+        - missing_approved_final_review: true
+        - missing_test_evidence: true
+        - missing_implementation_evidence: true
+        - contradictory_gate_decisions: true
+      route_to: sdd-orchestrator
+      next_state: BLOCKED_PENDING_EVIDENCE
+
+  reroute_rules:
+    missing_final_review:
+      route_to: sdd-final-review
+      reason: missing_approved_final_review
+
+    missing_test_report:
+      route_to: sdd-test
+      reason: missing_test_evidence
+
+    missing_acceptance_validation:
+      route_to: sdd-test
+      reason: missing_acceptance_validation
+
+    missing_implementation_report:
+      route_to: sdd-implementation
+      reason: missing_implementation_evidence
+
+    security_docs_missing_for_sensitive_change:
+      route_to: sdd-final-review
+      reason: missing_security_review_evidence
+
+    migration_docs_missing_for_persistence_change:
+      route_to: sdd-final-review
+      reason: missing_migration_or_rollback_evidence
+
+  output_package:
+    required:
+      - pr-summary.md
+      - changelog-entry.md
+      - release-notes.md
+      - documentation-update-plan.md
+      - docs-impact-report.md
+      - technical-handoff.md
+      - merge-package.md
+      - sdd-closeout-report.md
+      - final-artifact-index.md

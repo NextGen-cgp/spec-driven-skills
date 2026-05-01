@@ -1,0 +1,107 @@
+skill: sdd-technical-spec
+version: 1.0.0
+
+entry_conditions:
+  required_artifacts:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - functional-traceability-matrix.md
+  recommended_artifacts:
+    - user-story.md
+    - acceptance-criteria.md
+    - business-rules.md
+    - ui-behavior-spec.md
+    - permissions-matrix.md
+    - state-model.md
+
+routing_rules:
+  missing_context_analysis:
+    condition: "context-analysis.md is missing or does not identify stack/modules/patterns"
+    route_to: sdd-context-analysis
+    exit_state: NEEDS_CONTEXT_ANALYSIS
+
+  missing_functional_spec:
+    condition: "functional-spec.md or functional-traceability-matrix.md is missing"
+    route_to: sdd-functional-spec
+    exit_state: NEEDS_FUNCTIONAL_REFINEMENT
+
+  unresolved_functional_questions:
+    condition: "blocking functional questions remain open"
+    route_to: sdd-user-story-enrichment
+    exit_state: NEEDS_FUNCTIONAL_REFINEMENT
+
+  affects_api:
+    condition: "new endpoint, changed endpoint, changed request/response payload, changed API error behavior"
+    required_output: api-impact.md
+    route_to: sdd-api-contract
+    exit_state: READY_FOR_API_CONTRACT
+
+  affects_database:
+    condition: "new table, changed column, changed relation, changed enum/state persistence, data backfill, data deletion"
+    required_output: data-model-impact.md
+    route_to: sdd-migration-rollback
+    exit_state: READY_FOR_MIGRATION_ROLLBACK
+
+  affects_roles_or_permissions:
+    condition: "change affects auth, roles, permissions, visibility, write operations or sensitive data"
+    required_output: validation-rules.md
+    route_to: sdd-security-permissions-review
+    exit_state: READY_FOR_SECURITY_REVIEW
+
+  affects_frontend:
+    condition: "change affects screen, route, component, user interaction or visual state"
+    required_output: frontend-change-plan.md
+    route_to: sdd-spec-validation
+    exit_state: READY_FOR_SPEC_VALIDATION
+
+  affects_backend:
+    condition: "change affects services, domain logic, controllers, jobs, validators or integration logic"
+    required_output: backend-change-plan.md
+    route_to: sdd-spec-validation
+    exit_state: READY_FOR_SPEC_VALIDATION
+
+  no_conditional_artifacts_needed:
+    condition: "technical spec is complete and no API/database/security-specific gate is required"
+    route_to: sdd-spec-validation
+    exit_state: READY_FOR_SPEC_VALIDATION
+
+gates:
+  before_ready_for_implementation:
+    required_artifacts:
+      - technical-spec.md
+      - implementation-plan.md
+      - technical-spec-report.md
+    conditional_required_artifacts:
+      api:
+        - api-impact.md
+        - api-contract.md
+      database:
+        - data-model-impact.md
+        - migration-plan.md
+        - rollback-plan.md
+      roles_permissions:
+        - permissions-matrix.md
+        - security-review.md
+    if_missing:
+      route_to: sdd-orchestrator
+      exit_state: BLOCKED
+
+handoff:
+  to_spec_validation:
+    required:
+      - technical-spec.md
+      - implementation-plan.md
+      - technical-risk-register.md
+    recommended:
+      - frontend-change-plan.md
+      - backend-change-plan.md
+      - data-model-impact.md
+      - api-impact.md
+      - validation-rules.md
+
+  to_implementation:
+    allowed_only_after:
+      - sdd-spec-validation
+    required_state:
+      - READY_FOR_IMPLEMENTATION

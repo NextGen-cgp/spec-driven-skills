@@ -1,0 +1,97 @@
+final_review_routing:
+  skill: sdd-final-review
+  version: 1.0.0
+
+  entry_conditions:
+    required_status:
+      - IMPLEMENTATION_DONE
+    required_test_status:
+      - TEST_PASSED
+      - TEST_PARTIAL_AUTHORIZED
+    blocked_if:
+      - implementation_report_missing
+      - test_report_missing
+      - acceptance_validation_missing
+      - unresolved_test_failure
+      - required_security_review_missing
+
+  security_review_required_when:
+    any_of:
+      - affects_authentication
+      - affects_authorization
+      - affects_roles
+      - affects_permissions
+      - affects_ownership
+      - affects_admin_panel
+      - affects_analyst_panel
+      - affects_operations_write
+      - affects_state_transitions
+      - affects_sensitive_data
+      - affects_api
+      - affects_database
+      - affects_migrations
+      - affects_exports_or_search
+
+  review_sections:
+    - spec_compliance
+    - test_evidence
+    - security_final_review
+    - code_quality
+    - architecture_consistency
+    - data_and_migration_safety
+    - regression_risk
+    - maintainability
+    - merge_readiness
+
+  decisions:
+    FINAL_REVIEW_APPROVED:
+      route_to: sdd-documentation-pr
+      requires:
+        - no_blocker_findings
+        - no_high_findings_unresolved
+        - tests_passed
+        - security_ok_if_applicable
+        - spec_compliance_ok
+
+    FINAL_REVIEW_APPROVED_WITH_NOTES:
+      route_to: sdd-documentation-pr
+      requires:
+        - no_blocker_findings
+        - no_high_findings_unresolved
+        - only_low_or_note_findings
+        - tests_passed_or_authorized_partial
+
+    FINAL_REVIEW_CHANGES_REQUESTED:
+      route_by_issue_type:
+        implementation: sdd-implementation
+        tests: sdd-test
+        security: sdd-security-permissions-review
+        api_contract: sdd-api-contract
+        migration: sdd-migration-rollback
+        spec_gap: sdd-technical-spec
+        functional_gap: sdd-functional-spec
+      requires:
+        - actionable_findings
+        - target_skill_identified
+
+    FINAL_REVIEW_BLOCKED:
+      route_to: sdd-orchestrator
+      reasons:
+        - missing_required_artifact
+        - inconsistent_artifacts
+        - missing_security_review
+        - missing_test_evidence
+        - cannot_determine_scope
+
+  severity_policy:
+    BLOCKER:
+      can_advance: false
+    HIGH:
+      can_advance: false
+      exception_requires_orchestrator_approval: true
+    MEDIUM:
+      can_advance: conditional
+    LOW:
+      can_advance: true
+    NOTE:
+      can_advance: true

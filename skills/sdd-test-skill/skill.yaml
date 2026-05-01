@@ -1,0 +1,118 @@
+name: sdd-test
+version: 1.0.0
+kind: sdd-validation-skill
+stage: testing
+owner: sdd-orchestrator
+
+purpose: >
+  Validate implemented changes against SDD artifacts through automated and manual tests,
+  acceptance criteria verification, regression checks, contract checks, authorization checks
+  and migration verification when applicable.
+
+input_artifacts:
+  required:
+    - request.md
+    - context-analysis.md
+    - user-story.md
+    - acceptance-criteria.md
+    - functional-spec.md
+    - technical-spec.md
+    - spec-validation-report.md
+    - implementation-gate-decision.md
+    - implementation-report.md
+    - code-change-log.md
+    - patch-summary.md
+    - deviation-log.md
+  conditional:
+    - api-contract.md
+    - data-contract.md
+    - error-contract.md
+    - operation-permissions-contract.md
+    - migration-plan.md
+    - rollback-plan.md
+    - migration-execution-notes.md
+    - security-permissions-review.md
+    - authz-test-plan.md
+    - contract-test-plan.md
+    - manual-verification-notes.md
+  recommended:
+    - test-plan.md
+    - traceability-matrix.md
+    - validation-rules.md
+    - technical-risk-register.md
+    - compatibility-plan.md
+
+output_artifacts:
+  required:
+    - test-plan-final.md
+    - test-report.md
+    - acceptance-validation-report.md
+    - regression-report.md
+    - defect-report.md
+    - test-handoff-report.md
+  conditional:
+    - contract-test-report.md
+    - authz-test-report.md
+    - migration-test-report.md
+    - manual-test-report.md
+    - rerun-plan.md
+
+allowed_decisions:
+  - TEST_PASSED
+  - TEST_FAILED
+  - TEST_BLOCKED
+  - TEST_PARTIAL
+
+required_gate:
+  artifact: implementation-report.md
+  accepted_decisions:
+    - IMPLEMENTATION_DONE
+    - IMPLEMENTATION_PARTIAL
+
+next_skills:
+  on_passed:
+    - sdd-security-permissions-review
+    - sdd-review
+  on_failed:
+    - sdd-implementation
+    - sdd-technical-spec
+    - sdd-functional-spec
+    - sdd-api-contract
+    - sdd-migration-rollback
+    - sdd-security-permissions-review
+  on_blocked:
+    - sdd-orchestrator
+  on_partial:
+    - sdd-orchestrator
+
+quality_rules:
+  must:
+    - Validate against acceptance criteria and approved specs.
+    - Preserve traceability from requirement to test result.
+    - Record commands, results, limitations and evidence.
+    - Distinguish implementation failures from specification gaps.
+    - Validate authorization at backend/API level when roles or permissions are involved.
+    - Validate contracts when API or data contracts exist.
+    - Validate migration effects when persistence changes exist.
+  must_not:
+    - Modify production code to make tests pass.
+    - Relax acceptance criteria.
+    - Hide intermittent failures.
+    - Treat missing tests as success.
+    - Consider frontend-only permission hiding as sufficient authorization validation.
+
+handoff_requirements:
+  to_sdd_review:
+    - test-report.md exists
+    - acceptance-validation-report.md exists
+    - regression-report.md exists
+    - decision is TEST_PASSED
+    - no critical defect remains
+  to_sdd_security_permissions_review:
+    - authz-test-report.md exists when auth or roles are affected
+    - test-report.md exists
+    - no unresolved test blocker remains
+  back_to_sdd_implementation:
+    - defect-report.md exists
+    - failing acceptance criteria are identified
+    - reproduction steps are documented

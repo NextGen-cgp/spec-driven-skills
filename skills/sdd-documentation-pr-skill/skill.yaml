@@ -1,0 +1,65 @@
+name: sdd-documentation-pr
+version: 1.0.0
+category: spec-driven-development
+stage: documentation_pr
+owner: sdd-orchestrator
+description: Prepara la documentación final, resumen de PR, changelog, release notes, paquete de merge y cierre formal de un flujo SDD tras una review final aprobada.
+
+inputs:
+  required:
+    - request.md
+    - context-analysis.md
+    - user-story.md
+    - acceptance-criteria.md
+    - functional-spec.md
+    - technical-spec.md
+    - implementation-report.md
+    - test-report.md
+    - acceptance-validation-report.md
+    - final-review-report.md
+    - merge-readiness-decision.md
+  conditional:
+    - api-contract.md
+    - migration-plan.md
+    - rollback-plan.md
+    - security-final-review.md
+    - security-permissions-review.md
+    - risk-review.md
+    - manual-test-report.md
+    - compatibility-notes.md
+
+outputs:
+  required:
+    - pr-summary.md
+    - changelog-entry.md
+    - release-notes.md
+    - documentation-update-plan.md
+    - docs-impact-report.md
+    - technical-handoff.md
+    - merge-package.md
+    - sdd-closeout-report.md
+    - final-artifact-index.md
+  optional:
+    - user-facing-notes.md
+    - operator-runbook.md
+    - known-limitations.md
+
+decisions:
+  - DOCUMENTATION_READY_FOR_PR
+  - DOCUMENTATION_READY_WITH_NOTES
+  - DOCUMENTATION_CHANGES_REQUESTED
+  - DOCUMENTATION_BLOCKED
+
+routes:
+  success: none
+  missing_final_review: sdd-final-review
+  missing_test_evidence: sdd-test
+  missing_implementation_evidence: sdd-implementation
+  inconsistent_review: sdd-final-review
+  documentation_issue: sdd-documentation-pr
+
+gates:
+  requires_final_review_approved: true
+  requires_test_evidence: true
+  requires_traceability: true
+  requires_artifact_index: true

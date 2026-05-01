@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SDD Technical Spec Artifact",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "status",
+    "change_type",
+    "affected_layers",
+    "technical_decisions",
+    "implementation_plan",
+    "handoff"
+  ],
+  "properties": {
+    "feature_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "READY_FOR_API_CONTRACT",
+        "READY_FOR_MIGRATION_ROLLBACK",
+        "READY_FOR_SECURITY_REVIEW",
+        "READY_FOR_SPEC_VALIDATION",
+        "READY_FOR_IMPLEMENTATION",
+        "NEEDS_FUNCTIONAL_REFINEMENT",
+        "NEEDS_CONTEXT_ANALYSIS",
+        "BLOCKED"
+      ]
+    },
+    "change_type": {
+      "type": "string",
+      "enum": [
+        "feature",
+        "bugfix",
+        "refactor",
+        "security",
+        "performance",
+        "documentation",
+        "test-only",
+        "architecture"
+      ]
+    },
+    "affected_layers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "frontend",
+          "backend",
+          "database",
+          "api",
+          "authentication",
+          "authorization",
+          "validation",
+          "testing",
+          "documentation",
+          "infrastructure"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "technical_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "decision",
+          "rationale",
+          "traceability"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "traceability": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "implementation_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "step",
+          "description",
+          "dependencies"
+        ],
+        "properties": {
+          "step": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "affected_files_or_modules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "validation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "risk",
+          "severity",
+          "mitigation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "risk": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "mitigation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "required": [
+        "next_skills",
+        "blocking_questions"
+      ],
+      "properties": {
+        "next_skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blocking_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommended_exit_state": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

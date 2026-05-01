@@ -1,0 +1,45 @@
+feature_id: <feature-id>
+validated_at: <YYYY-MM-DD>
+decision: NEEDS_REFINEMENT
+next_skill: sdd-functional-spec
+confidence: medium
+
+validation_summary: >
+  Pending validation summary.
+
+blocking_issues: []
+warnings: []
+
+artifact_readiness:
+  - artifact: request.md
+    requiredness: required
+    status: present
+    notes: ""
+  - artifact: context-analysis.md
+    requiredness: required
+    status: present
+    notes: ""
+  - artifact: user-story.md
+    requiredness: required
+    status: present
+    notes: ""
+  - artifact: acceptance-criteria.md
+    requiredness: required
+    status: incomplete
+    notes: "Acceptance criteria must be testable."
+
+traceability: []
+
+required_remediation:
+  - id: REM-001
+    target_skill: sdd-user-story-enrichment
+    action: Refine acceptance criteria into verifiable conditions.
+    reason: Implementation gate requires testable acceptance criteria.
+    priority: high
+
+gate_decision:
+  implementation_gate: FAIL
+  security_gate: NOT_APPLICABLE
+  migration_gate: NOT_APPLICABLE
+  api_gate: NOT_APPLICABLE
+  test_gate: FAIL

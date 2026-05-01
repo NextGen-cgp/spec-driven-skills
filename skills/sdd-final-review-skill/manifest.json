@@ -1,0 +1,34 @@
+{
+  "name": "sdd-final-review",
+  "version": "1.0.0",
+  "description": "Final review gate for Spec Driven Development flows, including security verification when applicable.",
+  "entrypoint": "SKILL.md",
+  "stage": "final_review",
+  "requires": [
+    "sdd-implementation",
+    "sdd-test"
+  ],
+  "optional_requires": [
+    "sdd-security-permissions-review",
+    "sdd-api-contract",
+    "sdd-migration-rollback"
+  ],
+  "produces": [
+    "final-review-report.md",
+    "spec-compliance-review.md",
+    "code-quality-review.md",
+    "security-final-review.md",
+    "risk-review.md",
+    "review-findings.md",
+    "merge-readiness-decision.md",
+    "review-handoff-report.md"
+  ],
+  "decisions": [
+    "FINAL_REVIEW_APPROVED",
+    "FINAL_REVIEW_APPROVED_WITH_NOTES",
+    "FINAL_REVIEW_CHANGES_REQUESTED",
+    "FINAL_REVIEW_BLOCKED"
+  ],
+  "routing": "routing/final-review-routing.yaml",
+  "schema": "schemas/final-review.schema.json"
+}

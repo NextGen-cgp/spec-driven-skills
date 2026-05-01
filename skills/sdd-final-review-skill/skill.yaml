@@ -1,0 +1,79 @@
+name: sdd-final-review
+version: 1.0.0
+kind: sdd-skill
+stage: final_review
+owner: sdd-orchestrator
+status: production-ready
+
+summary: >
+  Revisa una implementación finalizada dentro del flujo Spec Driven Development,
+  comprobando cumplimiento de especificación, calidad técnica, evidencia de tests,
+  seguridad aplicable, riesgos y readiness para documentación/PR.
+
+inputs:
+  required:
+    - request.md
+    - context-analysis.md
+    - user-story.md
+    - acceptance-criteria.md
+    - functional-spec.md
+    - technical-spec.md
+    - spec-validation-report.md
+    - implementation-gate-decision.md
+    - implementation-report.md
+    - code-change-log.md
+    - patch-summary.md
+    - deviation-log.md
+    - test-report.md
+    - acceptance-validation-report.md
+    - regression-report.md
+    - test-handoff-report.md
+  conditional:
+    - api-contract.md
+    - data-contract.md
+    - operation-permissions-contract.md
+    - contract-test-report.md
+    - authz-test-report.md
+    - migration-plan.md
+    - rollback-plan.md
+    - migration-test-report.md
+    - security-permissions-review.md
+    - post-implementation-security-review.md
+    - manual-test-report.md
+
+outputs:
+  required:
+    - final-review-report.md
+    - spec-compliance-review.md
+    - code-quality-review.md
+    - security-final-review.md
+    - risk-review.md
+    - review-findings.md
+    - merge-readiness-decision.md
+    - review-handoff-report.md
+  optional:
+    - remediation-request.md
+    - review-checklist.md
+
+decisions:
+  - FINAL_REVIEW_APPROVED
+  - FINAL_REVIEW_APPROVED_WITH_NOTES
+  - FINAL_REVIEW_CHANGES_REQUESTED
+  - FINAL_REVIEW_BLOCKED
+
+gates:
+  requires_implementation_done: true
+  requires_tests_passed_or_partial_authorized: true
+  requires_security_review_when_applicable: true
+  blocks_on_unresolved_blocker_findings: true
+
+routes:
+  approved: sdd-documentation-pr
+  approved_with_notes: sdd-documentation-pr
+  changes_requested_implementation: sdd-implementation
+  changes_requested_tests: sdd-test
+  changes_requested_security: sdd-security-permissions-review
+  changes_requested_api_contract: sdd-api-contract
+  changes_requested_migration: sdd-migration-rollback
+  changes_requested_spec_gap: sdd-technical-spec
+  blocked: sdd-orchestrator

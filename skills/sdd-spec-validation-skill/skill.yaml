@@ -1,0 +1,106 @@
+name: sdd-spec-validation
+version: 1.0.0
+kind: sdd-control-skill
+stage: spec_validation
+owner: sdd-orchestrator
+
+purpose: >
+  Validate SDD artifacts before implementation, ensuring scope, functional behavior,
+  technical design, API/data contracts, migration/rollback, security and tests are
+  complete, coherent and traceable.
+
+input_artifacts:
+  required:
+    - request.md
+    - context-analysis.md
+    - user-story.md
+    - acceptance-criteria.md
+    - functional-spec.md
+    - technical-spec.md
+  conditional:
+    - api-contract.md
+    - data-contract.md
+    - operation-permissions-contract.md
+    - migration-plan.md
+    - rollback-plan.md
+    - security-permissions-review.md
+    - test-plan.md
+  recommended:
+    - use-cases.md
+    - business-rules.md
+    - permissions-matrix.md
+    - state-model.md
+    - validation-rules.md
+    - technical-risk-register.md
+    - data-impact-assessment.md
+    - compatibility-plan.md
+
+output_artifacts:
+  required:
+    - spec-validation-report.md
+    - spec-readiness-checklist.md
+    - traceability-matrix.md
+    - implementation-gate-decision.md
+  conditional:
+    - spec-remediation-plan.md
+
+allowed_decisions:
+  - READY_FOR_IMPLEMENTATION
+  - NEEDS_REFINEMENT
+  - BLOCKED
+
+next_skills:
+  on_ready:
+    - sdd-implementation
+  on_refinement:
+    - sdd-user-story-enrichment
+    - sdd-functional-spec
+    - sdd-technical-spec
+    - sdd-api-contract
+    - sdd-migration-rollback
+    - sdd-security-permissions-review
+    - sdd-test-planning
+  on_blocked:
+    - sdd-orchestrator
+
+quality_gates:
+  implementation_gate:
+    required: true
+    pass_condition: >
+      No critical blocking issues and all mandatory plus applicable conditional artifacts exist.
+  security_gate:
+    required_when:
+      - affects_authentication
+      - affects_authorization
+      - affects_roles
+      - affects_permissions
+      - affects_sensitive_data
+      - introduces_write_operations
+      - changes_state_transitions
+  migration_gate:
+    required_when:
+      - affects_persistence
+      - adds_database_fields
+      - changes_database_schema
+      - modifies_data_model
+      - requires_backfill
+  api_gate:
+    required_when:
+      - adds_endpoint
+      - modifies_endpoint
+      - changes_payload
+      - changes_frontend_backend_contract
+  test_gate:
+    required_when:
+      - non_trivial_change
+      - business_logic_change
+      - bugfix
+      - security_relevant_change
+      - migration_change
+
+severity_model:
+  CRITICAL: blocks_implementation
+  HIGH: normally_blocks_implementation
+  MEDIUM: may_block_based_on_context
+  LOW: warning
+  INFO: note

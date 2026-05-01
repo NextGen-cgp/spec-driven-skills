@@ -1,0 +1,188 @@
+sdd_orchestration:
+  version: 1.0.0
+  default_flow:
+  - context-analysis
+  - user-story-enrichment
+  - functional-spec
+  - technical-spec
+  - spec-validation
+  - implementation
+  - test
+  - security-permissions-review
+  - final-review
+  - documentation-pr
+  request_types:
+  - feature
+  - bugfix
+  - refactor
+  - architecture
+  - security
+  - permissions
+  - database_change
+  - api_change
+  - ui_change
+  - test_only
+  - documentation
+  - performance
+  - devops
+  - unknown
+  flows:
+    feature:
+    - context-analysis
+    - user-story-enrichment
+    - functional-spec
+    - technical-spec
+    - api-contract: if api_change
+    - migration-rollback: if database_change
+    - security-permissions-review: if security_or_permissions
+    - spec-validation
+    - implementation
+    - test
+    - security-permissions-review: if security_or_permissions
+    - final-review
+    - documentation-pr
+    bugfix:
+    - context-analysis
+    - technical-spec
+    - test: create_or_identify_regression_test
+    - spec-validation
+    - implementation
+    - test
+    - final-review
+    - documentation-pr: if user_facing_or_noteworthy
+    refactor:
+    - context-analysis
+    - technical-spec
+    - spec-validation
+    - implementation
+    - test
+    - final-review
+    - documentation-pr: if architecture_or_public_api_changes
+    security_permissions:
+    - context-analysis
+    - user-story-enrichment: if functional_behavior_is_unclear
+    - functional-spec
+    - technical-spec
+    - security-permissions-review
+    - spec-validation
+    - implementation
+    - test
+    - security-permissions-review
+    - final-review
+    - documentation-pr
+    documentation:
+    - context-analysis: if docs_depend_on_repo
+    - documentation-pr
+    - final-review
+    test_only:
+    - context-analysis
+    - test
+    - final-review
+    - documentation-pr: if noteworthy
+  gates:
+    before_implementation:
+      required_artifacts:
+      - request.md
+      - technical-spec.md
+      - spec-validation-report.md
+      conditional_artifacts:
+        feature_or_permissions_change:
+        - user-story.md
+        - acceptance-criteria.md
+        - functional-spec.md
+        project_context_needed:
+        - context-analysis.md
+        api_change:
+        - api-contract.md
+        database_change:
+        - migration-plan.md
+        - rollback-plan.md
+        security_or_permissions:
+        - security-review.md
+      required_state: READY_FOR_IMPLEMENTATION
+      if_missing: route_to_missing_artifact_owner
+    before_final_review:
+      required_artifacts:
+      - implementation-report.md
+      - test-report.md
+      conditional_artifacts:
+        security_or_permissions_or_sensitive_data:
+        - security-review.md
+      if_missing: route_to_missing_artifact_owner
+    before_ready_for_pr:
+      required_artifacts:
+      - review-report.md
+      - pr-summary.md
+      recommended_artifacts:
+      - documentation-notes.md
+      - changelog-entry.md
+      if_missing: route_to_documentation_pr_or_final_review
+  triggers:
+    security:
+    - authentication
+    - authorization
+    - roles
+    - permissions
+    - admin_panel
+    - analyst_panel
+    - user_management
+    - write_operations
+    - sensitive_data
+    - protected_endpoint
+    - backend_validation
+    - audit_log
+    database:
+    - table
+    - entity
+    - model
+    - migration
+    - column
+    - field
+    - relation
+    - index
+    - seed
+    - existing_data
+    api:
+    - endpoint
+    - route
+    - payload
+    - request_body
+    - response_body
+    - status_code
+    - dto
+    - frontend_backend_contract
+    ui:
+    - screen
+    - panel
+    - form
+    - card
+    - button
+    - icon
+    - modal
+    - state
+    - badge
+    - pill
+    - table
+    - search
+    - filter
+    - responsive
+  risk_levels:
+    low:
+    - isolated_ui_copy
+    - documentation_only
+    - minor_visual_change_without_logic
+    medium:
+    - ui_and_backend
+    - business_rules
+    - api_changes
+    - regression_possible
+    high:
+    - authentication
+    - authorization
+    - roles
+    - database_change
+    - critical_calculation
+    - existing_data
+    - security
+    - audit
+    - business_critical_flow

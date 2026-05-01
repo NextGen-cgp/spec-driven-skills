@@ -1,0 +1,137 @@
+routing:
+  skill: sdd-spec-validation
+  stage: spec_validation
+
+entry_conditions:
+  mandatory:
+    - context-analysis.md exists
+    - user-story.md exists
+    - functional-spec.md exists
+    - technical-spec.md exists
+  recommended:
+    - acceptance-criteria.md exists
+    - test-plan.md exists
+
+artifact_rules:
+  request.md:
+    missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-orchestrator
+      reason: Original request must be preserved for traceability.
+
+  context-analysis.md:
+    missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-context-analysis
+      reason: Project patterns and impacted modules are unknown.
+
+  user-story.md:
+    missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-user-story-enrichment
+      reason: User need and actors are not refined.
+
+  acceptance-criteria.md:
+    missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-user-story-enrichment
+      reason: Acceptance criteria are required before implementation.
+
+  functional-spec.md:
+    missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-functional-spec
+      reason: Functional behavior is not specified.
+
+  technical-spec.md:
+    missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-technical-spec
+      reason: Technical implementation boundaries are not defined.
+
+conditional_rules:
+  affects_api:
+    required_artifacts:
+      - api-contract.md
+      - error-contract.md
+    if_missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-api-contract
+
+  affects_data_contract:
+    required_artifacts:
+      - data-contract.md
+    if_missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-api-contract
+
+  affects_database:
+    required_artifacts:
+      - migration-plan.md
+      - rollback-plan.md
+    if_missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-migration-rollback
+
+  affects_auth_or_roles:
+    required_artifacts:
+      - security-permissions-review.md
+      - permissions-matrix.md
+    if_missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-security-permissions-review
+
+  affects_state_machine:
+    required_artifacts:
+      - state-model.md
+      - validation-rules.md
+    if_missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-functional-spec
+
+  non_trivial_change:
+    required_artifacts:
+      - test-plan.md
+    if_missing:
+      decision: NEEDS_REFINEMENT
+      route_to: sdd-test-planning
+      fallback: create_remediation_item_for_test_plan
+
+decision_matrix:
+  READY_FOR_IMPLEMENTATION:
+    when:
+      - all_required_artifacts_present
+      - all_applicable_conditional_artifacts_present
+      - no_critical_issues
+      - no_unresolved_high_risk_issues
+      - traceability_complete
+      - acceptance_criteria_testable
+      - implementation_does_not_need_to_invent_requirements
+    next_skill: sdd-implementation
+
+  NEEDS_REFINEMENT:
+    when:
+      - missing_required_artifact
+      - missing_conditional_artifact
+      - incomplete_traceability
+      - ambiguous_acceptance_criteria
+      - incomplete_technical_plan
+      - incomplete_security_review
+      - incomplete_migration_plan
+    next_skill: skill_based_on_root_cause
+
+  BLOCKED:
+    when:
+      - critical_contradiction
+      - unresolved_security_blocker
+      - destructive_migration_without_strategy
+      - impossible_to_validate_scope
+      - human_business_decision_required
+    next_skill: sdd-orchestrator
+
+loop_control:
+  max_validation_loops: 3
+  after_max_loops:
+    decision: BLOCKED
+    route_to: sdd-orchestrator
+    reason: Repeated validation failures require orchestration or human decision.

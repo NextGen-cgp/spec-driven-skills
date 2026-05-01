@@ -1,0 +1,80 @@
+# Spec Validation Report
+
+## 1. Feature
+
+- Feature ID: `<feature-id>`
+- Change type: `feature | bugfix | refactor | security | docs | architecture`
+- Validation date: `<YYYY-MM-DD>`
+- Validation iteration: `<n>`
+
+## 2. Decision
+
+```text
+READY_FOR_IMPLEMENTATION | NEEDS_REFINEMENT | BLOCKED
+```
+
+## 3. Next Skill
+
+```text
+<sdd-next-skill>
+```
+
+## 4. Executive Summary
+
+Describe briefly whether the spec is ready and why.
+
+## 5. Artifact Readiness
+
+| Artifact | Requiredness | Status | Notes |
+|---|---:|---:|---|
+| request.md | Required | Pending |  |
+| context-analysis.md | Required | Pending |  |
+| user-story.md | Required | Pending |  |
+| acceptance-criteria.md | Required | Pending |  |
+| functional-spec.md | Required | Pending |  |
+| technical-spec.md | Required | Pending |  |
+| api-contract.md | Conditional | Pending |  |
+| migration-plan.md | Conditional | Pending |  |
+| rollback-plan.md | Conditional | Pending |  |
+| security-permissions-review.md | Conditional | Pending |  |
+| test-plan.md | Conditional | Pending |  |
+
+## 6. Blocking Issues
+
+| ID | Severity | Issue | Affected Artifacts | Route To |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+## 7. Non-blocking Warnings
+
+| ID | Severity | Warning | Recommendation |
+|---|---|---|---|
+|  |  |  |  |
+
+## 8. Gate Results
+
+| Gate | Result | Notes |
+|---|---:|---|
+| Implementation Gate | Pending |  |
+| API Gate | Pending |  |
+| Migration Gate | Pending |  |
+| Security Gate | Pending |  |
+| Test Gate | Pending |  |
+
+## 9. Traceability Summary
+
+| Requirement | Acceptance Criteria | Technical Coverage | Test Coverage | Status |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+## 10. Final Gate Decision
+
+```text
+<final-decision>
+```
+
+## 11. Required Remediation
+
+| ID | Target Skill | Action | Reason | Priority |
+|---|---|---|---|---|
+|  |  |  |  |  |

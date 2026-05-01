@@ -1,0 +1,105 @@
+name: sdd-security-permissions-review
+version: 1.0.0
+kind: sdd-skill
+stage: security-and-permissions-review
+owner: sdd-orchestrator
+status: production-ready
+
+inputs:
+  required:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - technical-spec.md
+  recommended:
+    - permissions-matrix.md
+    - state-model.md
+    - validation-rules.md
+    - api-contract.md
+    - data-contract.md
+    - operation-permissions-contract.md
+    - migration-plan.md
+    - rollback-plan.md
+    - data-impact-assessment.md
+    - implementation-report.md
+    - test-report.md
+
+outputs:
+  required:
+    - security-permissions-review.md
+    - permission-risk-matrix.md
+    - security-findings.md
+    - security-review-report.md
+  conditional:
+    - authz-test-plan.md
+    - data-exposure-review.md
+    - security-checklist.md
+    - role-operation-matrix.md
+    - auditability-notes.md
+    - post-implementation-security-review.md
+
+entry_states:
+  - TECHNICAL_SPEC_READY
+  - API_CONTRACT_READY
+  - MIGRATION_PLAN_READY
+  - NEEDS_SECURITY_REVIEW
+  - IMPLEMENTATION_DONE
+  - TESTING_DONE
+
+exit_states:
+  - SECURITY_APPROVED
+  - SECURITY_APPROVED_WITH_WARNINGS
+  - SECURITY_CHANGES_REQUIRED
+  - SECURITY_BLOCKED
+  - NOT_APPLICABLE
+  - NEEDS_FUNCTIONAL_SPEC
+  - NEEDS_TECHNICAL_SPEC
+  - NEEDS_API_CONTRACT
+  - NEEDS_MIGRATION_ROLLBACK
+  - NEEDS_TEST_PLAN
+  - BLOCKED_BY_AMBIGUITY
+
+next_skills:
+  default: sdd-spec-validation
+  conditional:
+    missing_functional_spec: sdd-functional-spec
+    missing_technical_spec: sdd-technical-spec
+    missing_api_contract: sdd-api-contract
+    missing_migration_plan: sdd-migration-rollback
+    changes_required_in_spec: sdd-technical-spec
+    changes_required_in_contract: sdd-api-contract
+    changes_required_in_migration: sdd-migration-rollback
+    post_implementation_approved: sdd-review
+    needs_tests: sdd-test
+
+mandatory_when:
+  affects:
+    - authentication
+    - authorization
+    - roles
+    - permissions
+    - write_operations
+    - admin_panels
+    - user_management
+    - state_transitions
+    - sensitive_or_critical_data
+    - api_endpoints
+    - database_migrations
+    - audit_logs
+
+severity_levels:
+  - CRITICAL
+  - HIGH
+  - MEDIUM
+  - LOW
+  - INFO
+
+approval_policy:
+  allow_next_step_when:
+    - SECURITY_APPROVED
+    - SECURITY_APPROVED_WITH_WARNINGS
+    - NOT_APPLICABLE
+  block_next_step_when:
+    - SECURITY_CHANGES_REQUIRED
+    - SECURITY_BLOCKED
+    - BLOCKED_BY_AMBIGUITY

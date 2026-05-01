@@ -1,0 +1,30 @@
+{
+  "name": "sdd-test-skill",
+  "version": "1.0.0",
+  "entrypoint": "SKILL.md",
+  "description": "SDD testing gate skill for validating implemented changes before review.",
+  "stage": "testing",
+  "previous_skills": [
+    "sdd-implementation"
+  ],
+  "next_skills": [
+    "sdd-security-permissions-review",
+    "sdd-review",
+    "sdd-orchestrator",
+    "sdd-implementation"
+  ],
+  "required_outputs": [
+    "test-plan-final.md",
+    "test-report.md",
+    "acceptance-validation-report.md",
+    "regression-report.md",
+    "defect-report.md",
+    "test-handoff-report.md"
+  ],
+  "decisions": [
+    "TEST_PASSED",
+    "TEST_FAILED",
+    "TEST_BLOCKED",
+    "TEST_PARTIAL"
+  ]
+}

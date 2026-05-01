@@ -1,0 +1,43 @@
+name: sdd-context-analysis
+display_name: SDD Context Analysis
+description: Analiza el contexto real del proyecto antes de generar historias refinadas, specs técnicas o implementar cambios.
+version: 1.0.0
+status: production-ready
+owner: sdd-orchestrator
+inputs:
+  required:
+    - request.md
+  optional:
+    - sdd-state.yaml
+    - user-story.md
+    - technical-spec.md
+outputs:
+  required:
+    - context-analysis.md
+  optional:
+    - project-map.md
+    - impact-map.md
+allowed_write_paths:
+  - /specs/<feature-name>/
+forbidden_write_paths:
+  - /src
+  - /app
+  - /pages
+  - /components
+  - /server
+  - /api
+  - /db
+  - /migrations
+  - /tests
+states:
+  - CONTEXT_ANALYSIS_READY
+  - CONTEXT_ANALYSIS_PARTIAL
+  - NEEDS_MORE_CONTEXT
+  - BLOCKED_BY_MISSING_REPOSITORY_ACCESS
+recommended_next_skills:
+  - user-story-enrichment
+  - technical-specification
+  - api-contract-specification
+  - migration-rollback-planning
+  - security-permissions-review
+  - blocked

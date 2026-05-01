@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sdd/api-contract.schema.json",
+  "title": "SDD API Contract",
+  "type": "object",
+  "required": ["feature_id", "skill", "status", "operations", "data_contracts", "error_contract", "routing_recommendation"],
+  "properties": {
+    "feature_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "skill": {
+      "const": "sdd-api-contract"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "API_CONTRACT_READY",
+        "DATA_CONTRACT_READY",
+        "NEEDS_TECHNICAL_SPEC",
+        "NEEDS_FUNCTIONAL_SPEC",
+        "NEEDS_CONTEXT_ANALYSIS",
+        "NEEDS_MIGRATION_ROLLBACK",
+        "NEEDS_SECURITY_REVIEW",
+        "NEEDS_SPEC_VALIDATION",
+        "NOT_APPLICABLE",
+        "BLOCKED_BY_AMBIGUITY"
+      ]
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["operation_id", "name", "type", "consumer", "producer", "authorization", "request", "response", "errors", "traceability"],
+        "properties": {
+          "operation_id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["read", "create", "update", "delete", "transition", "search", "batch", "export", "import", "integration"]
+          },
+          "method": { "type": "string" },
+          "path": { "type": "string" },
+          "consumer": { "type": "string" },
+          "producer": { "type": "string" },
+          "authorization": {
+            "type": "object",
+            "required": ["required", "roles_or_permissions", "backend_enforcement"],
+            "properties": {
+              "required": { "type": "boolean" },
+              "roles_or_permissions": { "type": "array", "items": { "type": "string" } },
+              "backend_enforcement": { "type": "string" }
+            }
+          },
+          "request": { "type": "object" },
+          "response": { "type": "object" },
+          "errors": { "type": "array", "items": { "type": "string" } },
+          "traceability": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "data_contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "fields"],
+        "properties": {
+          "name": { "type": "string" },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "type", "required", "nullable"],
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" },
+                "required": { "type": "boolean" },
+                "nullable": { "type": "boolean" },
+                "validation": { "type": "string" },
+                "description": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "error_contract": {
+      "type": "object"
+    },
+    "requires_migration_rollback": {
+      "type": "boolean"
+    },
+    "requires_security_review": {
+      "type": "boolean"
+    },
+    "routing_recommendation": {
+      "type": "object",
+      "required": ["next_skill", "reason"],
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

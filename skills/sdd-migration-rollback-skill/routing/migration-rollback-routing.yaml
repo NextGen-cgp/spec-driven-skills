@@ -1,0 +1,169 @@
+skill: sdd-migration-rollback
+version: 1.0.0
+
+entry_conditions:
+  required_artifacts:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - technical-spec.md
+  recommended_artifacts:
+    - data-model-impact.md
+    - api-contract.md
+    - data-contract.md
+    - state-model.md
+    - validation-rules.md
+    - backend-change-plan.md
+    - compatibility-notes.md
+
+routing_rules:
+  missing_context:
+    condition: "context-analysis.md is missing or does not identify database, ORM, persistence conventions or affected modules"
+    route_to: sdd-context-analysis
+    exit_state: NEEDS_CONTEXT_ANALYSIS
+
+  missing_technical_spec:
+    condition: "technical-spec.md is missing or does not identify affected persistent models, entities, states or data flow"
+    route_to: sdd-technical-spec
+    exit_state: NEEDS_TECHNICAL_SPEC
+
+  missing_api_or_data_contract:
+    condition: "technical-spec references API/data payload changes but api-contract.md or data-contract.md is missing"
+    route_to: sdd-api-contract
+    exit_state: NEEDS_API_CONTRACT
+
+  no_persistence_impact:
+    condition: "technical-spec confirms no database, model, state, seed, index, constraint or persisted data impact"
+    route_to: sdd-spec-validation
+    exit_state: NOT_APPLICABLE
+
+  migration_required:
+    condition: "change adds, modifies or removes persistent tables, columns, relations, indexes, constraints, enums, states or seed data"
+    route_to: sdd-migration-rollback
+    exit_state: MIGRATION_PLAN_READY
+
+  backfill_required:
+    condition: "existing records need values, normalization, repair, recalculation or transition to a new state/model"
+    route_to: sdd-migration-rollback
+    exit_state: MIGRATION_PLAN_READY
+    required_output: data-backfill-plan.md
+
+  compatibility_required:
+    condition: "old and new code or data contracts must coexist during deployment"
+    route_to: sdd-migration-rollback
+    exit_state: MIGRATION_PLAN_READY
+    required_output: compatibility-plan.md
+
+  seed_data_required:
+    condition: "feature requires initial records, catalogs, default parameters, roles or status values"
+    route_to: sdd-migration-rollback
+    exit_state: MIGRATION_PLAN_READY
+    required_output: seed-data-plan.md
+
+  destructive_change_detected:
+    condition: "plan includes drop, delete, lossy type conversion, not-null enforcement without defaults, mass update or irreversible state rewrite"
+    route_to: sdd-technical-spec
+    exit_state: BLOCKED_BY_DATA_LOSS_RISK
+
+  security_review_required:
+    condition: "migration affects roles, permissions, ownership, visibility, audit data, sensitive data or restricted state transitions"
+    route_to: sdd-security-permissions-review
+    exit_state: NEEDS_SECURITY_REVIEW
+
+  migration_complete:
+    condition: "migration-plan.md, rollback-plan.md, data-impact-assessment.md and verification checklist are complete with no blockers"
+    route_to: sdd-spec-validation
+    exit_state: NEEDS_SPEC_VALIDATION
+
+change_classification:
+  schema_additive:
+    examples:
+      - add_nullable_column
+      - add_table
+      - add_index
+      - add_non_breaking_constraint
+    risk_level: low_to_medium
+    requires_rollback_plan: true
+
+  schema_breaking:
+    examples:
+      - drop_column
+      - rename_column_without_compatibility
+      - alter_column_type_lossy
+      - add_not_null_without_default
+    risk_level: high
+    requires_rollback_plan: true
+    requires_explicit_blocker_review: true
+
+  data_backfill:
+    examples:
+      - populate_new_status
+      - calculate_derived_value
+      - normalize_existing_rows
+    risk_level: medium_to_high
+    requires_data_backfill_plan: true
+    requires_verification: true
+
+  state_change:
+    examples:
+      - add_cancelled_state
+      - change_completed_semantics
+      - introduce_draft_state
+    risk_level: medium
+    requires_state_model: true
+    requires_security_review: true
+
+  seed_data:
+    examples:
+      - initial_roles
+      - parameter_catalog
+      - default_configuration
+    risk_level: low_to_medium
+    requires_seed_data_plan: true
+
+  index_performance:
+    examples:
+      - add_search_index
+      - add_unique_index
+      - add_composite_index
+    risk_level: low_to_medium
+    requires_performance_notes: true
+
+required_sections:
+  migration_plan:
+    - metadata
+    - scope
+    - current_state
+    - target_state
+    - migration_steps
+    - ordering
+    - affected_objects
+    - deployment_sequence
+    - verification
+    - risks
+    - traceability
+
+  rollback_plan:
+    - rollback_strategy
+    - code_rollback
+    - schema_rollback
+    - data_rollback
+    - irreversible_changes
+    - rollback_triggers
+    - validation_after_rollback
+
+  data_impact_assessment:
+    - affected_data
+    - existing_records
+    - nullability
+    - defaults
+    - data_loss_risk
+    - compatibility_risk
+    - reporting_or_query_impact
+
+  migration_report:
+    - generated_outputs
+    - risk_level
+    - blockers
+    - next_skill
+    - reason

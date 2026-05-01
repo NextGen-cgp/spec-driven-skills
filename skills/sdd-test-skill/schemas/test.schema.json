@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sdd/schemas/test.schema.json",
+  "title": "SDD Test Report Schema",
+  "type": "object",
+  "required": [
+    "feature",
+    "decision",
+    "implementation_handoff",
+    "test_summary",
+    "acceptance_validation",
+    "routing"
+  ],
+  "properties": {
+    "feature": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "TEST_PASSED",
+        "TEST_FAILED",
+        "TEST_BLOCKED",
+        "TEST_PARTIAL"
+      ]
+    },
+    "implementation_handoff": {
+      "type": "object",
+      "required": [
+        "implementation_decision",
+        "artifacts_present"
+      ],
+      "properties": {
+        "implementation_decision": {
+          "type": "string",
+          "enum": [
+            "IMPLEMENTATION_DONE",
+            "IMPLEMENTATION_PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "artifacts_present": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deviations_reviewed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "test_summary": {
+      "type": "object",
+      "required": [
+        "commands",
+        "results"
+      ],
+      "properties": {
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "type",
+              "status"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "build",
+                  "typecheck",
+                  "lint",
+                  "unit",
+                  "integration",
+                  "contract",
+                  "authz",
+                  "migration",
+                  "e2e",
+                  "manual",
+                  "regression",
+                  "other"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "PASSED",
+                  "FAILED",
+                  "BLOCKED",
+                  "PARTIAL",
+                  "NOT_APPLICABLE"
+                ]
+              },
+              "evidence": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "acceptance_validation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion",
+          "status"
+        ],
+        "properties": {
+          "criterion": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "BLOCKED",
+              "PARTIAL",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "related_tests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "defects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "description",
+          "route_to"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "reproduction_steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "route_to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "routing": {
+      "type": "object",
+      "required": [
+        "next_skill",
+        "reason"
+      ],
+      "properties": {
+        "next_skill": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

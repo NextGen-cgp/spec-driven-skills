@@ -1,0 +1,170 @@
+functional_spec_routing:
+  version: 1.0.0
+
+  invoked_by:
+    - sdd-orchestrator
+    - sdd-user-story-enrichment
+
+  invoke_when:
+    user_story_is_refined: true
+    acceptance_criteria_exist: true
+    functional_scope_needs_definition: true
+    business_rules_need_consolidation: true
+    technical_spec_not_started: true
+    implementation_not_started: true
+
+  skip_when:
+    documentation_only: true
+    pure_infrastructure_change_without_product_behavior: true
+    technical_spec_already_validated: true
+    implementation_already_completed_without_functional_gap: true
+    request_is_too_vague_for_functional_scope: true
+
+  required_inputs:
+    - request.md
+    - user-story.md
+    - acceptance-criteria.md
+
+  recommended_inputs:
+    - context-analysis.md
+    - use-cases.md
+    - business-rules.md
+    - sdd-state.yaml
+
+  required_outputs:
+    - functional-spec.md
+    - functional-traceability-matrix.md
+
+  optional_outputs:
+    - feature-scope.md
+    - ui-behavior-spec.md
+    - permissions-matrix.md
+    - state-model.md
+    - functional-spec-report.md
+
+  output_states:
+    ready:
+      state: READY_FOR_TECHNICAL_SPEC
+      route_to: sdd-technical-spec
+      conditions:
+        - functional_goal_is_clear
+        - scope_and_out_of_scope_defined
+        - actors_and_roles_defined
+        - business_rules_consolidated
+        - acceptance_criteria_are_mapped
+        - no_blocking_questions
+
+    needs_refinement:
+      state: NEEDS_REFINEMENT
+      route_to: sdd-user-story-enrichment
+      conditions:
+        - missing_core_business_rule
+        - acceptance_criteria_not_verifiable
+        - actor_or_role_unclear
+        - workflow_contradicts_context
+
+    needs_security_review_before_tech_spec:
+      state: NEEDS_SECURITY_REVIEW_BEFORE_TECH_SPEC
+      route_to: sdd-security-permissions-review
+      conditions:
+        - permissions_model_is_unclear
+        - role_based_actions_are_high_risk
+        - sensitive_data_visibility_is_unclear
+
+    blocked:
+      state: BLOCKED
+      route_to: sdd-orchestrator
+      conditions:
+        - no_functional_goal
+        - contradictory_requirements
+        - blocking_business_decision_missing
+        - cannot_define_acceptance_mapping
+
+  conditional_flags:
+    affects_ui:
+      trigger_terms:
+        - pantalla
+        - panel
+        - vista
+        - formulario
+        - tabla
+        - card
+        - botón
+        - icono
+        - pill
+        - filtro
+        - buscador
+      require_extra_outputs:
+        - ui-behavior-spec.md
+
+    affects_permissions:
+      trigger_terms:
+        - rol
+        - roles
+        - permisos
+        - admin
+        - administrador
+        - analista
+        - lectura
+        - escritura
+        - editar
+        - crear
+        - modificar
+        - borrar
+      require_extra_outputs:
+        - permissions-matrix.md
+      mark_required_later_skill:
+        - sdd-security-permissions-review
+
+    affects_workflow_state:
+      trigger_terms:
+        - estado
+        - pendiente
+        - completado
+        - cancelado
+        - pospuesto
+        - reabrir
+        - cerrar
+        - transición
+      require_extra_outputs:
+        - state-model.md
+
+    affects_api:
+      trigger_terms:
+        - guardar
+        - consultar
+        - crear
+        - modificar
+        - eliminar
+        - endpoint
+        - API
+        - payload
+      mark_required_later_skill:
+        - sdd-api-contract
+
+    affects_database:
+      trigger_terms:
+        - persistir
+        - datos
+        - tabla
+        - entidad
+        - campo
+        - histórico
+        - migración
+      mark_required_later_skill:
+        - sdd-migration-rollback
+
+    affects_critical_calculation:
+      trigger_terms:
+        - cálculo
+        - resultado global
+        - computar
+        - excluir
+        - rango
+        - severidad
+        - media
+        - promedio
+      require_extra_outputs:
+        - functional-traceability-matrix.md
+      mark_required_later_skill:
+        - sdd-test-plan

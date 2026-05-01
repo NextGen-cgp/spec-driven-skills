@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sdd/migration-rollback.schema.json",
+  "title": "SDD Migration and Rollback Plan",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "skill",
+    "status",
+    "persistence_impact",
+    "migration_plan",
+    "rollback_plan",
+    "data_impact_assessment",
+    "risk_level",
+    "routing_recommendation"
+  ],
+  "properties": {
+    "feature_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "skill": {
+      "const": "sdd-migration-rollback"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "MIGRATION_PLAN_READY",
+        "ROLLBACK_PLAN_READY",
+        "NEEDS_TECHNICAL_SPEC",
+        "NEEDS_API_CONTRACT",
+        "NEEDS_CONTEXT_ANALYSIS",
+        "NEEDS_SECURITY_REVIEW",
+        "NEEDS_SPEC_VALIDATION",
+        "NOT_APPLICABLE",
+        "BLOCKED_BY_AMBIGUITY",
+        "BLOCKED_BY_DATA_LOSS_RISK"
+      ]
+    },
+    "persistence_impact": {
+      "type": "object",
+      "required": ["has_impact", "change_types", "affected_objects"],
+      "properties": {
+        "has_impact": { "type": "boolean" },
+        "change_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "schema_additive",
+              "schema_breaking",
+              "data_backfill",
+              "state_change",
+              "seed_data",
+              "index_performance",
+              "relationship_change",
+              "compatibility_transition",
+              "no_persistence_impact"
+            ]
+          }
+        },
+        "affected_objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "object_type", "impact"],
+            "properties": {
+              "name": { "type": "string" },
+              "object_type": {
+                "type": "string",
+                "enum": ["table", "column", "entity", "model", "index", "constraint", "relationship", "state", "seed", "view", "job", "unknown"]
+              },
+              "impact": { "type": "string" },
+              "risk": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "migration_plan": {
+      "type": "object",
+      "required": ["strategy", "steps", "verification"],
+      "properties": {
+        "strategy": { "type": "string" },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["order", "description", "type", "reversible"],
+            "properties": {
+              "order": { "type": "integer", "minimum": 1 },
+              "description": { "type": "string" },
+              "type": { "type": "string" },
+              "reversible": { "type": "boolean" },
+              "depends_on": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "verification": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "rollback_plan": {
+      "type": "object",
+      "required": ["strategy", "code_rollback", "schema_rollback", "data_rollback", "irreversible_changes"],
+      "properties": {
+        "strategy": { "type": "string" },
+        "code_rollback": { "type": "string" },
+        "schema_rollback": { "type": "string" },
+        "data_rollback": { "type": "string" },
+        "irreversible_changes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rollback_triggers": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "data_impact_assessment": {
+      "type": "object",
+      "required": ["existing_data_affected", "data_loss_risk", "compatibility_risk"],
+      "properties": {
+        "existing_data_affected": { "type": "boolean" },
+        "data_loss_risk": {
+          "type": "string",
+          "enum": ["none", "low", "medium", "high", "critical", "unknown"]
+        },
+        "compatibility_risk": {
+          "type": "string",
+          "enum": ["none", "low", "medium", "high", "critical", "unknown"]
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "backfill_required": { "type": "boolean" },
+    "compatibility_plan_required": { "type": "boolean" },
+    "security_review_required": { "type": "boolean" },
+    "risk_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical", "unknown"]
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "traceability": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "routing_recommendation": {
+      "type": "object",
+      "required": ["next_skill", "reason"],
+      "properties": {
+        "next_skill": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

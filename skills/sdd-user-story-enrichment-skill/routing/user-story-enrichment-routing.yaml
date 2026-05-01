@@ -1,0 +1,124 @@
+user_story_enrichment_routing:
+  version: 1.0.0
+
+  invoked_by:
+    - sdd-orchestrator
+    - sdd-context-analysis
+
+  invoke_when:
+    request_is_vague: true
+    functional_behavior_unclear: true
+    actors_or_roles_unclear: true
+    acceptance_criteria_missing: true
+    business_rules_missing: true
+    use_cases_missing: true
+    workflow_change_detected: true
+    permissions_change_detected: true
+    ui_behavior_needs_definition: true
+
+  skip_when:
+    documentation_only: true
+    pure_infrastructure_change_without_user_behavior: true
+    purely_internal_refactor_without_behavior_change: true
+    technical_spec_already_validated: true
+    test_only_change_without_functional_ambiguity: true
+
+  required_inputs:
+    - request.md
+
+  recommended_inputs:
+    - context-analysis.md
+    - sdd-state.yaml
+    - project-map.md
+    - impact-map.md
+
+  required_outputs:
+    - user-story.md
+    - acceptance-criteria.md
+
+  optional_outputs:
+    - use-cases.md
+    - business-rules.md
+    - open-questions.md
+    - enrichment-report.md
+
+  output_states:
+    ready:
+      state: READY_FOR_FUNCTIONAL_SPEC
+      route_to: sdd-functional-spec
+      conditions:
+        - at_least_one_refined_user_story
+        - acceptance_criteria_are_verifiable
+        - core_business_rules_are_defined
+        - no_blocking_questions
+
+    needs_clarification:
+      state: NEEDS_CLARIFICATION
+      route_to: sdd-orchestrator
+      conditions:
+        - non_blocking_questions_exist
+        - assumptions_are_marked
+        - enough_information_for_partial_spec
+
+    blocked:
+      state: BLOCKED
+      route_to: sdd-orchestrator
+      conditions:
+        - actor_or_permission_model_unknown_and_required
+        - expected_behavior_contradicts_context
+        - critical_business_rule_missing
+        - acceptance_criteria_cannot_be_defined
+
+  conditional_flags:
+    affects_permissions:
+      trigger_terms:
+        - role
+        - roles
+        - permisos
+        - admin
+        - administrador
+        - analista
+        - edición
+        - lectura
+        - autorización
+      mark_required_later_skill:
+        - sdd-security-permissions-review
+
+    affects_api:
+      trigger_terms:
+        - endpoint
+        - API
+        - request
+        - response
+        - payload
+        - guardar
+        - consultar
+        - crear
+        - modificar
+      mark_required_later_skill:
+        - sdd-api-contract
+
+    affects_database:
+      trigger_terms:
+        - tabla
+        - entidad
+        - campo
+        - columna
+        - estado persistente
+        - migración
+        - datos existentes
+      mark_required_later_skill:
+        - sdd-migration-rollback
+
+    affects_critical_calculation:
+      trigger_terms:
+        - cálculo
+        - resultado global
+        - computa
+        - rango
+        - severidad
+        - promedio
+        - exclusión
+      require_extra_outputs:
+        - business-rules.md
+        - acceptance-criteria.md

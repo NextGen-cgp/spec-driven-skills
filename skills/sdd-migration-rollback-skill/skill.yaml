@@ -1,0 +1,63 @@
+name: sdd-migration-rollback
+version: 1.0.0
+kind: sdd-skill
+stage: migration-and-rollback
+owner: sdd-orchestrator
+status: production-ready
+
+inputs:
+  required:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - technical-spec.md
+  recommended:
+    - data-model-impact.md
+    - api-contract.md
+    - data-contract.md
+    - state-model.md
+    - validation-rules.md
+    - backend-change-plan.md
+    - compatibility-notes.md
+    - operation-permissions-contract.md
+
+outputs:
+  required:
+    - migration-plan.md
+    - rollback-plan.md
+    - data-impact-assessment.md
+    - migration-report.md
+  conditional:
+    - data-backfill-plan.md
+    - compatibility-plan.md
+    - migration-verification-checklist.md
+    - seed-data-plan.md
+    - zero-downtime-plan.md
+
+entry_states:
+  - TECHNICAL_SPEC_READY
+  - API_CONTRACT_READY
+  - DATA_CONTRACT_READY
+  - NEEDS_MIGRATION_ROLLBACK
+  - READY_FOR_MIGRATION_PLAN
+
+exit_states:
+  - MIGRATION_PLAN_READY
+  - ROLLBACK_PLAN_READY
+  - NEEDS_TECHNICAL_SPEC
+  - NEEDS_API_CONTRACT
+  - NEEDS_CONTEXT_ANALYSIS
+  - NEEDS_SECURITY_REVIEW
+  - NEEDS_SPEC_VALIDATION
+  - NOT_APPLICABLE
+  - BLOCKED_BY_AMBIGUITY
+  - BLOCKED_BY_DATA_LOSS_RISK
+
+next_skills:
+  default: sdd-spec-validation
+  conditional:
+    security_impact: sdd-security-permissions-review
+    missing_api_contract: sdd-api-contract
+    missing_technical_spec: sdd-technical-spec
+    missing_context: sdd-context-analysis
+    destructive_data_risk: sdd-technical-spec

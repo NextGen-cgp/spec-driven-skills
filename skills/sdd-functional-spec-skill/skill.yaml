@@ -1,0 +1,62 @@
+name: sdd-functional-spec
+version: 1.0.0
+category: spec-driven-development
+stage: functional-specification
+owner: sdd-flow
+
+purpose: >
+  Convert refined user stories, acceptance criteria, use cases and business rules
+  into a complete functional specification ready for technical specification.
+
+recommended_previous_skills:
+  - sdd-orchestrator
+  - sdd-context-analysis
+  - sdd-user-story-enrichment
+
+recommended_next_skills:
+  - sdd-technical-spec
+  - sdd-api-contract
+  - sdd-migration-rollback
+  - sdd-spec-validation
+  - sdd-security-permissions-review
+  - sdd-orchestrator
+
+inputs:
+  required:
+    - request.md
+    - user-story.md
+    - acceptance-criteria.md
+  recommended:
+    - context-analysis.md
+    - use-cases.md
+    - business-rules.md
+    - sdd-state.yaml
+  optional:
+    - open-questions.md
+    - project-map.md
+    - impact-map.md
+
+outputs:
+  required:
+    - functional-spec.md
+    - functional-traceability-matrix.md
+  optional:
+    - feature-scope.md
+    - ui-behavior-spec.md
+    - permissions-matrix.md
+    - state-model.md
+    - functional-spec-report.md
+
+exit_states:
+  - READY_FOR_TECHNICAL_SPEC
+  - NEEDS_REFINEMENT
+  - NEEDS_SECURITY_REVIEW_BEFORE_TECH_SPEC
+  - BLOCKED
+
+must_not:
+  - implement_code
+  - define_final_database_schema
+  - define_final_endpoint_implementation
+  - skip_traceability
+  - mark_ready_with_blocking_questions
+  - mix_functional_spec_with_low_level_technical_design

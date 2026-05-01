@@ -1,0 +1,50 @@
+name: sdd-user-story-enrichment
+version: 1.0.0
+category: spec-driven-development
+stage: user-story-refinement
+owner: sdd-flow
+
+purpose: >
+  Convert vague or incomplete product requests into refined user stories,
+  use cases, business rules, acceptance criteria and functional-ready artifacts.
+
+recommended_previous_skills:
+  - sdd-orchestrator
+  - sdd-context-analysis
+
+recommended_next_skills:
+  - sdd-functional-spec
+  - sdd-security-permissions-review
+  - sdd-orchestrator
+
+inputs:
+  required:
+    - request.md
+  recommended:
+    - context-analysis.md
+    - sdd-state.yaml
+  optional:
+    - project-map.md
+    - impact-map.md
+
+outputs:
+  required:
+    - user-story.md
+    - acceptance-criteria.md
+  optional:
+    - use-cases.md
+    - business-rules.md
+    - open-questions.md
+    - enrichment-report.md
+
+exit_states:
+  - READY_FOR_FUNCTIONAL_SPEC
+  - NEEDS_CLARIFICATION
+  - BLOCKED
+
+must_not:
+  - implement_code
+  - define_final_database_migrations
+  - invent_unmarked_requirements
+  - skip_acceptance_criteria
+  - mix_functional_rules_with_final_technical_design

@@ -1,0 +1,78 @@
+name: sdd-technical-spec
+version: 1.0.0
+category: spec-driven-development
+stage: technical-specification
+owner: sdd-flow
+
+purpose: >
+  Convert a validated functional specification into an actionable technical specification
+  that defines implementation boundaries, affected layers, data/API impacts, risks,
+  sequencing, dependencies and handoff criteria for implementation and validation skills.
+
+recommended_previous_skills:
+  - sdd-orchestrator
+  - sdd-context-analysis
+  - sdd-user-story-enrichment
+  - sdd-functional-spec
+
+recommended_next_skills:
+  - sdd-api-contract
+  - sdd-migration-rollback
+  - sdd-security-permissions-review
+  - sdd-spec-validation
+  - sdd-implementation
+  - sdd-orchestrator
+
+inputs:
+  required:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - functional-traceability-matrix.md
+  recommended:
+    - user-story.md
+    - acceptance-criteria.md
+    - use-cases.md
+    - business-rules.md
+    - feature-scope.md
+    - ui-behavior-spec.md
+    - permissions-matrix.md
+    - state-model.md
+    - sdd-state.yaml
+  optional:
+    - project-map.md
+    - impact-map.md
+    - open-questions.md
+
+outputs:
+  required:
+    - technical-spec.md
+    - implementation-plan.md
+    - technical-spec-report.md
+  conditional:
+    - architecture-impact.md
+    - backend-change-plan.md
+    - frontend-change-plan.md
+    - data-model-impact.md
+    - api-impact.md
+    - validation-rules.md
+    - technical-risk-register.md
+
+exit_states:
+  - READY_FOR_API_CONTRACT
+  - READY_FOR_MIGRATION_ROLLBACK
+  - READY_FOR_SECURITY_REVIEW
+  - READY_FOR_SPEC_VALIDATION
+  - READY_FOR_IMPLEMENTATION
+  - NEEDS_FUNCTIONAL_REFINEMENT
+  - NEEDS_CONTEXT_ANALYSIS
+  - BLOCKED
+
+must_not:
+  - implement_code
+  - execute_commands
+  - write_final_migrations
+  - bypass_spec_validation
+  - invent_unconfirmed_architecture
+  - redefine_functional_requirements_without_flagging
+  - mark_ready_for_implementation_with_blocking_questions

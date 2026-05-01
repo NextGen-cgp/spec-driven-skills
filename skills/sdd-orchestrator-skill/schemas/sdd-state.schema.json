@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sdd-state.schema.json",
+  "title": "SDD Orchestration State",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "current_state",
+    "request_types",
+    "risk_level",
+    "artifacts",
+    "gates",
+    "next_skill"
+  ],
+  "properties": {
+    "feature_id": {
+      "type": "string",
+      "description": "Stable slug for the feature, bugfix, refactor or documentation work."
+    },
+    "current_state": {
+      "type": "string",
+      "enum": [
+        "INTAKE",
+        "CONTEXT_ANALYSIS_REQUIRED",
+        "CONTEXT_ANALYSIS_DONE",
+        "USER_STORY_REFINEMENT_REQUIRED",
+        "USER_STORY_REFINED",
+        "FUNCTIONAL_SPEC_REQUIRED",
+        "FUNCTIONAL_SPEC_READY",
+        "TECHNICAL_SPEC_REQUIRED",
+        "TECHNICAL_SPEC_READY",
+        "API_CONTRACT_REQUIRED",
+        "API_CONTRACT_READY",
+        "MIGRATION_ROLLBACK_REQUIRED",
+        "MIGRATION_ROLLBACK_READY",
+        "SPEC_VALIDATION_REQUIRED",
+        "READY_FOR_IMPLEMENTATION",
+        "IMPLEMENTATION_IN_PROGRESS",
+        "IMPLEMENTATION_DONE",
+        "TESTING_REQUIRED",
+        "TESTING_DONE",
+        "SECURITY_REVIEW_REQUIRED",
+        "SECURITY_REVIEW_DONE",
+        "FINAL_REVIEW_REQUIRED",
+        "FINAL_REVIEW_DONE",
+        "DOCUMENTATION_REQUIRED",
+        "READY_FOR_PR",
+        "DONE",
+        "BLOCKED"
+      ]
+    },
+    "request_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "feature",
+          "bugfix",
+          "refactor",
+          "architecture",
+          "security",
+          "permissions",
+          "database_change",
+          "api_change",
+          "ui_change",
+          "test_only",
+          "documentation",
+          "performance",
+          "devops",
+          "unknown"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "affected_modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "exists",
+          "path"
+        ],
+        "properties": {
+          "exists": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "missing",
+              "draft",
+              "ready",
+              "validated",
+              "not_applicable"
+            ]
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "required": [
+        "implementation",
+        "final_review",
+        "ready_for_pr"
+      ],
+      "properties": {
+        "implementation": {
+          "$ref": "#/$defs/gate"
+        },
+        "security": {
+          "$ref": "#/$defs/gate"
+        },
+        "database": {
+          "$ref": "#/$defs/gate"
+        },
+        "api": {
+          "$ref": "#/$defs/gate"
+        },
+        "test": {
+          "$ref": "#/$defs/gate"
+        },
+        "final_review": {
+          "$ref": "#/$defs/gate"
+        },
+        "ready_for_pr": {
+          "$ref": "#/$defs/gate"
+        }
+      }
+    },
+    "next_skill": {
+      "type": "string"
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "blocked",
+            "not_applicable",
+            "pending"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "missing_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

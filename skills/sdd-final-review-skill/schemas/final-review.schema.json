@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/sdd/final-review.schema.json",
+  "title": "SDD Final Review Report",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "skill",
+    "decision",
+    "summary",
+    "artifacts_reviewed",
+    "findings",
+    "next_route"
+  ],
+  "properties": {
+    "feature_id": {
+      "type": "string"
+    },
+    "skill": {
+      "const": "sdd-final-review"
+    },
+    "version": {
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "FINAL_REVIEW_APPROVED",
+        "FINAL_REVIEW_APPROVED_WITH_NOTES",
+        "FINAL_REVIEW_CHANGES_REQUESTED",
+        "FINAL_REVIEW_BLOCKED"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "artifacts_reviewed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "security_review_required": {
+      "type": "boolean"
+    },
+    "security_review_status": {
+      "enum": [
+        "NOT_APPLICABLE",
+        "PASSED",
+        "PASSED_WITH_NOTES",
+        "FAILED",
+        "MISSING",
+        "BLOCKED"
+      ]
+    },
+    "spec_compliance_status": {
+      "enum": [
+        "PASSED",
+        "PASSED_WITH_NOTES",
+        "FAILED",
+        "BLOCKED"
+      ]
+    },
+    "test_evidence_status": {
+      "enum": [
+        "PASSED",
+        "PARTIAL_AUTHORIZED",
+        "FAILED",
+        "MISSING",
+        "BLOCKED"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "category",
+          "description",
+          "recommendation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "BLOCKER",
+              "HIGH",
+              "MEDIUM",
+              "LOW",
+              "NOTE"
+            ]
+          },
+          "category": {
+            "enum": [
+              "spec",
+              "implementation",
+              "tests",
+              "security",
+              "api_contract",
+              "migration",
+              "data",
+              "frontend",
+              "backend",
+              "architecture",
+              "documentation",
+              "maintainability"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          },
+          "route_to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "required_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_route": {
+      "type": "string"
+    },
+    "merge_ready": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+skill: sdd-api-contract
+version: 1.0.0
+
+entry_conditions:
+  required_artifacts:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - technical-spec.md
+  recommended_artifacts:
+    - api-impact.md
+    - backend-change-plan.md
+    - frontend-change-plan.md
+    - data-model-impact.md
+    - permissions-matrix.md
+    - state-model.md
+    - validation-rules.md
+
+routing_rules:
+  missing_context:
+    condition: "context-analysis.md is missing or does not identify stack, API style, modules or conventions"
+    route_to: sdd-context-analysis
+    exit_state: NEEDS_CONTEXT_ANALYSIS
+
+  missing_functional_spec:
+    condition: "functional-spec.md is missing or does not define use cases, acceptance criteria or business rules"
+    route_to: sdd-functional-spec
+    exit_state: NEEDS_FUNCTIONAL_SPEC
+
+  missing_technical_spec:
+    condition: "technical-spec.md is missing or does not identify affected layers and technical approach"
+    route_to: sdd-technical-spec
+    exit_state: NEEDS_TECHNICAL_SPEC
+
+  no_api_or_data_contract_impact:
+    condition: "technical-spec confirms no API, backend action, data exchange or integration impact"
+    route_to: sdd-spec-validation
+    exit_state: NOT_APPLICABLE
+
+  api_contract_required:
+    condition: "change affects endpoints, actions, frontend/backend communication, request payloads, responses or errors"
+    route_to: sdd-api-contract
+    exit_state: API_CONTRACT_READY
+
+  data_contract_required:
+    condition: "change affects data shapes exchanged between layers or persisted states exposed to consumers"
+    route_to: sdd-api-contract
+    exit_state: DATA_CONTRACT_READY
+
+  database_change_detected:
+    condition: "contract requires new persistent fields, new state, model changes, backfill or compatibility rules"
+    route_to: sdd-migration-rollback
+    exit_state: NEEDS_MIGRATION_ROLLBACK
+
+  security_review_required:
+    condition: "contract includes restricted operations, role-based access, state transitions, write operations or sensitive data"
+    route_to: sdd-security-permissions-review
+    exit_state: NEEDS_SECURITY_REVIEW
+
+  ambiguous_contract:
+    condition: "required operation, owner layer, state transition or payload shape cannot be inferred from existing specs"
+    route_to: sdd-technical-spec
+    exit_state: BLOCKED_BY_AMBIGUITY
+
+  contract_complete:
+    condition: "api-contract.md, data-contract.md and error-contract.md are complete and no conditional blockers remain"
+    route_to: sdd-spec-validation
+    exit_state: NEEDS_SPEC_VALIDATION
+
+operation_classification:
+  read:
+    examples:
+      - list
+      - search
+      - get detail
+    requires_security_review: false
+    requires_contract_test: true
+
+  write:
+    examples:
+      - create
+      - update
+      - delete
+      - cancel
+      - reopen
+      - approve
+      - reject
+    requires_security_review: true
+    requires_contract_test: true
+
+  transition:
+    examples:
+      - pending_to_cancelled
+      - cancelled_to_pending
+      - draft_to_completed
+    requires_security_review: true
+    requires_contract_test: true
+    requires_state_model: true
+
+  integration:
+    examples:
+      - webhook
+      - external service call
+      - async job
+    requires_security_review: true
+    requires_contract_test: true
+    requires_compatibility_notes: true
+
+required_contract_sections:
+  api_contract:
+    - metadata
+    - consumers
+    - operations
+    - endpoint_or_action_definitions
+    - request_contracts
+    - response_contracts
+    - validation_rules
+    - permission_rules
+    - traceability
+
+  data_contract:
+    - entities_or_dtos
+    - fields
+    - types
+    - required_optional_flags
+    - nullability
+    - defaults
+    - state_values
+    - compatibility_notes
+
+  error_contract:
+    - error_format
+    - validation_errors
+    - authorization_errors
+    - not_found_errors
+    - conflict_errors
+    - unexpected_errors

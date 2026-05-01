@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SDD Spec Validation Result",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "decision",
+    "next_skill",
+    "validation_summary",
+    "artifact_readiness",
+    "gate_decision"
+  ],
+  "properties": {
+    "feature_id": {
+      "type": "string"
+    },
+    "validated_at": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "READY_FOR_IMPLEMENTATION",
+        "NEEDS_REFINEMENT",
+        "BLOCKED"
+      ]
+    },
+    "next_skill": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "validation_summary": {
+      "type": "string"
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/issue"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/issue"
+      }
+    },
+    "artifact_readiness": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact_status"
+      }
+    },
+    "traceability": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/traceability_item"
+      }
+    },
+    "gate_decision": {
+      "type": "object",
+      "required": [
+        "implementation_gate",
+        "security_gate",
+        "migration_gate",
+        "api_gate",
+        "test_gate"
+      ],
+      "properties": {
+        "implementation_gate": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "security_gate": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "migration_gate": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "api_gate": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "test_gate": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE"
+          ]
+        }
+      }
+    },
+    "required_remediation": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/remediation_item"
+      }
+    }
+  },
+  "$defs": {
+    "issue": {
+      "type": "object",
+      "required": [
+        "id",
+        "severity",
+        "title",
+        "description",
+        "route_to"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "INFO"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "affected_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "route_to": {
+          "type": "string"
+        }
+      }
+    },
+    "artifact_status": {
+      "type": "object",
+      "required": [
+        "artifact",
+        "requiredness",
+        "status"
+      ],
+      "properties": {
+        "artifact": {
+          "type": "string"
+        },
+        "requiredness": {
+          "type": "string",
+          "enum": [
+            "required",
+            "conditional",
+            "recommended"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "present",
+            "missing",
+            "incomplete",
+            "not_applicable"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "traceability_item": {
+      "type": "object",
+      "required": [
+        "requirement",
+        "acceptance_criteria",
+        "technical_coverage",
+        "test_coverage",
+        "status"
+      ],
+      "properties": {
+        "requirement": {
+          "type": "string"
+        },
+        "acceptance_criteria": {
+          "type": "string"
+        },
+        "technical_coverage": {
+          "type": "string"
+        },
+        "test_coverage": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "covered",
+            "partial",
+            "missing",
+            "blocked"
+          ]
+        }
+      }
+    },
+    "remediation_item": {
+      "type": "object",
+      "required": [
+        "id",
+        "target_skill",
+        "action",
+        "reason"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "target_skill": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low"
+          ]
+        }
+      }
+    }
+  }
+}

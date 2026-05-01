@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SDD Implementation Result",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "decision",
+    "next_skill",
+    "summary",
+    "files_changed",
+    "requirements_covered",
+    "deviations"
+  ],
+  "properties": {
+    "feature_id": {
+      "type": "string"
+    },
+    "implemented_at": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "IMPLEMENTATION_DONE",
+        "IMPLEMENTATION_PARTIAL",
+        "IMPLEMENTATION_BLOCKED"
+      ]
+    },
+    "next_skill": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "gate_reference": {
+      "type": "string"
+    },
+    "files_changed": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/file_change"
+      }
+    },
+    "requirements_covered": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/requirement_coverage"
+      }
+    },
+    "deviations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/deviation"
+      }
+    },
+    "dependencies_changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "configuration_changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "manual_verification_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "handoff_notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "file_change": {
+      "type": "object",
+      "required": [
+        "path",
+        "change_type",
+        "reason"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "change_type": {
+          "type": "string",
+          "enum": [
+            "created",
+            "modified",
+            "deleted",
+            "renamed",
+            "not_changed"
+          ]
+        },
+        "layer": {
+          "type": "string",
+          "enum": [
+            "frontend",
+            "backend",
+            "database",
+            "api",
+            "tests",
+            "config",
+            "docs",
+            "infra",
+            "unknown"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "related_requirement": {
+          "type": "string"
+        },
+        "risk": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical",
+            "none"
+          ]
+        }
+      }
+    },
+    "requirement_coverage": {
+      "type": "object",
+      "required": [
+        "requirement_id",
+        "status"
+      ],
+      "properties": {
+        "requirement_id": {
+          "type": "string"
+        },
+        "acceptance_criterion": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "implemented",
+            "partially_implemented",
+            "not_implemented",
+            "blocked"
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    },
+    "deviation": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "action"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "ALLOWED_MINOR_DEVIATION",
+            "NEEDS_SPEC_UPDATE",
+            "BLOCKING_DEVIATION"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "route_to": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

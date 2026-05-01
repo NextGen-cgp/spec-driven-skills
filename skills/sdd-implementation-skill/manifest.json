@@ -1,0 +1,33 @@
+{
+  "name": "sdd-implementation-skill",
+  "version": "1.0.0",
+  "generated_for": "Spec Driven Development multi-skill flow",
+  "stage": "implementation",
+  "depends_on": [
+    "sdd-spec-validation"
+  ],
+  "next": [
+    "sdd-test",
+    "sdd-security-permissions-review",
+    "sdd-review"
+  ],
+  "files": [
+    "README.md",
+    "SKILL.md",
+    "examples/blocked-implementation-missing-gate.md",
+    "examples/feature-admin-analyst-panel-implementation.md",
+    "examples/feature-cancelled-parameter-implementation.md",
+    "routing/implementation-routing.yaml",
+    "schemas/implementation.schema.json",
+    "skill.yaml",
+    "templates/code-change-log.md",
+    "templates/configuration-change-record.md",
+    "templates/dependency-change-record.md",
+    "templates/deviation-log.md",
+    "templates/implementation-plan.md",
+    "templates/implementation-report.md",
+    "templates/manual-verification-notes.md",
+    "templates/migration-execution-notes.md",
+    "templates/patch-summary.md"
+  ]
+}

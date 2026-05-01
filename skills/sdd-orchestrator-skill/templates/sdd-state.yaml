@@ -1,0 +1,112 @@
+feature_id: ""
+current_state: "INTAKE"
+request_types:
+  - "unknown"
+risk_level: "medium"
+affected_modules: []
+
+artifacts:
+  request.md:
+    exists: true
+    path: "specs/<feature-id>/request.md"
+    status: "draft"
+  context-analysis.md:
+    exists: false
+    path: "specs/<feature-id>/context-analysis.md"
+    status: "missing"
+  user-story.md:
+    exists: false
+    path: "specs/<feature-id>/user-story.md"
+    status: "missing"
+  acceptance-criteria.md:
+    exists: false
+    path: "specs/<feature-id>/acceptance-criteria.md"
+    status: "missing"
+  functional-spec.md:
+    exists: false
+    path: "specs/<feature-id>/functional-spec.md"
+    status: "missing"
+  technical-spec.md:
+    exists: false
+    path: "specs/<feature-id>/technical-spec.md"
+    status: "missing"
+  api-contract.md:
+    exists: false
+    path: "specs/<feature-id>/api-contract.md"
+    status: "missing"
+  migration-plan.md:
+    exists: false
+    path: "specs/<feature-id>/migration-plan.md"
+    status: "missing"
+  rollback-plan.md:
+    exists: false
+    path: "specs/<feature-id>/rollback-plan.md"
+    status: "missing"
+  spec-validation-report.md:
+    exists: false
+    path: "specs/<feature-id>/spec-validation-report.md"
+    status: "missing"
+  implementation-report.md:
+    exists: false
+    path: "specs/<feature-id>/implementation-report.md"
+    status: "missing"
+  test-plan.md:
+    exists: false
+    path: "specs/<feature-id>/test-plan.md"
+    status: "missing"
+  test-report.md:
+    exists: false
+    path: "specs/<feature-id>/test-report.md"
+    status: "missing"
+  security-review.md:
+    exists: false
+    path: "specs/<feature-id>/security-review.md"
+    status: "missing"
+  review-report.md:
+    exists: false
+    path: "specs/<feature-id>/review-report.md"
+    status: "missing"
+  pr-summary.md:
+    exists: false
+    path: "specs/<feature-id>/pr-summary.md"
+    status: "missing"
+
+gates:
+  implementation:
+    status: "blocked"
+    reason: "Spec no validada"
+    missing_artifacts:
+      - "technical-spec.md"
+      - "spec-validation-report.md"
+  security:
+    status: "pending"
+    reason: ""
+    missing_artifacts: []
+  database:
+    status: "not_applicable"
+    reason: ""
+    missing_artifacts: []
+  api:
+    status: "pending"
+    reason: ""
+    missing_artifacts: []
+  test:
+    status: "pending"
+    reason: ""
+    missing_artifacts: []
+  final_review:
+    status: "blocked"
+    reason: "Implementación y tests no finalizados"
+    missing_artifacts:
+      - "implementation-report.md"
+      - "test-report.md"
+  ready_for_pr:
+    status: "blocked"
+    reason: "Review y resumen de PR no disponibles"
+    missing_artifacts:
+      - "review-report.md"
+      - "pr-summary.md"
+
+next_skill: "context-analysis"
+blockers: []
+assumptions: []

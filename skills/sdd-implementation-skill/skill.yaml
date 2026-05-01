@@ -1,0 +1,94 @@
+name: sdd-implementation
+version: 1.0.0
+kind: sdd-execution-skill
+stage: implementation
+owner: sdd-orchestrator
+
+purpose: >
+  Implement code, configuration, migration scaffolding or technical changes strictly from
+  validated SDD artifacts, preserving traceability and reporting deviations before handing
+  work to the test skill.
+
+input_artifacts:
+  required:
+    - request.md
+    - context-analysis.md
+    - user-story.md
+    - acceptance-criteria.md
+    - functional-spec.md
+    - technical-spec.md
+    - spec-validation-report.md
+    - implementation-gate-decision.md
+  conditional:
+    - api-contract.md
+    - data-contract.md
+    - operation-permissions-contract.md
+    - migration-plan.md
+    - rollback-plan.md
+    - security-permissions-review.md
+    - test-plan.md
+  recommended:
+    - traceability-matrix.md
+    - validation-rules.md
+    - technical-risk-register.md
+    - compatibility-plan.md
+
+output_artifacts:
+  required:
+    - implementation-plan.md
+    - code-change-log.md
+    - implementation-report.md
+    - patch-summary.md
+    - deviation-log.md
+    - manual-verification-notes.md
+  conditional:
+    - dependency-change-record.md
+    - configuration-change-record.md
+    - migration-execution-notes.md
+
+allowed_decisions:
+  - IMPLEMENTATION_DONE
+  - IMPLEMENTATION_PARTIAL
+  - IMPLEMENTATION_BLOCKED
+
+required_gate:
+  artifact: implementation-gate-decision.md
+  decision: READY_FOR_IMPLEMENTATION
+
+next_skills:
+  on_done:
+    - sdd-test
+  on_partial:
+    - sdd-test
+    - sdd-orchestrator
+  on_blocked:
+    - sdd-orchestrator
+    - sdd-technical-spec
+    - sdd-api-contract
+    - sdd-migration-rollback
+    - sdd-security-permissions-review
+    - sdd-spec-validation
+
+quality_rules:
+  must:
+    - Implement only approved scope.
+    - Preserve traceability from requirement to code change.
+    - Record every file touched and why.
+    - Stop on blocking ambiguity.
+    - Avoid broad refactors unless explicitly specified.
+    - Preserve existing behavior unless the spec says otherwise.
+  must_not:
+    - Invent requirements.
+    - Add hidden behavior.
+    - Change API contracts without approved contract.
+    - Change database schema without migration and rollback plan.
+    - Use frontend-only permission enforcement for protected operations.
+    - Suppress errors to hide failing behavior.
+
+handoff_requirements:
+  to_sdd_test:
+    - implementation-report.md exists
+    - code-change-log.md exists
+    - deviation-log.md exists
+    - no blocking deviations remain
+    - manual-verification-notes.md exists

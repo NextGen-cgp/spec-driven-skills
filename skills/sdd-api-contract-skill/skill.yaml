@@ -1,0 +1,60 @@
+name: sdd-api-contract
+version: 1.0.0
+kind: sdd-skill
+stage: api-and-data-contracts
+owner: sdd-orchestrator
+status: production-ready
+
+inputs:
+  required:
+    - request.md
+    - context-analysis.md
+    - functional-spec.md
+    - technical-spec.md
+  recommended:
+    - api-impact.md
+    - backend-change-plan.md
+    - frontend-change-plan.md
+    - data-model-impact.md
+    - permissions-matrix.md
+    - state-model.md
+    - validation-rules.md
+    - functional-traceability-matrix.md
+
+outputs:
+  required:
+    - api-contract.md
+    - data-contract.md
+    - error-contract.md
+    - api-contract-report.md
+  conditional:
+    - endpoint-spec.md
+    - frontend-backend-contract.md
+    - operation-permissions-contract.md
+    - contract-test-plan.md
+    - compatibility-notes.md
+    - openapi-draft.yaml
+
+entry_states:
+  - TECHNICAL_SPEC_READY
+  - READY_FOR_API_CONTRACT
+
+exit_states:
+  - API_CONTRACT_READY
+  - DATA_CONTRACT_READY
+  - NEEDS_TECHNICAL_SPEC
+  - NEEDS_FUNCTIONAL_SPEC
+  - NEEDS_CONTEXT_ANALYSIS
+  - NEEDS_MIGRATION_ROLLBACK
+  - NEEDS_SECURITY_REVIEW
+  - NEEDS_SPEC_VALIDATION
+  - NOT_APPLICABLE
+  - BLOCKED_BY_AMBIGUITY
+
+next_skills:
+  default: sdd-spec-validation
+  conditional:
+    database_impact: sdd-migration-rollback
+    security_impact: sdd-security-permissions-review
+    unclear_technical_design: sdd-technical-spec
+    incomplete_functional_scope: sdd-functional-spec

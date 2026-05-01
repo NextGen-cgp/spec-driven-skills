@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/sdd/functional-spec.schema.json",
+  "title": "SDD Functional Specification",
+  "type": "object",
+  "required": [
+    "feature_id",
+    "title",
+    "summary",
+    "functional_goal",
+    "scope",
+    "actors",
+    "functional_requirements",
+    "business_rules",
+    "acceptance_criteria_mapping",
+    "flags",
+    "final_status"
+  ],
+  "properties": {
+    "feature_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string" },
+    "functional_goal": { "type": "string" },
+    "scope": {
+      "type": "object",
+      "required": ["in_scope", "out_of_scope"],
+      "properties": {
+        "in_scope": { "type": "array", "items": { "type": "string" } },
+        "out_of_scope": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role", "responsibilities"],
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "responsibilities": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "affected_flows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "flow_id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "affected_roles": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "functional_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "priority"],
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" },
+          "priority": { "enum": ["MUST", "SHOULD", "COULD", "WONT"] },
+          "source": { "type": "string" },
+          "affected_roles": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "business_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "rule"],
+        "properties": {
+          "id": { "type": "string" },
+          "rule": { "type": "string" },
+          "rationale": { "type": "string" },
+          "applies_to": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "state_model": {
+      "type": "object",
+      "properties": {
+        "states": { "type": "array", "items": { "type": "string" } },
+        "transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "trigger"],
+            "properties": {
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "trigger": { "type": "string" },
+              "allowed_roles": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "permissions_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "action", "permission"],
+        "properties": {
+          "role": { "type": "string" },
+          "action": { "type": "string" },
+          "permission": { "enum": ["allowed", "denied", "conditional"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "acceptance_criteria_mapping": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["criterion_id", "requirement_ids", "business_rule_ids", "verification_method"],
+        "properties": {
+          "criterion_id": { "type": "string" },
+          "requirement_ids": { "type": "array", "items": { "type": "string" } },
+          "business_rule_ids": { "type": "array", "items": { "type": "string" } },
+          "verification_method": { "enum": ["unit_test", "integration_test", "e2e_test", "manual_review", "mixed"] }
+        }
+      }
+    },
+    "flags": {
+      "type": "object",
+      "properties": {
+        "affects_ui": { "type": "boolean" },
+        "affects_api": { "type": "boolean" },
+        "affects_database": { "type": "boolean" },
+        "affects_permissions": { "type": "boolean" },
+        "affects_authentication": { "type": "boolean" },
+        "affects_critical_calculation": { "type": "boolean" },
+        "affects_workflow_state": { "type": "boolean" },
+        "requires_migration_plan": { "type": "boolean" },
+        "requires_api_contract": { "type": "boolean" },
+        "requires_security_review": { "type": "boolean" },
+        "requires_test_plan": { "type": "boolean" },
+        "requires_documentation": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": { "type": "string" },
+          "blocking": { "type": "boolean" },
+          "recommended_owner": { "type": "string" }
+        }
+      }
+    },
+    "required_next_skills": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "final_status": {
+      "enum": [
+        "READY_FOR_TECHNICAL_SPEC",
+        "NEEDS_REFINEMENT",
+        "NEEDS_SECURITY_REVIEW_BEFORE_TECH_SPEC",
+        "BLOCKED"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
