@@ -1,4 +1,4 @@
-# Changelog Entry
+#ChangelogEntry
 
 ## Added
 
@@ -8,11 +8,11 @@
 
 - 
 
-## Fixed
+##Fixed
 
 - 
 
-## Removed
+##Removed
 
 - 
 
@@ -24,6 +24,6 @@
 
 - 
 
-## Notes
+##Notes
 
-- 
+-

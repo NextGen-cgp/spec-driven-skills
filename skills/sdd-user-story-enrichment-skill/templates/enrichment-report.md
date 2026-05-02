@@ -1,11 +1,11 @@
 # Enrichment Report: <feature-id>
 
-## 1. Resultado
+## 1. Result
 
-- Estado de salida: `<READY_FOR_FUNCTIONAL_SPEC | NEEDS_CLARIFICATION | BLOCKED>`
-- Siguiente skill recomendada: `<sdd-functional-spec | sdd-orchestrator | sdd-security-permissions-review>`
+- Exit status: `<READY_FOR_FUNCTIONAL_SPEC | NEEDS_CLARIFICATION | BLOCKED>`
+- Next recommended skill: `<sdd-functional-spec | sdd-orchestrator | sdd-security-permissions-review>`
 
-## 2. Artefactos generados
+## 2. Generated artifacts
 
 - `user-story.md`: `<ready | draft | missing>`
 - `acceptance-criteria.md`: `<ready | draft | missing>`
@@ -13,26 +13,26 @@
 - `business-rules.md`: `<ready | draft | not_applicable>`
 - `open-questions.md`: `<ready | draft | not_applicable>`
 
-## 3. Resumen de decisiones funcionales
+## 3. Summary of functional decisions
 
-- `<decisión>`
+- `<decision>`
 
-## 4. Riesgos funcionales detectados
+## 4. Functional risks detected
 
-| Riesgo | Nivel | Mitigación sugerida |
+| Risk | Level | Suggested mitigation |
 |---|---|---|
-| `<riesgo>` | `<low | medium | high>` | `<mitigación>` |
+| `<risk>` | `<low | medium | high>` | `<mitigation>` |
 
-## 5. Skills requeridas más adelante
+## 5. Skills required later
 
 - `<skill>`
 
 ## 6. Handoff
 
 ```text
-Estado: <estado>
-Siguiente skill: <skill>
-Motivo: <motivo>
-Artefactos listos: <lista>
-Artefactos pendientes: <lista>
+Status: <status>
+Next skill: <skill>
+Reason: <reason>
+Artifacts ready: <list>
+Pending Artifacts: <list>
 ```

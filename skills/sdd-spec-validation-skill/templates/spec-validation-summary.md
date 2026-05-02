@@ -4,15 +4,15 @@
 
 `READY_FOR_IMPLEMENTATION | NEEDS_REFINEMENT | BLOCKED`
 
-## Why
+##Why
 
 Short explanation of the decision.
 
-## Next Skill
+##Next Skill
 
 `<skill-name>`
 
-## Must Fix Before Implementation
+##Must Fix Before Implementation
 
 - [ ] Item 1
 - [ ] Item 2

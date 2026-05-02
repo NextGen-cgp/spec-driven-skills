@@ -6,7 +6,7 @@
 DOCUMENTATION_BLOCKED
 ```
 
-## Summary
+##Summary
 
 The final review references successful validation, but the required test artifacts are missing. The documentation package cannot claim readiness without evidence.
 
@@ -18,7 +18,7 @@ The final review references successful validation, but the required test artifac
 | acceptance-validation-report.md | yes | sdd-test |
 | regression-report.md | yes | sdd-test |
 
-## Required Next Route
+##RequiredNextRoute
 
 ```text
 sdd-test

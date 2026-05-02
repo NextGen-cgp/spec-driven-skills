@@ -1,15 +1,15 @@
 # Manual Test Report
 
-## Validaciones manuales ejecutadas
+## Manual validations executed
 
-| Paso | Resultado esperado | Resultado obtenido | Estado |
+| Step | Expected result | Result obtained | State |
 |---|---|---|---|
 | 1 | | | PASSED/FAILED/BLOCKED |
 
-## Evidencias
+## Evidence
 
 - 
 
-## Limitaciones
+## Limitations
 
 -

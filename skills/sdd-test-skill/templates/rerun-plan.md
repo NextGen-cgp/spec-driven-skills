@@ -1,18 +1,18 @@
 # Rerun Plan
 
-## Motivo de repetición
+## Reason for repetition
 
-- Tests fallidos:
-- Bloqueos:
-- Cambios necesarios antes de repetir:
+- Failed tests:
+- Locks:
+- Changes needed before repeating:
 
-## Pruebas a repetir
+## Tests to repeat
 
-| Prueba | Motivo | Condición para repetir |
+| Test | Reason | Condition to repeat |
 |---|---|---|
 | | | |
 
-## Ruta recomendada
+## Recommended route
 
 ```text
 Next skill: sdd-implementation | sdd-technical-spec | sdd-api-contract | sdd-migration-rollback | sdd-security-permissions-review | sdd-orchestrator

@@ -1,6 +1,6 @@
 # Spec Remediation Plan
 
-## Context
+##Context
 
 This document lists required actions before the spec can move to implementation.
 
@@ -24,5 +24,5 @@ The spec can be revalidated when:
 
 - [ ] All critical remediation items are resolved.
 - [ ] Required artifacts are updated.
-- [ ] Traceability matrix is updated.
+- [ ] Traceability matrix is ​​updated.
 - [ ] Gate decision can be recalculated.

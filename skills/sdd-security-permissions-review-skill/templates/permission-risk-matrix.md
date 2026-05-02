@@ -1,20 +1,20 @@
 # Permission Risk Matrix: <feature-id>
 
-## Matriz de permisos y riesgos
+## Permissions and risks matrix
 
-| Operación | Actor/Rol | Permitido | Riesgo si se permite indebidamente | Severidad | Control requerido | Test requerido |
+| Operation | Actor/Role | Allowed | Risk if improperly allowed | Severity | Control required | Test required |
 |---|---|---:|---|---|---|---|
-| Buscar registros | ADMIN | Sí | Bajo | LOW | Authenticated access | Test lectura permitida |
-| Buscar registros | ANALYST | Sí | Bajo/Medio según scope | LOW/MEDIUM | Filtrado por scope si aplica | Test lectura permitida |
-| Crear registro | ANALYST | No | Creación no autorizada de datos maestros | HIGH | Backend 403 | Test acceso denegado |
-| Editar registro | ANALYST | No | Modificación no autorizada | HIGH | Backend 403 | Test acceso denegado |
+| Search records | ADMIN | Yes | Low | LOW | Authenticated access | Test reading allowed |
+| Search records | ANALYST | Yes | Low/Medium depending on scope | LOW/MEDIUM | Filtered by scope if applicable | Test reading allowed |
+| Create record | ANALYST | No | Unauthorized creation of master data | HIGH | Backend 403 | Test access denied |
+| Edit record | ANALYST | No | Unauthorized modification | HIGH | Backend 403 | Test access denied |
 
-## Clasificación rápida
+## Quick sort
 
 ```text
-CRITICAL: acceso indebido grave, escalada de privilegios, exposición masiva o pérdida de datos.
-HIGH: escritura/modificación no autorizada, bypass de permisos o API sin control backend.
-MEDIUM: ambigüedad de scope, validación incompleta o logging insuficiente.
-LOW: hardening, consistencia o documentación.
-INFO: nota informativa.
+CRITICAL: Serious improper access, privilege escalation, mass exposure, or data loss.
+HIGH: Unauthorized writing/modification, permission bypass, or API without backend control.
+MEDIUM: Scope ambiguity, incomplete validation, or insufficient logging.
+LOW: hardening, consistency or documentation.
+INFO: informative note.
 ```

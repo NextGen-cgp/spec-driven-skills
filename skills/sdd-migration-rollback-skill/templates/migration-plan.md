@@ -2,36 +2,36 @@
 
 ## Metadata
 
-- Feature ID:
+-Feature ID:
 - Skill: `sdd-migration-rollback`
 - Source technical spec:
 - Source data contract:
 - Date:
-- Owner:
+-Owner:
 - Status:
 
-## 1. Scope
+## 1.Scope
 
 ### Included
 
 - 
 
-### Excluded
+###Excluded
 
 - 
 
-## 2. Current State
+## 1. Current State
 
 Describe the current persistence model:
 
 - Tables/entities:
 - Columns/fields:
-- Relations:
+- Relationships:
 - Existing states:
 - Existing constraints:
 - Existing indexes:
 
-## 3. Target State
+## 3.Target State
 
 Describe the target persistence model:
 
@@ -42,13 +42,13 @@ Describe the target persistence model:
 - New/modified constraints:
 - New/modified indexes:
 
-## 4. Change Classification
+## 2. Change Classification
 
 | Change | Type | Object | Reversible | Risk |
 |---|---|---|---|---|
 |  | schema_additive / schema_breaking / data_backfill / state_change / seed_data / index_performance / relationship_change |  | yes/no | low/medium/high/critical |
 
-## 5. Migration Strategy
+## 3. Migration Strategy
 
 Recommended approach:
 
@@ -61,13 +61,13 @@ Recommended approach:
 6. Remove deprecated structure only in a later migration if required.
 ```
 
-## 6. Migration Steps
+## 4. Migration Steps
 
 | Order | Step | Type | Depends on | Reversible | Verification |
 |---:|---|---|---|---|---|
 | 1 |  |  |  | yes/no |  |
 
-## 7. Deployment Sequence
+## 5. Deployment Sequence
 
 ```text
 1. Pre-checks
@@ -78,7 +78,7 @@ Recommended approach:
 6. Validate acceptance criteria
 ```
 
-## 8. Pre-Checks
+## 6. Pre-Checks
 
 - [ ] Confirm backup/snapshot strategy if applicable.
 - [ ] Confirm target environment.
@@ -86,7 +86,7 @@ Recommended approach:
 - [ ] Confirm affected rows count.
 - [ ] Confirm no incompatible application version is running.
 
-## 9. Post-Checks
+## 7. Post-Checks
 
 - [ ] Confirm migration completed.
 - [ ] Confirm expected objects exist.
@@ -95,13 +95,13 @@ Recommended approach:
 - [ ] Confirm app-level workflow works.
 - [ ] Confirm no critical errors in logs.
 
-## 10. Risks and Mitigations
+## 8. Risks and Mitigations
 
 | Risk | Level | Mitigation | Owner |
 |---|---|---|---|
 |  |  |  |  |
 
-## 11. Traceability
+## 9. Traceability
 
 | Migration item | Functional rule | Acceptance criterion | Technical decision |
 |---|---|---|---|

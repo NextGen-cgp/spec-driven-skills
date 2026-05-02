@@ -1,4 +1,4 @@
-# Example: Final Review - Cancelled Analysis Parameter
+# Example: Final Review - Canceled Analysis Parameter
 
 ## Decision
 
@@ -6,9 +6,9 @@
 FINAL_REVIEW_APPROVED
 ```
 
-## Summary
+##Summary
 
-The implementation allows cancelling and reopening individual analysis parameters. Cancelled parameters are excluded from global result calculation and do not block analysis completion. Reopened parameters return to pending state and can be completed normally.
+The implementation allows canceling and reopening individual analysis parameters. Canceled parameters are excluded from global result calculation and do not block analysis completion. Reopened parameters return to pending state and can be completed normally.
 
 ## Spec Compliance
 
@@ -16,7 +16,7 @@ The implementation allows cancelling and reopening individual analysis parameter
 |---|---:|---:|---|
 | Cancel parameter | Yes | Yes | Passed |
 | Reopen parameter | Yes | Yes | Passed |
-| Exclude cancelled from global calculation | Yes | Yes | Passed |
+| Exclude canceled from global calculation | Yes | Yes | Passed |
 | Avoid silent empty fields | Yes | Yes | Passed |
 | Preserve existing completed parameter behavior | Yes | Yes | Passed |
 
@@ -26,7 +26,7 @@ The implementation allows cancelling and reopening individual analysis parameter
 TEST_PASSED
 ```
 
-Regression tests cover pending, completed, cancelled and reopened states.
+Regression tests cover pending, completed, canceled and reopened states.
 
 ## Security Final Review
 

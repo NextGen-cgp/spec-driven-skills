@@ -1,23 +1,23 @@
 # sdd-security-permissions-review-skill
 
-Skill de **Seguridad y Permisos** para un flujo de **Spec Driven Development (SDD)**.
+**Security and Permissions** skill for a **Spec Driven Development (SDD)** flow.
 
-Esta skill actúa como gate de seguridad antes de validar una especificación y, opcionalmente, después de la implementación. Su objetivo es evitar que el flujo avance con permisos ambiguos, autorización solo en frontend, exposición innecesaria de datos o validaciones backend incompletas.
+This skill acts as a security gate before validating a specification and, optionally, after implementation. Its goal is to prevent the flow from moving forward with ambiguous permissions, frontend-only authorization, unnecessary data exposure, or incomplete backend validations.
 
-## Cuándo usarla
+## When to use it
 
-Úsala cuando un cambio afecte a:
+Use it when a change affects:
 
-- Roles y permisos.
-- Autenticación o autorización.
-- Endpoints o acciones backend.
-- Operaciones de escritura.
-- Paneles de administración.
-- Estados como cancelar, reabrir, aprobar, completar o eliminar.
-- Datos maestros o datos sensibles.
-- Migraciones, backfills o cambios persistentes.
+- Roles and permissions.
+- Authentication or authorization.
+- Endpoints or backend actions.
+- Writing operations.
+- Administration panels.
+- Statuses like cancel, reopen, approve, complete or delete.
+- Master data or sensitive data.
+- Migrations, backfills or persistent changes.
 
-## Posición en el flujo
+## Position in the flow
 
 ```text
 Technical Spec / API Contract / Migration Plan
@@ -29,13 +29,13 @@ Spec Validation
 Implementation
 ```
 
-También puede ejecutarse después de tests:
+It can also be run after tests:
 
 ```text
 Implementation → Test → Security Review → Final Review
 ```
 
-## Artefactos principales
+##Main artifacts
 
 ```text
 security-permissions-review.md
@@ -44,7 +44,7 @@ security-findings.md
 security-review-report.md
 ```
 
-## Estado de salida
+## Exit status
 
 ```text
 SECURITY_APPROVED
@@ -54,6 +54,6 @@ SECURITY_BLOCKED
 NOT_APPLICABLE
 ```
 
-## Principio principal
+## Main principle
 
-El frontend puede adaptar la experiencia de usuario, pero el backend debe ser siempre la autoridad real de permisos y validaciones.
+The frontend can adapt the user experience, but the backend should always be the real authority for permissions and validations.

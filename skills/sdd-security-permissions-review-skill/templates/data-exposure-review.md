@@ -1,30 +1,30 @@
 # Data Exposure Review: <feature-id>
 
-## 1. Superficies de exposición
+## 1. Exhibition surfaces
 
-| Superficie | Consumidor | Datos devueltos | Riesgo | Control |
+| Surface | Consumer | Returned data | Risk | Control |
 |---|---|---|---|---|
-| Listado | Frontend |  |  |  |
-| Detalle | Frontend |  |  |  |
-| Búsqueda | Frontend |  |  |  |
-| Exportación | Usuario |  |  |  |
+| Listing | Frontend |  |  |  |
+| Detail | Frontend |  |  |  |
+| Search | Frontend |  |  |  |
+| Export | User |  |  |  |
 
-## 2. Campos permitidos y restringidos
+## 2. Allowed and restricted fields
 
-| Entidad/DTO | Campo | Permitido para | Restringido para | Motivo |
+| Entity/DTO | Field | Allowed for | Restricted to | Reason |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 3. Reglas de filtrado
+## 3. Filtering rules
 
 ```text
-- Filtrado por rol:
-- Filtrado por ownership:
-- Filtrado por departamento/área:
-- Filtrado por estado:
+- Filtered by role:
+- Filtered by ownership:
+- Filtered by department/area:
+- Filtered by status:
 ```
 
-## 4. Decisión
+## 4. Decision
 
 ```yaml
 data_exposure_status: <APPROVED | APPROVED_WITH_WARNINGS | CHANGES_REQUIRED | BLOCKED>

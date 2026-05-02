@@ -12,7 +12,7 @@ BLOCKER | HIGH | MEDIUM | LOW | NOTE
 |---|---|---|---|---|---|---|
 | FR-001 |  |  |  |  |  |  |
 
-## Blockers
+##Blockers
 
 ## High Priority
 

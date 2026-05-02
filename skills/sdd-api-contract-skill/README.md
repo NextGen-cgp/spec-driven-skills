@@ -1,10 +1,10 @@
 # SDD API Contract Skill
 
-Skill de **Contratos API / Datos** para un flujo de **Spec Driven Development**.
+**API / Data Contracts** skill for a **Spec Driven Development** flow.
 
-Esta skill se ejecuta después de la especificación técnica cuando un cambio afecta a endpoints, acciones de backend, payloads, respuestas, errores, modelos de datos intercambiados, permisos por operación o integraciones.
+This skill is executed after the technical specification when a change affects endpoints, backend actions, payloads, responses, errors, exchanged data models, permissions per operation or integrations.
 
-## Posición en el flujo
+## Position in the flow
 
 ```text
 sdd-orchestrator
@@ -13,15 +13,15 @@ sdd-orchestrator
   → sdd-functional-spec
   → sdd-technical-spec
   → sdd-api-contract
-  → sdd-migration-rollback      # si aplica
-  → sdd-security-review          # si aplica
+  → sdd-migration-rollback # if applicable
+  → sdd-security-review # if applicable
   → sdd-spec-validation
   → sdd-implementation
 ```
 
-## Qué produce
+## What it produces
 
-Artefactos principales:
+Main artifacts:
 
 ```text
 /specs/<feature-id>/api-contract.md
@@ -30,7 +30,7 @@ Artefactos principales:
 /specs/<feature-id>/api-contract-report.md
 ```
 
-Artefactos condicionales:
+Conditional artifacts:
 
 ```text
 /specs/<feature-id>/endpoint-spec.md
@@ -41,24 +41,24 @@ Artefactos condicionales:
 /specs/<feature-id>/openapi-draft.yaml
 ```
 
-## Cuándo usarla
+## When to use it
 
-Úsala si el cambio afecta a:
+Use it if the change affects:
 
-- Endpoints HTTP.
-- Acciones de backend.
-- Payloads de entrada.
-- Respuestas de API.
-- Códigos de error.
-- Estados expuestos al frontend.
-- Permisos por operación.
-- Modelos de datos intercambiados.
-- Integraciones entre servicios.
+- HTTP Endpoints.
+- Backend actions.
+- Entry payloads.
+- API responses.
+- Error codes.
+- States exposed to the frontend.
+- Permits per operation.
+- Data models exchanged.
+- Integrations between services.
 
-## Cuándo no usarla
+## When not to use it
 
-No aplica si el cambio es puramente visual, documental o interno y no altera contratos de datos o acciones entre capas.
+It does not apply if the change is purely visual, documentary or internal and does not alter data contracts or actions between layers.
 
-## Regla clave
+## Key rule
 
-Esta skill **no implementa**. Su función es dejar contratos lo bastante claros para que implementación, test, seguridad y review puedan trabajar sin ambigüedad.
+This skill **does not implement**. Its function is to leave contracts clear enough so that implementation, testing, security and review can work without ambiguity.

@@ -17,7 +17,7 @@
 
 ## Business Rules
 
-| Business Rule | Implementation Evidence | Test Evidence | Status |
+| Business Rules | Implementation Evidence | Test Evidence | Status |
 |---|---|---|---|
 |  |  |  |  |
 

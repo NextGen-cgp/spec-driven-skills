@@ -2,14 +2,14 @@
 
 ## Metadata
 
-- Feature ID:
+-Feature ID:
 - Skill: `sdd-migration-rollback`
 - Required: yes/no
 - Status:
 
 ## 1. Compatibility Need
 
-Explain why compatibility is required between versions, consumers or data shapes.
+Explain why compatibility is required between versions, consumers or data forms.
 
 ## 2. Versions Involved
 
@@ -43,4 +43,4 @@ Explain why compatibility is required between versions, consumers or data shapes
 
 - Removal condition:
 - Follow-up task:
-- Owner:
+-Owner:

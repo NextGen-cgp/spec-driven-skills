@@ -1,17 +1,17 @@
 # Regression Report
 
-## Flujos existentes revisados
+##Revised existing flows
 
-| Flujo | Área | Estado | Evidencia |
+| Flow | Area | State | Evidence |
 |---|---|---|---|
 | | | PASSED/FAILED/BLOCKED/PARTIAL | |
 
-## Regresiones detectadas
+## Regressions detected
 
-| ID | Descripción | Severidad | Ruta recomendada |
+| ID | Description | Severity | Recommended route |
 |---|---|---|---|
 | | | | |
 
-## Observaciones
+## Observations
 
 -

@@ -1,4 +1,4 @@
-# Example: Cancelled Parameter Implementation
+# Example: Canceled Parameter Implementation
 
 ## Decision
 
@@ -6,25 +6,25 @@
 IMPLEMENTATION_DONE
 ```
 
-## Next Skill
+##Next Skill
 
 ```text
 sdd-test
 ```
 
-## Summary
+##Summary
 
-The implementation added support for cancelling and reopening individual analysis parameters. Cancelled parameters are visually marked as `Cancelado`, their sample input section is collapsed, and they are excluded from the global analysis result calculation.
+The implementation added support for canceling and reopening individual analysis parameters. Canceled parameters are visually marked as `Cancelled`, their sample input section is collapsed, and they are excluded from the global analysis result calculation.
 
 ## Files Changed
 
 | File | Layer | Change | Reason |
 |---|---|---|---|
-| `src/modules/analysis/entities/analysis-parameter.entity.ts` | backend | modified | Added cancellable status support. |
-| `src/modules/analysis/analysis-result.service.ts` | backend | modified | Excluded cancelled parameters from aggregation. |
+| `src/modules/analysis/entities/analysis-parameter.entity.ts` | backend | modified | Added cancelable status support. |
+| `src/modules/analysis/analysis-result.service.ts` | backend | modified | Excluded canceled parameters from aggregation. |
 | `src/modules/analysis/routes.ts` | backend | modified | Added cancel/reopen operations. |
 | `src/components/analysis/ParameterCard.tsx` | frontend | modified | Added cancel/reopen icon behavior. |
-| `src/components/analysis/StatusPill.tsx` | frontend | modified | Added Cancelado state. |
+| `src/components/analysis/StatusPill.tsx` | frontend | modified | Added Canceled state. |
 
 ## Requirements Covered
 
@@ -32,7 +32,7 @@ The implementation added support for cancelling and reopening individual analysi
 |---|---:|---|
 | Cancel parameter | implemented | Cancel action sets status and collapses sample box. |
 | Reopen parameter | implemented | Reopen action restores pending state and expands input area. |
-| Exclude from global result | implemented | Aggregation ignores cancelled parameters. |
+| Exclude from global result | implemented | Aggregation ignores canceled parameters. |
 
 ## Deviations
 

@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|
 | R-001 | `<area>` | `<risk>` | `<low/medium/high/critical>` | `<low/medium/high>` | `<mitigation>` | `<skill>` |
 
-## Blocking risks
+##Blocking risks
 
 - `<risk>`
 

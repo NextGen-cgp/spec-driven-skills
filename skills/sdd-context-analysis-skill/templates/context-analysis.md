@@ -1,28 +1,28 @@
 # Context Analysis: <feature-name>
 
-## 1. Resumen ejecutivo
+## 1. Executive summary
 
-Estado del análisis: `<CONTEXT_ANALYSIS_READY | CONTEXT_ANALYSIS_PARTIAL | NEEDS_MORE_CONTEXT | BLOCKED_BY_MISSING_REPOSITORY_ACCESS>`
+Analysis status: `<CONTEXT_ANALYSIS_READY | CONTEXT_ANALYSIS_PARTIAL | NEEDS_MORE_CONTEXT | BLOCKED_BY_MISSING_REPOSITORY_ACCESS>`
 
-Nivel de confianza global: `<alto | medio | bajo>`
+Overall confidence level: `<high | medium | low>`
 
-Resumen breve:
+Brief summary:
 
 ```text
-<Resumen de 3-6 líneas sobre el contexto detectado y el impacto estimado del cambio.>
+<3-6 line summary of the detected context and the estimated impact of the change.>
 ```
 
 ---
 
-## 2. Petición analizada
+## 2. Request analyzed
 
-Petición original:
+Original request:
 
 ```text
-<Pegar o resumir la petición original del usuario.>
+<Paste or summarize the user's original request.>
 ```
 
-Tipo de cambio estimado:
+Estimated exchange rate:
 
 ```text
 <feature | bugfix | refactor | security | docs | test-only | architecture>
@@ -30,144 +30,142 @@ Tipo de cambio estimado:
 
 ---
 
-## 3. Stack detectado
+## 3. Stack detected
 
-| Área | Evidencia observada | Conclusión | Confianza |
+| Area | Observed evidence | Conclusion | Trust |
 |---|---|---|---|
-| Lenguaje | `<archivo>` | `<tecnología>` | `<alta/media/baja>` |
-| Frontend | `<archivo>` | `<framework>` | `<alta/media/baja>` |
-| Backend | `<archivo>` | `<framework>` | `<alta/media/baja>` |
-| Base de datos | `<archivo>` | `<DB>` | `<alta/media/baja>` |
-| ORM / Datos | `<archivo>` | `<ORM>` | `<alta/media/baja>` |
-| Auth | `<archivo>` | `<sistema>` | `<alta/media/baja>` |
-| Testing | `<archivo>` | `<herramienta>` | `<alta/media/baja>` |
-| Deploy | `<archivo>` | `<mecanismo>` | `<alta/media/baja>` |
+| Language | `<file>` | `<technology>` | `<high/medium/low>` |
+| Frontend | `<file>` | `<framework>` | `<high/medium/low>` |
+| Backend | `<file>` | `<framework>` | `<high/medium/low>` |
+| Database | `<file>` | `<DB>` | `<high/medium/low>` |
+| ORM / Data | `<file>` | `<ORM>` | `<high/medium/low>` |
+| Auth | `<file>` | `<system>` | `<high/medium/low>` |
+| Testing | `<file>` | `<tool>` | `<high/medium/low>` |
+| Deploy | `<file>` | `<mechanism>` | `<high/medium/low>` |
 
 ---
 
-## 4. Arquitectura y estructura del repositorio
+## 4. Architecture and structure of the repository
 
-| Ruta | Propósito observado | Evidencia | Confianza |
+| Route | Observed Purpose | Evidence | Trust |
 |---|---|---|---|
-| `<ruta>` | `<descripción>` | `<archivo/patrón>` | `<alta/media/baja>` |
+| `<path>` | `<description>` | `<file/pattern>` | `<high/medium/low>` |
 
-Notas relevantes:
+Relevant notes:
 
 ```text
-<Observaciones sobre separación frontend/backend, capas, módulos, features o servicios.>
+<Observations on frontend/backend separation, layers, modules, features or services.>
 ```
 
 ---
 
-## 5. Patrones relevantes identificados
+## 5. Relevant patterns identified
 
 ### 5.1. Frontend/UI
 
 ```text
-<Patrones de componentes, rutas, formularios, estado, estilos, diseño visual.>
+<Component patterns, routes, forms, state, styles, visual design.>
 ```
 
 ### 5.2. Backend/API
 
 ```text
-<Patrones de controladores, servicios, rutas, validaciones, errores.>
+<Patterns of controllers, services, routes, validations, errors.>
 ```
 
-### 5.3. Datos y persistencia
+### 5.3. Data and persistence
 
 ```text
-<Patrones de modelos, entidades, repositorios, migraciones, queries.>
+<Patterns of models, entities, repositories, migrations, queries.>
 ```
 
-### 5.4. Autenticación, roles y permisos
+### 5.4. Authentication, roles and permissions
 
 ```text
-<Patrones de guards, middleware, claims, roles o autorización.>
+<Patterns of guards, middleware, claims, roles or authorization.>
 ```
 
 ### 5.5. Tests
 
 ```text
-<Patrones de tests unitarios, integración, e2e, fixtures o mocks.>
+<Unit test patterns, integration, e2e, fixtures or mocks.>
 ```
 
 ---
 
-## 6. Módulos y archivos potencialmente afectados
+## 6. Potentially affected modules and files
 
-| Área | Archivos candidatos | Motivo | Confianza |
+| Area | Candidate files | Reason | Trust |
 |---|---|---|---|
-| `<frontend/backend/db/auth/tests>` | `<ruta>` | `<motivo>` | `<alta/media/baja>` |
+| `<frontend/backend/db/auth/tests>` | `<path>` | `<reason>` | `<high/medium/low>` |
 
 ---
 
-## 7. Tests existentes relacionados
+## 7. Related existing tests
 
-| Ruta | Tipo de test | Relación con el cambio | Confianza |
+| Route | Test type | Relationship with change | Trust |
 |---|---|---|---|
-| `<ruta>` | `<unit/integration/e2e>` | `<descripción>` | `<alta/media/baja>` |
+| `<path>` | `<unit/integration/e2e>` | `<description>` | `<high/medium/low>` |
 
-Si no se localizan tests relacionados:
+If no related tests are located:
 
 ```text
-No se han detectado tests relacionados en el análisis actual.
+No related tests have been detected in the current analysis.
 ```
 
 ---
 
-## 8. Dependencias y contratos relevantes
+## 8. Relevant dependencies and contracts
 
 ```text
-<APIs, contratos frontend/backend, entidades compartidas, modelos, esquemas, variables de entorno, colas, servicios externos o integraciones.>
+<APIs, frontend/backend contracts, shared entities, models, schemas, environment variables, queues, external services or integrations.>
 ```
 
 ---
 
-## 9. Riesgos técnicos
+## 9. Technical risks
 
-| Riesgo | Severidad | Motivo | Mitigación sugerida |
+| Risk | Severity | Reason | Suggested mitigation |
 |---|---|---|---|
-| `<riesgo>` | `<baja/media/alta/crítica>` | `<motivo>` | `<mitigación>` |
+| `<risk>` | `<low/medium/high/critical>` | `<reason>` | `<mitigation>` |
 
 ---
 
-## 10. Preguntas abiertas
+## 10. Open questions
 
 ```text
-- <Pregunta 1, si aplica>
-- <Pregunta 2, si aplica>
+- <Question 1, if applicable>
+- <Question 2, if applicable>
 ```
 
-Si no hay preguntas abiertas:
+If there are no open questions:
 
 ```text
-No hay preguntas abiertas bloqueantes detectadas en esta fase.
+There are no blocking open questions detected in this phase.
 ```
 
 ---
 
-## 11. Recomendación para el Orquestador
+## 11. Recommendation for the Orchestrator
 
-Estado recomendado:
-
-```text
+Recommended status:```text
 <CONTEXT_ANALYSIS_READY | CONTEXT_ANALYSIS_PARTIAL | NEEDS_MORE_CONTEXT | BLOCKED_BY_MISSING_REPOSITORY_ACCESS>
 ```
 
-Siguiente skill recomendada:
+Next recommended skill:
 
 ```text
 <user-story-enrichment | technical-specification | api-contract-specification | migration-rollback-planning | security-permissions-review | blocked>
 ```
 
-Motivo:
+Reason:
 
 ```text
-<Explicación breve de por qué se recomienda esa siguiente skill.>
+<Brief explanation of why that next skill is recommended.>
 ```
 
-Bloqueos:
+Locks:
 
 ```text
-- <bloqueo o "Ninguno">
+- <block or "None">
 ```

@@ -83,13 +83,13 @@ functional_spec_routing:
   conditional_flags:
     affects_ui:
       trigger_terms:
-        - pantalla
+        - screen
         - panel
         - vista
         - formulario
         - tabla
         - card
-        - botón
+        - button
         - icono
         - pill
         - filtro
@@ -101,14 +101,14 @@ functional_spec_routing:
       trigger_terms:
         - rol
         - roles
-        - permisos
+        - permissions
         - admin
-        - administrador
-        - analista
+        - administrator
+        - analyst
         - lectura
         - escritura
         - editar
-        - crear
+        - create
         - modificar
         - borrar
       require_extra_outputs:
@@ -118,24 +118,24 @@ functional_spec_routing:
 
     affects_workflow_state:
       trigger_terms:
-        - estado
-        - pendiente
+        - state
+        - pending
         - completado
-        - cancelado
+        - cancelled
         - pospuesto
-        - reabrir
+        - reopen
         - cerrar
-        - transición
+        - transition
       require_extra_outputs:
         - state-model.md
 
     affects_api:
       trigger_terms:
         - guardar
-        - consultar
-        - crear
+        - view
+        - create
         - modificar
-        - eliminar
+        - delete
         - endpoint
         - API
         - payload
@@ -149,15 +149,15 @@ functional_spec_routing:
         - tabla
         - entidad
         - campo
-        - histórico
-        - migración
+        - historical
+        - migration
       mark_required_later_skill:
         - sdd-migration-rollback
 
     affects_critical_calculation:
       trigger_terms:
-        - cálculo
-        - resultado global
+        - calculation
+        - global result
         - computar
         - excluir
         - rango

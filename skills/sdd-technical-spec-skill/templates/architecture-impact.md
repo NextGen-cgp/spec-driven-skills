@@ -1,15 +1,15 @@
 # Architecture Impact: <feature-id>
 
-## 1. Summary
+## 1.Summary
 
 Describe how this change fits into the existing architecture.
 
-## 2. Existing architecture assumptions
+## 1. Existing architecture assumptions
 
 - `<assumption-1>`
 - `<assumption-2>`
 
-## 3. Affected architectural areas
+## 2. Affected architectural areas
 
 | Area | Impact | Compatibility risk | Notes |
 |---|---|---|---|
@@ -19,17 +19,17 @@ Describe how this change fits into the existing architecture.
 | Presentation/UI layer | `<impact>` | `<low/medium/high>` | `<notes>` |
 | Integration/API layer | `<impact>` | `<low/medium/high>` | `<notes>` |
 
-## 4. Architectural decisions
+## 3. Architectural decisions
 
 | Decision | Rationale | Alternatives rejected |
 |---|---|---|
-| `<decision>` | `<rationale>` | `<alternatives>` |
+| `<decision>` | `<rational>` | `<alternatives>` |
 
-## 5. Constraints
+## 4. Constraints
 
 - `<constraint-1>`
 - `<constraint-2>`
 
-## 6. Handoff notes
+## 5. Handoff notes
 
 - `<note-1>`

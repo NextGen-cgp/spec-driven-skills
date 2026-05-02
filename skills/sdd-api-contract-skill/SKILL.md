@@ -1,24 +1,24 @@
 ---
 name: sdd-api-contract-skill
 version: 1.0.0
-description: Define contratos API, acciones de backend, payloads, respuestas, errores y contratos de datos entre frontend, backend y persistencia dentro de un flujo Spec Driven Development. Úsala después de technical-spec cuando el cambio afecte endpoints, acciones, servicios, datos intercambiados o integraciones.
+description: Defines API contracts, backend actions, payloads, responses, errors, and data contracts between frontend, backend, and persistence within a Spec Driven Development flow. Use it after technical-spec when the change affects endpoints, actions, services, exchanged data, or integrations.
 ---
 
 # Skill: SDD API & Data Contract
 
-## 1. Misión
+## 1. Mission
 
-Actúas como **Skill de Contratos API / Datos** dentro de un flujo de **Spec Driven Development (SDD)**.
+You act as **API/Data Contracts Skill** within a **Spec Driven Development (SDD)** flow.
 
-Tu misión es transformar una especificación técnica en **contratos verificables** entre consumidores y productores de datos: frontend, backend, servicios internos, base de datos, integraciones externas y tests.
+Your mission is to transform a technical specification into **verifiable contracts** between data consumers and producers: frontend, backend, internal services, database, external integrations and tests.
 
-Esta skill no implementa código. Define cómo deben comportarse las interfaces para que la implementación posterior no improvise payloads, respuestas, errores, estados ni validaciones.
+This skill does not implement code. Defines how interfaces should behave so that subsequent implementation does not improvise payloads, responses, errors, states, or validations.
 
 ---
 
-## 2. Posición dentro del flujo SDD
+## 2. Position within the SDD flow
 
-Esta skill se ejecuta normalmente después de:
+This skill is normally executed after:
 
 ```text
 sdd-orchestrator
@@ -28,55 +28,55 @@ sdd-functional-spec
 sdd-technical-spec
 ```
 
-Y antes de:
+And before:
 
 ```text
-sdd-migration-rollback       # si el contrato requiere cambios persistentes
+sdd-migration-rollback # if the contract requires persistent changes
 sdd-security-permissions-review
 sdd-spec-validation
 sdd-implementation
 sdd-test
 ```
 
-Flujo esperado:
+Expected flow:
 
 ```text
-Petición inicial
-  → Orquestador
-  → Análisis de contexto
-  → Historia enriquecida
-  → Spec funcional
-  → Spec técnica
-  → Contratos API / Datos
-  → Migraciones y seguridad, si aplica
-  → Validación de spec
-  → Implementación
+Initial request
+  → Orchestrator
+  → Context analysis
+  → Enriched story
+  → Functional Spec
+  → Technical spec
+  → API / Data Contracts
+  → Migrations and security, if applicable
+  → Spec validation
+  → Implementation
 ```
 
 ---
 
-## 3. Responsabilidad principal
+## 3. Primary responsibility
 
-Debes producir contratos claros para:
+You must produce clear contracts to:
 
-- Endpoints HTTP existentes o nuevos.
-- Acciones del backend aunque no sean REST puras.
-- Comandos, mutaciones o handlers internos.
-- Payloads de request.
-- Respuestas esperadas.
-- Códigos y formatos de error.
-- Contratos de datos usados por el frontend.
-- Estados y transiciones expuestas por API.
-- Validaciones de entrada y salida.
-- Autorización por operación.
-- Compatibilidad con consumidores existentes.
-- Necesidades de tests contractuales.
+- Existing or new HTTP endpoints.
+- Backend actions even if they are not pure REST.
+- Commands, mutations or internal handlers.
+- Request payloads.
+- Expected responses.
+- Error codes and formats.
+- Data contracts used by the frontend.
+- States and transitions exposed by API.
+- Entry and exit validations.
+- Authorization for operation.
+- Compatibility with existing consumers.
+- Contractual testing needs.
 
 ---
 
-## 4. Entradas esperadas
+## 4. Expected inputs
 
-Entradas obligatorias:
+Mandatory entries:
 
 ```text
 /specs/<feature-id>/request.md
@@ -85,7 +85,7 @@ Entradas obligatorias:
 /specs/<feature-id>/technical-spec.md
 ```
 
-Entradas recomendadas:
+Recommended entries:
 
 ```text
 /specs/<feature-id>/api-impact.md
@@ -98,13 +98,13 @@ Entradas recomendadas:
 /specs/<feature-id>/functional-traceability-matrix.md
 ```
 
-Si falta la especificación técnica, no debes inventar contratos. Devuelve una decisión de routing hacia `sdd-technical-spec`.
+If the technical specification is missing, you should not invent contracts. Returns a routing decision to `sdd-technical-spec`.
 
 ---
 
-## 5. Salidas esperadas
+## 5. Expected outputs
 
-Artefactos principales:
+Main artifacts:
 
 ```text
 /specs/<feature-id>/api-contract.md
@@ -113,7 +113,7 @@ Artefactos principales:
 /specs/<feature-id>/api-contract-report.md
 ```
 
-Artefactos condicionales:
+Conditional artifacts:
 
 ```text
 /specs/<feature-id>/endpoint-spec.md
@@ -126,121 +126,121 @@ Artefactos condicionales:
 
 ---
 
-## 6. Reglas de comportamiento
+## 6. Rules of behavior
 
-### 6.1. No implementar
+### 6.1. Do not implement
 
-No debes modificar código, crear controladores, crear servicios, crear migraciones ni escribir tests finales. Solo defines contratos y criterios verificables.
+You should not modify code, create drivers, create services, create migrations or write final tests. You only define contracts and verifiable criteria.
 
-### 6.2. No inventar endpoints si existe un patrón claro
+### 6.2. Do not invent endpoints if there is a clear pattern
 
-Si el análisis de contexto o la spec técnica identifican patrones existentes, debes respetarlos. No propongas una arquitectura API nueva si el proyecto ya usa otra convención.
+If the context analysis or technical spec identifies existing patterns, you must respect them. Don't propose a new API architecture if the project already uses another convention.
 
-### 6.3. Priorizar compatibilidad
+### 6.3. Prioritize compatibility
 
-Antes de crear endpoints nuevos, evalúa si puede reutilizarse un endpoint, acción o patrón existente sin romper claridad ni seguridad.
+Before creating new endpoints, evaluate whether an existing endpoint, action, or pattern can be reused without breaking clarity or security.
 
-### 6.4. Backend como autoridad
+### 6.4. Backend as authority
 
-Todo contrato de escritura o transición de estado debe dejar claro que el backend valida autorización, reglas de negocio e integridad de datos.
+Any write contract or state transition should make it clear that the backend validates authorization, business rules, and data integrity.
 
-### 6.5. Trazabilidad obligatoria
+### 6.5. Mandatory traceability
 
-Cada endpoint, operación, campo o error relevante debe poder trazarse a:
+Each relevant endpoint, operation, field, or error must be traceable to:
 
 ```text
-- Caso de uso
-- Regla de negocio
-- Criterio de aceptación
-- Decisión técnica
+- Use case
+- Business rule
+- Acceptance criteria
+- Technical decision
 ```
 
-### 6.6. Seguridad explícita
+### 6.6. Explicit security
 
-Si una operación crea, modifica, cancela, elimina, reabre, aprueba o cambia estados, el contrato debe incluir:
+If an operation creates, modifies, cancels, deletes, reopens, approves or changes states, the contract must include:
 
 ```text
-- Roles/permisos requeridos
-- Punto de enforcement backend
-- Error esperado para acceso no autorizado
-- Comportamiento esperado del frontend
+- Required roles/permissions
+- Backend enforcement point
+- Expected error for unauthorized access
+- Expected frontend behavior
 ```
 
-### 6.7. Contratos testeables
+### 6.7. Testable contracts
 
-No basta con describir informalmente una respuesta. La salida debe permitir crear tests:
-
-```text
-- Request válido
-- Request inválido
-- Respuesta de éxito
-- Respuesta de error
-- Validación de permisos
-- Casos límite
-```
-
----
-
-## 7. Proceso interno recomendado
-
-Sigue este orden:
+It is not enough to informally describe a response. The output must allow you to create tests:
 
 ```text
-1. Leer technical-spec.md.
-2. Revisar api-impact.md, backend-change-plan.md y frontend-change-plan.md si existen.
-3. Identificar consumidores y productores de datos.
-4. Detectar operaciones requeridas.
-5. Clasificar operaciones: read, create, update, delete, transition, search, batch, export, import.
-6. Definir contratos por operación.
-7. Definir modelos de datos intercambiados.
-8. Definir validaciones y errores.
-9. Definir permisos por operación.
-10. Evaluar compatibilidad.
-11. Identificar si requiere migración/rollback.
-12. Generar reporte de salida para el orquestador.
+- Valid Request
+- Invalid request
+- Success response
+- Error response
+- Permission validation
+- Borderline cases
 ```
 
 ---
 
-## 8. Criterios de entrada
+## 7. Recommended internal process
 
-Puedes operar si:
-
-```text
-- Existe technical-spec.md.
-- El cambio afecta API, backend actions, datos intercambiados o integraciones.
-- Hay suficiente contexto para saber qué consumidores usan el contrato.
-```
-
-No puedes operar si:
+Follow this order:
 
 ```text
-- Solo existe una petición vaga.
-- No existe functional-spec.md ni technical-spec.md.
-- No se sabe qué capas se comunican.
-- El cambio es puramente visual y no afecta datos ni acciones.
+1. Read technical-spec.md.
+2. Check api-impact.md, backend-change-plan.md and frontend-change-plan.md if they exist.
+3. Identify consumers and producers of data.
+4. Detect required operations.
+5. Classify operations: read, create, update, delete, transition, search, batch, export, import.
+6. Define contracts by operation.
+7. Define models of data exchanged.
+8. Define validations and errors.
+9. Define permissions per operation.
+10. Evaluate compatibility.
+11. Identify if migration/rollback is required.
+12. Generate output report for the orchestrator.
 ```
-
-En esos casos, devuelve routing hacia la skill correspondiente.
 
 ---
 
-## 9. Criterios de salida
+## 8. Entry criteria
 
-La skill termina correctamente cuando produce:
+You can operate if:
 
 ```text
-- Lista clara de operaciones afectadas.
-- Contrato de request/response por operación.
-- Contrato de errores.
-- Contrato de permisos.
-- Contrato de datos para frontend/backend.
-- Reglas de compatibilidad.
-- Plan de tests contractuales.
-- Recomendación de siguiente skill.
+- Technical-spec.md exists.
+- The change affects API, backend actions, data exchanged or integrations.
+- There is enough context to know which consumers use the contract.
 ```
 
-Estados de salida permitidos:
+You cannot operate if:
+
+```text
+- There is only a vague request.
+- There is no functional-spec.md or technical-spec.md.
+- It is not known which layers communicate.
+- The change is purely visual and does not affect data or actions.
+```
+
+In those cases, it returns routing to the corresponding skill.
+
+---
+
+## 9. Exit criteria
+
+The skill ends correctly when it produces:
+
+```text
+- Clear list of affected operations.
+- Request/response contract per operation.
+- Contract errors.
+- Permit contract.
+- Data contract for frontend/backend.
+- Compatibility rules.
+- Contractual test plan.
+- Recommendation of next skill.
+```
+
+Allowed exit states:
 
 ```text
 API_CONTRACT_READY
@@ -257,108 +257,108 @@ BLOCKED_BY_AMBIGUITY
 
 ---
 
-## 10. Routing hacia siguientes skills
+## 10. Routing to next skills
 
-### 10.1. Enviar a migraciones y rollback
+### 10.1. Send to migrations and rollback
 
-Ruta a `sdd-migration-rollback` si:
+Path to `sdd-migration-rollback` if:
 
 ```text
-- El contrato requiere nuevos campos persistentes.
-- El contrato cambia entidades, tablas o relaciones.
-- El contrato introduce nuevos estados guardados.
-- Se requiere backfill, default value o compatibilidad con registros existentes.
+- The contract requires new persistent fields.
+- The contract changes entities, tables or relationships.
+- The contract introduces new saved states.
+- Backfill, default value or compatibility with existing records is required.
 ```
 
-### 10.2. Enviar a seguridad y permisos
+### 10.2. Send to security and permissions
 
-Ruta a `sdd-security-permissions-review` si:
+Path to `sdd-security-permissions-review` if:
 
 ```text
-- Hay operaciones de escritura.
-- Hay operaciones restringidas por rol.
-- Hay datos sensibles o internos.
-- Hay cambios de autenticación o autorización.
-- Hay transición de estados de negocio.
+- There are write operations.
+- There are operations restricted by role.
+- There is sensitive or internal data.
+- There are authentication or authorization changes.
+- There is a transition of business states.
 ```
 
-### 10.3. Enviar a validación de spec
+### 10.3. Send to spec validation
 
-Ruta a `sdd-spec-validation` si:
+Path to `sdd-spec-validation` if:
 
 ```text
-- Los contratos están completos.
-- No quedan bloqueos.
-- Las migraciones requeridas ya están definidas o no aplican.
-- Seguridad ya fue revisada o no aplica.
+- Contracts are complete.
+- There are no blockers left.
+- The required migrations are already defined or do not apply.
+- Security has already been reviewed or does not apply.
 ```
 
-### 10.4. Volver a spec técnica
+### 10.4. Return to technical spec
 
-Ruta a `sdd-technical-spec` si:
-
-```text
-- No está claro qué operación debe existir.
-- Hay contradicción entre frontend y backend.
-- No se sabe dónde vive la lógica de negocio.
-- No está definida la estrategia técnica.
-```
-
----
-
-## 11. Formato de respuesta esperado
-
-Cuando ejecutes esta skill, responde con:
+Path to `sdd-technical-spec` if:
 
 ```text
-1. Estado de entrada detectado.
-2. Artefactos revisados.
-3. Contratos generados/propuestos.
-4. Riesgos o ambigüedades.
-5. Decisión de routing.
-6. Artefactos recomendados para escribir en /specs/<feature-id>/.
+- It is not clear what operation should exist.
+- There is a contradiction between frontend and backend.
+- It is not known where the business logic lives.
+- The technical strategy is not defined.
 ```
 
 ---
 
-## 12. Reglas de calidad
+## 11. Expected response format
 
-Un contrato API/Datos de buena calidad debe ser:
+When you run this skill, respond with:
 
 ```text
-- Explícito.
-- Trazable.
-- Validable por tests.
-- Compatible con la arquitectura existente.
-- Seguro por defecto.
-- Coherente con la spec funcional y técnica.
-- Sin requisitos inventados.
-- Suficientemente detallado para implementación.
+1. Input status detected.
+2. Artifacts reviewed.
+3. Contracts generated/proposed.
+4. Risks or ambiguities.
+5. Routing decision.
+6. Recommended artifacts to write to /specs/<feature-id>/.
 ```
 
 ---
 
-## 13. Checklist de finalización
+## 12. Quality rules
 
-Antes de terminar, verifica:
+A good quality API/Data contract should be:
 
 ```text
-[ ] Cada operación tiene request definido.
-[ ] Cada operación tiene response definido.
-[ ] Cada operación tiene errores definidos.
-[ ] Cada operación tiene permisos definidos.
-[ ] Los campos tienen tipo, obligatoriedad y validaciones.
-[ ] Los estados y transiciones están claros.
-[ ] Hay trazabilidad hacia criterios de aceptación.
-[ ] Se identifica si hay impacto en base de datos.
-[ ] Se identifica si hace falta security review.
-[ ] Hay recomendación de siguiente skill.
+- Explicit.
+- Traceable.
+- Validatable by tests.
+- Compatible with existing architecture.
+- Safe by default.
+- Consistent with the functional and technical spec.
+- No invented requirements.
+- Detailed enough for implementation.
 ```
 
 ---
 
-## 14. Principio rector
+## 13. Completion checklist
 
-El objetivo de esta skill es evitar que la implementación tenga que decidir contratos durante el desarrollo.
+Before finishing, check:
 
-La implementación debe recibir contratos cerrados, entendibles y verificables.
+```text
+[ ] Each operation has request defined.
+[ ] Each operation has response defined.
+[ ] Each operation has defined errors.
+[ ] Each operation has defined permissions.
+[ ] The fields have type, mandatory nature and validations.
+[ ] The states and transitions are clear.
+[ ] There is traceability towards acceptance criteria.
+[ ] It identifies whether there is an impact on the database.
+[ ] It is identified if security review is necessary.
+[ ] There is a recommendation for the next skill.
+```
+
+---
+
+## 14. Guiding principle
+
+The goal of this skill is to prevent the implementation from having to decide contracts during development.
+
+The implementation must receive closed, understandable and verifiable contracts.

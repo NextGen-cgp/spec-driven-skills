@@ -1,29 +1,29 @@
 # Spec Validation Report
 
-## 1. Feature
+##1.Feature
 
 - Feature ID: `<feature-id>`
 - Change type: `feature | bugfix | refactor | security | docs | architecture`
 - Validation date: `<YYYY-MM-DD>`
 - Validation iteration: `<n>`
 
-## 2. Decision
+## 1. Decision
 
 ```text
 READY_FOR_IMPLEMENTATION | NEEDS_REFINEMENT | BLOCKED
 ```
 
-## 3. Next Skill
+## 2. Next Skill
 
 ```text
 <sdd-next-skill>
 ```
 
-## 4. Executive Summary
+## 3. Executive Summary
 
-Describe briefly whether the spec is ready and why.
+Briefly describe whether the spec is ready and why.
 
-## 5. Artifact Readiness
+## 4. Artifact Readiness
 
 | Artifact | Requiredness | Status | Notes |
 |---|---:|---:|---|
@@ -39,41 +39,41 @@ Describe briefly whether the spec is ready and why.
 | security-permissions-review.md | Conditional | Pending |  |
 | test-plan.md | Conditional | Pending |  |
 
-## 6. Blocking Issues
+## 5. Blocking Issues
 
 | ID | Severity | Issue | Affected Artifacts | Route To |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 7. Non-blocking Warnings
+## 6. Non-blocking Warnings
 
 | ID | Severity | Warning | Recommendation |
 |---|---|---|---|
 |  |  |  |  |
 
-## 8. Gate Results
+## 7. Gate Results
 
 | Gate | Result | Notes |
 |---|---:|---|
 | Implementation Gate | Pending |  |
-| API Gate | Pending |  |
+| APIGate | Pending |  |
 | Migration Gate | Pending |  |
 | Security Gate | Pending |  |
 | Test Gate | Pending |  |
 
-## 9. Traceability Summary
+## 8. Traceability Summary
 
 | Requirement | Acceptance Criteria | Technical Coverage | Test Coverage | Status |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 10. Final Gate Decision
+## 9. Final Gate Decision
 
 ```text
 <final-decision>
 ```
 
-## 11. Required Remediation
+## 10. Required Remediation
 
 | ID | Target Skill | Action | Reason | Priority |
 |---|---|---|---|---|

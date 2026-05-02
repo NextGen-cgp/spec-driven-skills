@@ -1,4 +1,4 @@
-# Security Final Review
+#SecurityFinalReview
 
 ## Applicability
 
@@ -14,8 +14,8 @@ Reason:
 - roles
 - permissions
 - API
-- write operation
-- state transition
+-write operation
+-state transition
 - sensitive data
 - database/migration
 - not applicable
@@ -42,7 +42,7 @@ Reason:
 |---|---|---|---|
 | List/Search |  |  |  |
 | Detail |  |  |  |
-| API Response |  |  |  |
+| APIResponse |  |  |  |
 | Error Response |  |  |  |
 
 ## Security Findings

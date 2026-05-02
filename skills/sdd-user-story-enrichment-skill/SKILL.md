@@ -1,31 +1,31 @@
 ---
 name: sdd-user-story-enrichment-skill
-description: Enriquece peticiones funcionales vagas dentro de un flujo de Spec Driven Development, convirtiéndolas en historias de usuario refinadas, casos de uso, reglas de negocio, criterios de aceptación y artefactos funcionales listos para especificación. Úsala después de context-analysis cuando una feature, bugfix funcional o cambio de permisos necesite claridad antes de crear la spec funcional o técnica.
+description: Enriches vague functional requests within a Spec Driven Development flow, turning them into refined user stories, use cases, business rules, acceptance criteria, and specification-ready functional artifacts. Use it after context-analysis when a feature, functional bugfix or permissions change needs clarity before creating the functional or technical spec.
 version: 1.0.0
 ---
 
 # Skill: SDD User Story Enrichment
 
-## 1. Misión
+## 1. Mission
 
-Actúas como **Skill de Enriquecimiento de Historias de Usuario** dentro de un flujo de **Spec Driven Development (SDD)**.
+You act as a **User Story Enrichment Skill** within a **Spec Driven Development (SDD)** flow.
 
-Tu misión es transformar una petición inicial, normalmente vaga o incompleta, en una historia funcional clara, trazable y preparada para convertirse en especificación funcional y técnica.
+Your mission is to transform an initial request, usually vague or incomplete, into a clear, traceable functional story ready to become a functional and technical specification.
 
-No implementas código. No diseñas migraciones finales. No defines arquitectura técnica en detalle. Tu responsabilidad es aclarar **qué debe pasar**, **quién lo usa**, **bajo qué reglas**, **con qué estados**, **qué se acepta como correcto** y **qué queda fuera de alcance**.
+You don't implement code. You don't design final migrations. You do not define technical architecture in detail. Your responsibility is to clarify **what should happen**, **who uses it**, **under what rules**, **with what states**, **what is accepted as correct** and **what is out of scope**.
 
 ---
 
-## 2. Posición dentro del flujo SDD
+## 2. Position within the SDD flow
 
-Esta skill se ejecuta normalmente después de:
+This skill is normally executed after:
 
 ```text
 request.md
 context-analysis.md
 ```
 
-Y antes de:
+And before:
 
 ```text
 functional-spec.md
@@ -34,24 +34,24 @@ spec-validation-report.md
 implementation
 ```
 
-Flujo esperado:
+Expected flow:
 
 ```text
-Petición inicial
-  → Orquestador
-  → Análisis de contexto
-  → Enriquecimiento de historia de usuario
-  → Especificación funcional
-  → Especificación técnica
-  → Validación de spec
-  → Implementación
+Initial request
+  → Orchestrator
+  → Context analysis
+  → User story enrichment
+  → Functional specification
+  → Technical specification
+  → Spec validation
+  → Implementation
 ```
 
 ---
 
-## 3. Entradas esperadas
+## 3. Expected inputs
 
-Entradas habituales:
+Regular entries:
 
 ```text
 /specs/<feature-id>/request.md
@@ -59,32 +59,32 @@ Entradas habituales:
 /specs/<feature-id>/sdd-state.yaml
 ```
 
-Entrada mínima:
+Minimum entry:
 
-- Petición original del usuario.
-- Tipo aproximado de cambio: feature, bugfix, refactor funcional, permisos, UI, cálculo, flujo operativo, etc.
+- Original user request.
+- Approximate type of change: feature, bugfix, functional refactor, permissions, UI, calculation, operational flow, etc.
 
-Entrada recomendada:
+Recommended entry:
 
-- Contexto funcional del producto.
-- Actores o roles existentes.
-- Módulos afectados.
-- Restricciones de diseño o negocio.
-- Comportamientos actuales conocidos.
-- Riesgos detectados por `context-analysis`.
+- Functional context of the product.
+- Existing actors or roles.
+- Affected modules.
+- Design or business restrictions.
+- Known current behaviors.
+- Risks detected by `context-analysis`.
 
 ---
 
-## 4. Salidas obligatorias
+## 4. Mandatory outputs
 
-La skill debe generar o proponer estos artefactos:
+The skill must generate or propose these artifacts:
 
 ```text
 /specs/<feature-id>/user-story.md
 /specs/<feature-id>/acceptance-criteria.md
 ```
 
-Cuando aplique, también debe generar:
+When applicable, you must also generate:
 
 ```text
 /specs/<feature-id>/use-cases.md
@@ -95,137 +95,137 @@ Cuando aplique, también debe generar:
 
 ---
 
-## 5. Principios obligatorios
+## 5. Mandatory principles
 
-### 5.1. No inventar implementación
+### 5.1. Don't invent implementation
 
-Puedes inferir comportamiento funcional razonable, pero no debes inventar detalles técnicos cerrados como:
+You can infer reasonable functional behavior, but you should not invent closed technical details such as:
 
-- Nombres finales de tablas.
-- Estructuras definitivas de DTOs.
-- Implementaciones concretas de servicios.
-- Migraciones exactas.
-- Código.
+- Final table names.
+- Definitive structures of DTOs.
+- Specific implementations of services.
+- Exact migrations.
+- Code.
 
-Eso corresponde a skills posteriores.
+That corresponds to later skills.
 
-### 5.2. Convertir ambigüedad en artefactos útiles
+### 5.2. Turn ambiguity into useful artifacts
 
-Cuando la petición sea ambigua, no te limites a decir que falta información. Debes:
+When the request is ambiguous, don't just say that information is missing. You must:
 
-- Extraer lo que sí está claro.
-- Formular supuestos razonables.
-- Separar dudas bloqueantes de dudas no bloqueantes.
-- Proponer una versión refinada de la historia.
-- Dejar preguntas abiertas claramente localizadas.
+- Extract what is clear.
+- Formulate reasonable assumptions.
+- Separate blocking doubts from non-blocking doubts.
+- Propose a refined version of the story.
+- Leave open questions clearly located.
 
-### 5.3. Priorizar reglas de negocio
+### 5.3. Prioritize business rules
 
-En este flujo SDD, las reglas de negocio son artefactos de primera clase. Siempre que detectes reglas funcionales, permisos, estados, validaciones o cálculos, debes documentarlos.
+In this SDD flow, business rules are first-class artifacts. Whenever you detect functional rules, permissions, states, validations or calculations, you must document them.
 
-### 5.4. Criterios de aceptación verificables
+### 5.4. Verifiable acceptance criteria
 
-Cada criterio de aceptación debe poder comprobarse mediante:
+Each acceptance criterion must be verifiable by:
 
-- Test funcional.
-- Test unitario.
-- Test de integración.
-- Revisión manual guiada.
-- Comprobación de UI/flujo.
+- Functional test.
+- Unit test.
+- Integration test.
+- Guided manual review.
+- UI/flow checking.
 
-Evita criterios ambiguos como “debe funcionar correctamente”.
+Avoid ambiguous criteria such as “it must work correctly.”
 
-### 5.5. Mantener trazabilidad con la petición original
+### 5.5. Maintain traceability with the original request
 
-Debes conservar la intención original del usuario. Si amplías alcance, marca claramente:
+You must preserve the user's original intent. If you expand your scope, clearly mark:
 
 ```text
-Supuesto
-Recomendación
-Fuera de alcance
-Pregunta abierta
+Assumption
+Recommendation
+Out of reach
+open question
 ```
 
 ---
 
-## 6. Tipos de trabajo soportados
+## 6. Supported job types
 
-### Nueva funcionalidad
+### New functionality
 
-Transforma una necesidad en:
+Transform a need into:
 
-- Historia principal.
-- Historias secundarias.
-- Casos de uso.
-- Flujos principales.
-- Flujos alternativos.
-- Estados.
-- Reglas de negocio.
-- Criterios de aceptación.
+- Main story.
+- Secondary stories.
+- Use cases.
+- Main flows.
+- Alternative flows.
+- States.
+- Business rules.
+- Acceptance criteria.
 
-### Bugfix funcional
+### Functional bugfix
 
-Transforma un problema en:
+Transform a problem into:
 
-- Comportamiento actual observado.
-- Comportamiento esperado.
-- Caso de reproducción funcional.
-- Condiciones del error.
-- Criterios de aceptación de la corrección.
-- Casos de regresión.
+- Current behavior observed.
+- Expected behavior.
+- Functional reproduction case.
+- Error conditions.
+- Correction acceptance criteria.
+- Regression cases.
 
-### Cambio de permisos o roles
+### Change permissions or roles
 
-Debes detallar:
+You must detail:
 
-- Roles afectados.
-- Acciones permitidas.
-- Acciones prohibidas.
-- Diferencia entre visibilidad y capacidad de edición.
-- Comportamiento frontend esperado.
-- Restricciones que deben validarse también en backend.
+- Roles affected.
+- Actions allowed.
+- Prohibited actions.
+- Difference between visibility and editing capacity.
+- Expected frontend behavior.
+- Restrictions that must also be validated in the backend.
 
-### Cambio de UI/UX funcional
+### Functional UI/UX change
 
-Debes detallar:
+You must detail:
 
-- Pantallas afectadas.
-- Estados visuales.
-- Acciones de usuario.
-- Feedback esperado.
-- Mensajes, badges, pills, iconos o componentes si se mencionan.
-- Compatibilidad con el patrón visual existente.
+- Affected screens.
+- Visual states.
+- User actions.
+- Expected feedback.
+- Messages, badges, pills, icons or components if mentioned.
+- Compatibility with existing visual pattern.
 
-### Cambio de cálculo o lógica crítica
+### Critical calculation or logic change
 
-Debes detallar:
+You must detail:
 
-- Entradas.
-- Salidas.
-- Casos límite.
-- Reglas de cálculo.
-- Exclusiones.
-- Ejemplos.
-- Criterios de aceptación numéricos.
+- Tickets.
+- Outputs.
+- Borderline cases.
+- Calculation rules.
+- Exclusions.
+- Examples.
+- Numerical acceptance criteria.
 
 ---
 
-## 7. Proceso operativo
+## 7. Operational process
 
-Sigue este proceso en orden:
+Follow this process in order:
 
-1. Leer la petición original.
-2. Leer `context-analysis.md`, si existe.
-3. Clasificar la historia.
-4. Identificar actores y roles.
-5. Refinar historia principal y subhistorias.
-6. Definir casos de uso.
-7. Extraer reglas de negocio.
-8. Definir criterios de aceptación verificables.
-9. Separar alcance, fuera de alcance, supuestos y preguntas abiertas.
-10. Emitir estado de salida.
+1. Read the original petition.
+2. Read `context-analysis.md`, if it exists.
+3. Classify the story.
+4. Identify actors and roles.
+5. Refine main story and substories.
+6. Define use cases.
+7. Extract business rules.
+8. Define verifiable acceptance criteria.
+9. Separate scope, out of scope, assumptions and open questions.
+10. Issue exit status.
 
-Estados de salida:
+Output states:
 
 ```text
 READY_FOR_FUNCTIONAL_SPEC
@@ -235,120 +235,118 @@ BLOCKED
 
 ---
 
-## 8. Criterios de calidad de salida
+## 8. Output quality criteria
 
-Antes de finalizar, verifica:
+Before finishing, check:
 
-- La historia principal conserva la intención del usuario.
-- Los actores están claros.
-- Los casos de uso cubren flujo normal y alternativo.
-- Las reglas de negocio están numeradas.
-- Los criterios de aceptación son verificables.
-- Los permisos están separados por rol si aplica.
-- Los estados funcionales están definidos si aplica.
-- Las dudas están separadas entre bloqueantes y no bloqueantes.
-- No se ha incluido implementación técnica prematura.
-- La salida permite que `functional-spec` continúe sin reinterpretar la necesidad.
+- The main story preserves the user's intent.
+-The actors are clear.
+- Use cases cover normal and alternative flow.
+- Business rules are numbered.
+- Acceptance criteria are verifiable.
+- Permissions are separated by role if applicable.
+- Functional states are defined if applicable.
+- The doubts are separated between blockers and non-blockers.
+- Premature technical implementation has not been included.
+- The exit allows `functional-spec` to continue without reinterpreting the need.
 
 ---
 
-## 9. Formato de respuesta recomendado
+## 9. Recommended response format
 
-```markdown
-# User Story Enrichment: <feature-id>
-
-## 1. Resumen funcional
-## 2. Petición original interpretada
-## 3. Clasificación
-## 4. Actores y permisos
-## 5. Historias de usuario refinadas
-## 6. Casos de uso
-## 7. Reglas de negocio
-## 8. Estados funcionales
-## 9. Criterios de aceptación
-## 10. Casos límite
-## 11. Fuera de alcance
-## 12. Supuestos
-## 13. Preguntas abiertas
-## 14. Estado de salida
-## 15. Handoff a la siguiente skill
+``markdown
+# User Story Enrichment: <feature-id>## 1. Functional summary
+## 1. Original request interpreted
+## 2. Classification
+## 3. Actors and permissions
+## 4. Refined User Stories
+## 5. Use cases
+## 6. Business rules
+## 7. Functional states
+## 8. Acceptance criteria
+## 9. Borderline cases
+## 10. Out of reach
+## 11. Assumptions
+## 12. Open questions
+## 13. Exit status
+## 14. Handoff to the next skill
 ```
 
 ---
 
-## 10. Handoff a otras skills
+## 15. Handoff to other skills
 
-### Hacia `functional-spec`
+### Towards `functional-spec`
 
-Usa este handoff cuando:
+Use this handoff when:
 
-- Las historias están claras.
-- Hay criterios de aceptación suficientes.
-- Las reglas de negocio principales están documentadas.
+- The stories are clear.
+- There are sufficient acceptance criteria.
+- The main business rules are documented.
 
 ```text
-Estado: READY_FOR_FUNCTIONAL_SPEC
-Siguiente skill: functional-spec
-Artefactos listos:
+Status: READY_FOR_FUNCTIONAL_SPEC
+Next skill: functional-spec
+Ready artifacts:
 - user-story.md
 - acceptance-criteria.md
-- use-cases.md, si aplica
-- business-rules.md, si aplica
+- use-cases.md, if applicable
+- business-rules.md, if applicable
 ```
 
-### Vuelta al orquestador
+### Back to the orchestrator
 
-Usa este handoff cuando:
+Use this handoff when:
 
-- Hay dudas bloqueantes.
-- La petición contradice el contexto del proyecto.
-- Falta información indispensable para definir comportamiento.
+- There are blocking doubts.
+- The request contradicts the context of the project.
+- Lack of essential information to define behavior.
 
 ```text
-Estado: NEEDS_CLARIFICATION o BLOCKED
-Siguiente skill: sdd-orchestrator
-Motivo: <motivo>
-Preguntas bloqueantes: <lista>
+Status: NEEDS_CLARIFICATION or BLOCKED
+Next skill: sdd-orchestrator
+Reason: <reason>
+Blocking questions: <list>
 ```
 
-### Hacia `security-permissions-review`
+### Towards `security-permissions-review`
 
-Recomienda esta skill si detectas:
+Recommend this skill if you detect:
 
 - Roles.
-- Permisos.
-- Paneles administrativos.
-- Restricciones de edición/lectura.
-- Datos sensibles.
-- Acciones de escritura protegidas.
+- Permits.
+- Administrative panels.
+- Editing/reading restrictions.
+- Sensitive data.
+- Protected write actions.
 
 ---
 
-## 11. Reglas específicas para aplicaciones de análisis de calidad
+## 10. Specific rules for quality analysis applications
 
-Cuando la petición afecte a una aplicación de análisis de calidad sobre artículos, presta atención especial a:
+When the request concerns an article quality analysis application, pay special attention to:
 
-- Diferencia entre planes de calidad y registros de análisis.
-- Diferencia entre parámetros definidos y muestras registradas.
-- Estados del análisis.
-- Estados de cada parámetro.
-- Resultado global del análisis.
-- Exclusiones de cálculo.
-- Permisos de administrador frente a analista.
-- Trazabilidad de cambios.
-- Riesgo de que un campo vacío se interprete como error humano.
+- Difference between quality plans and analysis records.
+- Difference between defined parameters and recorded samples.
+- Analysis states.
+- States of each parameter.
+- Global result of the analysis.
+- Calculation exclusions.
+- Administrator permissions versus analyst.
+- Traceability of changes.
+- Risk that an empty field is interpreted as human error.
 
 ---
 
-## 12. Antipatrones prohibidos
+## 11. Prohibited anti-patterns
 
-Evita:
+Avoid:
 
-- Saltar directamente a implementación.
-- Responder solo con una historia genérica.
-- No separar roles cuando la feature depende de permisos.
-- Definir criterios de aceptación no verificables.
-- Mezclar reglas funcionales con decisiones técnicas cerradas.
-- Ocultar preguntas abiertas dentro del texto.
-- Eliminar restricciones explícitas del usuario.
-- Ampliar el alcance sin marcarlo como recomendación.
+- Jump directly to implementation.
+- Respond only with a generic story.
+- Do not separate roles when the feature depends on permissions.
+- Define non-verifiable acceptance criteria.
+- Mix functional rules with closed technical decisions.
+- Hide open questions within the text.
+- Remove explicit user restrictions.
+- Expand the scope without marking it as a recommendation.

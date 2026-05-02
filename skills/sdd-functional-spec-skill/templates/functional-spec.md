@@ -1,14 +1,14 @@
 # Functional Specification: <feature-name>
 
-## 1. Summary
+## 1.Summary
 
 <Short description of the functional change.>
 
-## 2. Functional Goal
+## 1. Functional Goal
 
 <What user/business problem this change solves.>
 
-## 3. Scope
+## 2. Scope
 
 ### In Scope
 
@@ -18,74 +18,74 @@
 
 - <Explicitly excluded behavior>
 
-## 4. Actors and Roles
+## 3. Actors and Roles
 
 | Actor / Role | Functional responsibility | Notes |
 |---|---|---|
 | <role> | <what this role does> | <notes> |
 
-## 5. Affected User Flows
+## 4. Affected User Flows
 
-| Flow ID | Flow | Description | Affected roles |
+| FlowID | Flow | Description | Affected roles |
 |---|---|---|---|
 | F-001 | <flow> | <description> | <roles> |
 
-## 6. Functional Requirements
+## 5. Functional Requirements
 
 | ID | Requirement | Priority | Source |
 |---|---|---|---|
 | FR-001 | <requirement> | MUST | <source> |
 
-## 7. Business Rules
+## 6. Business Rules
 
 | ID | Rule | Rationale |
 |---|---|---|
 | BR-001 | <rule> | <why it exists> |
 
-## 8. State Model
+## 7. State Model
 
 <Describe states and transitions if applicable. Otherwise mark as N/A.>
 
-## 9. UI/UX Behavior
+## 8. UI/UX Behavior
 
-<Describe expected user-visible behavior, feedback, states, disabled actions and messages.>
+<Describes expected user-visible behavior, feedback, states, disabled actions and messages.>
 
-## 10. Permissions Matrix
+## 9. Permissions Matrix
 
 <Reference permissions-matrix.md if applicable. Otherwise mark as N/A.>
 
-## 11. Validations and Error Handling
+## 10. Validations and Error Handling
 
 | Scenario | Expected behavior |
 |---|---|
 | <scenario> | <expected behavior> |
 
-## 12. Acceptance Criteria Mapping
+## 11. Acceptance Criteria Mapping
 
-| AC ID | Functional requirement | Business rule | Verification method |
+| AC ID | Functional requirement | Business rules | Verification method |
 |---|---|---|---|
 | AC-001 | FR-001 | BR-001 | <test/manual> |
 
-## 13. Edge Cases
+## 12. Edge Cases
 
 - <edge case>
 
-## 14. Functional Risks
+## 13. Functional Risks
 
 | Risk | Impact | Mitigation |
 |---|---|---|
 | <risk> | <impact> | <mitigation> |
 
-## 15. Dependencies
+## 14. Dependencies
 
 - <dependency>
 
-## 16. Required Next Skills
+## 15. Required Next Skills
 
 - `sdd-technical-spec`
 - `<other-skill-if-needed>`
 
-## 17. Flags
+## 16. Flags
 
 ```yaml
 affects_ui: false
@@ -102,6 +102,6 @@ requires_test_plan: true
 requires_documentation: true
 ```
 
-## 18. Final Status
+## 17. Final Status
 
 `READY_FOR_TECHNICAL_SPEC`

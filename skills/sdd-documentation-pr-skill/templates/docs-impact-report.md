@@ -1,10 +1,10 @@
 # Docs Impact Report
 
-## Summary
+##Summary
 
 Describe whether this change requires documentation updates.
 
-## Impact Classification
+##Impact Classification
 
 ```text
 NONE | LOW | MEDIUM | HIGH
@@ -15,9 +15,9 @@ NONE | LOW | MEDIUM | HIGH
 - Developers:
 - QA/Testers:
 - Admin users:
-- Analyst users:
+-Analyst users:
 - Operations:
-- Security reviewers:
+-Security reviewers:
 
 ## Documentation Areas
 

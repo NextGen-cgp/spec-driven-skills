@@ -1,4 +1,4 @@
-# Example API Contract: Cancelled Analysis Parameter
+# Example API Contract: Canceled Analysis Parameter
 
 ## 1. Metadata
 
@@ -9,15 +9,15 @@
 
 ## 2. Contract summary
 
-The analysis flow needs explicit backend operations to cancel and reopen an analysis parameter. A cancelled parameter must be excluded from completion validation and global result calculation. The contract must expose state transitions in a controlled way and reject invalid or unauthorized transitions.
+The analysis flow needs explicit backend operations to cancel and reopen an analysis parameter. A canceled parameter must be excluded from completion validation and global result calculation. The contract must expose state transitions in a controlled way and reject invalid or unauthorized transitions.
 
 ## 3. Operations overview
 
 | Operation ID | Name | Type | Method/action | Path/action name | Auth required? | Traceability |
 |---|---|---|---|---|---:|---|
 | OP-001 | Cancel analysis parameter | transition | POST/PATCH | `/analyses/{analysisId}/parameters/{parameterId}/cancel` | yes | UC-001, BR-001, AC-001 |
-| OP-002 | Reopen analysis parameter | transition | POST/PATCH | `/analyses/{analysisId}/parameters/{parameterId}/reopen` | yes | UC-002, BR-003, AC-004 |
-| OP-003 | Get analysis detail | read | GET | `/analyses/{analysisId}` | yes | UC-003, AC-003 |
+| OP-002 | Reopen parameter analysis | transition | POST/PATCH | `/analyses/{analysisId}/parameters/{parameterId}/reopen` | yes | UC-002, BR-003, AC-004 |
+| OP-003 | Get analysis details | read | GET | `/analyses/{analysisId}` | yes | UC-003, AC-003 |
 
 ## 4. OP-001 — Cancel analysis parameter
 
@@ -34,7 +34,7 @@ The analysis flow needs explicit backend operations to cancel and reopen an anal
 
 | Field | Type | Required? | Nullable? | Validation | Description |
 |---|---|---:|---:|---|---|
-| reason | string | no | yes | project max length | Optional reason if product decides to capture it |
+| reason | string | not | yes | project max length | Optional reason if product decides to capture it |
 
 Example request:
 
@@ -57,7 +57,7 @@ Example response:
 ```json
 {
   "analysisId": "analysis-123",
-  "parameterId": "PESO_NETO",
+  "parameterId": "NET_WEIGHT",
   "status": "CANCELLED",
   "includedInGlobalResult": false
 }
@@ -71,7 +71,7 @@ Example response:
 | Parameter not found in analysis | 404 | `ANALYSIS_PARAMETER_NOT_FOUND` | Avoid leaking unrelated identifiers |
 | User cannot cancel | 403 | `FORBIDDEN` | Backend enforcement required |
 | Analysis already completed | 409 | `INVALID_ANALYSIS_STATE` | Depends on business policy |
-| Parameter already cancelled | 409 | `INVALID_PARAMETER_STATE` | Idempotency decision must be explicit |
+| Parameter already canceled | 409 | `INVALID_PARAMETER_STATE` | Idempotency decision must be explicit |
 
 ### State transition
 
@@ -87,7 +87,7 @@ Example response:
 ```json
 {
   "analysisId": "analysis-123",
-  "parameterId": "PESO_NETO",
+  "parameterId": "NET_WEIGHT",
   "status": "PENDING",
   "includedInGlobalResult": true
 }

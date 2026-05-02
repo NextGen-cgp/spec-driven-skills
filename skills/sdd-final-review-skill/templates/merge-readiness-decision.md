@@ -28,6 +28,6 @@ sdd-documentation-pr | sdd-implementation | sdd-test | sdd-security-permissions-
 
 - Summary:
 - Testing evidence:
-- Security notes:
+-Security notes:
 - Migration notes:
 - Known limitations:

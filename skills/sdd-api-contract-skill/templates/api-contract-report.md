@@ -26,7 +26,7 @@
 | data-contract.md | yes | `<yes/no>` | `<notes>` |
 | error-contract.md | yes | `<yes/no>` | `<notes>` |
 | endpoint-spec.md | conditional | `<yes/no>` | `<notes>` |
-| operation-permissions-contract.md | conditional | `<yes/no>` | `<notes>` |
+| operations-permissions-contract.md | conditional | `<yes/no>` | `<notes>` |
 | frontend-backend-contract.md | conditional | `<yes/no>` | `<notes>` |
 | contract-test-plan.md | recommended | `<yes/no>` | `<notes>` |
 | compatibility-notes.md | conditional | `<yes/no>` | `<notes>` |

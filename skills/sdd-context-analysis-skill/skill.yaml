@@ -1,6 +1,6 @@
 name: sdd-context-analysis
 display_name: SDD Context Analysis
-description: Analiza el contexto real del proyecto antes de generar historias refinadas, specs técnicas o implementar cambios.
+description: Analyze the real context of the project before generating refined stories, technical specifications or implementing changes.
 version: 1.0.0
 status: production-ready
 owner: sdd-orchestrator

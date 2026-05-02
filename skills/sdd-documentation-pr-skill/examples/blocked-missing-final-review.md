@@ -6,7 +6,7 @@
 DOCUMENTATION_BLOCKED
 ```
 
-## Summary
+##Summary
 
 The documentation and PR package cannot be generated because no approved final review decision is available. The flow must return to `sdd-final-review` before creating PR-ready artifacts.
 
@@ -17,7 +17,7 @@ The documentation and PR package cannot be generated because no approved final r
 | final-review-report.md | yes | Required to confirm quality approval. |
 | merge-readiness-decision.md | yes | Required to confirm whether the change can move to PR. |
 
-## Required Next Route
+##RequiredNextRoute
 
 ```text
 sdd-final-review

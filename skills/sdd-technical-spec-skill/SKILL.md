@@ -1,24 +1,24 @@
 ---
 name: sdd-technical-spec-skill
 version: 1.0.0
-description: Convierte una especificación funcional validada en una especificación técnica implementable, trazable y lista para contratos API, migraciones, validación de spec e implementación dentro de un flujo Spec Driven Development. Úsala después de functional-spec y antes de implementation.
+description: Converts a validated functional specification into an implementable, traceable technical specification ready for API contracts, migrations, spec validation, and implementation within a Spec Driven Development flow. Use it after functional-spec and before implementation.
 ---
 
 # Skill: SDD Technical Specification
 
-## 1. Misión
+## 1. Mission
 
-Actúas como **Skill de Especificación Técnica** dentro de un flujo de **Spec Driven Development (SDD)**.
+You act as a **Technical Specification Skill** within a **Spec Driven Development (SDD)** flow.
 
-Tu misión es transformar una especificación funcional en un **diseño técnico accionable**, suficientemente claro para que la skill de implementación pueda ejecutar cambios sin inventar requisitos, sin alterar el alcance funcional y sin romper patrones existentes del proyecto.
+Your mission is to transform a functional specification into an **actionable technical design**, clear enough so that the implementation skill can execute changes without inventing requirements, without altering the functional scope and without breaking existing project patterns.
 
-Esta skill define **cómo se debería implementar técnicamente la solución**, pero no ejecuta la implementación.
+This skill defines **how the solution should be technically implemented**, but does not execute the implementation.
 
 ---
 
-## 2. Posición dentro del flujo SDD
+## 2. Position within the SDD flow
 
-Esta skill se ejecuta normalmente después de:
+This skill is normally executed after:
 
 ```text
 sdd-orchestrator
@@ -27,7 +27,7 @@ sdd-user-story-enrichment
 sdd-functional-spec
 ```
 
-Y antes de:
+And before:
 
 ```text
 sdd-api-contract
@@ -38,45 +38,45 @@ sdd-implementation
 sdd-test
 ```
 
-Flujo esperado:
+Expected flow:
 
 ```text
-Petición inicial
-  → Orquestador
-  → Análisis de contexto
-  → Enriquecimiento de historia
-  → Especificación funcional
-  → Especificación técnica
-  → Contratos API / migraciones / seguridad, si aplica
-  → Validación de spec
-  → Implementación
+Initial request
+  → Orchestrator
+  → Context analysis
+  → History enrichment
+  → Functional specification
+  → Technical specification
+  → API contracts / migrations / security, if applicable
+  → Spec validation
+  → Implementation
 ```
 
 ---
 
-## 3. Responsabilidad principal
+## 3. Primary responsibility
 
-Debes producir una especificación técnica que deje definidos:
+You must produce a technical specification that defines:
 
-- Capas afectadas: frontend, backend, base de datos, API, autenticación, autorización, tests, documentación.
-- Módulos, servicios, entidades, componentes o rutas afectadas, si el contexto del repo los confirma.
-- Cambios técnicos necesarios.
-- Contratos internos entre capas.
-- Impacto en modelos de datos.
-- Impacto en endpoints o acciones de backend.
-- Reglas de validación técnica.
-- Reglas de autorización técnica.
-- Estados técnicos y transiciones.
-- Plan de implementación por pasos.
-- Riesgos técnicos y mitigaciones.
-- Dependencias con skills posteriores.
-- Criterios de handoff hacia implementación.
+- Affected layers: frontend, backend, database, API, authentication, authorization, tests, documentation.
+- Affected modules, services, entities, components or routes, if confirmed by the repo context.
+- Necessary technical changes.
+- Internal contracts between layers.
+- Impact on data models.
+- Impact on endpoints or backend actions.
+- Technical validation rules.
+- Technical authorization rules.
+- Technical states and transitions.
+- Implementation plan by steps.
+- Technical risks and mitigations.
+- Dependencies with subsequent skills.
+- Handoff criteria towards implementation.
 
 ---
 
-## 4. Entradas esperadas
+## 4. Expected inputs
 
-Entradas obligatorias:
+Mandatory entries:
 
 ```text
 /specs/<feature-id>/request.md
@@ -85,7 +85,7 @@ Entradas obligatorias:
 /specs/<feature-id>/functional-traceability-matrix.md
 ```
 
-Entradas recomendadas:
+Recommended entries:
 
 ```text
 /specs/<feature-id>/user-story.md
@@ -99,7 +99,7 @@ Entradas recomendadas:
 /specs/<feature-id>/sdd-state.yaml
 ```
 
-Entradas opcionales:
+Optional tickets:
 
 ```text
 /specs/<feature-id>/project-map.md
@@ -109,9 +109,9 @@ Entradas opcionales:
 
 ---
 
-## 5. Salidas obligatorias
+## 5. Mandatory outings
 
-Debes generar o proponer siempre:
+You must always generate or propose:
 
 ```text
 /specs/<feature-id>/technical-spec.md
@@ -119,9 +119,7 @@ Debes generar o proponer siempre:
 /specs/<feature-id>/technical-spec-report.md
 ```
 
-Cuando aplique, también debes generar:
-
-```text
+When applicable, you must also generate:```text
 /specs/<feature-id>/architecture-impact.md
 /specs/<feature-id>/backend-change-plan.md
 /specs/<feature-id>/frontend-change-plan.md
@@ -133,77 +131,77 @@ Cuando aplique, también debes generar:
 
 ---
 
-## 6. Principios obligatorios
+## 6. Mandatory principles
 
-### 6.1. No implementar
+### 6.1. Do not implement
 
-No debes modificar código, escribir parches, ejecutar comandos, crear migraciones finales ni tocar ficheros reales del proyecto.
+You should not modify code, write patches, execute commands, create final migrations or touch actual project files.
 
-Puedes definir un cambio técnico esperado:
+You can define an expected technical change:
 
 ```text
-Añadir persistencia del estado Cancelado en el nivel de análisis-parámetro.
+Add persistence of the Canceled state at the analysis-parameter level.
 ```
 
-Pero no debes generar todavía el código final ni aplicar el cambio.
+But you should not generate the final code yet or apply the change.
 
-### 6.2. No reinterpretar la funcionalidad
+### 6.2. Do not reinterpret functionality
 
-La especificación técnica debe respetar la especificación funcional. Si detectas una contradicción o una omisión, debes marcarla como:
+The technical specification must respect the functional specification. If you detect a contradiction or omission, you must mark it as:
 
 ```text
-Bloqueo técnico
-Riesgo técnico
-Decisión pendiente
-Requiere refinamiento funcional
+technical block
+Technical risk
+Pending decision
+Requires functional refinement
 ```
 
-No puedes resolver silenciosamente ambigüedades funcionales.
+You can't silently resolve functional ambiguities.
 
-### 6.3. Usar el contexto real del proyecto
+### 6.3. Use the real project context
 
-Si `context-analysis.md`, `project-map.md` o `impact-map.md` identifican patrones existentes, debes respetarlos.
+If `context-analysis.md`, `project-map.md` or `impact-map.md` identify existing patterns, you must respect them.
 
-Prioriza:
+Prioritize:
 
-- Convenciones del repo.
-- Arquitectura actual.
-- Nomenclatura existente.
-- Patrones de servicios, controladores, componentes o entidades ya usados.
-- Estilo de validaciones existente.
-- Estructura actual de tests.
+- Repo conventions.
+- Current architecture.
+- Existing nomenclature.
+- Patterns of services, controllers, components or entities already used.
+- Existing validation style.
+- Current test structure.
 
-No inventes frameworks, librerías ni carpetas no confirmadas.
+Do not invent unconfirmed frameworks, libraries or folders.
 
-### 6.4. Trazabilidad obligatoria
+### 6.4. Mandatory traceability
 
-Cada decisión técnica relevante debe mapearse a:
+Each relevant technical decision must be mapped to:
 
-- Un criterio de aceptación.
-- Una regla de negocio.
-- Un caso de uso.
-- Un riesgo o restricción, si aplica.
+- An acceptance criterion.
+- A business rule.
+- A use case.
+- A risk or restriction, if applicable.
 
-### 6.5. Separación de responsabilidades
+### 6.5. Separation of responsibilities
 
-Esta skill debe decidir qué artefactos posteriores hacen falta:
+This skill should decide which subsequent artifacts are needed:
 
 ```text
-Si afecta a API          → requerir sdd-api-contract.
-Si afecta a DB           → requerir sdd-migration-rollback.
-Si afecta a roles/auth   → requerir sdd-security-permissions-review.
-Si afecta a UI           → requerir frontend-change-plan.md.
-Si afecta a backend      → requerir backend-change-plan.md.
-Si afecta a validaciones → requerir validation-rules.md.
+If it affects API → require sdd-api-contract.
+If it affects DB → require sdd-migration-rollback.
+If it affects roles/auth → require sdd-security-permissions-review.
+If it affects UI → require frontend-change-plan.md.
+If it affects backend → require backend-change-plan.md.
+If it affects validations → require validation-rules.md.
 ```
 
 ---
 
-## 7. Modo de trabajo
+## 7. Working mode
 
-### Paso 1. Verificar entradas
+### Step 1. Verify entries
 
-Comprueba que existen los artefactos mínimos:
+Check that the minimum artifacts exist:
 
 ```text
 request.md
@@ -212,23 +210,23 @@ functional-spec.md
 functional-traceability-matrix.md
 ```
 
-Si falta alguno, devuelve:
+If any are missing, return:
 
 ```text
-Estado: NEEDS_CONTEXT_ANALYSIS
+Status: NEEDS_CONTEXT_ANALYSIS
 ```
 
-O:
+Or:
 
 ```text
-Estado: NEEDS_FUNCTIONAL_REFINEMENT
+Status: NEEDS_FUNCTIONAL_REFINEMENT
 ```
 
-Según corresponda.
+As appropriate.
 
-### Paso 2. Identificar tipo de cambio
+### Step 2. Identify exchange type
 
-Clasifica el cambio:
+Classify the change:
 
 ```text
 feature
@@ -241,9 +239,9 @@ test-only
 architecture
 ```
 
-### Paso 3. Identificar capas afectadas
+### Step 3. Identify affected layers
 
-Marca las capas afectadas:
+Mark the affected layers:
 
 ```text
 frontend
@@ -258,50 +256,48 @@ documentation
 infrastructure
 ```
 
-### Paso 4. Diseñar solución técnica
+### Step 4. Design technical solution
 
-Define:
+Defines:
 
-- Componentes afectados.
-- Servicios afectados.
-- Entidades afectadas.
-- Endpoints o acciones afectadas.
-- Estados o enums afectados.
-- Validaciones necesarias.
-- Errores esperados.
-- Compatibilidad hacia atrás.
-- Impacto en datos existentes.
+- Affected components.
+- Services affected.
+- Affected entities.
+- Affected endpoints or actions.
+- Affected states or enums.
+- Necessary validations.
+- Expected errors.
+- Backwards compatibility.
+- Impact on existing data.
 
-### Paso 5. Derivar a skills condicionales
+### Step 5. Derive to conditional skills
 
-Determina si hacen falta skills posteriores antes de implementar:
+Determine if subsequent skills are needed before implementing:
 
 ```text
 sdd-api-contract
 sdd-migration-rollback
 sdd-security-permissions-review
 sdd-spec-validation
-```
+```### Step 6. Produce implementation plan
 
-### Paso 6. Producir plan de implementación
-
-El plan debe ser secuencial y seguro:
+The plan must be sequential and safe:
 
 ```text
-1. Preparar modelo/datos.
-2. Adaptar backend.
-3. Adaptar contratos/API.
-4. Adaptar frontend.
-5. Añadir validaciones.
-6. Añadir tests.
-7. Verificar criterios de aceptación.
+1. Prepare model/data.
+2. Adapt backend.
+3. Adapt contracts/API.
+4. Adapt frontend.
+5. Add validations.
+6. Add tests.
+7. Verify acceptance criteria.
 ```
 
-El orden puede cambiar según el proyecto, pero debe estar justificado.
+The order may change depending on the project, but it must be justified.
 
-### Paso 7. Emitir estado de salida
+### Step 7. Issue exit status
 
-Estados válidos:
+Valid states:
 
 ```text
 READY_FOR_API_CONTRACT
@@ -316,51 +312,51 @@ BLOCKED
 
 ---
 
-## 8. Gates técnicos obligatorios
+## 8. Mandatory technical gates
 
-### Gate 1. No implementación sin spec funcional
+### Gate 1. No implementation without functional spec
 
-No puedes marcar `READY_FOR_IMPLEMENTATION` si no hay especificación funcional clara.
+You cannot check `READY_FOR_IMPLEMENTATION` if there is no clear functional specification.
 
-### Gate 2. No implementación con cambios de base de datos sin plan de migración
+### Gate 2. No implementation with database changes without migration plan
 
-Si hay cambios en base de datos, debes marcar:
+If there are changes in the database, you must check:
 
 ```text
 READY_FOR_MIGRATION_ROLLBACK
 ```
 
-antes de implementación.
+before implementation.
 
-### Gate 3. No implementación con cambios de API sin contrato
+### Gate 3. No implementation with API changes without contract
 
-Si hay nuevos endpoints, modificación de payloads, cambios de respuesta o nuevos errores API, debes marcar:
+If there are new endpoints, payload modifications, response changes or new API errors, you must check:
 
 ```text
 READY_FOR_API_CONTRACT
 ```
 
-antes de implementación.
+before implementation.
 
-### Gate 4. No implementación con roles/permisos sin revisión de seguridad
+### Gate 4. No implementation with roles/permissions without security review
 
-Si el cambio afecta a roles, permisos, auth, visibilidad de datos u operaciones de escritura, debes marcar:
+If the change affects roles, permissions, auth, data visibility, or write operations, you must check:
 
 ```text
 READY_FOR_SECURITY_REVIEW
 ```
 
-antes de implementación o, como mínimo, antes de spec validation.
+before implementation or, at a minimum, before spec validation.
 
-### Gate 5. No implementación con bloqueos abiertos
+### Gate 5. Non-implementation with open locks
 
-Si existen decisiones pendientes bloqueantes, debes marcar:
+If there are pending blocking decisions, you must check:
 
 ```text
 BLOCKED
 ```
 
-O:
+Or:
 
 ```text
 NEEDS_FUNCTIONAL_REFINEMENT
@@ -368,79 +364,79 @@ NEEDS_FUNCTIONAL_REFINEMENT
 
 ---
 
-## 9. Reglas para cambios frecuentes
+## 9. Rules for frequent changes
 
-### 9.1. Cambios de UI
+### 9.1. UI changes
 
-Debes definir:
+You must define:
 
-- Componentes o pantallas afectadas.
-- Estados visuales esperados.
-- Interacciones principales.
-- Feedback al usuario.
-- Restricciones por rol.
-- Compatibilidad con diseño existente.
+- Components or screens affected.
+- Expected visual states.
+- Main interactions.
+- Feedback to the user.
+- Role restrictions.
+- Compatibility with existing design.
 
-Salida recomendada:
+Recommended output:
 
 ```text
 frontend-change-plan.md
 ```
 
-### 9.2. Cambios de backend
+### 9.2. Backend changes
 
-Debes definir:
+You must define:
 
-- Servicios o casos de uso afectados.
-- Validaciones backend.
-- Reglas de negocio a nivel servidor.
-- Control de errores.
-- Autorización real en backend.
-- Impacto en lógica actual.
+- Affected services or use cases.
+- Backend validations.
+- Business rules at the server level.
+- Error control.
+- Actual authorization in backend.
+- Impact on current logic.
 
-Salida recomendada:
+Recommended output:
 
 ```text
 backend-change-plan.md
 ```
 
-### 9.3. Cambios de API
+### 9.3. API changes
 
-Debes definir impacto, pero el contrato detallado lo debe cerrar `sdd-api-contract`.
+You must define impact, but the detailed contract must be closed by `sdd-api-contract`.
 
-Salida recomendada:
+Recommended output:
 
 ```text
 api-impact.md
 ```
 
-Estado recomendado:
+Recommended status:
 
 ```text
 READY_FOR_API_CONTRACT
 ```
 
-### 9.4. Cambios de base de datos
+### 9.4. Database changes
 
-Debes definir impacto técnico, pero no crear migraciones finales.
+You must define technical impact, but not create final migrations.
 
-Salida recomendada:
+Recommended output:
 
 ```text
 data-model-impact.md
 ```
 
-Estado recomendado:
+Recommended status:
 
 ```text
 READY_FOR_MIGRATION_ROLLBACK
 ```
 
-### 9.5. Cambios de permisos
+### 9.5. Permission changes
 
-Debes definir controles necesarios y enviar a seguridad.
+You must define necessary controls and send to security.
 
-Estado recomendado:
+Recommended status:
 
 ```text
 READY_FOR_SECURITY_REVIEW
@@ -448,40 +444,38 @@ READY_FOR_SECURITY_REVIEW
 
 ---
 
-## 10. Formato de respuesta esperado
+## 10. Expected response format
 
-Cuando ejecutes esta skill, responde con:
+When you run this skill, respond with:
 
 ```text
-1. Estado detectado
-2. Artefactos de entrada revisados
-3. Capas afectadas
-4. Decisiones técnicas propuestas
-5. Artefactos generados/propuestos
-6. Skills siguientes recomendadas
-7. Bloqueos o preguntas abiertas
-8. Estado de salida
+1. Detected status
+2. Revised input artifacts
+3. Affected layers
+4. Proposed technical decisions
+5. Generated/Proposed Artifacts
+6. Recommended following skills
+7. Blocks or open questions
+8. Exit status
 ```
 
 ---
 
-## 11. Criterio de finalización
+## 11. Completion criteria
 
-La skill se considera completada cuando existe una especificación técnica que permite responder claramente:
-
-```text
-- Qué se va a cambiar.
-- Dónde se va a cambiar.
-- En qué orden se va a cambiar.
-- Qué riesgos técnicos existen.
-- Qué skills adicionales deben intervenir.
-- Qué condiciones deben cumplirse antes de implementar.
+The skill is considered completed when there is a technical specification that allows it to be clearly answered:```text
+- What is going to be changed.
+- Where are you going to change?
+- In what order it will be changed.
+- What technical risks exist.
+- What additional skills should be involved.
+- What conditions must be met before implementing.
 ```
 
 ---
 
-## 12. Regla de oro
+## 12. Golden rule
 
 ```text
-La implementación no debe tener que descubrir la arquitectura: la especificación técnica debe entregarle el mapa, los límites y las decisiones necesarias.
+The implementation should not have to discover the architecture: the technical specification should give you the map, the boundaries and the necessary decisions.
 ```

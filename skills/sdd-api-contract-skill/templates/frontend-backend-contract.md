@@ -1,4 +1,4 @@
-# Frontend / Backend Contract: <feature-id>
+# Frontend/Backend Contract: <feature-id>
 
 ## 1. UI actions mapped to backend operations
 
@@ -20,7 +20,7 @@
 
 ## 4. Error UX behavior
 
-| Error | UI behavior | User guidance |
+| Error | UIbehavior | User guidance |
 |---|---|---|
 | `<error>` | `<toast/inline/modal/etc.>` | `<message guidance>` |
 

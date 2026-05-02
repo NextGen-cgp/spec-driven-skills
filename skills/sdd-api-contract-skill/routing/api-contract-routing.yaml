@@ -58,7 +58,7 @@ routing_rules:
     exit_state: NEEDS_SECURITY_REVIEW
 
   ambiguous_contract:
-    condition: "required operation, owner layer, state transition or payload shape cannot be inferred from existing specs"
+    condition: "required operation, owner layer, state transition or payload shape cannot be inferred from existing specifications"
     route_to: sdd-technical-spec
     exit_state: BLOCKED_BY_AMBIGUITY
 

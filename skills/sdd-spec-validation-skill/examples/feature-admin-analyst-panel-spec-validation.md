@@ -6,7 +6,7 @@
 NEEDS_REFINEMENT
 ```
 
-## Next Skill
+##Next Skill
 
 ```text
 sdd-security-permissions-review
@@ -36,7 +36,7 @@ The feature is functionally and technically described, but it cannot proceed to 
 | security-permissions-review.md | Missing | Required because roles and write operations are affected. |
 | test-plan.md | Incomplete | Authorization tests missing. |
 
-## Gate Decision
+##Gate Decision
 
 ```text
 Implementation Gate: FAIL
@@ -49,6 +49,6 @@ Test Gate: FAIL
 
 | ID | Target Skill | Action | Priority |
 |---|---|---|---|
-| REM-001 | sdd-security-permissions-review | Define role-operation matrix and backend authorization expectations. | critical |
+| REM-001 | sdd-security-permissions-review | Defines role-operation matrix and backend authorization expectations. | critical |
 | REM-002 | sdd-api-contract | Add permission rules per endpoint/action. | high |
 | REM-003 | sdd-test-planning | Add tests verifying analysts cannot create or edit data. | high |

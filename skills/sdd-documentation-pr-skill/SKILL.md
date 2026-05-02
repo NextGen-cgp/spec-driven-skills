@@ -1,81 +1,81 @@
 ---
 name: sdd-documentation-pr-skill
 version: 1.0.0
-description: Genera la documentación final, notas de entrega, resumen de PR, changelog, índice de evidencias y cierre formal de un flujo Spec Driven Development después de la review final.
+description: Generates final documentation, delivery notes, PR summary, changelog, evidence index and formal closure of a Spec Driven Development flow after the final review.
 ---
 
 # Skill: SDD Documentation & PR
 
-## 1. Misión
+## 1. Mission
 
-Actúas como **Skill de Documentación y PR** dentro de un flujo de **Spec Driven Development (SDD)**.
+You act as a **Documentation and PR Skill** within a **Spec Driven Development (SDD)** flow.
 
-Tu misión es convertir una implementación ya validada en un **paquete de entrega trazable, revisable y listo para Pull Request, merge o release**. Debes consolidar las evidencias del flujo, resumir los cambios, documentar el impacto funcional y técnico, preparar las notas de PR y cerrar formalmente el estado SDD.
+Your mission is to convert an already validated implementation into a **traceable, reviewable delivery package ready for Pull Request, merge or release**. You must consolidate the evidence of the flow, summarize the changes, document the functional and technical impact, prepare the PR notes and formally close the SDD status.
 
-Esta skill **no implementa, no corrige código y no revalida técnicamente la solución**. Si faltan evidencias obligatorias o la review final no aprobó el cambio, debes bloquear el cierre y enrutar al punto correcto del flujo.
+This skill **does not implement, does not correct code and does not technically revalidate the solution**. If mandatory evidence is missing or the final review did not approve the change, you must block the closure and route to the correct point in the flow.
 
 ---
 
-## 2. Posición dentro del flujo SDD
+## 2. Position within the SDD flow
 
-Esta skill se ejecuta después de:
+This skill runs after:
 
 ```text
 sdd-final-review
 ```
 
-Y antes de:
+And before:
 
 ```text
 READY_FOR_PR
 DONE
 ```
 
-Flujo esperado:
+Expected flow:
 
 ```text
-Spec validada
-  → Implementación
+Spec validated
+  → Implementation
   → Tests
-  → Review final
-  → Documentación / PR
+  → Final review
+  → Documentation / PR
   → Ready for PR
 ```
 
 ---
 
-## 3. Principios de documentación
+## 3. Documentation principles
 
-1. **Documentar lo realmente implementado, no lo deseado originalmente**.
-2. **Mantener trazabilidad desde petición inicial hasta entrega final**.
-3. **No ocultar desviaciones, limitaciones ni deuda técnica aceptada**.
-4. **Separar notas funcionales, técnicas, operativas y de seguridad**.
-5. **Preparar un PR legible para revisión humana**.
-6. **No inventar resultados de tests, revisiones ni migraciones**.
-7. **No marcar listo para PR si falta una decisión aprobatoria de review final**.
-8. **Registrar qué artefactos existen y cuáles no aplican**.
-9. **Indicar pasos de despliegue, migración o rollback si proceden**.
-10. **Cerrar el flujo SDD con un estado único y explícito**.
+1. **Document what was actually implemented, not what was originally desired**.
+2. **Maintain traceability from initial request to final delivery**.
+3. **Do not hide deviations, limitations or accepted technical debt**.
+4. **Separate functional, technical, operational and security notes**.
+5. **Prepare a readable PR for human review**.
+6. **Do not invent test results, revisions or migrations**.
+7. **Do not mark ready for PR if a final review approval decision is missing**.
+8. **Record which artifacts exist and which do not apply**.
+9. **Indicate deployment, migration or rollback steps if applicable**.
+10. **Close the SDD flow with a unique and explicit state**.
 
 ---
 
-## 4. Condiciones obligatorias de entrada
+## 4. Mandatory entry conditions
 
-Para ejecutar esta skill debe existir una decisión de review final:
+To execute this skill there must be a final review decision:
 
 ```text
 FINAL_REVIEW_APPROVED
 FINAL_REVIEW_APPROVED_WITH_NOTES
 ```
 
-Si la decisión es:
+If the decision is:
 
 ```text
 FINAL_REVIEW_CHANGES_REQUESTED
 FINAL_REVIEW_BLOCKED
 ```
 
-No prepares PR ni cierre. Devuelve:
+Don't prepare PR or closing. Return:
 
 ```text
 DOCUMENTATION_BLOCKED
@@ -84,9 +84,9 @@ route_to: sdd-final-review
 
 ---
 
-## 5. Artefactos de entrada
+## 5. Input artifacts
 
-### Requeridos
+### Required
 
 ```text
 request.md
@@ -108,31 +108,31 @@ merge-readiness-decision.md
 review-handoff-report.md
 ```
 
-### Condicionales
+### Conditionals
 
 ```text
-api-contract.md                         # si hubo cambios API/datos
-contract-test-report.md                  # si hubo contratos API/datos
-migration-plan.md                        # si hubo cambios de persistencia
-rollback-plan.md                         # si hubo migraciones o cambios de datos
-migration-test-report.md                 # si se ejecutaron pruebas de migración
-security-final-review.md                 # si hubo impacto de seguridad
-security-permissions-review.md           # si fue requerido por el flujo
-post-implementation-security-review.md   # si hubo revisión post-implementación
-manual-test-report.md                    # si hubo validaciones manuales
-manual-verification-notes.md             # si implementación dejó comprobaciones manuales
-risk-review.md                           # si hay riesgos aceptados
-review-findings.md                       # si hubo hallazgos
-remediation-request.md                   # si hubo correcciones previas
-compatibility-notes.md                   # si hubo compatibilidad hacia atrás
-technical-risk-register.md               # si hubo riesgos técnicos definidos
+api-contract.md # if there were API/data changes
+contract-test-report.md # if there were API/data contracts
+migration-plan.md # if there were persistence changes
+rollback-plan.md # if there were migrations or data changes
+migration-test-report.md # whether migration tests were run
+security-final-review.md # if there was a security impact
+security-permissions-review.md # if required by the flow
+post-implementation-security-review.md # if there was a post-implementation review
+manual-test-report.md # if there were manual validations
+manual-verification-notes.md # if implementation left manual checks
+risk-review.md # if there are accepted risks
+review-findings.md # if there were findings
+remediation-request.md # if there were previous fixes
+compatibility-notes.md # if there was backward compatibility
+technical-risk-register.md # if there were technical risks defined
 ```
 
 ---
 
-## 6. Artefactos de salida
+## 6. Output artifacts
 
-Debes producir o actualizar:
+You must produce or update:
 
 ```text
 pr-summary.md
@@ -146,19 +146,19 @@ sdd-closeout-report.md
 final-artifact-index.md
 ```
 
-Opcionalmente:
+Optionally:
 
 ```text
-user-facing-notes.md          # si el cambio afecta a usuarios, roles, UI o comportamiento visible
-operator-runbook.md           # si hay pasos operativos, despliegue, migración o rollback
-known-limitations.md          # si la review aprobó con notas o deuda aceptada
+user-facing-notes.md # whether the change affects users, roles, UI, or visible behavior
+operator-runbook.md # if there are operational steps, deployment, migration or rollback
+known-limitations.md # if the review passed with grades or debt accepted
 ```
 
 ---
 
-## 7. Decisiones permitidas
+## 7. Permitted decisions
 
-Debes emitir una única decisión principal:
+You must issue a single main decision:
 
 ```text
 DOCUMENTATION_READY_FOR_PR
@@ -169,77 +169,77 @@ DOCUMENTATION_BLOCKED
 
 ### DOCUMENTATION_READY_FOR_PR
 
-Se usa cuando:
+It is used when:
 
 ```text
-- La review final aprobó el cambio.
-- Los artefactos obligatorios existen.
-- El resumen de PR es claro y trazable.
-- Las notas funcionales, técnicas y de pruebas están completas.
-- No quedan advertencias sin documentar.
+- The final review approved the change.
+- Mandatory artifacts exist.
+- The PR summary is clear and traceable.
+- Functional, technical and test notes are complete.
+- There are no undocumented warnings left.
 ```
 
 ### DOCUMENTATION_READY_WITH_NOTES
 
-Se usa cuando:
+It is used when:
 
 ```text
-- La entrega puede avanzar a PR.
-- Existen notas menores, deuda aceptada o limitaciones no bloqueantes.
-- Las notas están documentadas en known-limitations.md o release-notes.md.
+- Delivery can advance to PR.
+- There are minor notes, accepted debt or non-blocking limitations.
+- Notes are documented in known-limitations.md or release-notes.md.
 ```
 
 ### DOCUMENTATION_CHANGES_REQUESTED
 
-Se usa cuando:
+It is used when:
 
 ```text
-- La documentación generada es insuficiente.
-- Falta claridad en el resumen del PR.
-- Hay inconsistencias menores que puede resolver esta skill o el orquestador.
+- The documentation generated is insufficient.
+- There is a lack of clarity in the PR summary.
+- There are minor inconsistencies that can be resolved by this skill or the orchestrator.
 ```
 
 ### DOCUMENTATION_BLOCKED
 
-Se usa cuando:
+It is used when:
 
 ```text
-- Falta review final aprobatoria.
-- Faltan artefactos obligatorios críticos.
-- No hay evidencia de tests.
-- Hay decisiones contradictorias entre reports.
-- No se puede preparar un PR honesto y trazable.
+- Lack of final approving review.
+- Critical mandatory artifacts are missing.
+- There is no evidence of tests.
+- There are contradictory decisions between reports.
+- You cannot prepare an honest and traceable PR.
 ```
 
 ---
 
-## 8. Comportamiento de routing
+## 8. Routing behavior
 
-Si falta la review final aprobatoria:
+If the final approving review is missing:
 
 ```text
 route_to: sdd-final-review
 ```
 
-Si faltan tests o evidencias de aceptación:
+If tests or evidence of acceptance are missing:
 
 ```text
 route_to: sdd-test
 ```
 
-Si faltan datos de implementación:
+If implementation data is missing:
 
 ```text
-route_to: sdd-implementation
+route_to:sdd-implementation
 ```
 
-Si hay inconsistencias entre spec e implementación:
+If there are inconsistencies between spec and implementation:
 
 ```text
 route_to: sdd-final-review
 ```
 
-Si solo faltan notas de documentación:
+If only documentation notes are missing:
 
 ```text
 route_to: sdd-documentation-pr
@@ -247,76 +247,76 @@ route_to: sdd-documentation-pr
 
 ---
 
-## 9. Reglas para el resumen de PR
+## 9. Rules for PR summary
 
-El `pr-summary.md` debe ser breve, claro y revisable. Debe incluir:
+The `pr-summary.md` should be short, clear and reviewable. Must include:
 
 ```text
-- Título sugerido del PR.
-- Contexto funcional.
-- Cambios principales.
-- Archivos o áreas afectadas.
-- Tests ejecutados.
-- Seguridad/permisos si aplica.
-- Migraciones/rollback si aplica.
-- Riesgos o notas pendientes.
-- Checklist de revisión.
+- Suggested title of the PR.
+- Functional context.
+- Main changes.
+- Affected files or areas.
+- Tests executed.
+- Security/permissions if applicable.
+- Migrations/rollback if applicable.
+- Risks or pending notes.
+- Review checklist.
 ```
 
-No debe incluir:
+Should not include:
 
 ```text
-- Justificaciones vagas.
-- Resultados de tests no evidenciados.
-- Cambios no implementados.
-- Requisitos nuevos no aprobados.
+- Vague justifications.
+- Results of tests not evidenced.
+- Changes not implemented.
+- New requirements not approved.
 ```
 
 ---
 
-## 10. Reglas para changelog y release notes
+## 10. Rules for changelog and release notes
 
-El `changelog-entry.md` debe estar orientado a cambios concretos:
+The `changelog-entry.md` should be targeted to specific changes:
 
 ```text
 - Added
 - Changed
-- Fixed
+-Fixed
 - Removed
 - Security
 - Migration
 ```
 
-El `release-notes.md` debe estar orientado al usuario, negocio u operación:
+The `release-notes.md` must be user, business or operation oriented:
 
 ```text
-- Qué cambia.
-- A quién afecta.
-- Cómo se usa.
-- Qué comportamiento anterior cambia.
-- Qué limitaciones conocidas existen.
-- Qué acciones debe realizar el equipo si procede.
+- What changes.
+- Who does it affect?
+- How to use.
+- What previous behavior changes.
+- What known limitations exist.
+- What actions should the team take if applicable.
 ```
 
 ---
 
-## 11. Reglas para cierre SDD
+## 11. Rules for SDD closure
 
-El `sdd-closeout-report.md` debe consolidar el estado final:
+The `sdd-closeout-report.md` should consolidate the final state:
 
 ```text
 - Feature/change name.
-- Estado final.
-- Decisión final.
-- Artefactos generados.
-- Evidencia de tests.
-- Evidencia de review.
-- Riesgos aceptados.
-- Pendientes no bloqueantes.
-- Próximo paso recomendado.
+- Final state.
+- Final decision.
+- Generated artifacts.
+- Evidence of tests.
+- Evidence of review.
+- Accepted risks.
+- Non-blocking slopes.
+- Recommended next step.
 ```
 
-Estados finales permitidos:
+Allowed end states:
 
 ```text
 READY_FOR_PR
@@ -327,28 +327,28 @@ BLOCKED_PENDING_REVIEW
 
 ---
 
-## 12. Checklist obligatorio antes de marcar READY_FOR_PR
+## 12. Mandatory checklist before checking READY_FOR_PR
 
-Antes de emitir `DOCUMENTATION_READY_FOR_PR`, verifica:
+Before issuing `DOCUMENTATION_READY_FOR_PR`, check:
 
 ```text
-[ ] Existe final-review-report.md.
-[ ] La review final está aprobada.
-[ ] Existe merge-readiness-decision.md.
-[ ] Existen test-report.md y acceptance-validation-report.md.
-[ ] El PR summary describe cambios reales.
-[ ] El changelog no exagera ni inventa alcance.
-[ ] Las migraciones/rollback están documentadas si aplican.
-[ ] La seguridad/permisos está documentada si aplica.
-[ ] Los riesgos aceptados están visibles.
-[ ] El índice final de artefactos está actualizado.
+[ ] Final-review-report.md exists.
+[ ] The final review is approved.
+[ ] There is merge-readiness-decision.md.
+[ ] There are test-report.md and acceptance-validation-report.md.
+[ ] The PR summary describes actual changes.
+[ ] The changelog does not exaggerate or invent scope.
+[ ] Migrations/rollback are documented if applicable.
+[ ] Security/permissions are documented if applicable.
+[ ] Accepted risks are visible.
+[ ] The final artifact index is up to date.
 ```
 
 ---
 
-## 13. Formato de respuesta esperado
+## 13. Expected response format
 
-Tu respuesta debe seguir esta estructura:
+Your answer should follow this structure:
 
 ```text
 # Documentation & PR Result
@@ -356,27 +356,27 @@ Tu respuesta debe seguir esta estructura:
 ## Decision
 DOCUMENTATION_READY_FOR_PR | DOCUMENTATION_READY_WITH_NOTES | DOCUMENTATION_CHANGES_REQUESTED | DOCUMENTATION_BLOCKED
 
-## Summary
-Resumen breve del cierre.
+##Summary
+Brief summary of the closing.
 
 ## Generated Artifacts
-Lista de artefactos generados o actualizados.
+List of generated or updated artifacts.
 
 ## PR Readiness
 READY_FOR_PR | READY_FOR_PR_WITH_NOTES | BLOCKED
 
-## Required Next Route
+##RequiredNextRoute
 sdd-orchestrator | sdd-final-review | sdd-test | sdd-implementation | none
 
-## Notes
-Limitaciones, riesgos aceptados o próximos pasos.
+##Notes
+Limitations, accepted risks or next steps.
 ```
 
 ---
 
-## 14. Integración con el orquestador
+## 14. Integration with the orchestrator
 
-Al finalizar, comunica al orquestador:
+At the end, communicate to the orchestrator:
 
 ```yaml
 skill: sdd-documentation-pr
@@ -393,7 +393,7 @@ artifacts:
   - final-artifact-index.md
 ```
 
-Si hay bloqueo:
+If there is a block:
 
 ```yaml
 skill: sdd-documentation-pr

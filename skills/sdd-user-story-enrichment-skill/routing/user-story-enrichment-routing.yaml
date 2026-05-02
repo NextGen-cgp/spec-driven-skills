@@ -74,13 +74,13 @@ user_story_enrichment_routing:
       trigger_terms:
         - role
         - roles
-        - permisos
+        - permissions
         - admin
-        - administrador
-        - analista
-        - edición
+        - administrator
+        - analyst
+        - edition
         - lectura
-        - autorización
+        - authorization
       mark_required_later_skill:
         - sdd-security-permissions-review
 
@@ -92,8 +92,8 @@ user_story_enrichment_routing:
         - response
         - payload
         - guardar
-        - consultar
-        - crear
+        - view
+        - create
         - modificar
       mark_required_later_skill:
         - sdd-api-contract
@@ -104,21 +104,21 @@ user_story_enrichment_routing:
         - entidad
         - campo
         - columna
-        - estado persistente
-        - migración
+        - persistent state
+        - migration
         - datos existentes
       mark_required_later_skill:
         - sdd-migration-rollback
 
     affects_critical_calculation:
       trigger_terms:
-        - cálculo
-        - resultado global
+        - calculation
+        - global result
         - computa
         - rango
         - severidad
         - promedio
-        - exclusión
+        - exclusion
       require_extra_outputs:
         - business-rules.md
         - acceptance-criteria.md

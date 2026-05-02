@@ -1,21 +1,21 @@
 # Contract Test Report
 
-## Contratos validados
+## Validated contracts
 
-| Contrato | Estado | Observaciones |
+| Contract | State | Observations |
 |---|---|---|
 | api-contract.md | | |
 | data-contract.md | | |
 | error-contract.md | | |
 
-## Endpoints / operaciones
+## Endpoints / operations
 
-| Operación | Método | Payload entrada | Respuesta | Errores | Estado |
+| Operation | Method | Payload entry | Answer | Errors | State |
 |---|---|---|---|---|---|
 | | | | | | PASSED/FAILED/BLOCKED |
 
-## Incompatibilidades detectadas
+## Incompatibilities detected
 
-| ID | Descripción | Impacto | Ruta recomendada |
+| ID | Description | Impact | Recommended route |
 |---|---|---|---|
 | | | | |

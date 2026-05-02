@@ -5,26 +5,26 @@
 ```text
 Decision: TEST_FAILED
 Next skill: sdd-implementation
-Reason: El criterio AC-004 falla: el parámetro cancelado sigue computando en el resultado global.
+Reason: Criterion AC-004 fails: the canceled parameter continues to compute in the global result.
 ```
 
 ## Defect
 
 ### DEF-001
 
-- Severidad: high
-- Área: lógica de cálculo global
-- Criterio relacionado: AC-004
-- Resultado esperado: los parámetros con estado `CANCELLED` no deben computar.
-- Resultado obtenido: el cálculo global sigue incluyendo el valor anterior del parámetro cancelado.
+- Severity: high
+- Area: global calculation logic
+- Related criterion: AC-004
+- Expected result: parameters with status `CANCELLED` should not be computed.
+- Result obtained: the global calculation continues to include the previous value of the canceled parameter.
 
 ## Reproduction steps
 
-1. Crear análisis con tres parámetros.
-2. Registrar muestras para dos parámetros.
-3. Cancelar el tercer parámetro.
-4. Completar análisis.
-5. Revisar resultado global.
+1. Create analysis with three parameters.
+2. Record samples for two parameters.
+3. Cancel the third parameter.
+4. Complete analysis.
+5. Review global result.
 
 ## Route
 
@@ -32,4 +32,4 @@ Reason: El criterio AC-004 falla: el parámetro cancelado sigue computando en el
 sdd-implementation
 ```
 
-La spec es clara; el fallo está en la implementación de la lógica de agregación.
+The spec is clear; The fault is in the implementation of the aggregation logic.

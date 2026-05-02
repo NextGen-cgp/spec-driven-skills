@@ -1,30 +1,30 @@
 # Impact Map: <feature-name>
 
-## 1. Resumen de impacto
+## 1. Impact Summary
 
 ```text
-<Resumen del impacto funcional y técnico estimado.>
+<Summary of estimated functional and technical impact.>
 ```
 
-## 2. Áreas afectadas
+## 2. Affected areas
 
-| Área | Impacto | Confianza | Requiere skill adicional |
+| Area | Impact | Trust | Requires additional skill |
 |---|---|---|---|
-| Frontend/UI | `<sí/no/parcial>` | `<alta/media/baja>` | `<skill o no>` |
-| Backend/API | `<sí/no/parcial>` | `<alta/media/baja>` | `<skill o no>` |
-| Base de datos | `<sí/no/parcial>` | `<alta/media/baja>` | `<skill o no>` |
-| Auth/Permisos | `<sí/no/parcial>` | `<alta/media/baja>` | `<skill o no>` |
-| Tests | `<sí/no/parcial>` | `<alta/media/baja>` | `<skill o no>` |
-| Documentación | `<sí/no/parcial>` | `<alta/media/baja>` | `<skill o no>` |
+| Frontend/UI | `<yes/no/partial>` | `<high/medium/low>` | `<skill or not>` |
+| Backend/API | `<yes/no/partial>` | `<high/medium/low>` | `<skill or not>` |
+| Database | `<yes/no/partial>` | `<high/medium/low>` | `<skill or not>` |
+| Auth/Permissions | `<yes/no/partial>` | `<high/medium/low>` | `<skill or not>` |
+| Tests | `<yes/no/partial>` | `<high/medium/low>` | `<skill or not>` |
+| Documentation | `<yes/no/partial>` | `<high/medium/low>` | `<skill or not>` |
 
-## 3. Archivos candidatos
+## 3. Candidate files
 
-| Archivo | Motivo | Acción esperada |
+| Archive | Reason | Expected action |
 |---|---|---|
-| `<ruta>` | `<motivo>` | `<leer/modificar/testear/documentar>` |
+| `<path>` | `<reason>` | `<read/modify/test/document>` |
 
-## 4. Riesgos de propagación
+## 4. Spread risks
 
 ```text
-<Riesgos de que el cambio afecte a otras partes del sistema.>
+<Risks of the change affecting other parts of the system.>
 ```

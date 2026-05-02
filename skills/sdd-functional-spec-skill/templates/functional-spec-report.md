@@ -22,13 +22,13 @@ requires_test_plan: true
 requires_documentation: true
 ```
 
-## Open Questions
+##Open Questions
 
 | Question | Blocking | Owner |
 |---|---|---|
 | <question> | yes/no | <owner> |
 
-## Risks
+##Risks
 
 | Risk | Mitigation |
 |---|---|
@@ -38,6 +38,6 @@ requires_documentation: true
 
 `READY_FOR_TECHNICAL_SPEC`
 
-## Next Recommended Skill
+##Next Recommended Skill
 
 `sdd-technical-spec`

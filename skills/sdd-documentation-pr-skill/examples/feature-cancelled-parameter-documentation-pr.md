@@ -1,4 +1,4 @@
-# Example: Cancelled Parameter - Documentation & PR
+# Example: Canceled Parameter - Documentation & PR
 
 ## Decision
 
@@ -11,25 +11,25 @@ DOCUMENTATION_READY_WITH_NOTES
 ### Suggested Title
 
 ```text
-feat(analysis): allow cancelling and reopening analysis parameters
+feat(analysis): allow canceling and reopening analysis parameters
 ```
 
 ### Context
 
-Some analysis parameters may legitimately not require completion. This change allows users to mark a parameter as cancelled instead of leaving empty values, preventing accidental omissions while excluding cancelled parameters from the global analysis result.
+Some analysis parameters may legitimately not require completion. This change allows users to mark a parameter as canceled instead of leaving empty values, preventing accidental omissions while excluding canceled parameters from the global analysis result.
 
-### What Changed
+###What Changed
 
-- Added cancelled state for analysis parameters.
-- Added reopen behavior to return cancelled parameters to pending.
-- Excluded cancelled parameters from global analysis result computation.
-- Added UI behavior notes for collapsed sample input when cancelled.
+- Added canceled state for analysis parameters.
+- Added reopen behavior to return canceled parameters to pending.
+- Excluded canceled parameters from global analysis result computation.
+- Added UI behavior notes for collapsed sample input when canceled.
 - Added regression evidence for result calculation.
 
 ### Tests Executed
 
 - Acceptance tests for cancel/reopen flow.
-- Calculation tests excluding cancelled parameters.
+- Calculation tests excluding canceled parameters.
 - Regression tests for pending/completed parameter behavior.
 - Authorization checks for state transitions.
 
@@ -58,7 +58,7 @@ known-limitations.md
 READY_FOR_PR_WITH_NOTES
 ```
 
-## Required Next Route
+##RequiredNextRoute
 
 ```text
 none

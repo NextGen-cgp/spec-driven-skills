@@ -1,32 +1,32 @@
-# Example: Feature Cancelled Parameter - Test
+# Example: Feature Canceled Parameter - Test
 
 ## Decision
 
 ```text
 Decision: TEST_PASSED
 Next skill: sdd-review
-Reason: Los criterios funcionales pasan y no hay hallazgos bloqueantes tras validar cálculo global y reapertura.
+Reason: The functional criteria pass and there are no blocking findings after validating global calculation and reopening.
 ```
 
-## Scope
+##Scope
 
-Validar que un parámetro de análisis puede cancelarse, que deja de computar en el resultado global y que puede reabrirse para volver al estado pendiente.
+Validate that an analysis parameter can be canceled, that it stops computing in the global result, and that it can be reopened to return to the pending state.
 
 ## Acceptance validation
 
-| ID | Criterio | Estado | Evidencia |
+| ID | Criterion | State | Evidence |
 |---|---|---|---|
-| AC-001 | El usuario puede cancelar un parámetro pendiente | PASSED | Test de interacción UI |
-| AC-002 | La pill cambia a Cancelado | PASSED | Test de estado visual |
-| AC-003 | La caja de muestras se cierra | PASSED | Test de renderizado condicional |
-| AC-004 | El parámetro cancelado no computa en resultado global | PASSED | Test unitario de cálculo |
-| AC-005 | El parámetro puede reabrirse | PASSED | Test funcional de transición Cancelado → Pendiente |
-| AC-006 | No se permite completar análisis con parámetros olvidados salvo cancelados | PASSED | Test de validación de completitud |
+| AC-001 | The user can cancel a pending parameter | PASSED | UI interaction test |
+| AC-002 | The pill changes to Canceled | PASSED | Visual status test |
+| AC-003 | The sample box closes | PASSED | Conditional rendering test |
+| AC-004 | The canceled parameter does not compute in the global result | PASSED | Calculation unit test |
+| AC-005 | The parameter can be reopened | PASSED | Functional transition test Canceled → Pending |
+| AC-006 | It is not allowed to complete analysis with forgotten parameters unless canceled | PASSED | Completeness validation test |
 
 ## Regression checks
 
-| Flujo | Estado |
+| Flow | State |
 |---|---|
-| Completar análisis con todos los parámetros rellenos | PASSED |
-| Completar análisis con parámetro obligatorio vacío no cancelado | PASSED |
-| Cálculo global sin parámetros cancelados | PASSED |
+| Complete analysis with all parameters filled in | PASSED |
+| Complete analysis with empty mandatory parameter not canceled | PASSED |
+| Global calculation without canceled parameters | PASSED |

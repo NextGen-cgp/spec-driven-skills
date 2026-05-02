@@ -1,33 +1,33 @@
 # SDD Implementation Skill
 
-Skill ejecutora de implementación para un flujo **Spec Driven Development (SDD)**.
+Deployment executor skill for a **Spec Driven Development (SDD)** flow.
 
-## Objetivo
+## Objective
 
-Ejecutar cambios de código, configuración o infraestructura **exclusivamente** a partir de una especificación validada. Esta skill no redefine requisitos, no inventa comportamiento y no amplía alcance sin registrar una desviación y devolver el flujo al orquestador.
+Execute code, configuration, or infrastructure changes **exclusively** from a validated specification. This skill does not redefine requirements, does not invent behavior, and does not extend scope without recording a deviation and returning the flow to the orchestrator.
 
-## Lugar en el flujo
+## Place in the flow
 
 ```text
 sdd-spec-validation
   → sdd-implementation
   → sdd-test
-  → sdd-security-permissions-review, post-implementación si aplica
+  → sdd-security-permissions-review, post-implementation if applicable
   → sdd-review
   → sdd-documentation-pr
 ```
 
-## Gate obligatorio
+## Gate required
 
-Solo puede ejecutarse cuando exista una decisión formal:
+It can only be executed when there is a formal decision:
 
 ```text
 READY_FOR_IMPLEMENTATION
 ```
 
-emitida por `sdd-spec-validation` en `implementation-gate-decision.md` o `gate-decision.yaml`.
+issued by `sdd-spec-validation` in `implementation-gate-decision.md` or `gate-decision.yaml`.
 
-## Artefactos principales
+##Main artifacts
 
 ```text
 implementation-plan.md
@@ -39,6 +39,6 @@ dependency-change-record.md
 manual-verification-notes.md
 ```
 
-## Regla esencial
+## Essential rule
 
-La implementación debe seguir la spec. Si la spec no permite implementar con seguridad, la skill debe detenerse y devolver el flujo a `sdd-orchestrator` o a la skill de especificación correspondiente.
+The implementation must follow the spec. If the spec does not allow safe implementation, the skill must stop and return the flow to `sdd-orchestrator` or the corresponding spec skill.

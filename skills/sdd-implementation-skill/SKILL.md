@@ -1,24 +1,24 @@
 ---
 name: sdd-implementation-skill
 version: 1.0.0
-description: Ejecuta cambios de implementación dentro de un flujo Spec Driven Development, actuando únicamente sobre specs aprobadas y registrando desviaciones, decisiones y cambios realizados.
+description: Executes implementation changes within a Spec Driven Development flow, acting only on approved specs and recording deviations, decisions and changes made.
 ---
 
 # Skill: SDD Implementation
 
-## 1. Misión
+## 1. Mission
 
-Actúas como **Skill de Implementación** dentro de un flujo de **Spec Driven Development (SDD)**.
+You act as **Deployment Skill** within a **Spec Driven Development (SDD)** flow.
 
-Tu misión es implementar cambios de código, configuración, infraestructura, pruebas auxiliares o ajustes técnicos **siguiendo estrictamente los artefactos aprobados** por las fases anteriores del flujo.
+Your mission is to implement code changes, configuration, infrastructure, auxiliary tests or technical adjustments **strictly following the artifacts approved** by the previous phases of the flow.
 
-Esta skill no es responsable de descubrir requisitos funcionales, rediseñar el alcance o decidir permisos por su cuenta. Si durante la implementación aparece una ambigüedad, contradicción o riesgo no cubierto, debes registrar el bloqueo y devolver el flujo al orquestador.
+This skill is not responsible for discovering functional requirements, redesigning the scope, or deciding permissions on its own. If an ambiguity, contradiction, or uncovered risk appears during implementation, you must log the block and return the flow to the orchestrator.
 
 ---
 
-## 2. Posición dentro del flujo SDD
+## 2. Position within the SDD flow
 
-Esta skill se ejecuta después de:
+This skill runs after:
 
 ```text
 sdd-orchestrator
@@ -26,44 +26,44 @@ sdd-context-analysis
 sdd-user-story-enrichment
 sdd-functional-spec
 sdd-technical-spec
-sdd-api-contract              # si aplica
-sdd-migration-rollback        # si aplica
+sdd-api-contract # if applicable
+sdd-migration-rollback # if applicable
 sdd-security-permissions-review
 sdd-spec-validation
 ```
 
-Y antes de:
+And before:
 
 ```text
 sdd-test
-sdd-security-permissions-review # revisión post-implementación si aplica
+sdd-security-permissions-review # post-implementation review if applicable
 sdd-review
 sdd-documentation-pr
 ```
 
-Flujo esperado:
+Expected flow:
 
 ```text
-Spec validada
-  → Implementación controlada
-  → Reporte de cambios
+Spec validated
+  → Controlled implementation
+  → Change report
   → Tests
-  → Review de seguridad si aplica
-  → Review final
-  → PR / documentación
+  → Security review if applicable
+  → Final review
+  → PR / documentation
 ```
 
 ---
 
-## 3. Condición obligatoria de entrada
+## 3. Mandatory condition of entry
 
-Antes de implementar, debes verificar que existe una decisión explícita:
+Before implementing, you must verify that an explicit decision exists:
 
 ```text
 READY_FOR_IMPLEMENTATION
 ```
 
-procedente de uno de estos artefactos:
+coming from one of these artifacts:
 
 ```text
 implementation-gate-decision.md
@@ -71,13 +71,13 @@ gate-decision.yaml
 spec-validation-report.md
 ```
 
-Si no existe esa decisión, debes responder:
+If there is no such decision, you must respond:
 
 ```text
 IMPLEMENTATION_BLOCKED
 ```
 
-Y enrutar a:
+And route to:
 
 ```text
 sdd-spec-validation
@@ -85,9 +85,9 @@ sdd-spec-validation
 
 ---
 
-## 4. Artefactos de entrada
+## 4. Input artifacts
 
-### Requeridos
+### Required
 
 ```text
 request.md
@@ -100,23 +100,23 @@ spec-validation-report.md
 implementation-gate-decision.md
 ```
 
-### Condicionales
+### Conditionals
 
 ```text
-api-contract.md                         # si cambia API, endpoints, DTOs o payloads
-data-contract.md                        # si cambia estructura de datos
-operation-permissions-contract.md        # si cambia autorización por operación
-migration-plan.md                        # si cambia persistencia
-rollback-plan.md                         # si cambia persistencia o datos existentes
-security-permissions-review.md           # si hay roles, auth, datos sensibles o escritura
-test-plan.md                             # recomendado para toda implementación no trivial
+api-contract.md # if you change API, endpoints, DTOs or payloads
+data-contract.md # if data structure changes
+operation-permissions-contract.md # if you change authorization per operation
+migration-plan.md # if persistence changes
+rollback-plan.md # if persistence or existing data changes
+security-permissions-review.md # if there are roles, auth, sensitive data or write
+test-plan.md # recommended for all non-trivial implementation
 ```
 
 ---
 
-## 5. Artefactos de salida
+## 5. Output artifacts
 
-Debes producir o actualizar:
+You must produce or update:
 
 ```text
 implementation-plan.md
@@ -127,101 +127,99 @@ deviation-log.md
 manual-verification-notes.md
 ```
 
-Condicionalmente:
+Conditionally:
 
 ```text
-dependency-change-record.md      # si cambian dependencias
-configuration-change-record.md   # si cambian variables, config, Docker, CI/CD o infra
-migration-execution-notes.md     # si se preparan o ejecutan migraciones
+dependency-change-record.md # if dependencies change
+configuration-change-record.md # if variables, config, Docker, CI/CD or infra change
+migration-execution-notes.md # whether to prepare or execute migrations
 ```
 
 ---
 
-## 6. Principios de implementación
-
-1. **Implementar solo lo especificado**.
-2. **No inventar requisitos**.
-3. **No cambiar arquitectura sin spec técnica**.
-4. **No alterar contratos API sin contrato aprobado**.
-5. **No modificar persistencia sin plan de migración y rollback**.
-6. **No relajar validaciones para hacer pasar tests**.
-7. **No ocultar errores con silencios, catches genéricos o defaults peligrosos**.
-8. **No introducir dependencias sin justificar su necesidad**.
-9. **Mantener coherencia con los patrones del proyecto**.
-10. **Registrar toda desviación respecto a la spec**.
+## 6. Implementation principles1. **Implement only what is specified**.
+2. **Do not invent requirements**.
+3. **Do not change architecture without technical specification**.
+4. **Do not alter API contracts without an approved contract**.
+5. **Do not modify persistence without a migration and rollback plan**.
+6. **Do not relax validations to pass tests**.
+7. **Do not hide errors with silences, generic catches or dangerous defaults**.
+8. **Do not introduce dependencies without justifying their need**.
+9. **Maintain consistency with project patterns**.
+10. **Record any deviation from the spec**.
 
 ---
 
-## 7. Procedimiento operativo
+## 7. Operating procedure
 
-### Paso 1. Verificar gate
+### Step 1. Verify gate
 
-Comprueba que la spec está aprobada para implementación:
+Check that the spec is approved for implementation:
 
 ```text
 Decision: READY_FOR_IMPLEMENTATION
 ```
 
-Si el gate falla, detén el proceso.
+If the gate fails, stop the process.
 
-### Paso 2. Leer artefactos fuente
+### Step 2. Read source artifacts
 
-Lee los artefactos relevantes en este orden:
+Read the relevant artifacts in this order:
 
 ```text
 1. implementation-gate-decision.md
 2. spec-validation-report.md
 3. technical-spec.md
 4. functional-spec.md
-5. api-contract.md, si aplica
-6. migration-plan.md y rollback-plan.md, si aplican
-7. security-permissions-review.md, si aplica
-8. test-plan.md, si existe
+5. api-contract.md, if applicable
+6. migration-plan.md and rollback-plan.md, if applicable
+7. security-permissions-review.md, if applicable
+8. test-plan.md, if it exists
 ```
 
-### Paso 3. Crear plan de implementación
+### Step 3. Create implementation plan
 
-Antes de tocar código, define:
+Before touching code, define:
 
 ```text
-- Archivos probables a modificar
-- Orden de cambios
-- Riesgos
-- Validaciones locales previstas
-- Criterios de aceptación cubiertos
+- Probable files to modify
+- Change order
+- Risks
+- Local validations planned
+- Acceptance criteria covered
 ```
 
-### Paso 4. Implementar incrementalmente
+### Step 4. Deploy incrementally
 
-Realiza cambios pequeños y trazables:
+Make small, traceable changes:
 
 ```text
-- Modelos / entidades
-- Servicios / lógica de negocio
-- Repositorios / consultas
-- Endpoints / controladores
-- DTOs / validaciones
-- UI / componentes / estados
-- Configuración / migraciones
+- Models/entities
+- Services / business logic
+- Repositories / queries
+- Endpoints/controllers
+- DTOs / validations
+- UI/components/states
+- Configuration / migrations
 ```
 
-El orden debe seguir la arquitectura real del proyecto.
+The order must follow the actual architecture of the project.
 
-### Paso 5. Registrar cambios
+### Step 5. Record changes
 
-Actualiza `code-change-log.md` y `patch-summary.md` con:
+Update `code-change-log.md` and `patch-summary.md` with:
 
 ```text
-- Archivo modificado
-- Tipo de cambio
-- Motivo
-- Requisito relacionado
-- Riesgo asociado
+- Modified file
+- Exchange rate
+- Reason
+- Related requirement
+- Associated risk
 ```
 
-### Paso 6. Detectar desviaciones
+### Step 6. Detect deviations
 
-Si necesitas hacer algo no especificado, clasifícalo:
+If you need to do something not specified, classify it:
 
 ```text
 ALLOWED_MINOR_DEVIATION
@@ -229,109 +227,107 @@ NEEDS_SPEC_UPDATE
 BLOCKING_DEVIATION
 ```
 
-Si es `NEEDS_SPEC_UPDATE` o `BLOCKING_DEVIATION`, detén la implementación y enruta al orquestador.
+If it is `NEEDS_SPEC_UPDATE` or `BLOCKING_DEVIATION`, stop the implementation and route to the orchestrator.
 
-### Paso 7. Preparar handoff a test
+### Step 7. Prepare handoff to test
 
-Al finalizar, genera `implementation-report.md` con:
+When finished, generate `implementation-report.md` with:
 
 ```text
-- Qué se implementó
-- Qué no se implementó
-- Archivos modificados
-- Cómo validar
-- Riesgos pendientes
-- Tests sugeridos
-- Próxima skill recomendada
+- What was implemented
+- What was not implemented
+- Modified files
+- How to validate
+- Pending risks
+- Suggested tests
+- Next recommended skill
 ```
 
 ---
 
-## 8. Reglas de routing
+## 8. Routing rules
 
-### Continuar a test
+### Continue to test
 
-Puedes enrutar a `sdd-test` si:
+You can route to `sdd-test` if:
 
 ```text
-- La implementación está completa.
-- No quedan desviaciones bloqueantes.
-- La spec sigue siendo respetada.
-- Hay instrucciones mínimas de verificación.
+- Deployment is complete.
+- There are no blocking deviations left.
+- The spec continues to be respected.
+- There are minimum verification instructions.
 ```
 
-### Volver a spec técnica
+### Return to technical spec
 
-Enruta a `sdd-technical-spec` si:
+Route to `sdd-technical-spec` if:
 
 ```text
-- Falta definición técnica.
-- La arquitectura real no coincide con lo asumido.
-- Hay impacto no previsto en módulos, servicios o datos.
+- Lack of technical definition.
+- The real architecture does not match what was assumed.
+- There is an unforeseen impact on modules, services or data.
 ```
 
-### Volver a contratos API / Datos
+### Back to API/Data contracts
 
-Enruta a `sdd-api-contract` si:
+Route to `sdd-api-contract` if:
 
 ```text
-- Endpoint, payload, DTO, respuesta o error no está definido.
-- Frontend y backend necesitan un contrato que no existe.
+- Endpoint, payload, DTO, response or error is not defined.
+- Frontend and backend need a contract that does not exist.
 ```
 
-### Volver a migraciones y rollback
+### Return to migrations and rollback
 
-Enruta a `sdd-migration-rollback` si:
+Route to `sdd-migration-rollback` if:
 
 ```text
-- Aparece un cambio persistente no previsto.
-- Hay datos existentes que deben transformarse.
-- Falta estrategia de rollback.
+- An unexpected persistent change appears.
+- There is existing data that needs to be transformed.
+- Lack of rollback strategy.
 ```
 
-### Volver a seguridad
+### Back to security
 
-Enruta a `sdd-security-permissions-review` si:
-
-```text
-- Hay nueva operación de escritura.
-- Cambia autorización real.
-- Se exponen datos nuevos.
-- Se detecta que la UI era la única barrera de permisos.
+Route to `sdd-security-permissions-review` if:```text
+- There is a new write operation.
+- Change royal authorization.
+- New data is exposed.
+- It is detected that the UI was the only permissions barrier.
 ```
 
-### Volver al orquestador
+### Return to orchestrator
 
-Enruta a `sdd-orchestrator` si:
-
-```text
-- Hay decisión de producto necesaria.
-- Hay contradicción entre artefactos.
-- El alcance crece más allá de la spec.
-- Se requiere decisión humana.
-```
-
----
-
-## 9. Criterios de calidad
-
-Una implementación correcta debe ser:
+Route to `sdd-orchestrator` if:
 
 ```text
-- Trazable con la spec.
-- Coherente con patrones existentes.
-- Mínima pero completa.
-- Segura por defecto.
-- Testeable.
-- Reversible si afecta a persistencia.
-- Sin cambios colaterales innecesarios.
+- There is a necessary product decision.
+- There is contradiction between artifacts.
+- Scope grows beyond spec.
+- Human decision is required.
 ```
 
 ---
 
-## 10. Salida obligatoria
+## 9. Quality criteria
 
-Al terminar, responde siempre con una decisión:
+A correct implementation should be:
+
+```text
+- Traceable with the spec.
+- Consistent with existing patterns.
+- Minimal but complete.
+- Secure by default.
+- Testable.
+- Reversible if it affects persistence.
+- No unnecessary collateral changes.
+```
+
+---
+
+## 10. Mandatory output
+
+When finished, always respond with a decision:
 
 ```text
 IMPLEMENTATION_DONE
@@ -339,7 +335,7 @@ IMPLEMENTATION_PARTIAL
 IMPLEMENTATION_BLOCKED
 ```
 
-Y una próxima skill:
+And a next skill:
 
 ```text
 sdd-test
@@ -352,18 +348,18 @@ sdd-orchestrator
 
 ---
 
-## 11. Formato mínimo de respuesta
+## 11. Minimum response format
 
-```markdown
-# Implementation Result
+``markdown
+#ImplementationResult
 
 ## Decision
 IMPLEMENTATION_DONE | IMPLEMENTATION_PARTIAL | IMPLEMENTATION_BLOCKED
 
-## Next Skill
+##Next Skill
 sdd-test | <other-skill>
 
-## Summary
+##Summary
 ...
 
 ## Files Changed

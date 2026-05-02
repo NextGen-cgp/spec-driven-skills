@@ -1,6 +1,6 @@
 # State Model: <feature-name>
 
-## States
+##States
 
 | State | Description | Visible to user | Terminal |
 |---|---|---|---|

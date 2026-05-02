@@ -1,72 +1,72 @@
 # SDD Orchestrator Skill
 
-Skill de orquestación para un flujo de **Spec Driven Development (SDD)**.
+Orchestration skill for a **Spec Driven Development (SDD)** flow.
 
-Esta skill actúa como router principal del proceso. Clasifica la petición, detecta el estado actual, decide la siguiente skill, valida gates obligatorios y evita que el flujo avance a implementación sin especificación suficiente.
+This skill acts as the main router of the process. Classifies the request, detects the current state, decides the next skill, validates mandatory gates and prevents the flow from advancing to implementation without sufficient specification.
 
-## Contenido del paquete
+## Package Contents
 
 ```text
 sdd-orchestrator-skill/
 ├── SKILL.md
 ├── README.md
 ├── routing/
-│   └── sdd-routing.yaml
+│ └── sdd-routing.yaml
 ├── schemas/
-│   └── sdd-state.schema.json
+│ └── sdd-state.schema.json
 ├── templates/
-│   ├── sdd-state.yaml
-│   ├── routing-decision.md
-│   └── orchestration-report.md
+│ ├── sdd-state.yaml
+│ ├── routing-decision.md
+│ └── orchestration-report.md
 └── examples/
     ├── feature-admin-analyst-panel.md
     └── bugfix-cancelled-parameter.md
 ```
 
-## Uso recomendado
+## Recommended use
 
-Coloca esta carpeta dentro del directorio de skills de tu sistema de agentes, por ejemplo:
+Place this folder inside the skills directory of your agent system, for example:
 
 ```text
 /skills/sdd-orchestrator/
 ```
 
-El archivo principal es:
+The main file is:
 
 ```text
 SKILL.md
 ```
 
-## Rol dentro del flujo
+## Role within the flow
 
-El orquestador no sustituye a las demás skills. Su misión es decidir qué skill debe actuar en cada momento.
+The orchestrator does not replace the other skills. Your mission is to decide which skill should act at all times.
 
-Flujo base:
+Base flow:
 
 ```text
-Petición inicial
-  → Orquestador
-  → Análisis de contexto
-  → Enriquecimiento de historia
-  → Spec funcional
-  → Spec técnica
-  → Validación de spec
-  → Implementación
+Initial request
+  → Orchestrator
+  → Context analysis
+  → History enrichment
+  → Functional Spec
+  → Technical spec
+  → Spec validation
+  → Implementation
   → Test
-  → Seguridad
+  → Security
   → Review
-  → Documentación / PR
+  → Documentation / PR
 ```
 
-## Decisión fundamental
+## Fundamental decision
 
-La regla principal es:
+The main rule is:
 
 ```text
-No se implementa nada sin una spec suficientemente validada.
+Nothing is implemented without a sufficiently validated spec.
 ```
 
-## Estados principales
+## Main states
 
 - `INTAKE`
 - `CONTEXT_ANALYSIS_REQUIRED`
@@ -82,9 +82,9 @@ No se implementa nada sin una spec suficientemente validada.
 - `DONE`
 - `BLOCKED`
 
-## Artefactos habituales
+## Common artifacts
 
-Por feature:
+By feature:
 
 ```text
 /specs/<feature-name>/request.md
@@ -102,15 +102,15 @@ Por feature:
 /specs/<feature-name>/pr-summary.md
 ```
 
-## Personalización
+## Customization
 
-Puedes ajustar:
+You can adjust:
 
-- `routing/sdd-routing.yaml` para cambiar flujos.
-- `schemas/sdd-state.schema.json` para validar estado.
-- `templates/*.md` para adaptar salidas.
-- `SKILL.md` para cambiar el comportamiento principal del agente.
+- `routing/sdd-routing.yaml` to change flows.
+- `schemas/sdd-state.schema.json` to validate state.
+- `templates/*.md` to adapt outputs.
+- `SKILL.md` to change the main behavior of the agent.
 
-## Versión
+## Version
 
 `1.0.0`

@@ -1,30 +1,30 @@
 # SDD Final Review Skill
 
-Skill de revisión final para un flujo **Spec Driven Development**.
+Final review skill for a **Spec Driven Development** flow.
 
-## Propósito
+## Purpose
 
-Actúa como último gate antes de documentación, PR, merge o entrega. Revisa:
+It acts as the last gate before documentation, PR, merge or delivery. Check:
 
-- Cumplimiento de la spec funcional y técnica.
-- Evidencia de tests.
-- Calidad de código.
-- Seguridad y permisos si aplica.
-- Migraciones y datos si aplica.
-- Riesgos abiertos.
-- Preparación para documentación/PR.
+- Compliance with the functional and technical spec.
+- Evidence of tests.
+- Code quality.
+- Security and permissions if applicable.
+- Migrations and data if applicable.
+- Open risks.
+- Preparation for documentation/PR.
 
-## Ubicación en el flujo
+## Location in the flow
 
 ```text
 sdd-implementation
   → sdd-test
-  → sdd-security-permissions-review   # si aplica
+  → sdd-security-permissions-review # if applicable
   → sdd-final-review
   → sdd-documentation-pr
 ```
 
-## Decisiones posibles
+## Possible decisions
 
 ```text
 FINAL_REVIEW_APPROVED
@@ -33,7 +33,7 @@ FINAL_REVIEW_CHANGES_REQUESTED
 FINAL_REVIEW_BLOCKED
 ```
 
-## Archivos principales
+## Main files
 
 ```text
 SKILL.md

@@ -1,28 +1,28 @@
 # sdd-test-skill
 
-Skill de Test para un flujo de **Spec Driven Development (SDD)**.
+Test Skill for a **Spec Driven Development (SDD)** flow.
 
-Esta skill valida una implementación ya realizada contra los artefactos aprobados del flujo: criterios de aceptación, especificación funcional, especificación técnica, contratos API/datos, planes de migración y reglas de permisos.
+This skill validates an already completed implementation against the flow's approved artifacts: acceptance criteria, functional specification, technical specification, API/data contracts, migration plans, and permissions rules.
 
-## Posición en el flujo
+## Position in the flow
 
 ```text
 sdd-implementation
   → sdd-test
-  → sdd-security-permissions-review # si aplica
+  → sdd-security-permissions-review # if applicable
   → sdd-review
   → sdd-documentation-pr
 ```
 
-## Responsabilidad principal
+## Primary responsibility
 
 ```text
-Implementación = construye el cambio.
-Test = demuestra que el cambio funciona.
-Review = evalúa si el cambio está bien hecho.
+Implementation = build the change.
+Test = proves that the change works.
+Review = evaluates whether the change is done well.
 ```
 
-## Decisiones posibles
+## Possible decisions
 
 ```text
 TEST_PASSED
@@ -31,17 +31,17 @@ TEST_BLOCKED
 TEST_PARTIAL
 ```
 
-## Artefactos principales generados
+## Main artifacts generated
 
 ```text
 test-plan-final.md
 test-report.md
 acceptance-validation-report.md
 regression-report.md
-defect-report.md
+defects-report.md
 test-handoff-report.md
 ```
 
-## Uso recomendado
+## Recommended use
 
-Invocar esta skill solo cuando `sdd-implementation` haya generado un handoff válido mediante `implementation-report.md`, `code-change-log.md`, `patch-summary.md` y `deviation-log.md`.
+Invoke this skill only when `sdd-implementation` has generated a valid handoff using `implementation-report.md`, `code-change-log.md`, `patch-summary.md` and `deviation-log.md`.

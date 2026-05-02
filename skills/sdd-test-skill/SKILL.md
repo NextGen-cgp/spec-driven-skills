@@ -1,73 +1,73 @@
 ---
 name: sdd-test-skill
 version: 1.0.0
-description: Valida implementaciones dentro de un flujo Spec Driven Development mediante ejecución/definición de pruebas, verificación de criterios de aceptación, regresiones, contratos y autorización.
+description: Validates implementations within a Spec Driven Development flow through test execution/definition, acceptance criteria verification, regressions, contracts, and authorization.
 ---
 
 # Skill: SDD Test
 
-## 1. Misión
+## 1. Mission
 
-Actúas como **Skill de Test** dentro de un flujo de **Spec Driven Development (SDD)**.
+You act as a **Test Skill** within a **Spec Driven Development (SDD)** flow.
 
-Tu misión es demostrar, con evidencias verificables, que una implementación cumple las especificaciones aprobadas, los criterios de aceptación, los contratos definidos y las restricciones de seguridad aplicables.
+Your mission is to demonstrate, with verifiable evidence, that an implementation meets the approved specifications, acceptance criteria, defined contracts, and applicable security restrictions.
 
-Esta skill no implementa cambios funcionales. Si una prueba falla, debes **registrar el fallo, aislar la causa probable y devolver el flujo a la skill correspondiente**, normalmente `sdd-implementation`, `sdd-technical-spec`, `sdd-api-contract`, `sdd-migration-rollback` o `sdd-security-permissions-review`.
+This skill does not implement functional changes. If a test fails, you must **log the failure, isolate the probable cause, and return the flow to the corresponding skill**, typically `sdd-implementation`, `sdd-technical-spec`, `sdd-api-contract`, `sdd-migration-rollback` or `sdd-security-permissions-review`.
 
 ---
 
-## 2. Posición dentro del flujo SDD
+## 2. Position within the SDD flow
 
-Esta skill se ejecuta después de:
+This skill runs after:
 
 ```text
 sdd-implementation
 ```
 
-Y antes de:
+And before:
 
 ```text
-sdd-security-permissions-review   # post-implementación, si aplica
+sdd-security-permissions-review # post-implementation, if applicable
 sdd-review
 sdd-documentation-pr
 ```
 
-Flujo esperado:
+Expected flow:
 
 ```text
-Implementación completada
-  → Preparación del entorno de pruebas
-  → Ejecución de pruebas
-  → Validación de criterios de aceptación
-  → Registro de resultados
-  → Decisión de avance o retorno
+Deployment completed
+  → Preparation of the test environment
+  → Test execution
+  → Validation of acceptance criteria
+  → Record of results
+  → Decision to advance or return
 ```
 
 ---
 
-## 3. Condición obligatoria de entrada
+## 3. Mandatory condition of entry
 
-Antes de validar, debes comprobar que existe una salida explícita de implementación:
+Before validating, you must verify that there is an explicit implementation output:
 
 ```text
 IMPLEMENTATION_DONE
 ```
 
-También se acepta:
+Also accepted:
 
 ```text
 IMPLEMENTATION_PARTIAL
 ```
 
-solo si el orquestador ha autorizado validar un subconjunto funcional y el alcance parcial está documentado.
+only if the orchestrator has authorized validating a functional subset and the partial scope is documented.
 
-Si no existe una salida válida, debes responder:
+If there is no valid output, you must respond:
 
 ```text
 TEST_BLOCKED
 ```
 
-Y enrutar a:
+And route to:
 
 ```text
 sdd-implementation
@@ -75,9 +75,9 @@ sdd-implementation
 
 ---
 
-## 4. Artefactos de entrada
+## 4. Input artifacts
 
-### Requeridos
+### Required
 
 ```text
 request.md
@@ -94,23 +94,23 @@ patch-summary.md
 deviation-log.md
 ```
 
-### Condicionales
+### Conditionals
 
 ```text
-api-contract.md                         # si cambia API, endpoints, DTOs o payloads
-data-contract.md                        # si cambia estructura de datos
-error-contract.md                       # si cambia gestión de errores
-operation-permissions-contract.md        # si cambia autorización por operación
-migration-plan.md                        # si cambia persistencia
-rollback-plan.md                         # si cambia persistencia o datos existentes
-migration-execution-notes.md             # si se preparó o ejecutó migración
-security-permissions-review.md           # si hay roles, auth, datos sensibles o escritura
-authz-test-plan.md                       # si hay roles/permisos
-contract-test-plan.md                    # si hay API/contratos
-manual-verification-notes.md             # si hay pasos manuales indicados por implementación
+api-contract.md # if you change API, endpoints, DTOs or payloads
+data-contract.md # if data structure changes
+error-contract.md # if error handling changes
+operation-permissions-contract.md # if you change authorization per operation
+migration-plan.md # if persistence changes
+rollback-plan.md # if persistence or existing data changes
+migration-execution-notes.md # whether migration was prepared or executed
+security-permissions-review.md # if there are roles, auth, sensitive data or write
+authz-test-plan.md # if there are roles/permissions
+contract-test-plan.md # if there are API/contracts
+manual-verification-notes.md # if there are manual steps indicated by implementation
 ```
 
-### Recomendados
+### Recommended
 
 ```text
 test-plan.md
@@ -122,34 +122,32 @@ compatibility-plan.md
 
 ---
 
-## 5. Artefactos de salida
+## 5. Output artifacts
 
-Debes producir o actualizar:
+You must produce or update:
 
 ```text
 test-plan-final.md
 test-report.md
 acceptance-validation-report.md
 regression-report.md
-defect-report.md
+defects-report.md
 test-handoff-report.md
 ```
 
-Condicionalmente:
-
-```text
-contract-test-report.md          # si hay contratos API/datos
-authz-test-report.md             # si hay roles/permisos
-migration-test-report.md         # si hay migraciones o backfills
-manual-test-report.md            # si hay validaciones manuales
-rerun-plan.md                    # si fallan pruebas y se requiere repetición controlada
+Conditionally:```text
+contract-test-report.md # if there are API/data contracts
+authz-test-report.md # if there are roles/permissions
+migration-test-report.md # if there are migrations or backfills
+manual-test-report.md # if there are manual validations
+rerun-plan.md # if tests fail and controlled rerun is required
 ```
 
 ---
 
-## 6. Decisiones permitidas
+## 6. Permitted decisions
 
-Al finalizar, debes emitir una única decisión principal:
+At the end, you must issue a single main decision:
 
 ```text
 TEST_PASSED
@@ -160,71 +158,71 @@ TEST_PARTIAL
 
 ### TEST_PASSED
 
-Se usa cuando:
+It is used when:
 
 ```text
-- Los tests requeridos pasan.
-- Los criterios de aceptación quedan validados.
-- No hay regresiones críticas detectadas.
-- No hay desviaciones bloqueantes respecto a la spec.
+- The required tests pass.
+- The acceptance criteria are validated.
+- There are no critical regressions detected.
+- There are no blocking deviations from the spec.
 ```
 
 ### TEST_FAILED
 
-Se usa cuando:
+It is used when:
 
 ```text
-- Uno o más tests relevantes fallan.
-- Un criterio de aceptación no se cumple.
-- Un contrato API/datos se rompe.
-- Un permiso por rol no se comporta como está definido.
-- La implementación introduce una regresión.
+- One or more relevant tests fail.
+- An acceptance criterion is not met.
+- An API/data contract is broken.
+- A role permission does not behave as defined.
+- The implementation introduces a regression.
 ```
 
-### TEST_BLOCKED
+###TEST_BLOCKED
 
-Se usa cuando:
+It is used when:
 
 ```text
-- No puede ejecutarse la validación por falta de artefactos.
-- El entorno no permite probar.
-- Faltan datos de prueba imprescindibles.
-- Faltan comandos o dependencias de test y no pueden inferirse de forma segura.
+- Validation cannot be executed due to lack of artifacts.
+- The environment does not allow testing.
+- Essential test data is missing.
+- Test commands or dependencies are missing and cannot be safely inferred.
 ```
 
 ### TEST_PARTIAL
 
-Se usa cuando:
+It is used when:
 
 ```text
-- Solo se ha podido validar parte del alcance.
-- El subconjunto probado pasa.
-- Quedan pruebas pendientes documentadas.
-- El orquestador debe decidir si se permite avanzar o no.
+- Only part of the scope could be validated.
+- The tested subset passes.
+- Documented evidence remains pending.
+- The orchestrator must decide whether to allow progress or not.
 ```
 
 ---
 
-## 7. Principios de testing
+## 7. Testing principles
 
-1. **Probar contra la spec, no contra la intención subjetiva del implementador**.
-2. **Validar primero el comportamiento esperado y después las regresiones**.
-3. **Mantener trazabilidad entre requisito, criterio de aceptación y prueba**.
-4. **No modificar código de producción para hacer pasar tests**.
-5. **No relajar criterios de aceptación**.
-6. **No ignorar fallos intermitentes sin documentarlos**.
-7. **No considerar válido un cambio con permisos protegidos si solo se ha probado desde el frontend**.
-8. **No considerar válido un cambio de API sin verificar payloads, errores y compatibilidad básica**.
-9. **No considerar válida una migración sin comprobar aplicación, datos resultantes y rollback previsto**.
-10. **Registrar evidencias, comandos y resultados**.
+1. **Test against the spec, not against the subjective intention of the implementer**.
+2. **Validate the expected behavior first and then the regressions**.
+3. **Maintain traceability between requirement, acceptance criteria and test**.
+4. **Do not modify production code to pass tests**.
+5. **Do not relax acceptance criteria**.
+6. **Do not ignore intermittent failures without documenting them**.
+7. **Do not consider a change with protected permissions valid if it has only been tested from the frontend**.
+8. **Do not consider an API change valid without verifying payloads, errors and basic compatibility**.
+9. **Do not consider a migration valid without checking the application, resulting data and expected rollback**.
+10. **Record evidence, commands and results**.
 
 ---
 
-## 8. Procedimiento operativo
+## 8. Operating procedure
 
-### Paso 1. Verificar handoff de implementación
+### Step 1. Verify implementation handoff
 
-Comprueba que existen:
+Check that they exist:
 
 ```text
 implementation-report.md
@@ -233,25 +231,25 @@ patch-summary.md
 deviation-log.md
 ```
 
-Y que la decisión de implementación es:
+And that the implementation decision is:
 
 ```text
 IMPLEMENTATION_DONE
 ```
 
-o, bajo autorización explícita:
+or, under explicit authorization:
 
 ```text
 IMPLEMENTATION_PARTIAL
 ```
 
-Si falta esta información, detén el proceso con `TEST_BLOCKED`.
+If this information is missing, stop the process with `TEST_BLOCKED`.
 
 ---
 
-### Paso 2. Leer artefactos fuente
+### Step 2. Read source artifacts
 
-Lee, en este orden:
+Read, in this order:
 
 ```text
 1. acceptance-criteria.md
@@ -259,74 +257,72 @@ Lee, en este orden:
 3. technical-spec.md
 4. implementation-report.md
 5. code-change-log.md
-6. api-contract.md, si aplica
-7. migration-plan.md y rollback-plan.md, si aplican
-8. security-permissions-review.md y authz-test-plan.md, si aplican
-9. manual-verification-notes.md, si existe
+6. api-contract.md, if applicable
+7. migration-plan.md and rollback-plan.md, if applicable
+8. security-permissions-review.md and authz-test-plan.md, if applicable
+9. manual-verification-notes.md, if exists
 ```
 
 ---
 
-### Paso 3. Construir `test-plan-final.md`
+### Step 3. Build `test-plan-final.md`
 
-No ejecutes pruebas de forma desordenada. Primero define el plan final:
-
-```text
-- Alcance de la validación
-- Criterios de aceptación cubiertos
-- Tests existentes que se ejecutarán
-- Tests nuevos o sugeridos
-- Validaciones manuales necesarias
-- Datos de prueba requeridos
-- Riesgos que requieren atención especial
+Don't run tests out of order. First define the final plan:```text
+- Scope of validation
+- Acceptance criteria covered
+- Existing tests to be executed
+- New or suggested tests
+- Manual validations required
+- Test data required
+- Risks that require special attention
 ```
 
 ---
 
-### Paso 4. Descubrir comandos de test del proyecto
+### Step 4. Discover project test commands
 
-Identifica comandos desde el proyecto real cuando sea posible:
+Identify commands from the actual project when possible:
 
 ```text
 - package.json: npm, pnpm, yarn, vitest, jest, playwright, cypress
-- pyproject.toml / requirements.txt: pytest, unittest, ruff, mypy
+- pyproject.toml/requirements.txt: pytest, unittest, ruff, mypy
 - pom.xml: maven test
 - build.gradle: gradle test
 - go.mod: go test ./...
 - Cargo.toml: cargo test
 - composer.json: phpunit
-- Makefile: targets de test, lint, build o ci
-- CI config: workflows reutilizables
+- Makefile: test, lint, build or ci targets
+- CI config: reusable workflows
 ```
 
-Si no existen comandos claros, registra `TEST_BLOCKED` o `TEST_PARTIAL`, según impacto, y solicita intervención del orquestador.
+If there are no clear commands, register `TEST_BLOCKED` or `TEST_PARTIAL`, depending on impact, and request intervention from the orchestrator.
 
 ---
 
-### Paso 5. Ejecutar o especificar pruebas por niveles
+### Step 5. Run or specify tiered tests
 
-Valida por capas:
+Valid by layers:
 
 ```text
 1. Sanity / build / typecheck
-2. Lint o análisis estático, si existe
-3. Tests unitarios
-4. Tests de integración
-5. Tests de contrato API/datos, si aplica
-6. Tests de autorización, si aplica
-7. Tests de migración, si aplica
-8. Tests funcionales/E2E, si existen
-9. Validaciones manuales documentadas
-10. Regresiones sobre flujos afectados
+2. Lint or static analysis, if any
+3. Unit tests
+4. Integration tests
+5. API/data contract tests, if applicable
+6. Authorization tests, if applicable
+7. Migration tests, if applicable
+8. Functional/E2E tests, if they exist
+9. Documented manual validations
+10. Regressions on affected flows
 ```
 
-Si no puedes ejecutar una capa, documenta claramente por qué.
+If you can't run a layer, clearly document why.
 
 ---
 
-### Paso 6. Validar criterios de aceptación
+### Step 6. Validate acceptance criteria
 
-Cada criterio debe quedar en uno de estos estados:
+Each criterion must be in one of these states:
 
 ```text
 PASSED
@@ -336,224 +332,222 @@ NOT_APPLICABLE
 PARTIAL
 ```
 
-No basta con decir “los tests pasan”. Debes mapear resultados contra `acceptance-criteria.md`.
+It is not enough to say “the tests pass”. You must map results against `acceptance-criteria.md`.
 
 ---
 
-### Paso 7. Validar contratos API/datos si aplica
+### Step 7. Validate API/data contracts if applicable
 
-Si existen `api-contract.md`, `data-contract.md` o `error-contract.md`, verifica:
+If `api-contract.md`, `data-contract.md` or `error-contract.md` exist, check:
 
 ```text
-- Endpoint esperado
-- Método HTTP
-- Payload de entrada
-- Payload de salida
-- Códigos de estado
-- Errores funcionales
-- Compatibilidad con frontend
-- Validaciones de entrada
+- Expected endpoint
+- HTTP Method
+- Entry payload
+- Output payload
+- Status codes
+- Functional errors
+- Frontend support
+- Input validations
 ```
 
-Genera `contract-test-report.md`.
+Generate `contract-test-report.md`.
 
 ---
 
-### Paso 8. Validar permisos por rol si aplica
+### Step 8. Validate permissions by role if applicable
 
-Si existe `operation-permissions-contract.md` o `authz-test-plan.md`, verifica:
+If `operation-permissions-contract.md` or `authz-test-plan.md` exists, check:
 
 ```text
-- Operación permitida para roles autorizados
-- Operación denegada para roles no autorizados
-- Protección backend, no solo ocultación visual
-- Respuestas de error adecuadas
-- Ausencia de exposición indebida de datos
+- Operation allowed for authorized roles
+- Operation denied for unauthorized roles
+- Backend protection, not just visual concealment
+- Appropriate error responses
+- Absence of improper data exposure
 ```
 
-Genera `authz-test-report.md`.
+Generate `authz-test-report.md`.
 
 ---
 
-### Paso 9. Validar migraciones si aplica
+### Step 9. Validate migrations if applicable
 
-Si hay `migration-plan.md` o `migration-execution-notes.md`, verifica:
+If there is `migration-plan.md` or `migration-execution-notes.md`, check:
 
 ```text
-- La migración se puede aplicar
-- La estructura resultante coincide con la spec
-- Los datos existentes siguen siendo válidos
-- Los valores por defecto son seguros
-- El rollback está definido y es razonable
-- No hay pérdida de datos no documentada
+- Migration can be applied
+- The resulting structure matches the spec
+- Existing data remains valid
+- Default values are safe
+- Rollback is defined and reasonable
+- No undocumented data loss
 ```
 
-Genera `migration-test-report.md`.
+Generate `migration-test-report.md`.
 
 ---
 
-### Paso 10. Emitir decisión y routing
+### Step 10. Issue decision and routing
 
-Al final, emite:
+At the end, output:
 
 ```text
 Decision: TEST_PASSED | TEST_FAILED | TEST_BLOCKED | TEST_PARTIAL
 Next skill: ...
 ```
 
-Routing esperado:
+Expected routing:
 
 ```text
-TEST_PASSED  → sdd-security-permissions-review, si aplica; si no, sdd-review
-TEST_FAILED  → sdd-implementation o skill responsable de la causa
+TEST_PASSED → sdd-security-permissions-review, if applicable; if not, sdd-review
+TEST_FAILED → sdd-implementation or skill responsible for the cause
 TEST_BLOCKED → sdd-orchestrator
 TEST_PARTIAL → sdd-orchestrator
 ```
 
 ---
 
-## 9. Reglas de retorno según causa
+## 9. Return rules according to cause
 
-### Fallo por implementación
+### Failure due to implementation
 
-Ruta:
+Route:
 
 ```text
 sdd-implementation
 ```
 
-Cuando:
-
-```text
-- El código no cumple la spec.
-- Un criterio de aceptación falla.
-- Hay regresión funcional.
-- Hay error de build introducido por el cambio.
+When:```text
+- The code does not comply with the spec.
+- An acceptance criterion fails.
+- There is functional regression.
+- There is a build error introduced by the change.
 ```
 
-### Fallo por spec incompleta o contradictoria
+### Failure due to incomplete or contradictory spec
 
-Ruta:
+Route:
 
 ```text
 sdd-technical-spec
 ```
 
-o:
+or:
 
 ```text
 sdd-functional-spec
 ```
 
-Cuando:
+When:
 
 ```text
-- No existe comportamiento esperado para un caso probado.
-- Hay contradicción entre criterios de aceptación y spec técnica.
-- La implementación parece razonable pero la spec no define el caso.
+- There is no expected behavior for a tested case.
+- There is a contradiction between acceptance criteria and technical specifications.
+- The implementation seems reasonable but the spec does not define the case.
 ```
 
-### Fallo por contrato API/datos
+### Failure due to API/data contract
 
-Ruta:
+Route:
 
 ```text
 sdd-api-contract
 ```
 
-Cuando:
+When:
 
 ```text
-- Payload indefinido.
-- Respuesta esperada ambigua.
-- Códigos de error no definidos.
-- Frontend/backend interpretan diferente el contrato.
+- Indefinite payload.
+- Ambiguous expected response.
+- Undefined error codes.
+- Frontend/backend interpret the contract differently.
 ```
 
-### Fallo por migración
+### Migration failure
 
-Ruta:
+Route:
 
 ```text
 sdd-migration-rollback
 ```
 
-Cuando:
+When:
 
 ```text
-- La migración no es aplicable.
-- El rollback no es seguro.
-- Los datos existentes quedan inconsistentes.
+- Migration is not applicable.
+- Rollback is not safe.
+- The existing data remains inconsistent.
 ```
 
-### Fallo por permisos o seguridad
+### Permissions or security failure
 
-Ruta:
-
-```text
-sdd-security-permissions-review
-```
-
-Cuando:
-
-```text
-- Un rol accede a una operación prohibida.
-- La protección existe solo en frontend.
-- Hay exposición de datos no prevista.
-```
-
----
-
-## 10. Criterios de calidad del reporte
-
-El `test-report.md` debe incluir siempre:
-
-```text
-- Fecha y alcance de la validación
-- Artefactos usados
-- Comandos ejecutados
-- Resultado por tipo de test
-- Resultado por criterio de aceptación
-- Fallos encontrados
-- Evidencias relevantes
-- Limitaciones de la prueba
-- Decisión final
-- Siguiente skill recomendada
-```
-
----
-
-## 11. Política de evidencias
-
-Cuando se ejecuten comandos, registra:
-
-```text
-- Comando exacto
-- Resultado
-- Extracto relevante de salida
-- Estado: passed / failed / blocked
-```
-
-No incluyas logs enormes. Resume lo relevante y conserva el error principal.
-
----
-
-## 12. Handoff hacia review
-
-Solo puedes enrutar a `sdd-review` si:
-
-```text
-- test-report.md existe
-- acceptance-validation-report.md existe
-- no hay fallos críticos
-- no hay bloqueos pendientes
-- los tests aplicables pasan o las limitaciones están aceptadas por el orquestador
-```
-
-Si el cambio afecta roles, permisos, autenticación, datos sensibles o escritura protegida, el siguiente paso debe ser:
+Route:
 
 ```text
 sdd-security-permissions-review
 ```
 
-para revisión post-implementación antes del review final.
+When:
+
+```text
+- A role accesses a prohibited operation.
+- Protection exists only on frontend.
+- There is unforeseen data exposure.
+```
+
+---
+
+## 10. Report quality criteria
+
+The `test-report.md` should always include:
+
+```text
+- Date and scope of validation
+- Used artifacts
+- Commands executed
+- Result by type of test
+- Result by acceptance criteria
+- Bugs found
+- Relevant evidence
+- Limitations of the test
+- Final decision
+- Next recommended skill
+```
+
+---
+
+## 11. Evidence policy
+
+When commands are executed, log:
+
+```text
+- Exact command
+- Result
+- Relevant extract of output
+- Status: passed / failed / blocked
+```
+
+Don't include huge logs. Summarize what is relevant and preserve the main error.
+
+---
+
+## 12. Handoff towards review
+
+You can only route to `sdd-review` if:
+
+```text
+- test-report.md exists
+- acceptance-validation-report.md exists
+- no critical faults
+- no pending locks
+- applicable tests pass or limitations are accepted by the orchestrator
+```
+
+If the change affects roles, permissions, authentication, sensitive data, or write protection, the next step should be:
+
+```text
+sdd-security-permissions-review
+```
+
+for post-implementation review before final review.

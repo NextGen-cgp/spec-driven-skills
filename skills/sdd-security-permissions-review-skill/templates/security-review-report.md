@@ -1,6 +1,6 @@
 # Security Review Report: <feature-id>
 
-## 1. Resultado
+## 1. Result
 
 ```yaml
 status: <SECURITY_APPROVED | SECURITY_APPROVED_WITH_WARNINGS | SECURITY_CHANGES_REQUIRED | SECURITY_BLOCKED | NOT_APPLICABLE>
@@ -9,39 +9,39 @@ next_skill: <sdd-spec-validation | sdd-technical-spec | sdd-api-contract | sdd-m
 blocked: true|false
 ```
 
-## 2. Decisión ejecutiva
+## 2. Executive decision
 
-Resume en 3-5 líneas si el cambio puede avanzar, con qué condiciones y qué riesgos quedan registrados.
+Summarize in 3-5 lines whether the change can advance, under what conditions and what risks are registered.
 
-## 3. Puntos revisados
+## 3. Points reviewed
 
-- [ ] Roles y permisos.
-- [ ] Endpoints o acciones backend.
-- [ ] Operaciones de escritura.
-- [ ] Transiciones de estado.
-- [ ] Validaciones backend.
-- [ ] Exposición de datos.
-- [ ] Migraciones o impacto de datos.
-- [ ] Tests de autorización.
+- [ ] Roles and permissions.
+- [ ] Endpoints or backend actions.
+- [ ] Write operations.
+- [ ] State transitions.
+- [ ] Backend validations.
+- [ ] Data exposure.
+- [ ] Migrations or data impact.
+- [ ] Authorization tests.
 
-## 4. Bloqueantes
+## 4. Blockers
 
-| ID | Severidad | Descripción | Acción requerida |
+| ID | Severity | Description | Action required |
 |---|---|---|---|
 |  |  |  |  |
 
-## 5. Advertencias
+## 5. Warnings
 
-| ID | Severidad | Descripción | Seguimiento |
+| ID | Severity | Description | Tracking |
 |---|---|---|---|
 |  |  |  |  |
 
-## 6. Recomendación final
+## 6. Final recommendation
 
 ```text
-- Avanzar a spec validation.
-- Volver a technical spec.
-- Volver a API contract.
-- Volver a migration rollback.
-- Ejecutar revisión post-implementación.
+- Advance to spec validation.
+- Return to technical spec.
+- Return to API contract.
+- Return to migration rollback.
+- Execute post-implementation review.
 ```

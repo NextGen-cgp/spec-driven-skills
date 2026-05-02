@@ -1,39 +1,39 @@
 # Security Checklist: <feature-id>
 
-## Autenticación
+## Authentication
 
-- [ ] El usuario debe estar autenticado para acceder a la operación.
-- [ ] El comportamiento para usuario no autenticado está definido.
-- [ ] No se filtran detalles internos en errores de autenticación.
+- [ ] The user must be authenticated to access the operation.
+- [ ] The behavior for unauthenticated user is defined.
+- [ ] Internal details are not leaked in authentication errors.
 
-## Autorización
+## Authorization
 
-- [ ] El backend valida el rol/permiso requerido.
-- [ ] El frontend no es la única barrera.
-- [ ] Las operaciones de lectura y escritura están separadas.
-- [ ] Los roles denegados están documentados.
+- [ ] The backend validates the required role/permission.
+- [ ] The frontend is not the only barrier.
+- [ ] Read and write operations are separated.
+- [ ] Denied roles are documented.
 
 ## API
 
-- [ ] Cada endpoint nuevo o modificado tiene permisos definidos.
-- [ ] Los errores 401/403/404/409/422 están definidos si aplica.
-- [ ] El contrato API no expone campos innecesarios.
+- [ ] Each new or modified endpoint has defined permissions.
+- [ ] Errors 401/403/404/409/422 are defined if applicable.
+- [ ] The API contract does not expose unnecessary fields.
 
-## Datos
+## Data
 
-- [ ] Las respuestas están filtradas por rol y scope.
-- [ ] No hay exposición de campos sensibles o internos sin justificación.
-- [ ] Los cambios persistentes tienen rollback o mitigación.
+- [ ] Responses are filtered by role and scope.
+- [ ] There is no exposure of sensitive or internal fields without justification.
+- [ ] Persistent changes have rollback or mitigation.
 
-## Estados
+## States
 
-- [ ] Las transiciones permitidas están documentadas.
-- [ ] Las transiciones no permitidas se bloquean en backend.
-- [ ] Las acciones reversibles o irreversibles tienen reglas claras.
+- [ ] Allowed transitions are documented.
+- [ ] Unallowed transitions are blocked in backend.
+- [ ] Reversible or irreversible actions have clear rules.
 
 ## Tests
 
-- [ ] Existen tests positivos por rol permitido.
-- [ ] Existen tests negativos por rol denegado.
-- [ ] Existen tests de payload inválido.
-- [ ] Existen tests de datos no expuestos.
+- [ ] There are positive tests per allowed role.
+- [ ] There are negative tests due to a denied role.
+- [ ] There are invalid payload tests.
+- [ ] There are tests of unexposed data.

@@ -1,19 +1,19 @@
 # Open Questions: <feature-id>
 
-## 1. Preguntas bloqueantes
+## 1. Blocking questions
 
-| ID | Pregunta | Impacto | Skill sugerida |
+| ID | Question | Impact | Suggested skill |
 |---|---|---|---|
-| `Q-BLOCK-001` | `<pregunta>` | `<impacto>` | `<skill>` |
+| `Q-BLOCK-001` | `<question>` | `<impact>` | `<skill>` |
 
-## 2. Preguntas no bloqueantes
+## 2. Non-blocking questions
 
-| ID | Pregunta | Supuesto temporal | Cuándo resolver |
+| ID | Question | Temporary assumption | When to solve |
 |---|---|---|---|
-| `Q-NB-001` | `<pregunta>` | `<supuesto>` | `<fase>` |
+| `Q-NB-001` | `<question>` | `<supposed>` | `<phase>` |
 
-## 3. Supuestos aplicados
+## 3. Applied assumptions
 
-| ID | Supuesto | Motivo | Riesgo |
+| ID | Assumption | Reason | Risk |
 |---|---|---|---|
-| `ASM-001` | `<supuesto>` | `<motivo>` | `<low | medium | high>` |
+| `ASM-001` | `<supposed>` | `<reason>` | `<low | medium | high>` |

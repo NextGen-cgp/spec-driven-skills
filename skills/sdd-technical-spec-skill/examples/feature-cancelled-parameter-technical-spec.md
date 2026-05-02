@@ -1,4 +1,4 @@
-# Example Technical Spec: Cancelled Analysis Parameter
+# Example Technical Spec: Canceled Analysis Parameter
 
 ## 1. Metadata
 
@@ -9,7 +9,7 @@
 
 ## 2. Technical summary
 
-The analysis flow must support cancelling and reopening individual parameters. A cancelled parameter must no longer be required for completion and must be excluded from the global analysis result calculation. The cancelled state must be persisted server-side and represented in the UI through a clear state transition from Pending to Cancelled and back to Pending when reopened.
+The analysis flow must support canceling and reopening individual parameters. A canceled parameter must no longer be required for completion and must be excluded from the global analysis result calculation. The canceled state must be persisted server-side and represented in the UI through a clear state transition from Pending to Canceled and back to Pending when reopened.
 
 ## 3. Affected layers
 
@@ -17,7 +17,7 @@ The analysis flow must support cancelling and reopening individual parameters. A
 |---|---:|---|
 | Frontend | yes | Parameter cards, pending/cancelled pill, sample input container open/closed behavior |
 | Backend | yes | Completion validation and global result calculation |
-| Database | yes | Persist cancelled state at analysis-parameter level if not already available |
+| Database | yes | Persist canceled state at analysis-parameter level if not already available |
 | API | yes | Cancel/reopen operation or update action needed |
 | Authorization | yes | Only allowed analyst/admin roles should cancel/reopen according to app policy |
 | Testing | yes | Completion and result-calculation regression tests |
@@ -26,10 +26,10 @@ The analysis flow must support cancelling and reopening individual parameters. A
 
 | Decision | Rationale | Traceability |
 |---|---|---|
-| Persist cancellation as explicit state | Avoid treating empty values as accidental omissions | AC-001, BR-001 |
-| Exclude cancelled parameters from global calculation | Matches functional rule that cancelled parameters do not compute | AC-003, BR-002 |
+| Persist cancellation as explicit state | Avoid treating empty values ​​as accidental omissions | AC-001, BR-001 |
+| Exclude canceled parameters from global calculation | Matches functional rule that canceled parameters do not compute | AC-003, BR-002 |
 | Provide reopen transition | Supports correction during analysis | AC-004 |
-| Keep server-side validation authoritative | Prevent incomplete analyses from being completed accidentally | AC-002 |
+| Keep server-side validation authoritative | Prevent incomplete analyzes from being completed accidentally | AC-002 |
 
 ## 5. Data model impact
 

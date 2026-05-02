@@ -2,7 +2,7 @@
 
 ## 1. Data impact summary
 
-Describe whether the change requires new persistence, modified persistence, derived values, backfill, cleanup or state migration.
+Describes whether the change requires new persistence, modified persistence, derived values, backfill, cleanup or state migration.
 
 ## 2. Entities/tables/models affected
 
@@ -20,7 +20,7 @@ Describe whether the change requires new persistence, modified persistence, deri
 | Concern | Impact | Mitigation |
 |---|---|---|
 | Existing records | `<impact>` | `<mitigation>` |
-| Null/default values | `<impact>` | `<mitigation>` |
+| Null/default values ​​| `<impact>` | `<mitigation>` |
 | Historical data | `<impact>` | `<mitigation>` |
 | Rollback | `<impact>` | `<mitigation>` |
 

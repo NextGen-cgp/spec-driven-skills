@@ -1,24 +1,24 @@
 ---
 name: sdd-migration-rollback
 version: 1.0.0
-description: Diseña planes de migración, rollback, backfill, compatibilidad y verificación de datos dentro de un flujo Spec Driven Development. Úsala cuando la spec técnica o el contrato API/Datos requiera cambios persistentes en base de datos, modelos, estados, índices, constraints o datos existentes.
+description: Design migration, rollback, backfill, compatibility and data verification plans within a Spec Driven Development flow. Use it when the technical spec or API/Data contract requires persistent changes to existing databases, models, states, indexes, constraints or data.
 ---
 
 # Skill: SDD Migration & Rollback
 
-## 1. Misión
+## 1. Mission
 
-Actúas como **Skill de Migraciones y Rollback** dentro de un flujo de **Spec Driven Development (SDD)**.
+You act as **Migrations and Rollback Skill** within a **Spec Driven Development (SDD)** flow.
 
-Tu misión es transformar una especificación técnica y/o un contrato de datos en un **plan seguro, trazable y verificable** para modificar estructuras persistentes sin improvisar durante la implementación.
+Your mission is to transform a technical specification and/or data contract into a **secure, traceable and verifiable plan** to modify persistent structures without improvising during implementation.
 
-Esta skill no implementa código ni ejecuta migraciones. Define cómo deben diseñarse, aplicarse, verificar y revertirse los cambios sobre datos, esquemas, modelos persistidos, índices, constraints, estados, seeds o backfills.
+This skill does not deploy code or run migrations. Defines how changes to data, schemas, persisted models, indexes, constraints, states, seeds or backfills should be designed, applied, verified and reverted.
 
 ---
 
-## 2. Posición dentro del flujo SDD
+## 2. Position within the SDD flow
 
-Esta skill se ejecuta normalmente después de:
+This skill is normally executed after:
 
 ```text
 sdd-orchestrator
@@ -26,10 +26,10 @@ sdd-context-analysis
 sdd-user-story-enrichment
 sdd-functional-spec
 sdd-technical-spec
-sdd-api-contract              # si hay contratos de datos o API afectados
+sdd-api-contract # if any data or API contracts are affected
 ```
 
-Y antes de:
+And before:
 
 ```text
 sdd-security-permissions-review
@@ -39,46 +39,46 @@ sdd-test
 sdd-review
 ```
 
-Flujo esperado:
+Expected flow:
 
 ```text
-Petición inicial
-  → Orquestador
-  → Análisis de contexto
-  → Historia enriquecida
-  → Spec funcional
-  → Spec técnica
-  → Contratos API / Datos, si aplica
-  → Migraciones y rollback, si aplica
-  → Seguridad, si aplica
-  → Validación de spec
-  → Implementación
+Initial request
+  → Orchestrator
+  → Context analysis
+  → Enriched story
+  → Functional Spec
+  → Technical spec
+  → API / Data contracts, if applicable
+  → Migrations and rollback, if applicable
+  → Security, if applicable
+  → Spec validation
+  → Implementation
 ```
 
 ---
 
-## 3. Responsabilidad principal
+## 3. Primary responsibility
 
-Debes producir planes claros para:
+You must produce clear plans to:
 
-- Cambios de esquema de base de datos.
-- Nuevas tablas, columnas, relaciones, índices o constraints.
-- Cambios de tipos de datos, nullability o defaults.
-- Nuevos estados persistidos o cambios en state machines.
-- Migraciones compatibles con datos existentes.
-- Backfill de datos históricos.
-- Seeds o datos iniciales.
-- Estrategias de rollback.
-- Validaciones previas y posteriores a la migración.
-- Riesgos de pérdida de datos.
-- Compatibilidad entre versiones de backend/frontend.
-- Impacto sobre reporting, queries, endpoints, DTOs y lógica de negocio.
+- Database schema changes.
+- New tables, columns, relationships, indexes or constraints.
+- Changes in data types, nullability or defaults.
+- New persisted states or changes in state machines.
+- Migrations compatible with existing data.
+- Backfill of historical data.
+- Seeds or initial data.
+- Rollback strategies.
+- Pre- and post-migration validations.
+- Risks of data loss.
+- Compatibility between backend/frontend versions.
+- Impact on reporting, queries, endpoints, DTOs and business logic.
 
 ---
 
-## 4. Entradas esperadas
+## 4. Expected inputs
 
-Entradas obligatorias:
+Mandatory entries:
 
 ```text
 /specs/<feature-id>/request.md
@@ -87,7 +87,7 @@ Entradas obligatorias:
 /specs/<feature-id>/technical-spec.md
 ```
 
-Entradas recomendadas:
+Recommended entries:
 
 ```text
 /specs/<feature-id>/data-model-impact.md
@@ -100,13 +100,13 @@ Entradas recomendadas:
 /specs/<feature-id>/operation-permissions-contract.md
 ```
 
-Si falta la especificación técnica, no debes inventar cambios de datos. Devuelve una decisión de routing hacia `sdd-technical-spec`.
+If the technical specification is missing, you should not invent data changes. Returns a routing decision to `sdd-technical-spec`.
 
 ---
 
-## 5. Salidas esperadas
+## 5. Expected outputs
 
-Artefactos principales:
+Main artifacts:
 
 ```text
 /specs/<feature-id>/migration-plan.md
@@ -115,9 +115,7 @@ Artefactos principales:
 /specs/<feature-id>/migration-report.md
 ```
 
-Artefactos condicionales:
-
-```text
+Conditional artifacts:```text
 /specs/<feature-id>/data-backfill-plan.md
 /specs/<feature-id>/compatibility-plan.md
 /specs/<feature-id>/migration-verification-checklist.md
@@ -127,173 +125,171 @@ Artefactos condicionales:
 
 ---
 
-## 6. Reglas de comportamiento
+## 6. Rules of behavior
 
-### 6.1. No ejecutar migraciones
+### 6.1. Don't run migrations
 
-No debes crear ni ejecutar migraciones reales, scripts SQL definitivos, comandos destructivos ni cambios en base de datos. Tu función es diseñar el plan y dejarlo listo para implementación controlada.
+You should not create or run actual migrations, final SQL scripts, destructive commands, or database changes. Your role is to design the plan and make it ready for controlled implementation.
 
-### 6.2. No asumir pérdida de datos aceptable
+### 6.2. Don't assume data loss acceptable
 
-Cualquier operación destructiva debe marcarse como riesgo crítico salvo que la spec indique explícitamente que los datos pueden eliminarse.
+Any destructive operation should be marked as critical risk unless the spec explicitly states that the data can be deleted.
 
-Ejemplos de operaciones de alto riesgo:
+Examples of high risk operations:
 
 ```text
 - DROP TABLE
 - DROP COLUMN
-- ALTER COLUMN TYPE sin conversión segura
-- UPDATE masivo sin filtro verificable
-- DELETE masivo
-- Cambios de nullability sobre columnas con datos existentes
-- Reescritura de estados históricos
+- ALTER COLUMN TYPE without safe conversion
+- Mass UPDATE without verifiable filter
+- Mass DELETE
+- Nullability changes on columns with existing data
+- Rewriting of historical states
 ```
 
-### 6.3. Preferir migraciones reversibles
+### 6.3. Prefer reversible migrations
 
-Siempre que sea posible, diseña cambios reversibles y graduales:
+Whenever possible, design reversible and gradual changes:
 
 ```text
-1. Añadir estructura nueva compatible.
-2. Poblar o backfillear datos si aplica.
-3. Desplegar código compatible.
-4. Verificar comportamiento.
-5. Retirar estructura antigua en una fase posterior, si aplica.
+1. Add new compatible structure.
+2. Populate or backfill data if applicable.
+3. Deploy compatible code.
+4. Verify behavior.
+5. Remove old structure in a later phase, if applicable.
 ```
 
-### 6.4. Mantener compatibilidad entre versiones
+### 6.4. Maintain compatibility between versions
 
-Si frontend, backend o jobs pueden desplegarse en momentos diferentes, debes definir una estrategia compatible durante la transición.
+If frontend, backend, or jobs can be deployed at different times, you must define a compatible strategy during the transition.
 
-### 6.5. Backend como fuente de verdad
+### 6.5. Backend as source of truth
 
-Si el cambio de datos está asociado a reglas de negocio, permisos o estados, debes dejar claro qué capa valida la integridad y cómo se evita que la base de datos quede en un estado inválido.
+If the data change is associated with business rules, permissions or states, you must make it clear which layer validates the integrity and how to prevent the database from being left in an invalid state.
 
-### 6.6. Trazabilidad obligatoria
+### 6.6. Mandatory traceability
 
-Cada cambio de datos debe trazarse a:
+Each data change must be traced to:
 
 ```text
-- Caso de uso
-- Regla de negocio
-- Criterio de aceptación
-- Decisión técnica
-- Contrato de datos, si aplica
+- Use case
+- Business rule
+- Acceptance criteria
+- Technical decision
+- Data contract, if applicable
 ```
 
-### 6.7. Rollback realista
+### 6.7. Realistic rollback
 
-El rollback debe distinguir entre:
+The rollback must distinguish between:
 
 ```text
-- Rollback de código
-- Rollback de esquema
-- Rollback de datos
-- Rollback parcial
-- Estrategia de forward-fix
+- Code rollback
+- Outline rollback
+- Data rollback
+- Partial rollback
+- Forward-fix strategy
 ```
 
-No prometas rollback de datos si una operación destruye información sin copia o sin mecanismo de recuperación.
+Do not promise data rollback if an operation destroys information without a copy or recovery mechanism.
 
-### 6.8. Verificación obligatoria
+### 6.8. Mandatory verification
 
-Toda migración debe tener validaciones antes y después:
+Every migration must have validations before and after:
 
 ```text
 - Pre-checks
 - Post-checks
-- Queries de consistencia
-- Validación de registros afectados
-- Validación funcional mínima
-- Criterios para aprobar o bloquear el despliegue
+- Consistency queries
+- Validation of affected records
+- Minimum functional validation
+- Criteria to approve or block the deployment
 ```
 
 ---
 
-## 7. Proceso interno recomendado
+## 7. Recommended internal process
 
-Sigue este orden:
+Follow this order:
 
 ```text
-1. Leer technical-spec.md.
-2. Revisar data-model-impact.md, data-contract.md y state-model.md si existen.
-3. Identificar entidades, tablas, modelos o estados afectados.
-4. Clasificar el tipo de cambio persistente.
-5. Evaluar si hay datos existentes afectados.
-6. Diseñar plan de migración.
-7. Diseñar plan de rollback.
-8. Diseñar backfill si aplica.
-9. Diseñar compatibilidad entre versiones si aplica.
-10. Definir verificaciones pre/post.
-11. Identificar riesgos y mitigaciones.
-12. Generar reporte para el orquestador.
+1. Read technical-spec.md.
+2. Check data-model-impact.md, data-contract.md and state-model.md if they exist.
+3. Identify affected entities, tables, models or states.
+4. Classify the persistent exchange rate.
+5. Evaluate whether existing data is affected.
+6. Design migration plan.
+7. Design a rollback plan.
+8. Design backfill if applicable.
+9. Design compatibility between versions if applicable.
+10. Define pre/post verifications.
+11. Identify risks and mitigations.
+12. Generate report for the orchestrator.
 ```
 
 ---
 
-## 8. Criterios de entrada
+## 8. Entry criteria
 
-Puedes operar si:
-
-```text
-- Existe technical-spec.md.
-- El cambio afecta persistencia, entidades, modelos, estados o datos existentes.
-- Hay suficiente contexto para saber el motor o patrón de persistencia usado.
-```
-
-No puedes operar si:
+You can operate if:
 
 ```text
-- Solo existe una petición vaga.
-- No existe functional-spec.md ni technical-spec.md.
-- No se sabe qué datos o modelos se modifican.
-- El cambio no afecta persistencia ni datos.
+- Technical-spec.md exists.
+- The change affects persistence, entities, models, states or existing data.
+- There is enough context to know the persistence engine or pattern used.
 ```
 
-En ese caso, devuelve routing hacia la skill correspondiente.
+You cannot operate if:```text
+- There is only a vague request.
+- There is no functional-spec.md or technical-spec.md.
+- It is not known what data or models are modified.
+- The change does not affect persistence or data.
+```
+
+In that case, it returns routing to the corresponding skill.
 
 ---
 
-## 9. Clasificación de cambios persistentes
+## 9. Classification of persistent changes
 
-Clasifica cada cambio en una o varias categorías:
+Classify each change into one or more categories:
 
 ```text
 schema_additive:
-  Añade tablas, columnas, índices o constraints sin romper compatibilidad.
+  Add tables, columns, indexes or constraints without breaking compatibility.
 
 schema_breaking:
-  Elimina, renombra o cambia tipos/constraints de forma potencialmente incompatible.
+  Removes, renames, or changes types/constraints in potentially incompatible ways.
 
 data_backfill:
-  Requiere poblar datos existentes.
+  Requires populating existing data.
 
 state_change:
-  Añade o modifica estados persistidos.
+  Add or modify persisted states.
 
 seed_data:
-  Requiere datos iniciales o catálogos.
+  Requires initial data or catalogs.
 
 index_performance:
-  Añade o cambia índices por rendimiento o unicidad.
+  Add or change indexes for performance or uniqueness.
 
 relationship_change:
-  Añade o cambia claves foráneas, cardinalidades o reglas de borrado.
+  Add or change foreign keys, cardinalities, or deletion rules.
 
 compatibility_transition:
-  Requiere que dos versiones de código convivan temporalmente.
+  Requires two versions of code to coexist temporarily.
 
 no_persistence_impact:
-  No requiere migración ni rollback de datos.
+  Does not require migration or data rollback.
 ```
 
 ---
 
-## 10. Gates de seguridad de datos
+## 10. Data security gates
 
-### 10.1. Gate antes de implementación
+### 10.1. Gate before implementation
 
-No se debe pasar a implementación si existe impacto de datos y falta alguno de estos artefactos:
+You should not proceed to implementation if there is data impact and any of these artifacts are missing:
 
 ```text
 - migration-plan.md
@@ -302,44 +298,44 @@ No se debe pasar a implementación si existe impacto de datos y falta alguno de 
 - migration-verification-checklist.md
 ```
 
-### 10.2. Gate de cambios destructivos
+### 10.2. Gate of destructive changes
 
-Si hay cambios destructivos, la salida debe marcar:
+If there are destructive changes, the output should check:
 
 ```text
 status: BLOCKED_BY_DATA_LOSS_RISK
 ```
 
-Salvo que exista:
+Unless there is:
 
 ```text
-- Justificación funcional
-- Copia o estrategia de recuperación
-- Plan de rollback realista
-- Validaciones explícitas
+- Functional justification
+- Copy or recovery strategy
+- Realistic rollback plan
+- Explicit validations
 ```
 
-### 10.3. Gate de cambios con permisos
+### 10.3. Change gate with permissions
 
-Si el cambio de datos afecta permisos, roles, ownership o visibilidad:
+If the data change affects permissions, roles, ownership or visibility:
 
 ```text
-route_to: sdd-security-permissions-review
+route_to:sdd-security-permissions-review
 ```
 
-### 10.4. Gate de compatibilidad
+### 10.4. Compatibility Gate
 
-Si el cambio requiere despliegues en fases o compatibilidad temporal:
+If the change requires phased deployments or temporal support:
 
 ```text
-compatibility-plan.md debe existir antes de spec-validation
+compatibility-plan.md must exist before spec-validation
 ```
 
 ---
 
-## 11. Formato de decisión para el orquestador
+## 11. Decision format for the orchestrator
 
-Al finalizar, devuelve siempre una decisión de routing:
+Upon completion, it always returns a routing decision:
 
 ```yaml
 skill: sdd-migration-rollback
@@ -356,10 +352,10 @@ conditional_outputs:
   - migration-verification-checklist.md
 risk_level: medium
 next_skill: sdd-security-permissions-review
-reason: El cambio añade un nuevo estado persistido y requiere revisión de permisos antes de validar la spec.
+reason: The change adds a new persisted state and requires permissions review before validating the spec.
 ```
 
-Estados permitidos:
+Allowed states:
 
 ```text
 MIGRATION_PLAN_READY
@@ -376,30 +372,28 @@ BLOCKED_BY_DATA_LOSS_RISK
 
 ---
 
-## 12. Checklist de calidad
+## 12. Quality checklist
 
-Antes de terminar, verifica:
-
-```text
-[ ] El cambio persistente está claramente identificado.
-[ ] Se sabe qué tablas/modelos/campos/estados se ven afectados.
-[ ] La migración es compatible con datos existentes.
-[ ] Hay estrategia de rollback.
-[ ] Se distinguen rollback de código, esquema y datos.
-[ ] Se documentan riesgos de pérdida de datos.
-[ ] Hay plan de verificación pre/post.
-[ ] Hay plan de backfill si aplica.
-[ ] Hay plan de compatibilidad si aplica.
-[ ] Hay trazabilidad con criterios de aceptación y reglas de negocio.
-[ ] Se recomienda seguridad si hay roles, ownership o datos sensibles.
-[ ] Se recomienda spec-validation cuando todo está listo.
+Before finishing, check:```text
+[ ] Persistent change is clearly identified.
+[ ] It is known which tables/models/fields/states are affected.
+[ ] Migration is compatible with existing data.
+[ ] There is a rollback strategy.
+[ ] Code, schema and data rollback are distinguished.
+[ ] Risks of data loss are documented.
+[ ] There is a pre/post verification plan.
+[ ] There is a backfill plan if applicable.
+[ ] There is a compatibility plan if applicable.
+[ ] There is traceability with acceptance criteria and business rules.
+[ ] Security is recommended if there are roles, ownership or sensitive data.
+[ ] spec-validation is recommended when everything is ready.
 ```
 
 ---
 
-## 13. Criterios de salida
+## 13. Exit criteria
 
-La skill puede finalizar con éxito si produce:
+The skill can end successfully if it produces:
 
 ```text
 - migration-plan.md
@@ -408,7 +402,7 @@ La skill puede finalizar con éxito si produce:
 - migration-report.md
 ```
 
-Y, si aplica:
+And, if applicable:
 
 ```text
 - data-backfill-plan.md
@@ -418,7 +412,7 @@ Y, si aplica:
 - zero-downtime-plan.md
 ```
 
-La salida final debe indicar una de estas rutas:
+The final output must indicate one of these paths:
 
 ```text
 - sdd-security-permissions-review
@@ -430,6 +424,6 @@ La salida final debe indicar una de estas rutas:
 
 ---
 
-## 14. Principio rector
+## 14. Guiding principle
 
-La implementación nunca debe descubrir durante el desarrollo cómo modificar datos persistentes. Esa decisión debe quedar definida, justificada y validada antes de tocar código.
+The implementation should never discover during development how to modify persistent data. That decision must be defined, justified and validated before touching code.

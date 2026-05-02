@@ -1,44 +1,44 @@
 # Use Cases: <feature-id>
 
-## UC-001: <nombre del caso de uso>
+## UC-001: <use case name>
 
-### Actor principal
+### Main actor
 
 `<actor>`
 
-### Objetivo
+### Objective
 
-<Objetivo funcional del actor.>
+<Functional objective of the actor.>
 
-### Precondiciones
+### Preconditions
 
-- `<precondición>`
+- `<precondition>`
 
-### Flujo principal
+### Main flow
 
-1. `<paso>`
-2. `<paso>`
-3. `<paso>`
+1. `<step>`
+2. `<step>`
+3. `<step>`
 
-### Flujos alternativos
+### Alternative flows
 
-#### A1: <nombre>
+#### A1: <name>
 
-1. `<paso alternativo>`
-2. `<resultado>`
+1. `<alternative step>`
+2. `<result>`
 
-### Errores o restricciones
+### Errors or restrictions
 
-- `<restricción>`
+- `<restriction>`
 
-### Resultado esperado
+### Expected result
 
-<Resultado observable tras completar el caso de uso.>
+<Observable result after completing the use case.>
 
-### Reglas relacionadas
+### Related rules
 
 - `BR-001`
 
-### Criterios de aceptación relacionados
+### Related acceptance criteria
 
 - `AC-001`

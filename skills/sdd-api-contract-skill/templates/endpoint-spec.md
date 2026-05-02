@@ -16,13 +16,13 @@
 
 #### Query parameters
 
-| Parameter | Type | Required? | Validation | Description |
+| Parameters | Type | Required? | Validation | Description |
 |---|---|---:|---|---|
 | `<param>` | `<type>` | `<yes/no>` | `<rule>` | `<description>` |
 
 #### Path parameters
 
-| Parameter | Type | Required? | Validation | Description |
+| Parameters | Type | Required? | Validation | Description |
 |---|---|---:|---|---|
 | `<param>` | `<type>` | `<yes/no>` | `<rule>` | `<description>` |
 

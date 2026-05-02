@@ -1,32 +1,32 @@
 # Test Report
 
-## 1. Resumen
+## 1. Summary
 
-- Feature / cambio:
-- Fecha:
-- Decisión: TEST_PASSED | TEST_FAILED | TEST_BLOCKED | TEST_PARTIAL
-- Siguiente skill recomendada:
+- Feature/change:
+- Date:
+- Decision: TEST_PASSED | TEST_FAILED | TEST_BLOCKED | TEST_PARTIAL
+- Next recommended skill:
 
-## 2. Handoff de implementación
+## 2. Implementation handoff
 
-| Artefacto | Estado | Observaciones |
+| Artifact | State | Observations |
 |---|---|---|
 | implementation-report.md | | |
 | code-change-log.md | | |
 | patch-summary.md | | |
 | deviation-log.md | | |
 
-## 3. Comandos ejecutados
+## 3. Commands executed
 
-| Comando | Resultado | Evidencia resumida |
+| Command | Result | Summary evidence |
 |---|---|---|
 | | PASSED/FAILED/BLOCKED | |
 
-## 4. Resultado por capa
+## 4. Result per layer
 
-| Capa | Estado | Observaciones |
+| Layer | State | Observations |
 |---|---|---|
-| Build / typecheck | | |
+| Build/typecheck | | |
 | Lint | | |
 | Unit | | |
 | Integration | | |
@@ -37,17 +37,17 @@
 | Manual | | |
 | Regression | | |
 
-## 5. Defectos detectados
+## 5. Defects detected
 
-| ID | Severidad | Descripción | Ruta recomendada |
+| ID | Severity | Description | Recommended route |
 |---|---|---|---|
 | | | | |
 
-## 6. Limitaciones
+## 6. Limitations
 
 - 
 
-## 7. Decisión final
+## 7. Final decision
 
 ```text
 Decision: 

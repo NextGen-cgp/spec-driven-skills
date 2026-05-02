@@ -2,7 +2,7 @@
 
 ## 1. Compatibility summary
 
-Describe compatibility impact for existing consumers, data, UI behavior and external integrations.
+Describes compatibility impact for existing consumers, data, UI behavior and external integrations.
 
 ## 2. Existing consumers
 

@@ -2,9 +2,9 @@ skill: sdd-security-permissions-review
 version: 1.0.0
 
 purpose: >
-  Gate de seguridad y autorización del flujo SDD. Determina si una especificación, contrato,
-  plan de migración o implementación puede avanzar sin riesgos evidentes de permisos,
-  exposición de datos o validación insuficiente.
+  Security gate and authorization of the SDD flow. Determines whether a specification, contract,
+  migration or implementation plan can move forward without obvious permissions risks,
+  insufficient data exposure or validation.
 
 entry_conditions:
   required_artifacts:

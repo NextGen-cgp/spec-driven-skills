@@ -2,16 +2,16 @@
 
 ## Metadata
 
-- Feature ID:
+-Feature ID:
 - Skill: `sdd-migration-rollback`
 - Status:
 - Generated outputs:
 
-## 1. Summary
+## 1.Summary
 
 Short summary of the migration/rollback decision.
 
-## 2. Generated Artifacts
+## 1. Generated Artifacts
 
 - [ ] migration-plan.md
 - [ ] rollback-plan.md
@@ -22,7 +22,7 @@ Short summary of the migration/rollback decision.
 - [ ] seed-data-plan.md
 - [ ] zero-downtime-plan.md
 
-## 3. Risk Level
+## 2. Risk Level
 
 ```text
 low / medium / high / critical / unknown
@@ -30,13 +30,13 @@ low / medium / high / critical / unknown
 
 Reason:
 
-## 4. Blockers
+## 3. Blockers
 
 | Blocker | Severity | Required action | Route to |
 |---|---|---|---|
 |  |  |  |  |
 
-## 5. Security Impact
+## 4. Security Impact
 
 ```text
 security_review_required: yes/no
@@ -44,7 +44,7 @@ security_review_required: yes/no
 
 Reason:
 
-## 6. Routing Recommendation
+## 5. Routing Recommendation
 
 ```yaml
 next_skill:
@@ -52,6 +52,6 @@ reason:
 exit_state:
 ```
 
-## 7. Orchestrator Notes
+## 6. Orchestrator Notes
 
-- 
+-
