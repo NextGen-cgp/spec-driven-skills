@@ -1,0 +1,23 @@
+{
+  "name": "spec-driven-skills",
+  "version": "1.0.0",
+  "description": "Spec Driven Development agent skills installer for Claude and OpenAI-compatible agents.",
+  "license": "MIT",
+  "bin": {
+    "spec-driven-skills": "bin/install.js",
+    "sdd-skills": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "smoke": "node bin/install.js --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
