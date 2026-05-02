@@ -5,9 +5,9 @@
 - Feature ID: `<feature-id>`
 - Owner skill: `sdd-api-contract`
 
-## 2. Standard error format
+## 2.Standard error format
 
-Define the project-compatible error format. If the project already has one, reuse it.
+Defines the project-compatible error format. If the project already has one, reuse it.
 
 ```json
 {
@@ -19,7 +19,7 @@ Define the project-compatible error format. If the project already has one, reus
 }
 ```
 
-## 3. Error catalogue
+## 2. Catalog error
 
 | Error code | Status | Scenario | User-facing message guidance | Developer notes |
 |---|---:|---|---|---|
@@ -30,19 +30,19 @@ Define the project-compatible error format. If the project already has one, reus
 | `CONFLICT` | 409 | Invalid state or duplicate operation | `<message>` | `<notes>` |
 | `INTERNAL_ERROR` | 500 | Unexpected error | `<message>` | `<notes>` |
 
-## 4. Validation errors
+## 3. Validation errors
 
 | Field | Rule | Error code | Message guidance |
 |---|---|---|---|
 | `<field>` | `<rule>` | `<ERROR_CODE>` | `<message>` |
 
-## 5. Authorization errors
+## 4. Authorization errors
 
 | Operation | Role/permission missing | Expected status | Error code |
 |---|---|---:|---|
 | `<operation>` | `<permission>` | 403 | `FORBIDDEN` |
 
-## 6. Conflict/state errors
+## 5. Conflict/state errors
 
 | Operation | Invalid state | Expected status | Error code | Notes |
 |---|---|---:|---|---|

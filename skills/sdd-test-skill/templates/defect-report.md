@@ -1,20 +1,20 @@
-# Defect Report
+#DefectReport
 
-## Defectos
+## Defects
 
 ### DEF-001
 
-- Severidad: critical | high | medium | low
-- Estado: open | retest-needed | closed
-- Área afectada:
-- Criterio de aceptación relacionado:
-- Descripción:
-- Resultado esperado:
-- Resultado obtenido:
-- Pasos de reproducción:
+- Severity: critical | high | medium | low
+- Status: open | retest-needed | closed
+- Affected area:
+- Related acceptance criterion:
+- Description:
+- Expected result:
+- Result obtained:
+- Playback steps:
   1. 
   2. 
   3. 
-- Evidencia:
-- Causa probable:
-- Skill recomendada: sdd-implementation | sdd-functional-spec | sdd-technical-spec | sdd-api-contract | sdd-migration-rollback | sdd-security-permissions-review
+- Evidence:
+- Probable cause:
+- Recommended skill: sdd-implementation | sdd-functional-spec | sdd-technical-spec | sdd-api-contract | sdd-migration-rollback | sdd-security-permissions-review

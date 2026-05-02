@@ -1,6 +1,6 @@
 # Test Handoff Report
 
-## Decisión
+## Decision
 
 ```text
 Decision: TEST_PASSED | TEST_FAILED | TEST_BLOCKED | TEST_PARTIAL
@@ -8,7 +8,7 @@ Next skill:
 Reason:
 ```
 
-## Archivos de test generados
+## Generated test files
 
 - `test-plan-final.md`
 - `test-report.md`
@@ -16,17 +16,17 @@ Reason:
 - `regression-report.md`
 - `defect-report.md`
 
-## Condiciones para avanzar
+## Conditions to advance
 
-| Condición | Estado |
+| Condition | State |
 |---|---|
-| Criterios de aceptación validados | |
-| Sin defectos críticos | |
-| Regresiones revisadas | |
-| Contratos validados si aplica | |
-| Permisos validados si aplica | |
-| Migración validada si aplica | |
+| Validated acceptance criteria | |
+| No critical defects | |
+| Revised Regressions | |
+| Validated contracts if applicable | |
+| Validated permissions if applicable | |
+| Validated migration if applicable | |
 
-## Pendientes
+## Earrings
 
 -

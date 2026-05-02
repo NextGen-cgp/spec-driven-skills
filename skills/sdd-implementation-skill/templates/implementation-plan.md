@@ -1,6 +1,6 @@
 # Implementation Plan
 
-## Feature
+##Feature
 
 - Feature ID: `<feature-id>`
 - Source gate: `implementation-gate-decision.md`

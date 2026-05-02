@@ -6,7 +6,7 @@
 FINAL_REVIEW_BLOCKED
 ```
 
-## Summary
+##Summary
 
 The change modifies admin and analyst permissions, but no `security-permissions-review.md`, `post-implementation-security-review.md` or `authz-test-report.md` was provided. The final review cannot approve a role-sensitive implementation without evidence of backend authorization review and tests.
 

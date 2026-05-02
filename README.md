@@ -1,192 +1,186 @@
 # spec-driven-skills
 
-Skills orquestadas para un flujo avanzado de Spec Driven Development con IA.
+Orchestrated skills for an advanced AI-assisted Spec Driven Development flow.
 
-Este paquete puede instalar todas las skills SDD en las rutas usadas por Claude
-y por agentes compatibles con OpenAI/Codex.
+This package can install all SDD skills into the paths used by Claude and by OpenAI/Codex-compatible agents.
 
-## Instalacion rapida
+## Quick installation
 
-Desde la raiz del proyecto donde quieras usar las skills:
+From the root of the project where you want to use the skills:
 
 ```bash
 npx spec-driven-skills
 ```
 
-Por defecto instala el paquete completo en:
+By default, it installs the full package into:
 
 ```text
 ./.claude/skills/
 ./.agents/skills/
 ```
 
-## Comandos disponibles
+## Available commands
 
-### Uso por defecto
+### Default usage
 
-Instala en el proyecto actual para Claude y OpenAI/Codex:
+Install into the current project for Claude and OpenAI/Codex:
 
 ```bash
 npx spec-driven-skills
 ```
 
-Equivale a:
+Equivalent to:
 
 ```bash
 npx spec-driven-skills --scope project --provider all
 ```
 
-### Elegir alcance
+### Choose scope
 
-Instalar en el proyecto actual:
+Install into the current project:
 
 ```bash
 npx spec-driven-skills --scope project
 ```
 
-Instalar globalmente para el usuario:
+Install globally for the user:
 
 ```bash
 npx spec-driven-skills --scope global
 ```
 
-### Elegir proveedor
+### Choose provider
 
-Instalar solo para Claude:
+Install only for Claude:
 
 ```bash
 npx spec-driven-skills --provider claude
 ```
 
-Instalar solo para OpenAI/Codex:
+Install only for OpenAI/Codex:
 
 ```bash
 npx spec-driven-skills --provider openai
 ```
 
-Instalar para ambos proveedores:
+Install for both providers:
 
 ```bash
 npx spec-driven-skills --provider all
 ```
 
-### Combinar flags
+### Combine flags
 
-Los flags se pueden combinar en el mismo comando.
+Flags can be combined in the same command.
 
-Instalar globalmente solo para Claude:
+Install globally only for Claude:
 
 ```bash
 npx spec-driven-skills --scope global --provider claude
 ```
 
-Instalar globalmente solo para OpenAI/Codex:
+Install globally only for OpenAI/Codex:
 
 ```bash
 npx spec-driven-skills --scope global --provider openai
 ```
 
-Instalar en el proyecto actual solo para Claude:
+Install into the current project only for Claude:
 
 ```bash
 npx spec-driven-skills --scope project --provider claude
 ```
 
-Tambien se admite la sintaxis con `=` para cualquier flag:
+The `=` syntax is also supported for any flag:
 
 ```bash
 npx spec-driven-skills --scope=global --provider=claude
 ```
 
-### Elegir otro proyecto
+### Choose another project
 
-Instalar en un proyecto concreto:
+Install into a specific project:
 
 ```bash
 npx spec-driven-skills --cwd /path/to/project
 ```
 
-Instalar en un proyecto concreto solo para OpenAI/Codex:
+Install into a specific project only for OpenAI/Codex:
 
 ```bash
 npx spec-driven-skills --cwd /path/to/project --provider openai
 ```
 
-### Simular la instalacion
+### Simulate installation
 
-Ver que haria el instalador sin escribir archivos:
+See what the installer would do without writing files:
 
 ```bash
 npx spec-driven-skills --dry-run
 ```
 
-Simular una instalacion global solo para Claude:
+Simulate a global installation only for Claude:
 
 ```bash
 npx spec-driven-skills --scope global --provider claude --dry-run
 ```
 
-## Rutas de instalacion
+## Installation paths
 
 | Scope | Claude | OpenAI/Codex |
 |---|---|---|
-| Proyecto | `./.claude/skills/` | `./.agents/skills/` |
+| Project | `./.claude/skills/` | `./.agents/skills/` |
 | Global | `~/.claude/skills/` | `~/.agents/skills/` |
 
-El instalador copia todas las carpetas de `skills/` manteniendo sus nombres.
+The installer copies all folders from `skills/` while preserving their names.
 
-## Activar el flujo SDD con AGENTS.md
+## Enable the SDD flow with AGENTS.md
 
-El repositorio incluye un archivo `AGENTS.md` con instrucciones adicionales para
-forzar el uso del flujo SDD.
+The repository includes an `AGENTS.md` file with additional instructions to enforce use of the SDD flow.
 
-Ese archivo indica al agente que, antes de responder a peticiones de producto,
-codigo, tests, documentacion, seguridad, permisos, API o base de datos, debe:
+That file tells the agent that, before responding to product, code, test, documentation, security, permissions, API or database requests, it must:
 
-1. Revisar las skills locales instaladas.
-2. Empezar por `sdd-orchestrator-skill`.
-3. Seguir los gates SDD antes de implementar.
-4. Usar los `templates/`, `schemas/`, `routing/` y `examples/` incluidos.
+1. Review the installed local skills.
+2. Start with `sdd-orchestrator-skill`.
+3. Follow the SDD gates before implementing.
+4. Use the included `templates/`, `schemas/`, `routing/` and `examples/`.
 
-Para activar estas reglas en un proyecto, copia o conserva `AGENTS.md` en la
-raiz del repositorio donde vayas a trabajar con el agente:
+To enable these rules in a project, copy or keep `AGENTS.md` at the root of the repository where you will work with the agent:
 
 ```text
 ./AGENTS.md
 ```
 
-En instalaciones para OpenAI/Codex, el archivo referencia las skills en:
+In OpenAI/Codex installations, the file references skills in:
 
 ```text
 ./.agents/skills/
 ```
 
-En instalaciones para Claude, las skills se copian en:
+In Claude installations, the skills are copied into:
 
 ```text
 ./.claude/skills/
 ```
 
-Si quieres que Claude siga exactamente las mismas reglas, puedes adaptar esas
-referencias en tu archivo de instrucciones del proyecto para apuntar a
-`.claude/skills/`.
+If you want Claude to follow exactly the same rules, you can adapt those references in your project instruction file to point to `.claude/skills/`.
 
-## Conflictos y backups
+## Conflicts and backups
 
-Si ya existe una skill SDD con el mismo nombre en el destino, el instalador:
+If an SDD skill with the same name already exists in the destination, the installer:
 
-1. Crea un backup con timestamp.
-2. Reemplaza solo esa skill.
-3. Conserva archivos no relacionados dentro de `.claude` o `.agents`.
+1. Creates a timestamped backup.
+2. Replaces only that skill.
+3. Preserves unrelated files inside `.claude` or `.agents`.
 
-Los backups se guardan en:
+Backups are stored in:
 
 ```text
 .claude/sdd-skills-backups/<timestamp>/
 .agents/sdd-skills-backups/<timestamp>/
 ```
 
-Tambien se escribe un manifest de instalacion:
+An installation manifest is also written:
 
 ```text
 .claude/sdd-skills-manifest.json

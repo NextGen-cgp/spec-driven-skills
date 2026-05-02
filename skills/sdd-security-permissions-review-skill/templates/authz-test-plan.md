@@ -1,31 +1,31 @@
 # Authorization Test Plan: <feature-id>
 
-## 1. Objetivo
+## 1. Objective
 
-Definir los tests mínimos de autorización y seguridad funcional que deben existir antes de cerrar la implementación.
+Define the minimum authorization and functional security tests that must exist before closing the implementation.
 
-## 2. Matriz de tests por operación
+## 2. Matrix of tests per operation
 
-| ID | Operación | Rol | Caso | Resultado esperado | Tipo de test |
+| ID | Operation | Role | Case | Expected result | Test type |
 |---|---|---|---|---|---|
-| AUTHZ-001 |  | ADMIN | Acceso permitido | 200/201/204 | integración/e2e |
-| AUTHZ-002 |  | ANALYST | Acceso denegado | 403 | integración/e2e |
-| AUTHZ-003 |  | anonymous | No autenticado | 401 | integración/e2e |
+| AUTHZ-001 |  | ADMIN | Access allowed | 200/201/204 | integration/e2e |
+| AUTHZ-002 |  | ANALYST | Access Denied | 403 | integration/e2e |
+| AUTHZ-003 |  | anonymous | Unauthenticated | 401 | integration/e2e |
 
-## 3. Tests de datos expuestos
+## 3. Exposed data tests
 
-- [ ] El listado no devuelve campos restringidos.
-- [ ] El detalle no devuelve campos restringidos.
-- [ ] Las búsquedas respetan el scope esperado.
+- [ ] The listing does not return restricted fields.
+- [ ] The detail does not return restricted fields.
+- [ ] Searches respect the expected scope.
 
-## 4. Tests de validación backend
+## 4. Backend validation tests
 
-- [ ] Payload inválido rechazado.
-- [ ] Transición de estado no permitida rechazada.
-- [ ] Operación sobre recurso inexistente devuelve error controlado.
-- [ ] Operación sobre recurso fuera de scope devuelve 403 o 404 según política definida.
+- [ ] Invalid payload rejected.
+- [ ] Illegal state transition rejected.
+- [ ] Operation on a non-existent resource returns a controlled error.
+- [ ] Operation on resource out of scope returns 403 or 404 according to defined policy.
 
-## 5. Tests de regresión
+## 5. Regression tests
 
-- [ ] Roles existentes conservan permisos anteriores.
-- [ ] Funcionalidades no afectadas mantienen comportamiento.
+- [ ] Existing roles retain previous permissions.
+- [ ] Unaffected functionalities maintain behavior.

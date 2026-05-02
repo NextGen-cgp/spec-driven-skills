@@ -1,22 +1,22 @@
 # Migration Test Report
 
-## Migraciones evaluadas
+## Evaluated migrations
 
-| Migración | Estado | Observaciones |
+| Migration | State | Observations |
 |---|---|---|
 | | PASSED/FAILED/BLOCKED/PARTIAL | |
 
-## Validaciones
+## Validations
 
-| Validación | Estado | Evidencia |
+| Validation | State | Evidence |
 |---|---|---|
-| Aplicación de migración | | |
-| Estructura resultante | | |
-| Datos existentes conservados | | |
-| Defaults seguros | | |
-| Backfill correcto | | |
-| Rollback definido | | |
+| Migration application | | |
+| Resulting structure | | |
+| Existing data retained | | |
+| Safe defaults | | |
+| Correct backfill | | |
+| Defined rollback | | |
 
-## Riesgos restantes
+## Remaining risks
 
 -

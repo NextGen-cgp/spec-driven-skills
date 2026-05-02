@@ -1,10 +1,10 @@
-# SDD User Story Enrichment Skill
+#SDD User Story Enrichment Skill
 
-Skill de enriquecimiento de historias de usuario para un flujo de **Spec Driven Development (SDD)**.
+User story enrichment skill for a **Spec Driven Development (SDD)** flow.
 
-Esta skill convierte una petición funcional vaga en artefactos claros para que el resto del flujo pueda continuar sin interpretar libremente los requisitos.
+This skill turns a vague functional request into clear artifacts so that the rest of the flow can continue without freely interpreting the requirements.
 
-## Contenido del paquete
+## Package Contents
 
 ```text
 sdd-user-story-enrichment-skill/
@@ -12,24 +12,24 @@ sdd-user-story-enrichment-skill/
 ├── README.md
 ├── skill.yaml
 ├── routing/
-│   └── user-story-enrichment-routing.yaml
+│ └── user-story-enrichment-routing.yaml
 ├── schemas/
-│   └── user-story-enrichment.schema.json
+│ └── user-story-enrichment.schema.json
 ├── templates/
-│   ├── user-story.md
-│   ├── acceptance-criteria.md
-│   ├── use-cases.md
-│   ├── business-rules.md
-│   ├── open-questions.md
-│   └── enrichment-report.md
+│ ├── user-story.md
+│ ├── acceptance-criteria.md
+│ ├── use-cases.md
+│ ├── business-rules.md
+│ ├── open-questions.md
+│ └── enrichment-report.md
 └── examples/
     ├── feature-admin-analyst-panel-user-story.md
     └── feature-cancelled-parameter-user-story.md
 ```
 
-## Rol dentro del flujo
+## Role within the flow
 
-Esta skill se ejecuta después de `context-analysis` y antes de `functional-spec`.
+This skill is executed after `context-analysis` and before `functional-spec`.
 
 ```text
 request.md
@@ -40,28 +40,28 @@ request.md
   → functional-spec
 ```
 
-## Objetivo
+## Objective
 
-Transformar una petición como:
-
-```text
-Necesitamos un panel para admins y analistas con diferentes permisos.
-```
-
-En artefactos como:
+Transform a request like:
 
 ```text
-- Historia principal refinada
-- Historias por rol
-- Casos de uso
-- Reglas de negocio
-- Criterios de aceptación
-- Estados funcionales
-- Supuestos
-- Preguntas abiertas
+We need a panel for admins and analysts with different permissions.
 ```
 
-## Artefactos principales
+In artifacts such as:
+
+```text
+- Refined main story
+- Stories by role
+- Use cases
+- Business rules
+- Acceptance criteria
+- Functional states
+- Assumptions
+- Open questions
+```
+
+##Main artifacts
 
 ```text
 /specs/<feature-id>/user-story.md
@@ -72,18 +72,18 @@ En artefactos como:
 /specs/<feature-id>/enrichment-report.md
 ```
 
-## Estados de salida
+## Output states
 
-- `READY_FOR_FUNCTIONAL_SPEC`: la historia puede pasar a especificación funcional.
-- `NEEDS_CLARIFICATION`: faltan aclaraciones, pero se puede avanzar parcialmente con supuestos.
-- `BLOCKED`: faltan decisiones funcionales críticas.
+- `READY_FOR_FUNCTIONAL_SPEC`: the story can be passed to functional specification.
+- `NEEDS_CLARIFICATION`: clarifications are missing, but partial progress can be made with assumptions.
+- `BLOCKED`: critical functional decisions are missing.
 
-## Regla principal
+## Main rule
 
 ```text
-La implementación no debe tener que inventar requisitos.
+The implementation should not have to invent requirements.
 ```
 
-## Versión
+## Version
 
 `1.0.0`

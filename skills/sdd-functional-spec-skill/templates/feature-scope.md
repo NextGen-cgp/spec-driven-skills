@@ -8,7 +8,7 @@
 
 - <Functional capability excluded>
 
-## Assumptions
+##Assumptions
 
 - <Assumption clearly marked>
 

@@ -1,6 +1,6 @@
 ---
 name: sdd-context-analysis-skill
-description: Skill de análisis de contexto para flujos Spec Driven Development. Se encarga de inspeccionar el proyecto, identificar stack, arquitectura, convenciones, módulos afectados, dependencias y riesgos antes de que otras skills generen historias refinadas, specs técnicas o implementen cambios.
+description: Context analysis skill for Spec Driven Development flows. It is responsible for inspecting the project, identifying stack, architecture, conventions, affected modules, dependencies and risks before other skills generate refined stories, technical specifications or implement changes.
 version: 1.0.0
 status: production-ready
 owner: sdd-orchestrator
@@ -8,48 +8,48 @@ owner: sdd-orchestrator
 
 # Skill: SDD Context Analysis
 
-## 1. Propósito
+## 1. Purpose
 
-Esta skill analiza el contexto real del proyecto antes de que el flujo SDD avance hacia refinamiento funcional, especificación técnica o implementación.
+This skill analyzes the actual context of the project before the SDD flow moves toward functional refinement, technical specification, or implementation.
 
-Su objetivo es evitar que las siguientes skills trabajen sobre suposiciones. Debe proporcionar una visión clara y verificable de:
+Its objective is to prevent the following skills from working on assumptions. It must provide a clear and verifiable view of:
 
-- Stack tecnológico detectado.
-- Estructura del repositorio.
-- Patrones de arquitectura existentes.
-- Módulos, carpetas y archivos potencialmente afectados.
-- Convenciones de código, nombres, rutas, tests y documentación.
-- Riesgos de integración.
-- Artefactos previos relevantes dentro de `/specs`.
-- Recomendación de routing para el orquestador.
+- Technological stack detected.
+- Repository structure.
+- Existing architectural patterns.
+- Potentially affected modules, folders and files.
+- Code conventions, names, routes, tests and documentation.
+- Integration risks.
+- Relevant previous artifacts within `/specs`.
+- Routing recommendation for the orchestrator.
 
-Esta skill **no implementa código**, **no modifica archivos de aplicación** y **no toma decisiones funcionales finales**. Su salida sirve como base para las skills posteriores.
-
----
-
-## 2. Cuándo debe invocarse
-
-El orquestador debe invocar esta skill cuando:
-
-1. Llega una nueva petición funcional, técnica, bugfix, refactor o cambio de seguridad.
-2. No existe todavía un análisis de contexto para la feature actual.
-3. Existen dudas sobre qué partes del repo están afectadas.
-4. La implementación requiere entender patrones previos del proyecto.
-5. La petición menciona roles, permisos, backend, frontend, base de datos, tests, rutas, UI, API o migraciones.
-6. Hay que validar si ya existen artefactos SDD relacionados.
-
-También puede reinvocarse si:
-
-- Cambia el alcance de la petición.
-- La validación de spec detecta una laguna de contexto.
-- La implementación encuentra una discrepancia entre la spec y el código real.
-- La review final detecta que se ignoró un patrón del proyecto.
+This skill **does not implement code**, **does not modify application files**, and **does not make final functional decisions**. Its output serves as the basis for subsequent skills.
 
 ---
 
-## 3. Entradas esperadas
+## 2. When should it be invoked
 
-La skill puede recibir una o varias de estas entradas:
+The orchestrator must invoke this skill when:
+
+1. A new functional, technical, bugfix, refactor or security change request arrives.
+2. There is no context analysis yet for the current feature.
+3. There are questions about which parts of the repo are affected.
+4. Implementation requires understanding previous project patterns.
+5. The request mentions roles, permissions, backend, frontend, database, tests, routes, UI, API or migrations.
+6. You must validate if related SDD artifacts already exist.
+
+It can also be reinvoked if:
+
+- Change the scope of the request.
+- Spec validation detects a context gap.
+- The implementation finds a discrepancy between the spec and the real code.
+- The final review detects that a project pattern was ignored.
+
+---
+
+## 3. Expected inputs
+
+The skill can receive one or more of these inputs:
 
 ```text
 /specs/<feature-name>/request.md
@@ -58,67 +58,67 @@ La skill puede recibir una o varias de estas entradas:
 /specs/<feature-name>/technical-spec.md
 ```
 
-Además, debe analizar el repositorio del proyecto disponible en el workspace.
+Additionally, you must analyze the project repository available in the workspace.
 
-Entrada mínima recomendada:
+Recommended minimum entry:
 
 ```text
-- Petición original del usuario.
-- Nombre tentativo de la feature.
-- Tipo de cambio estimado: feature, bugfix, refactor, security, docs, test-only, architecture.
+- Original user request.
+- Tentative name of the feature.
+- Estimated change type: feature, bugfix, refactor, security, docs, test-only, architecture.
 ```
 
 ---
 
-## 4. Salidas obligatorias
+## 4. Mandatory outputs
 
-La skill debe generar o actualizar el siguiente artefacto:
+The skill must generate or update the following artifact:
 
 ```text
 /specs/<feature-name>/context-analysis.md
 ```
 
-Opcionalmente, si el proyecto es grande o el cambio tiene impacto amplio, puede generar:
+Optionally, if the project is large or the change has broad impact, it can generate:
 
 ```text
 /specs/<feature-name>/project-map.md
 /specs/<feature-name>/impact-map.md
 ```
 
-La salida principal debe incluir:
+The main output must include:
 
 ```text
-- Resumen del contexto del proyecto.
-- Stack detectado.
-- Arquitectura observada.
-- Convenciones relevantes.
-- Módulos y archivos afectados.
-- Dependencias relevantes.
-- Tests existentes relacionados.
-- Riesgos técnicos.
-- Preguntas abiertas, si existen.
-- Recomendación de routing para el orquestador.
+- Summary of the project context.
+- Stack detected.
+- Observed architecture.
+- Relevant conventions.
+- Affected modules and files.
+- Relevant dependencies.
+- Related existing tests.
+- Technical risks.
+- Open questions, if they exist.
+- Routing recommendation for the orchestrator.
 ```
 
 ---
 
-## 5. Reglas obligatorias
+## 5. Mandatory rules
 
-### 5.1. No inventar arquitectura
+### 5.1. Do not invent architecture
 
-Si no se encuentra evidencia en el repositorio, debe indicarse explícitamente:
+If no evidence is found in the repository, it must be explicitly stated:
 
 ```text
-No confirmado en el repositorio actual.
+Not committed in the current repository.
 ```
 
-No se deben asumir frameworks, rutas, modelos, endpoints ni patrones sin evidencia.
+Frameworks, routes, models, endpoints and patterns should not be assumed without evidence.
 
 ---
 
-### 5.2. No modificar implementación
+### 5.2. Do not modify implementation
 
-Esta skill puede proponer archivos candidatos, pero no debe modificar:
+This skill can propose candidate files, but should not modify:
 
 ```text
 /src
@@ -132,7 +132,7 @@ Esta skill puede proponer archivos candidatos, pero no debe modificar:
 /tests
 ```
 
-Solo puede crear o actualizar artefactos SDD dentro de:
+You can only create or update SDD artifacts within:
 
 ```text
 /specs/<feature-name>/
@@ -140,40 +140,40 @@ Solo puede crear o actualizar artefactos SDD dentro de:
 
 ---
 
-### 5.3. Separar hechos de inferencias
+### 5.3. Separate facts from inferences
 
-Toda conclusión debe clasificarse como:
+Any conclusion must be classified as:
 
 ```text
-- Evidencia observada
-- Inferencia razonable
-- Riesgo
-- Pendiente de confirmar
+- Observed evidence
+- Reasonable inference
+- Risk
+- Pending confirmation
 ```
 
 ---
 
-### 5.4. Priorizar patrones existentes
+### 5.4. Prioritize existing patterns
 
-Cuando detecte varias formas posibles de resolver algo, debe priorizar:
+When you detect several possible ways to solve something, you must prioritize:
 
 ```text
-1. Patrones ya existentes en el proyecto.
-2. Convenciones del framework usado.
-3. Buenas prácticas generales.
+1. Patterns already existing in the project.
+2. Conventions of the framework used.
+3. General good practices.
 ```
 
 ---
 
-### 5.5. Preparar a la siguiente skill
+### 5.5. Prepare for the next skill
 
-La salida debe ser útil para la skill posterior. Debe terminar siempre con una sección:
+The output should be useful for the subsequent skill. It should always end with a section:
 
 ```text
-## Recomendación para el Orquestador
+## Recommendation for the Orchestrator
 ```
 
-Con uno de estos estados:
+With one of these states:
 
 ```text
 READY_FOR_USER_STORY_REFINEMENT
@@ -184,13 +184,13 @@ BLOCKED_BY_MISSING_REPOSITORY_ACCESS
 
 ---
 
-## 6. Procedimiento de análisis
+## 6. Analysis procedure
 
-La skill debe seguir este orden:
+The skill must follow this order:
 
-### Paso 1: Leer artefactos SDD existentes
+### Step 1: Read existing SDD artifacts
 
-Buscar si existen:
+Search if they exist:
 
 ```text
 /specs/<feature-name>/request.md
@@ -200,13 +200,13 @@ Buscar si existen:
 /specs/<feature-name>/technical-spec.md
 ```
 
-Determinar si hay contexto previo reutilizable.
+Determine if there is reusable prior context.
 
 ---
 
-### Paso 2: Identificar stack del proyecto
+### Step 2: Identify project stack
 
-Revisar archivos como:
+Review files like:
 
 ```text
 package.json
@@ -224,32 +224,32 @@ requirements.txt
 pyproject.toml
 pom.xml
 build.gradle
-Cargo.toml
+cargo.toml
 go.mod
 Gemfile
 .env.example
 README.md
 ```
 
-Detectar:
+Detect:
 
 ```text
-- Lenguaje principal.
-- Framework frontend.
-- Framework backend.
-- ORM o capa de datos.
-- Base de datos.
-- Sistema de autenticación.
-- Herramientas de test.
-- Herramientas de lint/build.
-- Mecanismo de despliegue.
+- Main language.
+- Frontend framework.
+- Backend framework.
+- ORM or data layer.
+- Database.
+- Authentication system.
+- Test tools.
+- Lint/build tools.
+- Deployment mechanism.
 ```
 
 ---
 
-### Paso 3: Mapear estructura del repositorio
+### Step 3: Map repository structure
 
-Identificar carpetas principales:
+Identify main folders:
 
 ```text
 /app
@@ -273,150 +273,148 @@ Identificar carpetas principales:
 /docs
 ```
 
-Describir para qué parece servir cada una.
+Describe what each one seems to be used for.
 
 ---
 
-### Paso 4: Detectar patrones existentes
+### Step 4: Detect existing patterns
 
-Buscar patrones en:
+Find patterns in:
 
 ```text
-- Gestión de estado.
-- Componentes UI.
-- Servicios backend.
-- Validaciones.
-- Control de errores.
-- Autorización por roles.
-- Acceso a base de datos.
-- Migraciones.
+- Status management.
+- UI components.
+- Backend services.
+- Validations.
+- Error control.
+- Authorization by roles.
+- Access to database.
+- Migrations.
 - Tests.
 - Naming conventions.
 ```
 
-Registrar ejemplos concretos de archivos si se identifican.
+Record specific examples of files if they are identified.
 
 ---
 
-### Paso 5: Relacionar la petición con módulos afectados
+### Step 5: Relate the request to affected modules
 
-A partir de la petición, detectar posibles áreas:
+From the request, detect possible areas:
 
 ```text
 - Frontend/UI
 - Backend/API
-- Base de datos
-- Autenticación/autorización
-- Cálculo o lógica de negocio
+- Database
+- Authentication/authorization
+- Calculation or business logic
 - Tests
-- Documentación
+- Documentation
 - CI/CD
 ```
 
-Para cada área, indicar:
+For each area, indicate:
 
 ```text
-- Archivos candidatos.
-- Nivel de confianza: alto, medio, bajo.
-- Razón de afectación.
+- Candidate files.
+- Confidence level: high, medium, low.
+- Reason for impact.
 ```
 
 ---
 
-### Paso 6: Detectar riesgos técnicos
+### Step 6: Detect technical risks
 
-Identificar riesgos como:
-
-```text
-- Cambio en permisos o roles.
-- Migraciones de base de datos.
-- Alteración de lógica crítica.
-- Ruptura de compatibilidad frontend/backend.
-- Falta de tests existentes.
-- Duplicidad de patrones.
-- Deuda técnica relevante.
-- Falta de documentación.
+Identify risks such as:```text
+- Change in permissions or roles.
+- Database migrations.
+- Alteration of critical logic.
+- Breaking frontend/backend compatibility.
+- Lack of existing tests.
+- Duplication of patterns.
+- Relevant technical debt.
+- Lack of documentation.
 ```
 
 ---
 
-### Paso 7: Recomendar siguiente skill
+### Step 7: Recommend next skill
 
-La recomendación debe seguir estas reglas:
+The recommendation must follow these rules:
 
 ```text
-Si la petición es vaga:
+If the request is vague:
   route_to: user-story-enrichment
 
-Si la petición ya está clara pero falta diseño técnico:
+If the request is already clear but the technical design is missing:
   route_to: technical-specification
 
-Si afecta a API o contratos frontend/backend:
+If it affects API or frontend/backend contracts:
   route_to: api-contract-specification
 
-Si afecta a base de datos:
-  route_to: migration-rollback-planning
+If it affects the database:
+  route_to:migration-rollback-planning
 
-Si afecta a roles, permisos o autenticación:
-  route_to: security-permissions-review
+If it affects roles, permissions, or authentication:
+  route_to:security-permissions-review
 
-Si falta acceso suficiente al repo:
+If sufficient access to the repo is missing:
   route_to: blocked
 ```
 
 ---
 
-## 7. Formato de salida requerido
+## 7. Required output format
 
-La salida principal debe usar esta estructura:
+The main output should use this structure:
 
-```markdown
+``markdown
 # Context Analysis: <feature-name>
 
-## 1. Resumen ejecutivo
+## 1. Executive summary
 
-## 2. Petición analizada
+## 2. Request analyzed
 
-## 3. Stack detectado
+## 3. Stack detected
 
-## 4. Arquitectura y estructura del repositorio
+## 4. Architecture and structure of the repository
 
-## 5. Patrones relevantes identificados
+## 5. Relevant patterns identified
 
-## 6. Módulos y archivos potencialmente afectados
+## 6. Potentially affected modules and files
 
-## 7. Tests existentes relacionados
+## 7. Related existing tests
 
-## 8. Dependencias y contratos relevantes
+## 8. Relevant dependencies and contracts
 
-## 9. Riesgos técnicos
+## 9. Technical risks
 
-## 10. Preguntas abiertas
+## 10. Open questions
 
-## 11. Recomendación para el Orquestador
+## 11. Recommendation for the Orchestrator
 ```
 
 ---
 
-## 8. Criterios de calidad
+## 8. Quality criteria
 
-Una salida de esta skill se considera válida si:
+An exit from this skill is considered valid if:
 
 ```text
-- No inventa detalles no observados.
-- Diferencia hechos, inferencias y riesgos.
-- Identifica claramente módulos afectados.
-- Explica el nivel de confianza de cada afectación.
-- Señala tests existentes o ausencia de ellos.
-- Recomienda una siguiente skill concreta.
-- Deja el contexto preparado para refinamiento o especificación técnica.
+-Does not invent unobserved details.
+- Differentiates facts, inferences and risks.
+- Clearly identifies affected modules.
+- Explain the confidence level of each affectation.
+- Indicates existing tests or absence of them.
+- Recommends a specific next skill.
+- Leave the context ready for refinement or technical specification.
 ```
 
 ---
 
-## 9. Estados posibles
+## 9. Possible states
 
-La skill puede devolver uno de estos estados:
+The skill can return one of these states:
 
 ```text
 CONTEXT_ANALYSIS_READY
@@ -427,37 +425,37 @@ BLOCKED_BY_MISSING_REPOSITORY_ACCESS
 
 ### CONTEXT_ANALYSIS_READY
 
-Hay suficiente contexto para seguir el flujo SDD.
+There is enough context to follow the SDD flow.
 
 ### CONTEXT_ANALYSIS_PARTIAL
 
-Se ha identificado parte del contexto, pero hay zonas con incertidumbre. Puede avanzar si el riesgo es bajo.
+Part of the context has been identified, but there are areas of uncertainty. You can move forward if the risk is low.
 
 ### NEEDS_MORE_CONTEXT
 
-Faltan datos relevantes que impiden crear una spec fiable.
+There is a lack of relevant data that prevents the creation of a reliable spec.
 
 ### BLOCKED_BY_MISSING_REPOSITORY_ACCESS
 
-No se puede analizar porque no hay acceso al repo o a los archivos necesarios.
+It cannot be analyzed because there is no access to the repo or the necessary files.
 
 ---
 
-## 10. Integración con el Orquestador
+## 10. Integration with the Orchestrator
 
-El orquestador debe leer la sección:
+The orchestrator must read the section:
 
 ```text
-## 11. Recomendación para el Orquestador
+## 11. Recommendation for the Orchestrator
 ```
 
-Y actualizar:
+And update:
 
 ```text
 /specs/<feature-name>/sdd-state.yaml
 ```
 
-Ejemplo:
+Example:
 
 ```yaml
 current_state: CONTEXT_ANALYSIS_READY
@@ -470,25 +468,25 @@ required_artifacts:
 
 ---
 
-## 11. Anti-patrones prohibidos
+## 11. Anti-forbidden patterns
 
-Esta skill no debe:
+This skill must not:
 
 ```text
-- Implementar cambios.
-- Crear migraciones.
-- Crear componentes UI.
-- Escribir tests.
-- Decidir reglas de negocio no indicadas.
-- Saltarse el análisis de contexto por asumir stack conocido.
-- Generar una spec técnica completa sin pasar por la skill correspondiente.
-- Marcar READY_FOR_IMPLEMENTATION.
+- Implement changes.
+- Create migrations.
+- Create UI components.
+- Write tests.
+- Decide business rules not indicated.
+- Skip context analysis by assuming known stack.
+- Generate a complete technical spec without going through the corresponding skill.
+- Check READY_FOR_IMPLEMENTATION.
 ```
 
 ---
 
-## 12. Principio rector
+## 12. Guiding principle
 
 ```text
-Primero entender el sistema real; después especificar; solo entonces implementar.
+First understand the real system; then specify; only then implement.
 ```

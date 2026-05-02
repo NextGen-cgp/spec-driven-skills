@@ -1,40 +1,39 @@
-# Routing SDD
+# SDD Routing
 
-## 1. Clasificación de la petición
+## 1. Request classification
 
-- Tipo principal:
-- Tipos secundarios:
-- Riesgo estimado: bajo | medio | alto
-- Módulos afectados probables:
+- Main type:
+- Secondary types:
+- Estimated risk: low | medium | high
+- Probable affected modules:
 
-## 2. Estado actual detectado
+## 2. Current status detected
 
-- Estado:
-- Artefactos existentes:
-- Artefactos faltantes:
-- Bloqueos:
+- Status:
+- Existing artifacts:
+- Missing artifacts:
+- Locks:
 
-## 3. Decisión de routing
+## 3. Routing decision
 
-- Siguiente skill:
-- Motivo:
-- Entrada que debe recibir:
-- Salida esperada:
+- Next skill:
+- Reason:
+- Entry you must receive:
+- Expected output:
 
-## 4. Gates aplicables
+## 4. Applicable Gates
 
-- Gate de implementación:
-- Gate de seguridad:
-- Gate de base de datos:
-- Gate de API:
-- Gate de test:
-- Gate de PR:
+- Implementation gate:
+- Security gate:
+- Database Gate:
+- API Gate:
+- Test gate:
+- PR Gate:
 
-## 5. Flujo recomendado
+## 5. Recommended flow
 
 1.
 2.
 3.
 
-## 6. Acción inmediata
-
+## 6. Immediate action

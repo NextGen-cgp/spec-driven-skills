@@ -2,7 +2,7 @@
 
 ## 1. Permission model summary
 
-Describe how role/permission checks apply to the operations defined in the API contract.
+Describes how role/permission checks apply to the operations defined in the API contract.
 
 ## 2. Operation permissions
 

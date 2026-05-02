@@ -96,13 +96,13 @@ gates:
     missing_artifacts: []
   final_review:
     status: "blocked"
-    reason: "Implementación y tests no finalizados"
+    reason: "Implementation and tests not completed"
     missing_artifacts:
       - "implementation-report.md"
       - "test-report.md"
   ready_for_pr:
     status: "blocked"
-    reason: "Review y resumen de PR no disponibles"
+    reason: "Review and PR summary not available"
     missing_artifacts:
       - "review-report.md"
       - "pr-summary.md"

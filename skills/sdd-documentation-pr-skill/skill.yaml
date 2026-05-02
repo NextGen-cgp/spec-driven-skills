@@ -3,7 +3,7 @@ version: 1.0.0
 category: spec-driven-development
 stage: documentation_pr
 owner: sdd-orchestrator
-description: Prepara la documentación final, resumen de PR, changelog, release notes, paquete de merge y cierre formal de un flujo SDD tras una review final aprobada.
+description: Prepare the final documentation, PR summary, changelog, release notes, merge package and formal closure of an SDD flow after an approved final review.
 
 inputs:
   required:

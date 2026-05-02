@@ -1,24 +1,24 @@
 # Context Analysis: admin-analyst-panel
 
-## 1. Resumen ejecutivo
+## 1. Executive summary
 
-Estado del análisis: `CONTEXT_ANALYSIS_PARTIAL`
+Analysis status: `CONTEXT_ANALYSIS_PARTIAL`
 
-Nivel de confianza global: `medio`
+Overall confidence level: 'medium'
 
-La petición introduce nuevas capacidades diferenciadas por rol para administradores y analistas. El cambio probablemente afecta a UI, rutas protegidas, lógica de permisos, componentes de búsqueda, formularios de alta/edición y endpoints de planes/parámetros. Requiere especial atención a que las restricciones no queden solo en frontend.
+The petition introduces new capabilities differentiated by role for administrators and analysts. The change likely affects UI, protected routes, permissions logic, search components, upload/edit forms, and plan/parameter endpoints. It requires special attention to ensure that the restrictions are not only in the frontend.
 
 ---
 
-## 2. Petición analizada
+## 2. Request analyzed
 
-Petición original:
+Original request:
 
 ```text
-Crear un nuevo panel para admins y analistas con permisos diferentes. Admin puede modificar, crear y buscar planes/parámetros. Analista puede buscar pero no editar ni crear.
+Create a new panel for admins and analysts with different permissions. Admin can modify, create and search plans/parameters. Analyst can search but not edit or create.
 ```
 
-Tipo de cambio estimado:
+Estimated exchange rate:
 
 ```text
 feature
@@ -26,113 +26,113 @@ feature
 
 ---
 
-## 3. Stack detectado
+## 3. Stack detected
 
-| Área | Evidencia observada | Conclusión | Confianza |
+| Area | Observed evidence | Conclusion | Trust |
 |---|---|---|---|
-| Frontend | No confirmado en este ejemplo | Aplicación web con patrón visual existente | media |
-| Backend | No confirmado en este ejemplo | Debe existir capa de datos/API para planes/parámetros | baja |
-| Auth/Roles | La petición menciona admin/analista | Requiere autorización por rol | alta |
+| Frontend | Not confirmed in this example | Web application with existing visual pattern | medium |
+| Backend | Not confirmed in this example | Data layer/API must exist for plans/parameters | low |
+| Auth/Roles | The petition mentions admin/analyst | Requires role authorization | high |
 
 ---
 
-## 4. Arquitectura y estructura del repositorio
+## 4. Architecture and structure of the repository
 
-No confirmado en este ejemplo. La skill real debe inspeccionar el repositorio antes de cerrar este apartado.
+Not confirmed in this example. The actual skill must inspect the repository before closing this section.
 
 ---
 
-## 5. Patrones relevantes identificados
+## 5. Relevant patterns identified
 
 ### 5.1. Frontend/UI
 
-Se debe buscar el patrón visual existente de dashboards, cards, formularios, tablas, filtros y navegación.
+You should look for the existing visual pattern of dashboards, cards, forms, tables, filters and navigation.
 
 ### 5.2. Backend/API
 
-Se deben identificar endpoints o servicios existentes para planes de calidad y parámetros.
+Existing endpoints or services must be identified for quality plans and parameters.
 
-### 5.3. Autenticación, roles y permisos
+### 5.3. Authentication, roles and permissions
 
-El cambio requiere validación en backend, no solo ocultación de botones en frontend.
+The change requires backend validation, not just frontend button hiding.
 
 ---
 
-## 6. Módulos y archivos potencialmente afectados
+## 6. Potentially affected modules and files
 
-| Área | Archivos candidatos | Motivo | Confianza |
+| Area | Candidate files | Reason | Trust |
 |---|---|---|---|
-| Frontend/UI | Rutas de administración y búsqueda | Nuevas secciones diferenciadas por rol | alta |
-| Backend/API | Servicios de planes y parámetros | Control de alta, edición y lectura | alta |
-| Auth/Permisos | Guards/middleware de roles | Separar permisos admin/analista | alta |
-| Tests | Tests funcionales y autorización | Validar restricciones por rol | alta |
+| Frontend/UI | Administration and search routes | New sections differentiated by role | high |
+| Backend/API | Plan and parameter services | Registration, editing and reading control | high |
+| Auth/Permissions | Guards/middleware roles | Separate admin/analyst permissions | high |
+| Tests | Functional tests and authorization | Validate restrictions by role | high |
 
 ---
 
-## 7. Tests existentes relacionados
+## 7. Related existing tests
 
-No se han detectado tests relacionados en este ejemplo. La skill real debe inspeccionar el repo.
+No related tests were detected in this example. The actual skill must inspect the repo.
 
 ---
 
-## 8. Dependencias y contratos relevantes
+## 8. Relevant dependencies and contracts
 
-Probablemente será necesario definir contrato para:
+It will probably be necessary to define a contract for:
 
 ```text
-- Búsqueda de planes.
-- Búsqueda de parámetros.
-- Alta de planes.
-- Edición de planes.
-- Alta de parámetros.
-- Edición de parámetros.
-- Respuestas 403 para analistas en operaciones de escritura.
+- Search for plans.
+- Parameter search.
+- Registration of plans.
+- Editing of plans.
+- Registration of parameters.
+- Parameter editing.
+- 403 answers for analysts in write operations.
 ```
 
 ---
 
-## 9. Riesgos técnicos
+## 9. Technical risks
 
-| Riesgo | Severidad | Motivo | Mitigación sugerida |
+| Risk | Severity | Reason | Suggested mitigation |
 |---|---|---|---|
-| Permisos aplicados solo en UI | alta | Un analista podría invocar endpoints directamente | Validar autorización en backend |
-| Duplicar componentes existentes | media | Puede romper coherencia visual | Reutilizar patrones UI actuales |
-| Falta de tests por rol | alta | Riesgo de regresiones de seguridad | Tests de autorización |
+| Permissions applied only in UI | high | An analyst could invoke endpoints directly | Validate authorization in backend |
+| Duplicate existing components | medium | Can break visual coherence | Reuse current UI patterns |
+| Lack of tests by role | high | Risk of security regressions | Authorization tests |
 
 ---
 
-## 10. Preguntas abiertas
+## 10. Open questions
 
 ```text
-- ¿Existen ya roles ADMIN y ANALYST en el sistema?
-- ¿Los planes y parámetros tienen endpoints separados?
-- ¿La búsqueda debe ser común o tener filtros distintos por rol?
+- Are there already ADMIN and ANALYST roles in the system?
+- Do plans and parameters have separate endpoints?
+- Should the search be common or have different filters by role?
 ```
 
 ---
 
-## 11. Recomendación para el Orquestador
+## 11. Recommendation for the Orchestrator
 
-Estado recomendado:
+Recommended status:
 
 ```text
 CONTEXT_ANALYSIS_PARTIAL
 ```
 
-Siguiente skill recomendada:
+Next recommended skill:
 
 ```text
 security-permissions-review
 ```
 
-Motivo:
+Reason:
 
 ```text
-El cambio afecta directamente a roles y permisos. Conviene revisar reglas de autorización antes de cerrar la spec técnica.
+The change directly affects roles and permissions. It is advisable to review authorization rules before closing the technical spec.
 ```
 
-Bloqueos:
+Locks:
 
 ```text
-- Falta inspección real del repositorio en este ejemplo.
+- Actual inspection of the repository is missing in this example.
 ```

@@ -1,6 +1,6 @@
 # Operator Runbook
 
-## Purpose
+##Purpose
 
 Operational notes for deploying, verifying or rolling back this change.
 
@@ -24,10 +24,10 @@ Operational notes for deploying, verifying or rolling back this change.
 2. 
 3. 
 
-## Alerts / Monitoring
+##Alerts/Monitoring
 
 - 
 
 ## Escalation
 
-- 
+-

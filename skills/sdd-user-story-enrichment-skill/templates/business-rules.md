@@ -1,39 +1,39 @@
-# Business Rules: <feature-id>
+#BusinessRules: <feature-id>
 
-## 1. Reglas de negocio
+## 1. Business rules
 
-### BR-001: <nombre>
+### BR-001: <name>
 
-**Regla:**  
-<Describe la regla de forma atómica y verificable.>
+**Rule:**  
+<Describe the rule in an atomic and verifiable way.>
 
-**Motivo:**  
-<Por qué existe esta regla.>
+**Reason:**  
+<Why does this rule exist.>
 
-**Aplica a:**  
-<roles, pantallas, entidades, estados o procesos.>
+**Applies to:**  
+<roles, screens, entities, states or processes.>
 
-**Verificación:**  
-<Cómo se puede comprobar.>
+**Verification:**  
+<How can you check.>
 
-**Riesgo si se incumple:** `<low | medium | high>`
+**Risk if breached:** `<low | medium | high>`
 
 ---
 
-## 2. Reglas de permisos, si aplica
+## 2. Permission rules, if applicable
 
-| ID | Rol | Puede | No puede | Validación backend requerida |
+| ID | Role | Can | Can't | Backend validation required |
 |---|---|---|---|---|
-| `BR-PERM-001` | `<rol>` | `<acciones>` | `<acciones>` | `<sí/no>` |
+| `BR-PERM-001` | `<role>` | `<actions>` | `<actions>` | `<yes/no>` |
 
-## 3. Reglas de estados, si aplica
+## 3. State rules, if applicable
 
-| ID | Estado inicial | Acción | Estado final | Efecto |
+| ID | Initial state | Action | Final status | Effect |
 |---|---|---|---|---|
-| `BR-STATE-001` | `<estado>` | `<acción>` | `<estado>` | `<efecto>` |
+| `BR-STATE-001` | `<state>` | `<action>` | `<state>` | `<effect>` |
 
-## 4. Reglas de cálculo, si aplica
+## 4. Calculation rules, if applicable
 
-| ID | Entrada | Regla | Salida esperada | Casos límite |
+| ID | Input | Rule | Expected output | Edge cases |
 |---|---|---|---|---|
-| `BR-CALC-001` | `<entrada>` | `<regla>` | `<salida>` | `<casos>` |
+| `BR-CALC-001` | `<entry>` | `<rule>` | `<output>` | `<cases>` |

@@ -1,19 +1,19 @@
 # Acceptance Validation Report
 
-## Matriz de validación de criterios de aceptación
+## Acceptance criteria validation matrix
 
-| ID | Criterio de aceptación | Prueba / evidencia | Estado | Observaciones |
+| ID | Acceptance criteria | Proof/evidence | State | Observations |
 |---|---|---|---|---|
 | AC-001 | | | PASSED/FAILED/BLOCKED/PARTIAL/NOT_APPLICABLE | |
 
-## Criterios fallidos
+## Failed criteria
 
-| ID | Motivo del fallo | Impacto | Skill recomendada |
+| ID | Reason for failure | Impact | Recommended skill |
 |---|---|---|---|
 | | | | |
 
-## Criterios no verificables
+## Non-verifiable criteria
 
-| ID | Motivo | Acción necesaria |
+| ID | Reason | Action needed |
 |---|---|---|
 | | | |

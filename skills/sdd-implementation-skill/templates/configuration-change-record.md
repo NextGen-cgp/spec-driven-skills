@@ -1,12 +1,12 @@
 # Configuration Change Record
 
-## Feature
+##Feature
 
 - Feature ID: `<feature-id>`
 
 ## Configuration Changes
 
-| Config item | File / Location | Previous | New | Reason | Rollback |
+| Config item | File/Location | Previous | New | Reason | Rollback |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 

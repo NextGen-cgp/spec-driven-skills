@@ -16,9 +16,9 @@ feat(admin): add role-based admin and analyst panels
 
 ### Context
 
-This change introduces separated capabilities for admin and analyst roles. Admin users can create and edit quality plans and parameters, while analyst users can search and view the same information without write access.
+This change introduces separated capabilities for admin and analyst roles. Admin users can create and edit analyst quality plans and parameters, while users can search and view the same information without write access.
 
-### What Changed
+###What Changed
 
 - Added admin panel flows for quality plan and parameter management.
 - Added analyst search/view flows without create/edit actions.
@@ -57,7 +57,7 @@ user-facing-notes.md
 READY_FOR_PR
 ```
 
-## Required Next Route
+##RequiredNextRoute
 
 ```text
 none

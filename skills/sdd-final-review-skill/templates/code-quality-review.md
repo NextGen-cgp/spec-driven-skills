@@ -1,13 +1,13 @@
 # Code Quality Review
 
-## Summary
+##Summary
 
 ## Architecture Consistency
 
 - Follows existing patterns:
 - Respects module boundaries:
 - Avoids unnecessary coupling:
-- Avoids duplication:
+- Avoid duplication:
 
 ## Frontend Review, if applicable
 
@@ -29,7 +29,7 @@
 
 - Model/entity consistency:
 - Migration consistency:
-- Query safety:
+- Query security:
 - Data integrity:
 
 ## Maintainability Notes

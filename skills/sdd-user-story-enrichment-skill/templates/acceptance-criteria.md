@@ -1,40 +1,40 @@
 # Acceptance Criteria: <feature-id>
 
-## 1. Criterios funcionales
+## 1. Functional criteria
 
-### AC-001: <título>
+### AC-001: <title>
 
-**Dado que** `<contexto o precondición>`,  
-**cuando** `<acción o evento>`,  
-**entonces** `<resultado observable y verificable>`.
+**Given** `<context or precondition>`,  
+**when** `<action or event>`,  
+**then** `<observable and verifiable result>`.
 
-- Tipo de verificación: `<unit_test | integration_test | e2e_test | manual_review | ui_check | api_test>`
-- Reglas relacionadas: `<BR-001, BR-002>`
-- Prioridad: `<must | should | could>`
+- Verification type: `<unit_test | integration_test | e2e_test | manual_review | ui_check | api_test>`
+- Related rules: `<BR-001, BR-002>`
+- Priority: `<must | should | could>`
 
-## 2. Criterios de permisos, si aplica
+## 2. Permission criteria, if applicable
 
-### AC-PERM-001: <título>
+### AC-PERM-001: <title>
 
-**Dado que** `<usuario con rol>`,  
-**cuando** `<intenta realizar acción>`,  
-**entonces** `<permitir/bloquear/ocultar/mostrar>`.
+**Given** `<user with role>`,  
+**when** `<attempts action>`,  
+**then** `<allow/block/hide/show>`.
 
-- Validación requerida en backend: `<sí/no>`
-- Validación requerida en frontend: `<sí/no>`
+- Validation required in backend: `<yes/no>`
+- Validation required in frontend: `<yes/no>`
 
-## 3. Criterios de estados, si aplica
+## 3. State criteria, if applicable
 
-### AC-STATE-001: <título>
+### AC-STATE-001: <title>
 
-**Dado que** `<entidad en estado inicial>`,  
-**cuando** `<acción>`,  
-**entonces** `<nuevo estado y efectos funcionales>`.
+**Given** `<entity in initial state>`,  
+**when** `<action>`,  
+**then** `<new state and functional effects>`.
 
-## 4. Criterios de regresión
+## 4. Regression criteria
 
-- `AC-REG-001`: <comportamiento existente que debe conservarse>
+- `AC-REG-001`: <existing behavior to retain>
 
-## 5. Criterios fuera de alcance
+## 5. Criteria out of scope
 
-- `<fuera de alcance>`
+- `<out of reach>`

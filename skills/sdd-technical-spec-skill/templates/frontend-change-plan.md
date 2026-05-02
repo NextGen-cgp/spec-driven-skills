@@ -8,7 +8,7 @@
 
 ## 2. UI behavior
 
-| Interaction | Current behavior | New behavior | State/feedback |
+| Interaction | Current behavior | New behavior | Status/feedback |
 |---|---|---|---|
 | `<interaction>` | `<current>` | `<new>` | `<state>` |
 

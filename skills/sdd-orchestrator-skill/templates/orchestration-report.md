@@ -1,16 +1,16 @@
 # Orchestration Report
 
-## Feature / Change ID
+##Feature/Change ID
 
 `<feature-id>`
 
-## Original request
+##Original request
 
 ```text
 <original-user-request>
 ```
 
-## Classification
+##Classification
 
 - Primary type:
 - Secondary types:
@@ -56,13 +56,12 @@
 | Final review |  |  |
 | Ready for PR |  |  |
 
-## Blockers
+##Blockers
 
-- None.
+-None.
 
-## Assumptions
+##Assumptions
 
-- None.
+-None.
 
 ## Recommended next action
-

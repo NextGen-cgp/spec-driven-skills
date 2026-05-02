@@ -1,67 +1,67 @@
 # User Story Enrichment: <feature-id>
 
-## 1. Resumen funcional
+## 1. Functional summary
 
-<Resumen breve de la necesidad funcional y del valor que aporta.>
+<Brief summary of the functional need and the value it provides.>
 
-## 2. Petición original interpretada
+## 2. Original request interpreted
 
 ```text
-<Petición original del usuario o resumen fiel.>
+<Original user request or faithful summary.>
 ```
 
-## 3. Clasificación
+## 3. Classification
 
-- Tipo de cambio: `<feature | bugfix | permissions | ui_change | workflow_change | business_rule | critical_calculation>`
-- Riesgo funcional: `<low | medium | high>`
-- Módulos afectados: `<lista>`
+- Exchange rate: `<feature | bugfix | permissions | ui_change | workflow_change | business_rule | critical_calculation>`
+- Functional risk: `<low | medium | high>`
+- Affected modules: `<list>`
 
-## 4. Actores
+## 4. Actors
 
-| Actor | Rol | Necesidad | Permisos esperados |
+| Actor | Role | Need | Expected permissions |
 |---|---|---|---|
-| `<actor>` | `<rol>` | `<necesidad>` | `<lectura/escritura/acciones>` |
+| `<actor>` | `<role>` | `<need>` | `<read/write/actions>` |
 
-## 5. Historias de usuario refinadas
+## 5. Refined User Stories
 
-### US-001: <título>
+### US-001: <title>
 
-Como `<actor>`, quiero `<capacidad>`, para `<beneficio>`.
+As `<actor>`, I want `<ability>`, for `<benefit>`.
 
-- Prioridad: `<must | should | could | wont>`
-- Valor funcional: `<valor>`
-- Dependencias: `<dependencias>`
+- Priority: `<must | should | could | wont>`
+- Functional value: `<value>`
+- Dependencies: `<dependencies>`
 
-## 6. Casos de uso relacionados
+## 6. Related use cases
 
-- `UC-001`: <nombre>
-- `UC-002`: <nombre>
+- `UC-001`: <name>
+- `UC-002`: <name>
 
-## 7. Reglas de negocio relacionadas
+## 7. Related business rules
 
-- `BR-001`: <regla>
-- `BR-002`: <regla>
+- `BR-001`: <rule>
+- `BR-002`: <rule>
 
-## 8. Criterios de aceptación relacionados
+## 8. Related acceptance criteria
 
-- `AC-001`: <criterio>
-- `AC-002`: <criterio>
+- `AC-001`: <criterion>
+- `AC-002`: <criterion>
 
-## 9. Supuestos
+## 9. Assumptions
 
-- `<supuesto>`
+- `<supposed>`
 
-## 10. Preguntas abiertas
+## 10. Open questions
 
-### Bloqueantes
+### Blockers
 
-- `<pregunta bloqueante>`
+- `<blocking question>`
 
-### No bloqueantes
+### Non-blocking
 
-- `<pregunta no bloqueante>`
+- `<non-blocking question>`
 
-## 11. Estado de salida
+## 11. Exit status
 
-- Estado: `<READY_FOR_FUNCTIONAL_SPEC | NEEDS_CLARIFICATION | BLOCKED>`
-- Siguiente skill recomendada: `<sdd-functional-spec | sdd-orchestrator>`
+- Status: `<READY_FOR_FUNCTIONAL_SPEC | NEEDS_CLARIFICATION | BLOCKED>`
+- Next recommended skill: `<sdd-functional-spec | sdd-orchestrator>`

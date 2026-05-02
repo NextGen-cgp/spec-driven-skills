@@ -6,13 +6,13 @@
 IMPLEMENTATION_BLOCKED
 ```
 
-## Next Skill
+##Next Skill
 
 ```text
 sdd-spec-validation
 ```
 
-## Summary
+##Summary
 
 Implementation cannot start because there is no approved `READY_FOR_IMPLEMENTATION` decision. The technical spec exists, but the validation gate has not been executed or the gate artifact is missing.
 
@@ -22,6 +22,6 @@ Implementation cannot start because there is no approved `READY_FOR_IMPLEMENTATI
 Missing implementation-gate-decision.md
 ```
 
-## Required Action
+##RequiredAction
 
 Run `sdd-spec-validation` and produce a formal gate decision before implementation.

@@ -1,10 +1,10 @@
 # Manual Verification Notes
 
-## Feature
+##Feature
 
 - Feature ID: `<feature-id>`
 
-## Preconditions
+##Preconditions
 
 - 
 
@@ -18,7 +18,7 @@
 
 - 
 
-## Edge Cases to Verify
+##Edge Cases to Verify
 
 - 
 

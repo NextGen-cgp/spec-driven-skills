@@ -1,6 +1,6 @@
 # Final Review Checklist
 
-## Entry Gate
+##Entry Gate
 
 - [ ] `implementation-report.md` exists.
 - [ ] `test-report.md` exists.
@@ -31,15 +31,15 @@
 - [ ] State transitions are protected.
 - [ ] Error responses are safe.
 
-## Quality
+##Quality
 
 - [ ] Code follows project patterns.
 - [ ] No major duplication.
 - [ ] Maintainability is acceptable.
 - [ ] Operational risks are documented.
 
-## Exit
+##Exit
 
-- [ ] Final decision emitted.
-- [ ] Next route emitted.
+- [ ] Final decision issued.
+- [ ] Next route issued.
 - [ ] Required actions documented.

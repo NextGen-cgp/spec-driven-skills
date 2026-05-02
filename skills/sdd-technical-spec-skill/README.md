@@ -1,10 +1,10 @@
 # SDD Technical Spec Skill
 
-Skill de **Especificación Técnica** para un flujo de **Spec Driven Development**.
+**Technical Specification** skill for a **Spec Driven Development** flow.
 
-Esta skill transforma una especificación funcional ya refinada en un diseño técnico implementable, sin ejecutar cambios de código todavía. Su salida debe permitir que la skill de implementación trabaje con límites claros, artefactos trazables y decisiones suficientemente documentadas.
+This skill transforms an already refined functional specification into an implementable technical design, without executing code changes yet. Its output must allow the implementation skill to work with clear boundaries, traceable artifacts, and sufficiently documented decisions.
 
-## Posición en el flujo
+## Position in the flow
 
 ```text
 sdd-orchestrator
@@ -12,16 +12,16 @@ sdd-orchestrator
   → sdd-user-story-enrichment
   → sdd-functional-spec
   → sdd-technical-spec
-  → sdd-api-contract        # si aplica
-  → sdd-migration-rollback  # si aplica
-  → sdd-security-review     # si aplica
+  → sdd-api-contract # if applicable
+  → sdd-migration-rollback # if applicable
+  → sdd-security-review # if applicable
   → sdd-spec-validation
   → sdd-implementation
 ```
 
-## Qué produce
+## What it produces
 
-Artefactos principales:
+Main artifacts:
 
 ```text
 /specs/<feature-id>/technical-spec.md
@@ -29,7 +29,7 @@ Artefactos principales:
 /specs/<feature-id>/technical-spec-report.md
 ```
 
-Artefactos condicionales:
+Conditional artifacts:
 
 ```text
 /specs/<feature-id>/architecture-impact.md
@@ -41,21 +41,21 @@ Artefactos condicionales:
 /specs/<feature-id>/technical-risk-register.md
 ```
 
-## Cuándo usarla
+## When to use it
 
-Úsala cuando ya exista una historia enriquecida y una especificación funcional suficientemente clara, especialmente si el cambio afecta a:
+Use it when a rich story and a sufficiently clear functional specification already exist, especially if the change affects:
 
 - Backend.
 - Frontend.
-- Modelos o entidades.
+- Models or entities.
 - API.
-- Estados de negocio.
-- Roles y permisos.
-- Base de datos.
-- Validaciones.
-- Integraciones.
-- Arquitectura o patrones existentes.
+- Business states.
+- Roles and permissions.
+- Database.
+- Validations.
+- Integrations.
+- Existing architecture or patterns.
 
-## Regla clave
+## Key rule
 
-Esta skill diseña técnicamente, pero **no implementa**. No debe modificar código, ejecutar comandos, crear migraciones finales ni corregir tests. Su función es preparar una entrega clara para las skills posteriores.
+This skill technically designs, but **does not implement**. You should not modify code, execute commands, create final migrations or correct tests. Its role is to prepare a clear delivery for subsequent skills.

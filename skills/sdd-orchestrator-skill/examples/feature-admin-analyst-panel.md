@@ -1,32 +1,32 @@
-# Ejemplo de routing: panel para admins y analistas
+# Routing example: panel for admins and analysts
 
-## Petición original
+## Original request
 
-> Se requiere un nuevo panel para admins y analistas con permisos diferentes en función del rol. El rol de admin tendrá un panel de modificación de datos, donde podrá dar de alta nuevos planes de calidad y parámetros, modificar los planes y parámetros existentes, y con función de búsqueda. Los analistas podrán buscar planes de calidad y parámetros, pero sin capacidad de editarlos ni crear nuevos.
+> A new panel is required for admins and analysts with different permissions depending on the role. The admin role will have a data modification panel, where you can register new quality plans and parameters, modify existing plans and parameters, and with a search function. Analysts will be able to search for quality plans and parameters, but without the ability to edit them or create new ones.
 
-# Routing SDD
+# SDD Routing
 
-## 1. Clasificación de la petición
+## 1. Request classification
 
-- Tipo principal: feature
-- Tipos secundarios: permissions, security, ui_change, api_change
-- Riesgo estimado: alto
-- Módulos afectados probables:
+- Main type: feature
+- Secondary types: permissions, security, ui_change, api_change
+- Estimated risk: high
+- Probable affected modules:
   - Frontend
-  - Rutas protegidas
+  - Protected routes
   - Backend
-  - Autorización por rol
-  - Planes de calidad
-  - Parámetros
-  - Componentes de búsqueda
-  - Formularios de alta/edición
+  - Authorization by role
+  - Quality plans
+  - Parameters
+  - Search components
+  - Registration/editing forms
 
-## 2. Estado actual detectado
+## 2. Current status detected
 
-- Estado: INTAKE
-- Artefactos existentes:
+- Status: INTAKE
+- Existing artifacts:
   - request.md
-- Artefactos faltantes:
+- Missing artifacts:
   - context-analysis.md
   - user-story.md
   - acceptance-criteria.md
@@ -35,46 +35,46 @@
   - api-contract.md
   - security-review.md
   - spec-validation-report.md
-- Bloqueos:
-  - No está definido todavía el contrato exacto de permisos por endpoint.
-  - No está confirmado si la autorización actual se aplica solo en frontend o también en backend.
+- Locks:
+  - The exact permissions contract per endpoint is not yet defined.
+  - It is not confirmed whether the current authorization applies only to the frontend or also to the backend.
 
-## 3. Decisión de routing
+## 3. Routing decision
 
-- Siguiente skill: context-analysis
-- Motivo: el cambio afecta a UI, backend, permisos y posibles endpoints. Antes de enriquecer la historia hay que entender arquitectura, patrones visuales y sistema actual de roles.
-- Entrada que debe recibir:
-  - Petición original.
-  - Estructura del repo.
-  - Archivos de autenticación/autorización.
-  - Componentes actuales de planes y parámetros.
-- Salida esperada:
+- Next skill: context-analysis
+- Reason: the change affects UI, backend, permissions and possible endpoints. Before enriching the story, you must understand architecture, visual patterns and the current role system.
+- Entry you must receive:
+  - Original request.
+  - Repo structure.
+  - Authentication/authorization files.
+  - Current components of plans and parameters.
+- Expected output:
   - context-analysis.md
 
-## 4. Gates aplicables
+## 4. Applicable Gates
 
-- Gate de implementación: bloqueado hasta spec validada.
-- Gate de seguridad: obligatorio.
-- Gate de base de datos: pendiente de confirmar.
-- Gate de API: probable.
-- Gate de test: obligatorio.
-- Gate de PR: obligatorio.
+- Implementation gate: blocked until spec validated.
+- Security gate: mandatory.
+- Database gate: pending confirmation.
+- API Gate: probable.
+- Test gate: mandatory.
+- PR Gate: mandatory.
 
-## 5. Flujo recomendado
+## 5. Recommended flow
 
 1. context-analysis
 2. user-story-enrichment
 3. functional-spec
-4. technical-spec
+4.technical-spec
 5. api-contract
-6. security-permissions-review
+6.security-permissions-review
 7. spec-validation
-8. implementation
+8.implementation
 9. test
 10. security-permissions-review
 11. final-review
 12. documentation-pr
 
-## 6. Acción inmediata
+## 6. Immediate action
 
-Ejecutar `context-analysis`.
+Run `context-analysis`.

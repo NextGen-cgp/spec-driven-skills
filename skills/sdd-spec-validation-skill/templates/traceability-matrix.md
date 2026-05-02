@@ -1,6 +1,6 @@
-# Traceability Matrix
+#TraceabilityMatrix
 
-## Purpose
+##Purpose
 
 Map every relevant requirement to acceptance criteria, functional coverage, technical coverage and test coverage before implementation.
 
@@ -11,13 +11,13 @@ Map every relevant requirement to acceptance criteria, functional coverage, tech
 ## Status Values
 
 ```text
-Covered    → requirement is fully traceable.
-Partial    → requirement is partially covered and may need remediation.
-Missing    → requirement has no clear coverage.
-Blocked    → contradiction or critical missing decision prevents validation.
+Covered → requirement is fully traceable.
+Partial → requirement is partially covered and may need remediation.
+Missing → requirement has no clear coverage.
+Blocked → contradiction or critical missing decision prevents validation.
 ```
 
-## Missing Traceability Items
+##Missing Traceability Items
 
 | ID | Requirement | Missing Link | Route To | Priority |
 |---|---|---|---|---|

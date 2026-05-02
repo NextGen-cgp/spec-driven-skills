@@ -1,27 +1,27 @@
 # Project Map: <feature-name>
 
-## 1. Resumen de estructura
+## 1. Structure summary
 
 ```text
-<Resumen de la organización del repositorio.>
+<Summary of the repository organization.>
 ```
 
-## 2. Directorios principales
+## 2. Main directories
 
-| Ruta | Propósito observado | Confianza |
+| Route | Observed Purpose | Trust |
 |---|---|---|
-| `<ruta>` | `<propósito>` | `<alta/media/baja>` |
+| `<path>` | `<purpose>` | `<high/medium/low>` |
 
-## 3. Archivos raíz relevantes
+## 3. Relevant root files
 
-| Archivo | Información que aporta |
+| Archive | Information it provides |
 |---|---|
-| `package.json` | `<dependencias/scripts>` |
-| `README.md` | `<documentación>` |
+| `package.json` | `<dependencies/scripts>` |
+| `README.md` | `<documentation>` |
 | `.env.example` | `<variables>` |
 
-## 4. Observaciones
+## 4. Observations
 
 ```text
-<Notas sobre organización, convenciones, separación de capas y posibles anomalías.>
+<Notes on organization, conventions, separation of layers and possible anomalies.>
 ```

@@ -1,33 +1,33 @@
 # SDD Migration & Rollback Skill
 
-Skill de producción para diseñar planes de migración, rollback, backfill y verificación de datos dentro de un flujo **Spec Driven Development (SDD)**.
+Production skill to design migration, rollback, backfill and data verification plans within a **Spec Driven Development (SDD)** flow.
 
-## Posición en el flujo
+## Position in the flow
 
 ```text
 sdd-technical-spec
-  → sdd-api-contract, si aplica
+  → sdd-api-contract, if applicable
   → sdd-migration-rollback
-  → sdd-security-permissions-review, si aplica
+  → sdd-security-permissions-review, if applicable
   → sdd-spec-validation
   → sdd-implementation
 ```
 
-## Cuándo usarla
+## When to use it
 
-Úsala cuando una feature, bugfix o refactor afecte a:
+Use it when a feature, bugfix or refactor affects:
 
-- Base de datos.
-- Modelos persistidos.
-- Entidades ORM.
-- Estados guardados.
-- Índices o constraints.
-- Seeds o catálogos.
+- Database.
+- Persistent models.
+- ORM entities.
+- Saved states.
+- Indices or constraints.
+- Seeds or catalogs.
 - Backfills.
-- Datos históricos.
-- Compatibilidad entre versiones.
+- Historical data.
+- Compatibility between versions.
 
-## Entradas principales
+## Main entries
 
 ```text
 request.md
@@ -36,7 +36,7 @@ functional-spec.md
 technical-spec.md
 ```
 
-Entradas recomendadas:
+Recommended entries:
 
 ```text
 data-model-impact.md
@@ -46,10 +46,10 @@ state-model.md
 validation-rules.md
 backend-change-plan.md
 compatibility-notes.md
-operation-permissions-contract.md
+operations-permissions-contract.md
 ```
 
-## Salidas principales
+## Main outputs
 
 ```text
 migration-plan.md
@@ -58,7 +58,7 @@ data-impact-assessment.md
 migration-report.md
 ```
 
-Salidas condicionales:
+Conditional outputs:
 
 ```text
 data-backfill-plan.md
@@ -68,36 +68,36 @@ seed-data-plan.md
 zero-downtime-plan.md
 ```
 
-## Principios
+## Principles
 
-- No ejecuta migraciones.
-- No escribe código final.
-- No permite cambios destructivos sin advertencia explícita.
-- Prioriza migraciones reversibles y compatibles.
-- Exige rollback realista.
-- Exige verificación pre/post.
-- Mantiene trazabilidad con la spec funcional y técnica.
+- Does not execute migrations.
+- Does not write final code.
+- Does not allow destructive changes without explicit warning.
+- Prioritize reversible and compatible migrations.
+- Demands realistic rollback.
+- Requires pre/post verification.
+- Maintains traceability with the functional and technical spec.
 
-## Uso esperado por el orquestador
+## Expected usage by orchestrator
 
-El orquestador debe invocar esta skill si detecta alguna de estas señales:
+The orchestrator should invoke this skill if it detects any of these signals:
 
 ```text
-- data-model-impact.md indica cambios persistentes.
-- data-contract.md introduce nuevos campos o estados.
-- technical-spec.md modifica entidades, tablas o modelos.
-- api-contract.md requiere guardar nuevos datos.
-- state-model.md añade o cambia estados persistidos.
+- data-model-impact.md indicates persistent changes.
+- data-contract.md introduces new fields or states.
+- technical-spec.md modifies entities, tables or models.
+- api-contract.md requires saving new data.
+- state-model.md adds or changes persisted states.
 ```
 
-Si la skill concluye que no hay impacto persistente, debe devolver:
+If the skill concludes that there is no persistent impact, it should return:
 
 ```text
 status: NOT_APPLICABLE
 next_skill: sdd-spec-validation
 ```
 
-## Estructura del paquete
+## Package structure
 
 ```text
 sdd-migration-rollback-skill/
@@ -105,19 +105,19 @@ sdd-migration-rollback-skill/
 ├── README.md
 ├── skill.yaml
 ├── routing/
-│   └── migration-rollback-routing.yaml
+│ └── migration-rollback-routing.yaml
 ├── schemas/
-│   └── migration-rollback.schema.json
+│ └── migration-rollback.schema.json
 ├── templates/
-│   ├── migration-plan.md
-│   ├── rollback-plan.md
-│   ├── data-impact-assessment.md
-│   ├── data-backfill-plan.md
-│   ├── compatibility-plan.md
-│   ├── migration-verification-checklist.md
-│   ├── seed-data-plan.md
-│   ├── zero-downtime-plan.md
-│   └── migration-report.md
+│ ├── migration-plan.md
+│ ├── rollback-plan.md
+│ ├── data-impact-assessment.md
+│ ├── data-backfill-plan.md
+│ ├── compatibility-plan.md
+│ ├── migration-verification-checklist.md
+│ ├── seed-data-plan.md
+│ ├── zero-downtime-plan.md
+│ └── migration-report.md
 └── examples/
     ├── feature-cancelled-parameter-migration-rollback.md
     ├── feature-admin-analyst-panel-migration-rollback.md

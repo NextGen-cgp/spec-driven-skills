@@ -9,14 +9,14 @@
 
 ## 2. Contract summary
 
-The admin and analyst panels require role-aware contracts for searching, reading, creating and updating quality plans and parameters. Analysts can consume read/search operations only. Admins can consume read/search and write operations. Backend authorization is mandatory for all write operations; frontend visibility is only a UX aid.
+The admin and analyst panels require role-aware contracts for searching, reading, creating and updating quality plans and parameters. Analysts can consume read/search operations only. Admins can consume read/search and write operations. Backend authorization is mandatory for all write operations; Frontend visibility is only a UX aid.
 
 ## 3. Consumers and producers
 
 | Consumer | Producer | Purpose | Notes |
 |---|---|---|---|
 | Admin panel UI | Backend API | Search, create and update quality plans/parameters | Write operations admin-only |
-| Analyst panel UI | Backend API | Search and read quality plans/parameters | Read-only |
+| Analyst Dashboard UI | Backend API | Search and read quality plans/parameters | Read-only |
 
 ## 4. Operations overview
 
@@ -46,9 +46,9 @@ The admin and analyst panels require role-aware contracts for searching, reading
 
 | Field | Type | Required? | Nullable? | Validation | Description |
 |---|---|---:|---:|---|---|
-| name | string | yes | no | non-empty, project max length | Quality plan name |
-| description | string | no | yes | project max length | Optional description |
-| parameters | array | yes | no | at least one item if required by business rules | Parameter definitions |
+| name | string | yes | not | non-empty, project max length | Quality plan name |
+| description | string | not | yes | project max length | Optional description |
+| parameters | array | yes | not | at least one item if required by business rules | Parameter definitions |
 
 #### Response contract: success
 
@@ -60,9 +60,9 @@ Status/code:
 
 | Field | Type | Required? | Nullable? | Description |
 |---|---|---:|---:|---|
-| id | string | yes | no | Quality plan identifier |
-| name | string | yes | no | Quality plan name |
-| createdAt | string | yes | no | ISO date |
+| id | string | yes | not | Quality plan identifier |
+| name | string | yes | not | Quality plan name |
+| createdAt | string | yes | not | ISO date |
 
 #### Response contract: errors
 

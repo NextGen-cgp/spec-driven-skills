@@ -1,22 +1,22 @@
 # SDD Documentation & PR Skill
 
-Skill final para un flujo **Spec Driven Development**.
+Final skill for a **Spec Driven Development** flow.
 
-## Propósito
+## Purpose
 
-Convierte una implementación aprobada en un paquete de entrega listo para revisión humana, Pull Request, merge o release.
+Converts an approved implementation into a delivery package ready for human review, Pull Request, merge, or release.
 
-Genera:
+Generates:
 
-- Resumen de PR.
+- PR summary.
 - Changelog.
 - Release notes.
-- Plan de actualización documental.
-- Paquete de merge.
-- Cierre formal SDD.
-- Índice final de artefactos.
+- Document update plan.
+- Merge package.
+- Formal SDD closure.
+- Final index of artifacts.
 
-## Ubicación en el flujo
+## Location in the flow
 
 ```text
 sdd-final-review
@@ -24,7 +24,7 @@ sdd-final-review
   → READY_FOR_PR
 ```
 
-## Decisiones posibles
+## Possible decisions
 
 ```text
 DOCUMENTATION_READY_FOR_PR
@@ -33,7 +33,7 @@ DOCUMENTATION_CHANGES_REQUESTED
 DOCUMENTATION_BLOCKED
 ```
 
-## Archivos principales
+## Main files
 
 ```text
 SKILL.md
@@ -45,6 +45,6 @@ templates/*.md
 examples/*.md
 ```
 
-## Regla clave
+## Key rule
 
-Esta skill no debe corregir código ni reabrir decisiones técnicas. Si falta evidencia, debe bloquear y enrutar al punto adecuado del flujo.
+This skill should not correct code or reopen technical decisions. If evidence is missing, you should block and route to the appropriate point in the flow.

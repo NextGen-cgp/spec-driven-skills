@@ -1,72 +1,72 @@
 # Example: Admin / Analyst Panel — Migration & Rollback
 
-## Context
+##Context
 
-Feature: nuevo panel con permisos diferenciados. Admin puede crear y modificar planes/parámetros. Analista puede buscar y consultar sin editar.
+Feature: new panel with differentiated permissions. Admin can create and modify plans/parameters. Analyst can search and query without editing.
 
 ## Persistence Impact
 
-El impacto persistente depende de la arquitectura existente:
+The persistent impact depends on the existing architecture:
 
 ```yaml
 possible_impacts:
-  - Nuevas tablas o relaciones de roles/permisos si no existen.
-  - Nuevos campos de auditoría si la edición de planes/parámetros requiere trazabilidad.
-  - Nuevos índices para búsqueda de planes y parámetros.
-  - Sin migración si roles, permisos y búsqueda ya existen.
+  - New tables or roles/permissions relationships if they do not exist.
+  - New audit fields if editing plans/parameters requires traceability.
+  - New indexes for searching plans and parameters.
+  - No migration if roles, permissions and search already exist.
 ```
 
 ## Data Impact Assessment
 
 | Area | Impact | Risk |
 |---|---|---|
-| Roles | Puede requerir seed o mapping | Medium |
-| Permissions | Puede requerir reglas persistidas | Medium |
-| Search | Puede requerir índices | Low/Medium |
-| Existing users | Puede requerir asignación de rol | Medium |
+| Roles | May require seed or mapping | Medium |
+| Permissions | May require persisted rules | Medium |
+| Search | May require indexes | Low/Medium |
+| Existing users | May require role assignment | Medium |
 
 ## Migration Plan — Conditional
 
 ### Case A: Roles already exist
 
 ```text
-1. No crear nuevas tablas.
-2. Confirmar valores existentes: admin, analyst.
-3. Añadir índices de búsqueda si la spec técnica los requiere.
-4. Validar que backend aplica permisos por rol.
+1. Do not create new tables.
+2. Confirm existing values: admin, analyst.
+3. Add search indexes if the technical spec requires them.
+4. Validate which backend applies permissions per role.
 ```
 
 ### Case B: Roles do not exist
 
 ```text
-1. Crear o extender tabla/campo de roles.
-2. Seed controlado para roles iniciales.
-3. Definir mapping de usuarios existentes.
-4. Añadir constraints para evitar roles inválidos.
-5. Validar permisos desde backend.
+1. Create or extend roles table/field.
+2. Controlled seed for initial roles.
+3. Define mapping of existing users.
+4. Add constraints to avoid invalid roles.
+5. Validate permissions from backend.
 ```
 
 ## Rollback Plan
 
 ```text
 Code rollback:
-  Revertir UI y endpoints de gestión.
+  Roll back UI and management endpoints.
 
-Schema rollback:
-  Mantener estructura aditiva si no rompe compatibilidad.
+Rollback scheme:
+  Keep additive structure if it does not break compatibility.
 
 Data rollback:
-  Si se asignaron roles nuevos a usuarios existentes, documentar si se revierten o se conservan.
+  If new roles were assigned to existing users, document whether they are reverted or preserved.
 ```
 
 ## Verification Checklist
 
-- [ ] Admin puede crear plan.
-- [ ] Admin puede modificar parámetro.
-- [ ] Analista puede buscar.
-- [ ] Analista no puede crear ni editar.
-- [ ] Restricción está en backend, no solo en UI.
-- [ ] Índices de búsqueda no degradan consultas existentes.
+- [ ] Admin can create plan.
+- [ ] Admin can modify parameter.
+- [ ] Analyst can search.
+- [ ] Analyst cannot create or edit.
+- [ ] Restriction is in backend, not just in UI.
+- [ ] Search indexes do not demote existing queries.
 
 ## Routing Recommendation
 
@@ -76,5 +76,5 @@ status: MIGRATION_PLAN_READY
 risk_level: medium
 security_review_required: true
 next_skill: sdd-security-permissions-review
-reason: La feature afecta permisos, roles y potencialmente datos de usuarios/operaciones administrativas.
+reason: The feature affects permissions, roles, and potentially user data/administrative operations.
 ```

@@ -5,7 +5,7 @@
 - Feature/change:
 - Branch:
 - PR:
-- Owner:
+-Owner:
 
 ## Technical Summary
 
@@ -33,7 +33,7 @@
 
 - 
 
-## Rollback Notes
+##Rollback Notes
 
 - 
 
@@ -43,4 +43,4 @@
 
 ## Follow-up Items
 
-- 
+-

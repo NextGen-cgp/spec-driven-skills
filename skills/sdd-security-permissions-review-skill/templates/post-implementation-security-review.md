@@ -1,8 +1,8 @@
 # Post-Implementation Security Review: <feature-id>
 
-## 1. Implementación revisada
+## 1. Revised implementation
 
-| Área | Archivos/Componentes | Observaciones |
+| Area | Files/Components | Observations |
 |---|---|---|
 | Frontend |  |  |
 | Backend |  |  |
@@ -10,19 +10,19 @@
 | Database |  |  |
 | Tests |  |  |
 
-## 2. Comparación contra la spec
+## 2. Comparison against the spec
 
-| Control esperado | Implementado | Evidencia | Resultado |
+| Expected control | Implemented | Evidence | Result |
 |---|---:|---|---|
-|  | Sí/No |  | OK/FAIL |
+|  | Yes/No |  | OK/FAIL |
 
-## 3. Hallazgos post-implementación
+## 3. Post-implementation findings
 
-| ID | Severidad | Hallazgo | Acción requerida |
+| ID | Severity | Finding | Action required |
 |---|---|---|---|
 |  |  |  |  |
 
-## 4. Estado final
+## 4. Final state
 
 ```yaml
 status: <SECURITY_APPROVED | SECURITY_APPROVED_WITH_WARNINGS | SECURITY_CHANGES_REQUIRED | SECURITY_BLOCKED>

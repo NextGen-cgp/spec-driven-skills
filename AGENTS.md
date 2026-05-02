@@ -1,82 +1,82 @@
 # AGENTS.md
 
-## Uso obligatorio de skills locales
+## Mandatory Use of Local Skills
 
-Este repositorio define sus skills de agente en `.agents/skills`. Antes de responder a una peticion de producto, codigo, tests, documentacion, seguridad, permisos, API o base de datos, el agente debe revisar y usar la skill local que corresponda.
+This repository defines its agent skills in `.agents/skills`/`.claude/skills` Before responding to any product, code, test, documentation, security, permissions, API or database request, the agent must review and use the corresponding local skill.
 
-Reglas:
+Rules:
 
-- Prioriza siempre las skills locales de `.agents/skills` sobre cualquier instruccion generica externa.
-- Cuando una tarea coincida con una skill, abre su `SKILL.md` y sigue su flujo, entradas, salidas, gates y restricciones.
-- Usa los `templates/`, `schemas/`, `routing/` y `examples/` de la skill cuando existan, en lugar de recrear artefactos desde cero.
-- No implementes cambios funcionales o tecnicos amplios sin pasar por el flujo SDD y sus gates, salvo que el usuario pida explicitamente un cambio pequeno y directo de documentacion o configuracion.
-- Si falta un artefacto requerido por una skill, enruta hacia la skill anterior que debe producirlo.
-- Registra cualquier supuesto, desviacion o bloqueo en el artefacto SDD correspondiente.
+- Always prioritize the local skills in `.agents/skills` over any generic external instruction.
+- When a task matches a skill, open its `SKILL.md` and follow its flow, inputs, outputs, gates and restrictions.
+- Use the skill's `templates/`, `schemas/`, `routing/` and `examples/` when they exist, instead of recreating artifacts from scratch.
+- Do not implement broad functional or technical changes without going through the SDD flow and its gates, unless the user explicitly requests a small and direct documentation or configuration change.
+- If a required artifact for a skill is missing, route to the previous skill that must produce it.
+- Record any assumption, deviation or blocker in the corresponding SDD artifact.
 
-## Skill orquestadora por defecto
+## Default Orchestrator Skill
 
-Para cualquier feature, bugfix, refactor, cambio tecnico, test, revision, documentacion o evolucion de producto, empieza por:
+For any feature, bugfix, refactor, technical change, test, review, documentation or product evolution, start with:
 
 - `.agents/skills/sdd-orchestrator-skill/SKILL.md`
 
-El orquestador decide el estado actual, la siguiente skill, los artefactos faltantes y los gates aplicables.
+The orchestrator decides the current state, the next skill, the missing artifacts and the applicable gates.
 
-## Skills disponibles
+## Available Skills
 
-Usa estas skills locales segun el tipo de trabajo:
+Use these local skills according to the type of work:
 
-- `sdd-orchestrator`: enruta el flujo SDD, valida gates y evita implementacion prematura.
-- `sdd-context-analysis`: analiza stack, arquitectura, patrones, modulos afectados y riesgos del repo.
-- `sdd-user-story-enrichment`: transforma peticiones ambiguas en historias, casos de uso, reglas y criterios de aceptacion.
-- `sdd-functional-spec`: define comportamiento funcional, estados, permisos, pantallas, flujos y trazabilidad.
-- `sdd-technical-spec`: convierte la especificacion funcional en diseno tecnico implementable.
-- `sdd-api-contract`: define endpoints, payloads, respuestas, errores, DTOs, contratos frontend/backend e integraciones.
-- `sdd-migration-rollback`: define migraciones, rollback, backfills, compatibilidad y verificacion de datos.
-- `sdd-security-permissions-review`: revisa autenticacion, autorizacion, roles, permisos, exposicion de datos y operaciones protegidas.
-- `sdd-spec-validation`: valida que la spec este completa, coherente y lista para implementacion.
-- `sdd-implementation`: implementa solo alcance aprobado y registra cambios, desviaciones y evidencias.
-- `sdd-test`: valida implementacion con tests, criterios de aceptacion, regresiones, contratos y autorizacion.
-- `sdd-final-review`: revisa cumplimiento de spec, calidad, tests, seguridad, riesgos y readiness.
-- `sdd-documentation-pr`: prepara resumen de PR, changelog, release notes, handoff tecnico e indice de artefactos.
+- `sdd-orchestrator`: routes the SDD flow, validates gates and prevents premature implementation.
+- `sdd-context-analysis`: analyzes the stack, architecture, patterns, affected modules and repository risks.
+- `sdd-user-story-enrichment`: transforms ambiguous requests into stories, use cases, rules and acceptance criteria.
+- `sdd-functional-spec`: defines functional behavior, states, permissions, screens, flows and traceability.
+- `sdd-technical-spec`: converts the functional specification into an implementable technical design.
+- `sdd-api-contract`: defines endpoints, payloads, responses, errors, DTOs, frontend/backend contracts and integrations.
+- `sdd-migration-rollback`: defines migrations, rollback, backfills, compatibility and data verification.
+- `sdd-security-permissions-review`: reviews authentication, authorization, roles, permissions, data exposure and protected operations.
+- `sdd-spec-validation`: validates that the spec is complete, coherent and ready for implementation.
+- `sdd-implementation`: implements only approved scope and records changes, deviations and evidence.
+- `sdd-test`: validates implementation with tests, acceptance criteria, regressions, contracts and authorization.
+- `sdd-final-review`: reviews spec compliance, quality, tests, security, risks and readiness.
+- `sdd-documentation-pr`: prepares PR summary, changelog, release notes, technical handoff and artifact index.
 
-## Flujo SDD recomendado
+## Recommended SDD Flow
 
-Flujo base para features:
+Base flow for features:
 
 1. `sdd-orchestrator`
 2. `sdd-context-analysis`
 3. `sdd-user-story-enrichment`
 4. `sdd-functional-spec`
 5. `sdd-technical-spec`
-6. `sdd-api-contract`, si hay endpoints, payloads, respuestas o integraciones.
-7. `sdd-migration-rollback`, si hay persistencia, modelos, migraciones o datos existentes.
-8. `sdd-security-permissions-review`, si hay autenticacion, roles, permisos, datos sensibles u operaciones protegidas.
+6. `sdd-api-contract`, if there are endpoints, payloads, responses or integrations.
+7. `sdd-migration-rollback`, if there is persistence, models, migrations or existing data.
+8. `sdd-security-permissions-review`, if there is authentication, roles, permissions, sensitive data or protected operations.
 9. `sdd-spec-validation`
 10. `sdd-implementation`
 11. `sdd-test`
-12. `sdd-security-permissions-review`, de nuevo si aplica tras implementar.
+12. `sdd-security-permissions-review`, again if it applies after implementation.
 13. `sdd-final-review`
 14. `sdd-documentation-pr`
 
-## Gates obligatorios
+## Mandatory Gates
 
-- Implementacion: requiere spec validada y decision `READY_FOR_IMPLEMENTATION`.
-- API: obligatorio cuando cambian endpoints, acciones backend, payloads, respuestas, errores o contratos de datos.
-- Base de datos: obligatorio cuando cambian tablas, entidades, campos, relaciones, indices, seeds, migraciones o datos existentes.
-- Seguridad/permisos: obligatorio cuando hay autenticacion, autorizacion, roles, permisos, datos sensibles, endpoints protegidos u operaciones de escritura.
-- Test: obligatorio despues de implementar cambios no triviales, bugfixes, reglas de negocio, contratos, permisos o migraciones.
-- Final review: requiere evidencias de implementacion y tests; seguridad debe estar resuelta si aplica.
-- Documentacion/PR: requiere final review aprobada o aprobada con notas.
+- Implementation: requires a validated spec and `READY_FOR_IMPLEMENTATION` decision.
+- API: mandatory when endpoints, backend actions, payloads, responses, errors or data contracts change.
+- Database: mandatory when tables, entities, fields, relationships, indexes, seeds, migrations or existing data change.
+- Security/permissions: mandatory when there is authentication, authorization, roles, permissions, sensitive data, protected endpoints or write operations.
+- Test: mandatory after implementing non-trivial changes, bugfixes, business rules, contracts, permissions or migrations.
+- Final review: requires implementation and test evidence; security must be resolved if applicable.
+- Documentation/PR: requires an approved final review or an approved final review with notes.
 
-## Politica de implementacion
+## Implementation Policy
 
-- No inventes requisitos no documentados.
-- No cambies contratos API sin `sdd-api-contract`.
-- No cambies esquema o datos persistentes sin `sdd-migration-rollback`.
-- No trates controles frontend como autorizacion suficiente para operaciones protegidas.
-- No ocultes fallos de test ni los conviertas en exito parcial sin documentarlo.
-- Manten los cambios acotados al alcance aprobado y a los patrones existentes del repositorio.
+- Do not invent undocumented requirements.
+- Do not change API contracts without `sdd-api-contract`.
+- Do not change schema or persistent data without `sdd-migration-rollback`.
+- Do not treat frontend controls as sufficient authorization for protected operations.
+- Do not hide test failures or convert them into partial success without documenting it.
+- Keep changes scoped to the approved scope and to the repository's existing patterns.
 
-## Excepciones razonables
+## Reasonable Exceptions
 
-Para cambios pequenos y explicitamente acotados, como correcciones de typos, ajustes simples de documentacion o cambios mecanicos sin impacto funcional, puedes editar directamente. Aun asi, si el cambio revela impacto funcional, tecnico, de datos, API o seguridad, vuelve al flujo SDD y usa las skills locales.
+For small and explicitly scoped changes, such as typo fixes, simple documentation adjustments or mechanical changes without functional impact, you may edit directly. Even then, if the change reveals functional, technical, data, API or security impact, return to the SDD flow and use the local skills.

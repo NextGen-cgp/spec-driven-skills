@@ -1,6 +1,6 @@
 # SDD Closeout Report
 
-## Feature / Change
+##Feature/Change
 
 - Name:
 - Type: `feature | bugfix | refactor | security | documentation | architecture`
@@ -13,13 +13,13 @@
 DOCUMENTATION_READY_FOR_PR | DOCUMENTATION_READY_WITH_NOTES | DOCUMENTATION_CHANGES_REQUESTED | DOCUMENTATION_BLOCKED
 ```
 
-## Final State
+##Final State
 
 ```text
 READY_FOR_PR | READY_FOR_PR_WITH_NOTES | BLOCKED_PENDING_EVIDENCE | BLOCKED_PENDING_REVIEW
 ```
 
-## Traceability
+##Traceability
 
 | Stage | Artifact | Decision/Status |
 |---|---|---|
@@ -42,7 +42,7 @@ READY_FOR_PR | READY_FOR_PR_WITH_NOTES | BLOCKED_PENDING_EVIDENCE | BLOCKED_PEND
 
 - 
 
-## Required Next Action
+##RequiredNextAction
 
 ```text
 open_pull_request | update_documentation | resolve_blocker | none

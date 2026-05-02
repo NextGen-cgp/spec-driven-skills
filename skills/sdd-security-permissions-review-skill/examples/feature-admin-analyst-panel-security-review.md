@@ -1,65 +1,65 @@
 # Security & Permissions Review: feature-admin-analyst-panel
 
-## 1. Estado de salida
+## 1. Exit status
 
-- **Estado**: `SECURITY_CHANGES_REQUIRED`
-- **Siguiente skill recomendada**: `sdd-api-contract`
-- **Motivo**: La spec funcional distingue correctamente entre ADMIN y ANALYST, pero el contrato API debe declarar de forma explícita qué endpoints de creación/edición quedan bloqueados para ANALYST y qué respuesta devuelve el backend.
+- **State**: `SECURITY_CHANGES_REQUIRED`
+- **Next recommended skill**: `sdd-api-contract`
+- **Reason**: The functional spec correctly distinguishes between ADMIN and ANALYST, but the API contract must explicitly declare which create/edit endpoints are blocked for ANALYST and what response the backend returns.
 
 ---
 
-## 2. Alcance revisado
+## 2. Revised scope
 
-| Área | ¿Afecta? | Detalle |
+| Area | Does it affect? | Detail |
 |---|---:|---|
-| Autenticación | Sí | Las secciones requieren usuario autenticado. |
-| Autorización | Sí | ADMIN puede modificar datos; ANALYST solo consulta. |
-| Roles | Sí | Diferencia funcional entre ADMIN y ANALYST. |
-| Endpoints/API | Sí | Búsqueda, alta y edición de planes/parámetros. |
-| Operaciones de escritura | Sí | Crear y modificar planes/parámetros. |
-| Datos críticos | Sí | Datos maestros de planes de calidad y parámetros. |
+| Authentication | Yes | Sections require authenticated user. |
+| Authorization | Yes | ADMIN can modify data; ANALYST query only. |
+| Roles | Yes | Functional difference between ADMIN and ANALYST. |
+| Endpoints/API | Yes | Search, registration and editing of plans/parameters. |
+| Write operations | Yes | Create and modify plans/parameters. |
+| Critical data | Yes | Master data of quality plans and parameters. |
 
 ---
 
-## 3. Roles y operaciones
+## 3. Roles and operations
 
-| Operación | Tipo | Roles permitidos | Roles denegados | Enforcement backend requerido | Endpoint/acción |
+| Operation | Type | Allowed roles | Denied Roles | Enforcement backend required | Endpoint/action |
 |---|---|---|---|---|---|
-| Buscar planes de calidad | search | ADMIN, ANALYST | — | Sí | GET /quality-plans |
-| Buscar parámetros | search | ADMIN, ANALYST | — | Sí | GET /parameters |
-| Crear plan de calidad | create | ADMIN | ANALYST | Sí | POST /quality-plans |
-| Editar plan de calidad | update | ADMIN | ANALYST | Sí | PATCH /quality-plans/:id |
-| Crear parámetro | create | ADMIN | ANALYST | Sí | POST /parameters |
-| Editar parámetro | update | ADMIN | ANALYST | Sí | PATCH /parameters/:id |
+| Find quality plans | search | ADMIN, ANALYST | — | Yes | GET /quality-plans |
+| Search parameters | search | ADMIN, ANALYST | — | Yes | GET /parameters |
+| Create quality plan | create | ADMIN | ANALYST | Yes | POST /quality-plans |
+| Edit quality plan | update | ADMIN | ANALYST | Yes | PATCH /quality-plans/:id |
+| Create parameter | create | ADMIN | ANALYST | Yes | POST /parameters |
+| Edit parameter | update | ADMIN | ANALYST | Yes | PATCH /parameters/:id |
 
 ---
 
-## 4. Hallazgos
+## 4. Findings
 
-| ID | Severidad | Bloqueante | Área | Hallazgo | Acción requerida |
+| ID | Severity | Blocker | Area | Finding | Action required |
 |---|---|---:|---|---|---|
-| SEC-001 | HIGH | Sí | authorization | El contrato debe declarar respuesta 403 para ANALYST en operaciones de creación/edición. | Actualizar `operation-permissions-contract.md` y `api-contract.md`. |
-| SEC-002 | MEDIUM | No | frontend | La UI debe ocultar acciones de edición para ANALYST, pero esto no sustituye backend authz. | Documentar comportamiento frontend. |
-| SEC-003 | MEDIUM | No | audit | La edición de datos maestros debería ser auditable. | Añadir `auditability-notes.md`. |
+| SEC-001 | HIGH | Yes | authorization | The contract must declare 403 response for ANALYST on create/edit operations. | Update `operation-permissions-contract.md` and `api-contract.md`. |
+| SEC-002 | MEDIUM | No | frontend | The UI should hide editing actions for ANALYST, but this does not replace the authz backend. | Document frontend behavior. |
+| SEC-003 | MEDIUM | No | audit | Master data editing should be auditable. | Add `auditability-notes.md`. |
 
 ---
 
-## 5. Tests requeridos
+## 5. Required tests
 
-- `ADMIN` puede crear y editar planes de calidad.
-- `ADMIN` puede crear y editar parámetros.
-- `ANALYST` puede buscar planes y parámetros.
-- `ANALYST` recibe 403 al intentar crear o editar planes.
-- `ANALYST` recibe 403 al intentar crear o editar parámetros.
-- La UI de `ANALYST` no renderiza botones de alta/edición.
+- `ADMIN` can create and edit quality plans.
+- `ADMIN` can create and edit parameters.
+- `ANALYST` can search for plans and parameters.
+- `ANALYST` receives 403 when trying to create or edit plans.
+- `ANALYST` receives 403 when trying to create or edit parameters.
+- The `ANALYST` UI does not render upload/edit buttons.
 
 ---
 
-## 6. Decisión para el orquestador
+## 6. Decision for the orchestrator
 
 ```yaml
 status: SECURITY_CHANGES_REQUIRED
 next_skill: sdd-api-contract
 blocked: true
-reason: "Falta contrato explícito de autorización backend para operaciones de escritura diferenciadas por rol."
+reason: "Explicit backend authorization contract missing for role-differentiated write operations."
 ```

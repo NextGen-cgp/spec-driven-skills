@@ -1,6 +1,6 @@
-# Risk Review
+#RiskReview
 
-## Open Risks
+##Open Risks
 
 | ID | Category | Severity | Description | Mitigation | Owner Skill | Status |
 |---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@
 - Deployment risk:
 - Rollback risk:
 - Migration risk:
-- Monitoring/logging need:
+- Monitoring/logging needs:
 - Manual verification needed:
 
 ## Risk Decision

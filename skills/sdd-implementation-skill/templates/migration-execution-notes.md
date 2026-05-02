@@ -1,6 +1,6 @@
 # Migration Execution Notes
 
-## Feature
+##Feature
 
 - Feature ID: `<feature-id>`
 
@@ -9,13 +9,13 @@
 - Migration plan: `migration-plan.md`
 - Rollback plan: `rollback-plan.md`
 
-## Prepared / Executed Changes
+## Prepared/Executed Changes
 
 | ID | Migration | Status | Notes |
 |---|---|---:|---|
 | MIG-001 |  | prepared/executed/not-executed |  |
 
-## Verification
+##Verification
 
 - [ ] Migration file exists.
 - [ ] Rollback path is documented.

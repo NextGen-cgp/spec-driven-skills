@@ -1,20 +1,20 @@
 # SDD Context Analysis Skill
 
-Skill de producción para analizar el contexto de un proyecto dentro de un flujo **Spec Driven Development**.
+Production skill to analyze the context of a project within a **Spec Driven Development** flow.
 
-Esta skill se ejecuta después del orquestador y antes de enriquecer historias de usuario o generar especificaciones técnicas.
+This skill runs after the orchestrator and before enriching user stories or generating technical specifications.
 
-## Objetivo
+## Objective
 
-Evitar que el sistema SDD avance sobre suposiciones. La skill analiza el repositorio, detecta stack, arquitectura, patrones, módulos afectados, tests existentes y riesgos técnicos.
+Prevent the SDD system from advancing on assumptions. The skill analyzes the repository, detects stack, architecture, patterns, affected modules, existing tests and technical risks.
 
-## Entrada principal
+## Main entrance
 
 ```text
 /specs/<feature-name>/request.md
 ```
 
-Opcionalmente:
+Optionally:
 
 ```text
 /specs/<feature-name>/sdd-state.yaml
@@ -22,16 +22,16 @@ Opcionalmente:
 /specs/<feature-name>/technical-spec.md
 ```
 
-## Salida principal
+## Main output
 
 ```text
 /specs/<feature-name>/context-analysis.md
 ```
 
-## Uso en el flujo SDD
+## Use in SDD flow
 
 ```text
-Orquestador
+Orchestrator
   → Context Analysis
   → User Story Enrichment
   → Technical Specification
@@ -39,7 +39,7 @@ Orquestador
   → Implementation
 ```
 
-## Estado que puede devolver
+## Status you can return
 
 ```text
 CONTEXT_ANALYSIS_READY
@@ -48,9 +48,9 @@ NEEDS_MORE_CONTEXT
 BLOCKED_BY_MISSING_REPOSITORY_ACCESS
 ```
 
-## Siguiente skill recomendada
+## Next recommended skill
 
-La skill debe terminar siempre recomendando una de estas rutas:
+The skill should always end by recommending one of these routes:
 
 ```text
 user-story-enrichment
@@ -61,6 +61,6 @@ security-permissions-review
 blocked
 ```
 
-## Filosofía
+## Philosophy
 
-Esta skill no implementa. Solo entiende, clasifica y prepara contexto fiable para que el resto del flujo SDD trabaje con seguridad.
+This skill does not implement. It only understands, classifies and prepares reliable context for the rest of the SDD flow to work safely.

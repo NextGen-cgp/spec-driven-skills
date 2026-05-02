@@ -1,16 +1,16 @@
 # SDD Functional Specification Skill
 
-Skill de producción para el flujo **Spec Driven Development** encargada de convertir historias de usuario refinadas en especificaciones funcionales completas, trazables y listas para diseño técnico.
+Production skill for the **Spec Driven Development** flow in charge of converting refined user stories into complete functional specifications, traceable and ready for technical design.
 
-## Cuándo usarla
+## When to use it
 
-Úsala después de:
+Use it after:
 
 - `sdd-orchestrator`
 - `sdd-context-analysis`
 - `sdd-user-story-enrichment`
 
-Y antes de:
+And before:
 
 - `sdd-technical-spec`
 - `sdd-api-contract`
@@ -18,26 +18,26 @@ Y antes de:
 - `sdd-spec-validation`
 - `sdd-implementation`
 
-## Objetivo
+## Objective
 
-Evitar que la implementación tenga que inventar requisitos funcionales. Esta skill deja claro:
+Avoid the implementation having to invent functional requirements. This skill makes it clear:
 
-- Qué debe hacer el sistema.
-- Quién lo puede hacer.
-- Dónde ocurre el flujo.
-- Qué reglas de negocio aplican.
-- Qué estados existen.
-- Qué criterios de aceptación verifican el resultado.
-- Qué skills posteriores deben intervenir.
+- What the system should do.
+- Who can do it.
+- Where the flow occurs.
+- What business rules apply.
+- What states exist.
+- What acceptance criteria verify the result.
+- What subsequent skills should intervene.
 
-## Artefactos principales
+##Main artifacts
 
 ```text
 functional-spec.md
 functional-traceability-matrix.md
 ```
 
-Artefactos opcionales según el cambio:
+Optional artifacts depending on the change:
 
 ```text
 feature-scope.md
@@ -47,13 +47,13 @@ state-model.md
 functional-spec-report.md
 ```
 
-## Estado de salida habitual
+## Usual exit status
 
 ```text
 READY_FOR_TECHNICAL_SPEC
 ```
 
-Otros estados posibles:
+Other possible states:
 
 ```text
 NEEDS_REFINEMENT

@@ -1,8 +1,8 @@
-# Zero-Downtime Migration Plan
+#Zero-Downtime Migration Plan
 
 ## Metadata
 
-- Feature ID:
+-Feature ID:
 - Skill: `sdd-migration-rollback`
 - Required: yes/no
 - Status:
@@ -43,4 +43,4 @@ Contract:
 
 ## 5. Abort Conditions
 
-- 
+-

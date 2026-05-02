@@ -1,13 +1,13 @@
 # Release Notes
 
-## Summary
+##Summary
 
 Explain the user-facing or operational change in clear language.
 
 ## Who Is Affected
 
 - Admins:
-- Analysts:
+-Analysts:
 - Operators:
 - Other roles:
 
@@ -23,7 +23,7 @@ Explain the user-facing or operational change in clear language.
 
 - 
 
-## Required Actions
+##RequiredActions
 
 - 
 
@@ -31,6 +31,6 @@ Explain the user-facing or operational change in clear language.
 
 - 
 
-## Rollback Notes
+##Rollback Notes
 
-- 
+-

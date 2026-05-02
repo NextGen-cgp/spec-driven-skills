@@ -30,7 +30,7 @@ Describe the API/data contract in 3-6 sentences.
 
 ### 5.1. OP-001 — `<operation-name>`
 
-#### Purpose
+####Purpose
 
 `<purpose>`
 
@@ -114,7 +114,7 @@ Example response:
 | Source | Reference |
 |---|---|
 | Use case | `<UC-id>` |
-| Business rule | `<BR-id>` |
+| Business rules | `<BR-id>` |
 | Acceptance criteria | `<AC-id>` |
 | Technical decision | `<decision-id>` |
 

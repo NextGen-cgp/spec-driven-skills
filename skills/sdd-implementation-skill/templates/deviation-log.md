@@ -1,6 +1,6 @@
 # Deviation Log
 
-## Feature
+##Feature
 
 - Feature ID: `<feature-id>`
 
@@ -18,7 +18,7 @@ BLOCKING_DEVIATION
 |---|---|---|---|---|---|---|
 | DEV-001 |  |  |  |  |  |  |
 
-## Rules
+##Rules
 
 - `ALLOWED_MINOR_DEVIATION`: minor technical adjustment that does not alter behavior, scope, API, data model or security.
 - `NEEDS_SPEC_UPDATE`: implementation discovered a missing or incomplete specification.

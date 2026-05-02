@@ -1,24 +1,24 @@
-# Context Analysis: cancelled-analysis-parameter
+# Context Analysis: canceled-analysis-parameter
 
-## 1. Resumen ejecutivo
+## 1. Executive summary
 
-Estado del análisis: `CONTEXT_ANALYSIS_PARTIAL`
+Analysis status: `CONTEXT_ANALYSIS_PARTIAL`
 
-Nivel de confianza global: `medio`
+Overall confidence level: 'medium'
 
-La petición afecta al flujo de registro de análisis, el estado de parámetros, la UI de muestras y la lógica de cálculo global. Es probable que requiera cambios tanto en frontend como en backend, además de tests sobre reglas de negocio.
+The request affects the analysis log flow, parameter status, sample UI, and global calculation logic. It is likely to require changes to both the frontend and backend, as well as testing business rules.
 
 ---
 
-## 2. Petición analizada
+## 2. Request analyzed
 
-Petición original:
+Original request:
 
 ```text
-Permitir cancelar un parámetro de análisis para que no sea obligatorio ni compute en el resultado global, con opción de reapertura.
+Allow canceling an analysis parameter so that it is not mandatory or computed in the global result, with the option to reopen.
 ```
 
-Tipo de cambio estimado:
+Estimated exchange rate:
 
 ```text
 feature
@@ -26,106 +26,106 @@ feature
 
 ---
 
-## 3. Stack detectado
+## 3. Stack detected
 
-No confirmado en este ejemplo. La skill real debe inspeccionar el repositorio.
-
----
-
-## 4. Arquitectura y estructura del repositorio
-
-No confirmado en este ejemplo.
+Not confirmed in this example. The actual skill must inspect the repository.
 
 ---
 
-## 5. Patrones relevantes identificados
+## 4. Architecture and structure of the repository
+
+Not confirmed in this example.
+
+---
+
+## 5. Relevant patterns identified
 
 ### 5.1. Frontend/UI
 
-Debe revisarse el patrón actual de cards de parámetros, pills de estado, cajas de muestra e iconografía.
+The current pattern of parameter cards, status pills, sample boxes and iconography should be reviewed.
 
 ### 5.2. Backend/API
 
-Debe identificarse dónde se calcula el resultado global del análisis y dónde se validan parámetros obligatorios.
+It must be identified where the overall analysis result is calculated and where mandatory parameters are validated.
 
-### 5.3. Datos y persistencia
+### 5.3. Data and persistence
 
-Hay que comprobar si los estados de parámetro están persistidos y si existe una tabla intermedia de análisis-parámetro o muestra.
+You must check if the parameter states are persisted and if an intermediate analysis-parameter or sample table exists.
 
 ---
 
-## 6. Módulos y archivos potencialmente afectados
+## 6. Potentially affected modules and files
 
-| Área | Archivos candidatos | Motivo | Confianza |
+| Area | Candidate files | Reason | Trust |
 |---|---|---|---|
-| Frontend/UI | Componentes de registro de análisis | Iconos cancelar/reabrir y estado visual | alta |
-| Backend/API | Servicios de cálculo de análisis | Excluir cancelados del resultado global | alta |
-| Base de datos | Modelo de estado de parámetro | Persistir estado cancelado si no existe | media |
-| Tests | Tests de cálculo global | Validar que cancelados no computan | alta |
+| Frontend/UI | Analysis Log Components | Cancel/reopen and visual status icons | high |
+| Backend/API | Analysis calculation services | Exclude cancellations from the global result | high |
+| Database | Parameter State Model | Persist canceled state if it does not exist | medium |
+| Tests | Global calculation tests | Validate that canceled ones do not count | high |
 
 ---
 
-## 7. Tests existentes relacionados
+## 7. Related existing tests
 
-No se han detectado tests relacionados en este ejemplo.
+No related tests were detected in this example.
 
 ---
 
-## 8. Dependencias y contratos relevantes
+## 8. Relevant dependencies and contracts
 
-Contratos potencialmente afectados:
+Potentially affected contracts:
 
 ```text
-- Estado del parámetro en análisis.
-- Endpoint de actualización de parámetro.
-- Cálculo del resultado global.
-- Validación de completitud del análisis.
+- Status of the parameter under analysis.
+- Parameter update endpoint.
+- Calculation of the global result.
+- Validation of completeness of the analysis.
 ```
 
 ---
 
-## 9. Riesgos técnicos
+## 9. Technical risks
 
-| Riesgo | Severidad | Motivo | Mitigación sugerida |
+| Risk | Severity | Reason | Suggested mitigation |
 |---|---|---|---|
-| Cancelar sin persistir estado | alta | Se perdería la decisión al recargar | Confirmar modelo de datos |
-| Excluir incorrectamente del cálculo | alta | Resultado global erróneo | Tests de cálculo |
-| Campo vacío confundido con cancelado | media | Puede ocultar errores de analista | Estado explícito CANCELLED |
+| Cancel without persisting state | high | The decision would be lost when reloading | Confirm data model |
+| Incorrectly exclude from calculation | high | Wrong overall result | Calculation tests |
+| Empty field confused with canceled | medium | Can hide analyst errors | Explicit status CANCELLED |
 
 ---
 
-## 10. Preguntas abiertas
+## 10. Open questions
 
 ```text
-- ¿El estado del parámetro se guarda por análisis o por muestra?
-- ¿Existe ya un enum de estados?
-- ¿El parámetro cancelado debe aparecer en detalle histórico?
+- Is the parameter status saved per analysis or per sample?
+- Is there already an enum of states?
+- Should the canceled parameter appear in historical detail?
 ```
 
 ---
 
-## 11. Recomendación para el Orquestador
+## 11. Recommendation for the Orchestrator
 
-Estado recomendado:
+Recommended status:
 
 ```text
 CONTEXT_ANALYSIS_PARTIAL
 ```
 
-Siguiente skill recomendada:
+Next recommended skill:
 
 ```text
 user-story-enrichment
 ```
 
-Motivo:
+Reason:
 
 ```text
-La necesidad funcional está clara en alto nivel, pero requiere definir flujos, estados, criterios de aceptación y reglas de negocio antes de especificar técnicamente.
+The functional need is clear at a high level, but requires defining flows, states, acceptance criteria and business rules before specifying technically.
 ```
 
-Bloqueos:
+Locks:
 
 ```text
-- Falta inspección real del repositorio en este ejemplo.
+- Actual inspection of the repository is missing in this example.
 ```

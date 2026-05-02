@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Feature ID:
+-Feature ID:
 - Reviewer Skill: `sdd-final-review`
 - Date:
 - Decision:
@@ -19,7 +19,7 @@ Describe the final review result in 3-6 lines.
 - Technical spec:
 - Implementation report:
 - Test report:
-- Security review:
+-Security review:
 - Migration/rollback artifacts:
 
 ## Decision
@@ -40,7 +40,7 @@ FINAL_REVIEW_APPROVED | FINAL_REVIEW_APPROVED_WITH_NOTES | FINAL_REVIEW_CHANGES_
 | Code quality |  |  |
 | Regression risk |  |  |
 
-## Required Actions
+##RequiredActions
 
 | ID | Action | Owner Skill | Required Before PR |
 |---|---|---|---|

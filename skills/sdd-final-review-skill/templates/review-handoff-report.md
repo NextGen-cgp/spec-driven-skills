@@ -6,7 +6,7 @@
 sdd-documentation-pr | sdd-implementation | sdd-test | sdd-security-permissions-review | sdd-api-contract | sdd-migration-rollback | sdd-technical-spec | sdd-orchestrator
 ```
 
-## Why This Route
+##WhyThisRoute
 
 ## Artifacts Produced
 
@@ -18,7 +18,7 @@ sdd-documentation-pr | sdd-implementation | sdd-test | sdd-security-permissions-
 - `review-findings.md`
 - `merge-readiness-decision.md`
 
-## Required Next Actions
+##RequiredNextActions
 
 | Action | Owner Skill | Priority | Blocking |
 |---|---|---|---|

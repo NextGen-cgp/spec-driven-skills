@@ -33,9 +33,9 @@ Describe the technical solution in 3-6 sentences.
 | Testing | `<yes/no>` | `<test areas>` |
 | Documentation | `<yes/no>` | `<docs to update>` |
 
-## 5. Architecture alignment
+## 5.Architecture alignment
 
-### 5.1. Existing patterns to respect
+### 5.1. Existing patterns regarding
 
 - `<pattern-1>`
 - `<pattern-2>`
@@ -61,7 +61,7 @@ Describe the technical solution in 3-6 sentences.
 |---|---|---|
 | `<module>` | `<change>` | `<AC/BR/UC>` |
 
-### 6.2. Domain logic
+### 6.2. domain logic
 
 - `<domain-rule-1>`
 - `<domain-rule-2>`

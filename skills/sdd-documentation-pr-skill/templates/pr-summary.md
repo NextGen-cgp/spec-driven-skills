@@ -4,23 +4,23 @@
 
 `<type(scope): concise change description>`
 
-## Context
+##Context
 
 Briefly explain the business or technical need addressed by this change.
 
-## What Changed
+##What Changed
 
 - 
 - 
 - 
 
-## Scope
+##Scope
 
 ### Included
 
 - 
 
-### Not Included
+###Not Included
 
 - 
 
@@ -34,7 +34,7 @@ Briefly explain the business or technical need addressed by this change.
 - Tests:
 - Documentation:
 
-## Evidence
+##Evidence
 
 | Evidence | Artifact | Status |
 |---|---|---|
@@ -50,7 +50,7 @@ Briefly explain the business or technical need addressed by this change.
 <commands or manual validation summary>
 ```
 
-## Security / Permissions
+##Security/Permissions
 
 ```text
 <Not applicable / Summary of reviewed permissions and authz evidence>
@@ -68,7 +68,7 @@ Briefly explain the business or technical need addressed by this change.
 
 ## Reviewer Checklist
 
-- [ ] Review scope against functional and technical specs.
+- [ ] Review scope against functional and technical specifications.
 - [ ] Review tests and acceptance evidence.
 - [ ] Review security/permissions if applicable.
 - [ ] Review migration/rollback notes if applicable.

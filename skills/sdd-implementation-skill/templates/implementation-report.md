@@ -1,4 +1,4 @@
-# Implementation Report
+#ImplementationReport
 
 ## Decision
 
@@ -6,13 +6,13 @@
 IMPLEMENTATION_DONE | IMPLEMENTATION_PARTIAL | IMPLEMENTATION_BLOCKED
 ```
 
-## Next Skill
+##Next Skill
 
 ```text
 sdd-test | sdd-orchestrator | sdd-technical-spec | sdd-api-contract | sdd-migration-rollback | sdd-security-permissions-review
 ```
 
-## Summary
+##Summary
 
 Describe what was implemented and why.
 
@@ -39,7 +39,7 @@ Describe what was implemented and why.
 |---|---|---|---|---|
 |  | ALLOWED_MINOR_DEVIATION / NEEDS_SPEC_UPDATE / BLOCKING_DEVIATION |  |  |  |
 
-## Dependencies / Configuration
+##Dependencies / Configuration
 
 - Dependencies changed: `yes/no`
 - Configuration changed: `yes/no`

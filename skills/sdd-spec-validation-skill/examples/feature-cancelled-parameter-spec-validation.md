@@ -1,4 +1,4 @@
-# Example: Cancelled Parameter Spec Validation
+# Example: Canceled Parameter Spec Validation
 
 ## Decision
 
@@ -6,7 +6,7 @@
 READY_FOR_IMPLEMENTATION
 ```
 
-## Next Skill
+##Next Skill
 
 ```text
 sdd-implementation
@@ -14,7 +14,7 @@ sdd-implementation
 
 ## Validation Summary
 
-The spec is ready for implementation. The behavior for cancelling and reopening an analysis parameter is defined, backend logic excludes cancelled parameters from global analysis results, state transitions are explicit, and test coverage is planned for pending, cancelled and reopened states.
+The spec is ready for implementation. The behavior for canceling and reopening an analysis parameter is defined, backend logic excludes canceled parameters from global analysis results, state transitions are explicit, and test coverage is planned for pending, canceled and reopened states.
 
 ## Artifact Readiness
 
@@ -36,11 +36,11 @@ The spec is ready for implementation. The behavior for cancelling and reopening 
 
 | Requirement | Acceptance Criteria | Technical Coverage | Test Coverage | Status |
 |---|---|---|---|---|
-| Cancel parameter | Pill changes to Cancelled and sample box closes | State update and UI behavior covered | Functional test planned | Covered |
+| Cancel parameter | Pill changes to Canceled and sample box closes | State update and UI behavior covered | Functional test planned | Covered |
 | Reopen parameter | Pill returns to Pending and sample box opens | State transition covered | Functional test planned | Covered |
-| Exclude from global result | Cancelled parameter not computed | Backend aggregation logic covered | Unit test planned | Covered |
+| Exclude from global result | Canceled parameter not computed | Backend aggregation logic covered | Unit test planned | Covered |
 
-## Gate Decision
+##Gate Decision
 
 ```text
 Implementation Gate: PASS

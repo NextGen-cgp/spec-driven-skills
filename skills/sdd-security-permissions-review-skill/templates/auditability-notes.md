@@ -1,32 +1,32 @@
 # Auditability Notes: <feature-id>
 
-## 1. Operaciones auditables
+## 1. Auditable operations
 
-| Operación | Debe auditarse | Motivo | Datos mínimos del log |
+| Operation | Must be audited | Reason | Minimum log data |
 |---|---:|---|---|
-|  | Sí/No |  | actor, timestamp, recurso, estado anterior, estado nuevo |
+|  | Yes/No |  | actor, timestamp, resource, old state, new state |
 
-## 2. Eventos recomendados
+## 2. Recommended events
 
-- Creación de datos maestros.
-- Edición de datos maestros.
-- Cambio de estado crítico.
-- Cancelación o reapertura.
-- Eliminación lógica o física.
-- Importación/exportación.
+- Creation of master data.
+- Master data editing.
+- Critical status change.
+- Cancellation or reopening.
+- Logical or physical elimination.
+- Import/export.
 
-## 3. Requisitos mínimos
+## 3. Minimum requirements
 
 ```text
-- Actor que ejecuta la acción.
-- Recurso afectado.
-- Fecha/hora.
-- Resultado de la operación.
-- Motivo si aplica.
-- Estado anterior y nuevo si aplica.
+- Actor who executes the action.
+- Affected resource.
+- Date/time.
+- Result of the operation.
+- Reason if applicable.
+- Previous and new status if applicable.
 ```
 
-## 4. Decisión
+## 4. Decision
 
 ```yaml
 auditability_required: true|false

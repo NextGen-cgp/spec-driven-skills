@@ -1,4 +1,4 @@
-# Validation Findings
+#ValidationFindings
 
 ## Blocking Findings
 
@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|
 | VAL-001 | CRITICAL |  |  |  |  |
 
-## Warnings
+##Warnings
 
 | ID | Severity | Finding | Recommendation |
 |---|---|---|---|

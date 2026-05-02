@@ -1,4 +1,4 @@
-# Remediation Request
+#RemediationRequest
 
 ## Decision
 
@@ -20,4 +20,4 @@ sdd-implementation | sdd-test | sdd-security-permissions-review | sdd-api-contra
 
 ## Acceptance Condition for Return
 
-Define what must be true before the flow returns to `sdd-final-review`.
+Defines what must be true before the flow returns to `sdd-final-review`.

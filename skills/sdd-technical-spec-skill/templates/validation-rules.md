@@ -2,17 +2,17 @@
 
 ## 1. Validation summary
 
-Describe validation responsibilities across client and server.
+Describes validation responsibilities across client and server.
 
 ## 2. Server-side validations
 
-| Validation ID | Rule | Trigger | Expected result | Error behavior |
+| ID Validation | Rule | Trigger | Expected result | Error behavior |
 |---|---|---|---|---|
 | VAL-001 | `<rule>` | `<trigger>` | `<result>` | `<error>` |
 
 ## 3. Client-side validations
 
-| Validation ID | Rule | Trigger | Expected result | UX feedback |
+| ID Validation | Rule | Trigger | Expected result | UX feedback |
 |---|---|---|---|---|
 | VAL-UI-001 | `<rule>` | `<trigger>` | `<result>` | `<feedback>` |
 

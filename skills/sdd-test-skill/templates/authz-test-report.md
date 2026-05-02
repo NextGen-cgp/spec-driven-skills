@@ -1,23 +1,23 @@
 # Authorization Test Report
 
-## Matriz de permisos validada
+##Permissions array validated
 
-| Rol | Operación | Esperado | Obtenido | Estado |
+| Role | Operation | Expected | Obtained | State |
 |---|---|---|---|---|
 | ADMIN | | allow/deny | | PASSED/FAILED/BLOCKED |
 | ANALYST | | allow/deny | | PASSED/FAILED/BLOCKED |
 
-## Validaciones backend/API
+## Backend/API validations
 
-| Caso | Estado | Evidencia |
+| Case | State | Evidence |
 |---|---|---|
-| Operación denegada a rol no autorizado | | |
-| Operación permitida a rol autorizado | | |
-| Datos sensibles no expuestos | | |
-| Frontend no es la única barrera de seguridad | | |
+| Operation denied to unauthorized role | | |
+| Operation allowed to authorized role | | |
+| Sensitive data not exposed | | |
+| Frontend is not the only security barrier | | |
 
-## Hallazgos
+## Findings
 
-| ID | Severidad | Descripción | Ruta recomendada |
+| ID | Severity | Description | Recommended route |
 |---|---|---|---|
 | | | | |

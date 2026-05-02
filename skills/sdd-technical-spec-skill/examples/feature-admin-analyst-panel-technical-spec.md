@@ -15,8 +15,8 @@ The application must introduce role-aware administration and analyst panel behav
 
 | Functional item | Acceptance criteria | Technical response | Notes |
 |---|---|---|---|
-| UC-001 Admin searches plans | AC-001 | Reuse existing search/query pattern where available | Must preserve UI style |
-| UC-002 Admin creates/updates plans | AC-002 | Add guarded write operations for admin role | Requires security review |
+| UC-001 Admin search plans | AC-001 | Reuse existing search/query pattern where available | Must preserve UI style |
+| UC-002 Admin creates/updates plans | AC-002 | Add saved write operations for admin role | Requires security review |
 | UC-003 Analyst searches plans | AC-003 | Expose read-only search path for analyst role | Analyst must not see edit/create actions |
 | UC-004 Analyst cannot edit | AC-004 | Backend must reject write attempts from analyst role | Frontend restriction is not enough |
 

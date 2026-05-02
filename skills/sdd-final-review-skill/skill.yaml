@@ -6,9 +6,9 @@ owner: sdd-orchestrator
 status: production-ready
 
 summary: >
-  Revisa una implementación finalizada dentro del flujo Spec Driven Development,
-  comprobando cumplimiento de especificación, calidad técnica, evidencia de tests,
-  seguridad aplicable, riesgos y readiness para documentación/PR.
+  Review a completed implementation within the Spec Driven Development flow,
+  checking compliance with specification, technical quality, evidence of tests,
+  Applicable security, risks and readiness for documentation/PR.
 
 inputs:
   required:

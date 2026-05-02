@@ -6,13 +6,13 @@
 IMPLEMENTATION_DONE
 ```
 
-## Next Skill
+##Next Skill
 
 ```text
 sdd-test
 ```
 
-## Summary
+##Summary
 
 The implementation added separate admin and analyst access behavior for quality plan and parameter management. Admin users can create, edit and search records. Analyst users can search and view records but do not receive write actions in the UI and are protected by backend authorization checks.
 

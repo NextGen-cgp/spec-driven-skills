@@ -1,55 +1,55 @@
-# Test Plan Final
+# Final Test Plan
 
-## 1. Feature / Cambio
+## 1. Feature/Change
 
-- Nombre:
-- Tipo: feature | bugfix | refactor | security | data | api
-- Estado de implementación recibido: IMPLEMENTATION_DONE | IMPLEMENTATION_PARTIAL
+- Name:
+- Type: feature | bugfix | refactor | security | data | api
+- Implementation status received: IMPLEMENTATION_DONE | IMPLEMENTATION_PARTIAL
 
-## 2. Artefactos usados
+## 2. Used artifacts
 
 - `acceptance-criteria.md`:
 - `functional-spec.md`:
 - `technical-spec.md`:
 - `implementation-report.md`:
 - `code-change-log.md`:
-- Artefactos condicionales:
+- Conditional artifacts:
 
-## 3. Alcance de testing
+## 3. Testing scope
 
-| Área | Incluida | Motivo |
+| Area | Included | Reason |
 |---|---:|---|
-| Build / typecheck | Sí/No | |
-| Lint / static analysis | Sí/No | |
-| Unit tests | Sí/No | |
-| Integration tests | Sí/No | |
-| API contract tests | Sí/No | |
-| Authorization tests | Sí/No | |
-| Migration tests | Sí/No | |
-| E2E / functional tests | Sí/No | |
-| Manual validation | Sí/No | |
-| Regression tests | Sí/No | |
+| Build/typecheck | Yes/No | |
+| Lint/static analysis | Yes/No | |
+| Unit tests | Yes/No | |
+| Integration tests | Yes/No | |
+| API contract tests | Yes/No | |
+| Authorization tests | Yes/No | |
+| Migration tests | Yes/No | |
+| E2E / functional tests | Yes/No | |
+| Manual validation | Yes/No | |
+| Regression tests | Yes/No | |
 
-## 4. Comandos previstos
+## 4. Expected commands
 
 ```bash
-# Añadir comandos detectados del proyecto
+# Add project detected commands
 ```
 
-## 5. Datos de prueba
+## 5. Test data
 
-| Dato / fixture | Uso | Fuente | Estado |
+| Data / fixture | Usage | Source | State |
 |---|---|---|---|
 | | | | |
 
-## 6. Criterios de aceptación a validar
+## 6. Acceptance criteria to validate
 
-| ID | Criterio | Método de validación | Resultado esperado |
+| ID | Criterion | Validation method | Expected result |
 |---|---|---|---|
 | AC-001 | | | |
 
-## 7. Riesgos de validación
+## 7. Validation risks
 
-| Riesgo | Impacto | Mitigación |
+| Risk | Impact | Mitigation |
 |---|---|---|
 | | | |

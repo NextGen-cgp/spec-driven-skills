@@ -6,15 +6,15 @@
 |---|---|---|
 | <screen> | <behavior> | <roles> |
 
-## User Actions
+##UserActions
 
 | Action | Trigger | Expected feedback | Disabled/hidden conditions |
 |---|---|---|---|
 | <action> | <trigger> | <feedback> | <conditions> |
 
-## Visual States
+##VisualStates
 
-| Element | State | Expected behavior |
+| Item | State | Expected behavior |
 |---|---|---|
 | <element> | <state> | <behavior> |
 

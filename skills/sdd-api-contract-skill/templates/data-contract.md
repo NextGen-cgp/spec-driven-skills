@@ -8,7 +8,7 @@
 
 ## 2. Data contract summary
 
-Describe the data shapes exchanged between frontend, backend, services and persistence boundaries.
+Describes the data shapes exchanged between frontend, backend, services and persistence boundaries.
 
 ## 3. DTOs / view models / payload models
 
@@ -46,7 +46,7 @@ Example:
 
 ## 6. Persistence implications
 
-| Concern | Impact | Requires migration? | Notes |
+| Concern | Impact | Do you require migration? | Notes |
 |---|---|---:|---|
 | New field | `<impact>` | `<yes/no>` | `<notes>` |
 | Changed nullability | `<impact>` | `<yes/no>` | `<notes>` |
@@ -58,4 +58,4 @@ Example:
 - Existing consumers must continue to receive fields they depend on unless explicitly versioned.
 - New required fields must not break existing records without a migration/default strategy.
 - Nullable fields must be handled consistently by frontend and backend.
-- State values must be documented before implementation.
+- State values ​​must be documented before implementation.

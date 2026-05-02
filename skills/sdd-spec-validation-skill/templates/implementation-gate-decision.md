@@ -1,6 +1,6 @@
 # Implementation Gate Decision
 
-## Feature
+##Feature
 
 - Feature ID: `<feature-id>`
 - Decision date: `<YYYY-MM-DD>`
@@ -12,7 +12,7 @@
 READY_FOR_IMPLEMENTATION | NEEDS_REFINEMENT | BLOCKED
 ```
 
-## Next Skill
+##Next Skill
 
 ```text
 <sdd-next-skill>
@@ -25,7 +25,7 @@ READY_FOR_IMPLEMENTATION | NEEDS_REFINEMENT | BLOCKED
 | Implementation Gate | Pending |  |
 | Functional Gate | Pending |  |
 | Technical Gate | Pending |  |
-| API Gate | Pending |  |
+| APIGate | Pending |  |
 | Migration Gate | Pending |  |
 | Security Gate | Pending |  |
 | Test Gate | Pending |  |
@@ -40,6 +40,6 @@ This feature can proceed to implementation only if:
 - Applicable conditional artifacts are present or explicitly marked as not applicable.
 - Traceability is complete enough for implementation.
 
-## Notes
+##Notes
 
 Add any final implementation notes for the orchestrator and implementation skill.

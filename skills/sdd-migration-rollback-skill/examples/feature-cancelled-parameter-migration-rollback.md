@@ -1,8 +1,8 @@
-# Example: Cancelled Parameter — Migration & Rollback
+# Example: Canceled Parameter — Migration & Rollback
 
-## Context
+##Context
 
-Feature: permitir cancelar un parámetro completo dentro de un análisis para que no compute en el resultado global, y permitir reabrirlo posteriormente.
+Feature: allow you to cancel an entire parameter within an analysis so that it does not compute in the global result, and allow you to reopen it later.
 
 ## Persistence Impact
 
@@ -14,72 +14,72 @@ change_types:
 affected_objects:
   - name: analysis_parameter_results
     object_type: table
-    impact: Añadir estado cancelado o flags equivalentes para excluir el parámetro del cálculo global.
+    impact: Add canceled state or equivalent flags to exclude the parameter from the global calculation.
   - name: parameter_status
     object_type: state
-    impact: Añadir transición pending -> cancelled y cancelled -> pending.
+    impact: Add transition pending -> canceled and canceled -> pending.
 ```
 
 ## Data Impact Assessment
 
 | Area | Impact | Risk |
 |---|---|---|
-| Existing records | No deberían modificarse inicialmente | Low |
-| New state | Se añade `cancelled` | Medium |
-| Global calculation | Debe excluir registros cancelados | Medium |
-| Compatibility | Código antiguo podría no interpretar el nuevo estado | Medium |
+| Existing records | They should not be modified initially | Low |
+| New state | Added `cancelled` | Medium |
+| Global calculation | You must exclude canceled records | Medium |
+| Compatibility | Old code might not interpret the new state | Medium |
 
 ## Recommended Migration Plan
 
 ```text
-1. Añadir columna compatible para representar cancelación si no existe un campo de estado suficiente.
-2. Mantener default compatible con el comportamiento actual: parámetros pendientes/no cancelados.
-3. No modificar registros históricos salvo que la spec lo exija.
-4. Actualizar backend para excluir parámetros cancelados del cálculo global.
-5. Actualizar frontend para mostrar estado Cancelado y acción de reapertura.
-6. Verificar que análisis antiguos siguen calculando igual.
+1. Add compatible column to represent cancellation if a sufficient status field does not exist.
+2. Keep default compatible with current behavior: pending/not canceled parameters.
+3. Do not modify historical records unless the spec requires it.
+4. Update backend to exclude canceled parameters from global calculation.
+5. Update frontend to show Canceled status and reopen action.
+6. Verify that old analyzes continue to calculate the same.
 ```
 
 ## Possible Schema Strategy
 
-Opción recomendada si ya existe campo de estado:
+Recommended option if status field already exists:
 
 ```text
-- Extender valores permitidos del estado para admitir `cancelled`.
+- Extend allowed state values to support `cancelled`.
 ```
 
-Opción alternativa si no existe estado persistido:
+Alternative option if no persisted state exists:
 
 ```text
-- Añadir columna `status` con default `pending`.
-- Valores esperados: pending, completed, cancelled.
+- Add `status` column with default `pending`.
+- Expected values: pending, completed, canceled.
 ```
 
 ## Rollback Plan
 
 ```text
 Code rollback:
-  Volver a la versión anterior del backend/frontend.
+  Go back to the previous version of the backend/frontend.
 
-Schema rollback:
-  Si la columna nueva es aditiva y nullable/default compatible, puede mantenerse temporalmente sin romper el código anterior.
+Rollback scheme:
+  If the new column is additive and nullable/default compatible, it can be kept temporarily without breaking the above code.
 
 Data rollback:
-  Si existen parámetros marcados como cancelled, antes de volver a código antiguo hay que decidir si se transforman a pending o se conserva el dato para forward-fix.
+  If there are parameters marked as canceled, before returning to old code you must decide whether to transform them to pending or keep the data for forward-fix.
 
 Preferred strategy:
-  Forward-fix o mantener columna compatible, evitando DROP inmediato.
+  Forward-fix or keep column compatible, avoiding immediate DROP.
 ```
 
 ## Verification Checklist
 
-- [ ] Crear análisis con parámetros normales.
-- [ ] Cancelar un parámetro.
-- [ ] Confirmar que no computa en resultado global.
-- [ ] Reabrir parámetro cancelado.
-- [ ] Confirmar que vuelve a estado pendiente.
-- [ ] Confirmar que análisis antiguos no cambian de resultado.
-- [ ] Confirmar que usuarios sin permiso no pueden cancelar si aplica.
+- [ ] Create analysis with normal parameters.
+- [ ] Cancel a parameter.
+- [ ] Confirm that it does not count in the overall result.
+- [ ] Reopen canceled parameter.
+- [ ] Confirm that it returns to pending status.
+- [ ] Confirm that old analyzes do not change their results.
+- [ ] Confirm that users without permission cannot cancel if applicable.
 
 ## Routing Recommendation
 
@@ -89,5 +89,5 @@ status: MIGRATION_PLAN_READY
 risk_level: medium
 security_review_required: true
 next_skill: sdd-security-permissions-review
-reason: La migración introduce un estado persistido que modifica reglas de cálculo y puede estar asociado a permisos de operación.
+reason: The migration introduces a persisted state that modifies calculation rules and can be associated with operation permissions.
 ```

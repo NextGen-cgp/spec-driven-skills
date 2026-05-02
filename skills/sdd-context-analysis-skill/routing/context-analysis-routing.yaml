@@ -4,19 +4,19 @@ context_analysis_routing:
   state_outputs:
     context_ready:
       status: CONTEXT_ANALYSIS_READY
-      meaning: Hay suficiente contexto para continuar el flujo SDD.
+      meaning: There is enough context to continue the SDD flow.
 
     context_partial:
       status: CONTEXT_ANALYSIS_PARTIAL
-      meaning: Hay contexto suficiente para avanzar con cautela, pero existen incertidumbres.
+      meaning: There is enough context to move forward cautiously, but there are uncertainties.
 
     needs_more_context:
       status: NEEDS_MORE_CONTEXT
-      meaning: Falta información crítica para generar una spec fiable.
+      meaning: Critical information is missing to generate a reliable spec.
 
     blocked_missing_repository:
       status: BLOCKED_BY_MISSING_REPOSITORY_ACCESS
-      meaning: No se ha podido analizar el repositorio o los archivos necesarios.
+      meaning: The repository or required files could not be analyzed.
 
   route_rules:
     vague_request:
@@ -24,26 +24,26 @@ context_analysis_routing:
         - original_request_is_vague: true
         - acceptance_criteria_missing: true
       route_to: user-story-enrichment
-      reason: La historia debe refinarse antes de especificar técnicamente.
+      reason: The story must be refined before being technically specified.
 
     clear_technical_request:
       when:
         - original_request_is_specific: true
         - affected_modules_identified: true
       route_to: technical-specification
-      reason: El cambio ya tiene suficiente claridad funcional y requiere diseño técnico.
+      reason: The change already has sufficient functional clarity and requires technical design.
 
     affects_api:
       when:
         - affected_area_contains: api
       route_to: api-contract-specification
-      reason: Es necesario definir contrato entre frontend, backend o consumidores externos.
+      reason: It is necessary to define a contract between frontend, backend or external consumers.
 
     affects_database:
       when:
         - affected_area_contains: database
       route_to: migration-rollback-planning
-      reason: Es necesario definir migración, compatibilidad y rollback.
+      reason: It is necessary to define migration, compatibility and rollback.
 
     affects_auth_or_roles:
       when:
@@ -53,13 +53,13 @@ context_analysis_routing:
             - roles
             - permissions
       route_to: security-permissions-review
-      reason: El cambio requiere revisión temprana de permisos y seguridad.
+      reason: The change requires early permissions and security review.
 
     missing_repo_access:
       when:
         - repository_accessible: false
       route_to: blocked
-      reason: Sin acceso al repositorio no se puede hacer análisis de contexto fiable.
+      reason: Without access to the repository, reliable context analysis cannot be done.
 
   orchestrator_update:
     required_fields:

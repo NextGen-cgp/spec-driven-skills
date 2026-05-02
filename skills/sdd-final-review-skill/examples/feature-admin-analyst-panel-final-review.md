@@ -6,7 +6,7 @@
 FINAL_REVIEW_APPROVED_WITH_NOTES
 ```
 
-## Summary
+##Summary
 
 The implementation introduces separate admin and analyst capabilities for quality plans and parameters. Admin users can create and edit records, while analysts can search and view without write actions. The reviewed artifacts show alignment with the functional spec, technical spec, permissions matrix and test evidence.
 

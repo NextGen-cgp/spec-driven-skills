@@ -1,24 +1,24 @@
 # Post-Implementation Security Review: feature-admin-analyst-panel
 
-## 1. Estado final
+## 1. Final state
 
 ```yaml
 status: SECURITY_APPROVED
 next_skill: sdd-review
 blocked: false
-reason: "La implementación aplica autorización backend para operaciones de escritura y mantiene el modo solo lectura para ANALYST."
+reason: "The implementation applies backend authorization for write operations and maintains read-only mode for ANALYST."
 ```
 
-## 2. Controles verificados
+## 2. Verified controls
 
-| Control esperado | Implementado | Evidencia | Resultado |
+| Expected control | Implemented | Evidence | Result |
 |---|---:|---|---|
-| ANALYST no puede crear planes | Sí | Guard/policy backend sobre POST /quality-plans | OK |
-| ANALYST no puede editar planes | Sí | Guard/policy backend sobre PATCH /quality-plans/:id | OK |
-| ADMIN puede crear/editar | Sí | Tests de integración | OK |
-| UI oculta acciones de edición a ANALYST | Sí | Render condicional por rol | OK |
-| Backend devuelve 403 ante acceso no permitido | Sí | Tests AUTHZ-002/AUTHZ-003 | OK |
+| ANALYST cannot create plans | Yes | Guard/policy backend over POST /quality-plans | OK |
+| ANALYST cannot edit plans | Yes | Guard/policy backend on PATCH /quality-plans/:id | OK |
+| ADMIN can create/edit | Yes | Integration tests | OK |
+| UI hides editing actions from ANALYST | Yes | Conditional Render by Role | OK |
+| Backend returns 403 for unauthorized access | Yes | Tests AUTHZ-002/AUTHZ-003 | OK |
 
-## 3. Observaciones
+## 3. Observations
 
-No se detectan bloqueantes. La feature puede avanzar a review final.
+No blockers detected. The feature can advance to final review.

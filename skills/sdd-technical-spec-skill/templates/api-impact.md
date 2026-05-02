@@ -10,14 +10,14 @@ Describe the API impact at a high level. Do not finalize the contract here if `s
 |---|---|---|---|---|
 | `<endpoint/action>` | `<new/modify/remove>` | `<impact>` | `<impact>` | `<impact>` |
 
-## 3. Compatibility
+## 3.Compatibility
 
 | Consumer | Compatibility risk | Notes |
 |---|---|---|
 | Frontend | `<low/medium/high>` | `<notes>` |
 | External clients | `<low/medium/high>` | `<notes>` |
 
-## 4. Required next skill
+## 3. Required next skill
 
 ```text
 sdd-api-contract

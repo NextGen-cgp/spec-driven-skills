@@ -1,186 +1,186 @@
 # User Story Enrichment: feature-admin-analyst-panel
 
-## 1. Resumen funcional
+## 1. Functional summary
 
-Se necesita crear un nuevo panel diferenciado por roles para que los usuarios administradores puedan gestionar planes de calidad y parámetros, mientras que los analistas puedan consultar la misma información sin capacidad de creación ni edición.
+A new panel differentiated by roles needs to be created so that administrative users can manage quality plans and parameters, while analysts can consult the same information without the ability to create or edit.
 
-La funcionalidad debe mantener el patrón visual actual de la aplicación y respetar la separación de permisos entre administración y análisis.
+The functionality must maintain the current visual pattern of the application and respect the separation of permissions between administration and analysis.
 
-## 2. Petición original interpretada
+## 2. Original request interpreted
 
 ```text
-Crear un nuevo panel para admins y analistas con permisos diferentes según rol. El rol admin podrá dar de alta nuevos planes de calidad y parámetros, modificar los existentes y buscar. El rol analista podrá buscar planes y parámetros, pero no crear ni editar. Las nuevas secciones deben seguir el patrón visual de la web.
+Create a new panel for admins and analysts with different permissions depending on the role. The admin role will be able to register new quality plans and parameters, modify existing ones and search. The analyst role will be able to search for plans and parameters, but not create or edit. The new sections must follow the visual pattern of the website.
 ```
 
-## 3. Clasificación
+## 3. Classification
 
-- Tipo de cambio: `feature`, `permissions`, `ui_change`, `workflow_change`
-- Riesgo funcional: `high`
-- Motivo del riesgo: afecta a permisos, operaciones de escritura y gestión de datos maestros del sistema.
-- Módulos afectados probables:
-  - Autenticación/autorización.
-  - Panel de administración.
-  - Planes de calidad.
-  - Parámetros.
-  - Búsqueda y filtrado.
-  - Componentes visuales compartidos.
+- Change type: `feature`, `permissions`, `ui_change`, `workflow_change`
+- Functional risk: `high`
+- Reason for risk: affects permissions, write operations and system master data management.
+- Probable affected modules:
+  - Authentication/authorization.
+  - Administration panel.
+  - Quality plans.
+  - Parameters.
+  - Search and filtering.
+  - Shared visual components.
 
-## 4. Actores
+## 4. Actors
 
-| Actor | Rol | Necesidad | Permisos esperados |
+| Actor | Role | Need | Expected permissions |
 |---|---|---|---|
-| Administrador | `admin` | Gestionar planes de calidad y parámetros | Consultar, buscar, crear, editar |
-| Analista | `analyst` | Consultar planes de calidad y parámetros | Consultar y buscar únicamente |
+| Administrator | `admin` | Manage quality plans and parameters | Consult, search, create, edit |
+| Analyst | `analyst` | Consult quality plans and parameters | Consult and search only |
 
-## 5. Historias de usuario refinadas
+## 5. Refined User Stories
 
-### US-001: Gestión de planes de calidad por administrador
+### US-001: Management of quality plans by administrator
 
-Como `Administrador`, quiero poder crear y modificar planes de calidad, para mantener actualizada la configuración utilizada en los análisis de calidad.
+As an 'Administrator', I want to be able to create and modify quality plans, to keep the settings used in quality analyzes up to date.
 
-- Prioridad: `must`
-- Valor funcional: permite gestionar datos maestros críticos sin intervención técnica.
-- Dependencias: permisos de rol, formularios de alta/edición y persistencia de cambios.
+- Priority: `must`
+- Functional value: allows you to manage critical master data without technical intervention.
+- Dependencies: role permissions, registration/editing forms and persistence of changes.
 
-### US-002: Gestión de parámetros por administrador
+### US-002: Parameter management by administrator
 
-Como `Administrador`, quiero poder crear y modificar parámetros, para mantener actualizados los criterios usados en los planes de calidad y análisis.
+As an 'Administrator', I want to be able to create and modify parameters, to keep the criteria used in quality and analysis plans updated.
 
-- Prioridad: `must`
-- Valor funcional: permite adaptar el sistema a nuevos criterios de control.
-- Dependencias: modelo de parámetros, validaciones y asociación con planes.
+- Priority: `must`
+- Functional value: allows the system to be adapted to new control criteria.
+- Dependencies: parameter model, validations and association with plans.
 
-### US-003: Consulta de planes y parámetros por analista
+### US-003: Consultation of plans and parameters by analyst
 
-Como `Analista`, quiero poder buscar y consultar planes de calidad y parámetros, para revisar la información necesaria sin alterar la configuración del sistema.
+As an 'Analyst', I want to be able to search and consult quality plans and parameters, to review the necessary information without altering the system configuration.
 
-- Prioridad: `must`
-- Valor funcional: ofrece visibilidad operativa sin riesgo de modificación indebida.
-- Dependencias: listado, búsqueda, detalle en modo solo lectura y control de permisos.
+- Priority: `must`
+- Functional value: offers operational visibility without risk of undue modification.
+- Dependencies: list, search, details in read-only mode and permission control.
 
-## 6. Casos de uso
+## 6. Use cases
 
-### UC-001: Administrador crea un nuevo parámetro
+### UC-001: Administrator creates a new parameter
 
-- Actor: Administrador.
-- Precondiciones:
-  - El usuario tiene rol `admin`.
-- Flujo principal:
-  1. Accede a la sección de parámetros.
-  2. Pulsa una acción de creación.
-  3. Completa los campos requeridos.
-  4. Guarda el nuevo parámetro.
-  5. El sistema valida y registra el parámetro.
-- Resultado esperado:
-  - El parámetro queda disponible para su uso según las reglas del sistema.
+- Actor: Administrator.
+- Preconditions:
+  - The user has the `admin` role.
+- Main flow:
+  1. Access the parameters section.
+  2. Tap a create action.
+  3. Complete the required fields.
+  4. Save the new parameter.
+  5. The system validates and registers the parameter.
+- Expected result:
+  - The parameter becomes available for use according to the system rules.
 
-### UC-002: Analista consulta un plan de calidad
+### UC-002: Analyst views a quality plan
 
-- Actor: Analista.
-- Precondiciones:
-  - El usuario tiene rol `analyst`.
-- Flujo principal:
-  1. El analista accede al panel.
-  2. Busca un plan de calidad.
-  3. Abre su detalle.
-  4. Consulta la información.
-- Resultado esperado:
-  - Puede visualizar la información, pero no crear ni editar.
+- Actor: Analyst.
+- Preconditions:
+  - The user has the `analyst` role.
+- Main flow:
+  1. The analyst accesses the panel.
+  2. Look for a quality plan.
+  3. Open your detail.
+  4. Check the information.
+- Expected result:
+  - You can view the information, but not create or edit.
 
-## 7. Reglas de negocio
+## 7. Business rules
 
-- `BR-001`: Un usuario con rol `admin` puede consultar, buscar, crear y editar planes de calidad.
-- `BR-002`: Un usuario con rol `admin` puede consultar, buscar, crear y editar parámetros.
-- `BR-003`: Un usuario con rol `analyst` puede consultar y buscar planes de calidad, pero no crearlos ni editarlos.
-- `BR-004`: Un usuario con rol `analyst` puede consultar y buscar parámetros, pero no crearlos ni editarlos.
-- `BR-005`: Las acciones de creación y edición no deben depender únicamente de ocultar botones en frontend; deben validarse también en backend.
-- `BR-006`: Las nuevas secciones deben respetar la estética, proporciones, componentes y patrones visuales existentes de la aplicación.
+- `BR-001`: A user with the `admin` role can consult, search, create and edit quality plans.
+- `BR-002`: A user with the `admin` role can consult, search, create and edit parameters.
+- `BR-003`: A user with the `analyst` role can consult and search for quality plans, but cannot create or edit them.
+- `BR-004`: A user with the `analyst` role can query and search for parameters, but cannot create or edit them.
+- `BR-005`: Creation and editing actions should not depend solely on hiding buttons on the frontend; They must also be validated in the backend.
+- `BR-006`: New sections must respect the aesthetics, proportions, components and existing visual patterns of the application.
 
-## 8. Estados funcionales
+## 8. Functional states
 
-- `view_mode`: usuario puede consultar información.
-- `edit_mode`: usuario puede modificar información, solo permitido para admin.
-- `create_mode`: usuario puede crear nuevos registros, solo permitido para admin.
-- `forbidden_action`: intento de acceso a acción no permitida.
+- `view_mode`: user can view information.
+- `edit_mode`: user can modify information, only allowed for admin.
+- `create_mode`: user can create new records, only allowed for admin.
+- `forbidden_action`: attempt to access an action that is not allowed.
 
-## 9. Criterios de aceptación
+## 9. Acceptance criteria
 
-### AC-001: Admin puede buscar planes de calidad
+### AC-001: Admin can search for quality plans
 
-**Dado que** un usuario con rol `admin` accede al panel,  
-**cuando** usa la búsqueda de planes de calidad,  
-**entonces** el sistema muestra resultados coincidentes y permite abrir el detalle.
+**Given** a user with the `admin` role accesses the panel,  
+**when** you use quality plan search,  
+**then** the system shows matching results and allows you to open the detail.
 
-- Tipo de verificación: `e2e_test`
-- Reglas relacionadas: `BR-001`
+- Verification type: `e2e_test`
+- Related rules: `BR-001`
 
-### AC-002: Admin puede crear planes de calidad
+### AC-002: Admin can create quality plans
 
-**Dado que** un usuario con rol `admin` está en la sección de planes,  
-**cuando** completa un alta válida de plan de calidad,  
-**entonces** el sistema guarda el nuevo plan y lo muestra en la búsqueda o listado correspondiente.
+**Given** a user with the `admin` role is in the plans section,  
+**when** you complete a valid quality plan registration,  
+**then** the system saves the new plan and displays it in the corresponding search or listing.
 
-- Tipo de verificación: `integration_test`
-- Reglas relacionadas: `BR-001`
+- Verification type: `integration_test`
+- Related rules: `BR-001`
 
-### AC-003: Analista puede buscar planes y parámetros
+### AC-003: Analyst can search for plans and parameters
 
-**Dado que** un usuario con rol `analyst` accede al panel,  
-**cuando** busca planes de calidad o parámetros,  
-**entonces** puede visualizar resultados y abrir detalles en modo solo lectura.
+**Given** a user with the `analyst` role accesses the dashboard,  
+**when** you search for quality plans or parameters,  
+**then** you can view results and open details in read-only mode.
 
-- Tipo de verificación: `e2e_test`
-- Reglas relacionadas: `BR-003`, `BR-004`
+- Verification type: `e2e_test`
+- Related rules: `BR-003`, `BR-004`
 
-### AC-004: Analista no puede crear ni editar
+### AC-004: Analyst cannot create or edit
 
-**Dado que** un usuario con rol `analyst` intenta crear o editar un plan o parámetro,  
-**cuando** realiza la acción desde UI, ruta directa o petición backend,  
-**entonces** el sistema impide la operación.
+**Given** a user with the `analyst` role attempts to create or edit a plan or parameter,  
+**when** you perform the action from UI, direct route or backend request,  
+**then** the system prevents the operation.
 
-- Tipo de verificación: `integration_test`
-- Reglas relacionadas: `BR-003`, `BR-004`, `BR-005`
+- Verification type: `integration_test`
+- Related rules: `BR-003`, `BR-004`, `BR-005`
 
-## 10. Casos límite
+## 10. Borderline cases
 
-- Usuario sin rol reconocido accede al panel.
-- Analista intenta acceder por URL directa a una edición.
-- Admin crea un plan con datos incompletos.
-- Búsqueda sin resultados.
-- Parámetro asociado a planes existentes que se intenta modificar.
-- Sesión expirada durante una operación de creación o edición.
+- User without recognized role accesses the panel.
+- Analyst tries to access an edition via direct URL.
+- Admin creates a plan with incomplete data.
+- Search without results.
+- Parameter associated with existing plans that you are trying to modify.
+- Session expired during a create or edit operation.
 
-## 11. Fuera de alcance
+## 11. Out of reach
 
-- Rediseño completo de la aplicación.
-- Cambios en el modelo global de autenticación salvo lo necesario para permisos.
-- Auditoría avanzada de cambios, salvo que el orquestador la marque como obligatoria.
-- Importación masiva de planes o parámetros.
+- Complete redesign of the application.
+- Changes in the global authentication model except what is necessary for permissions.
+- Advanced auditing of changes, unless the orchestrator marks it as mandatory.
+- Mass import of plans or parameters.
 
-## 12. Supuestos
+## 12. Assumptions
 
-- Existen roles diferenciables entre `admin` y `analyst`.
-- El backend dispone o dispondrá de validación de permisos por rol.
-- Ya existen patrones visuales reutilizables en la aplicación.
-- La búsqueda debe permitir localizar tanto planes como parámetros.
+- There are differentiable roles between `admin` and `analyst`.
+- The backend has or will have validation of permissions by role.
+- There are already reusable visual patterns in the application.
+- The search must allow locating both plans and parameters.
 
-## 13. Preguntas abiertas
+## 13. Open questions
 
-### Bloqueantes
+### Blockers
 
-- ¿El rol real del analista en el sistema se denomina `analyst`, `analista` u otro valor interno?
-- ¿La edición de planes/parámetros requiere historial o auditoría obligatoria?
+- Is the actual role of the analyst in the system called `analyst`, `analyst` or another internal value?
+- Does editing plans/parameters require historical tracking or mandatory audit?
 
-### No bloqueantes
+### Non-blocking
 
-- ¿La búsqueda debe ser global en una sola caja o separada por sección?
-- ¿Debe existir paginación, filtros avanzados o solo búsqueda básica?
+- Should the search be global in a single box or separated by section?
+- Should there be pagination, advanced filters or just basic search?
 
-## 14. Estado de salida
+## 14. Exit status
 
-- Estado: `READY_FOR_FUNCTIONAL_SPEC`
-- Siguiente skill recomendada: `sdd-functional-spec`
-- Skills requeridas más adelante:
+- Status: `READY_FOR_FUNCTIONAL_SPEC`
+- Next recommended skill: `sdd-functional-spec`
+- Skills required later:
   - `sdd-security-permissions-review`
-  - `sdd-api-contract`, si existen endpoints nuevos o modificados.
-  - `sdd-migration-rollback`, si hay cambios en tablas o entidades.
+  - `sdd-api-contract`, if new or modified endpoints exist.
+  - `sdd-migration-rollback`, if there are changes to tables or entities.
