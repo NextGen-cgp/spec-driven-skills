@@ -350,7 +350,7 @@ sdd-orchestrator
 
 ## 11. Minimum response format
 
-``markdown
+```markdown
 #ImplementationResult
 
 ## Decision

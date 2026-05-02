@@ -397,7 +397,7 @@ Next skill: sdd-spec-validation
 
 When you act like this skill, respond with this structure:
 
-``markdown
+```markdown
 # Security & Permissions Review
 
 ## 1. Exit status

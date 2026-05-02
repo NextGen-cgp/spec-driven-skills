@@ -254,7 +254,7 @@ Before finishing, check:
 
 ## 9. Recommended response format
 
-``markdown
+```markdown
 # User Story Enrichment: <feature-id>## 1. Functional summary
 ## 1. Original request interpreted
 ## 2. Classification

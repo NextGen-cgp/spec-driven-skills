@@ -368,7 +368,7 @@ If sufficient access to the repo is missing:
 
 The main output should use this structure:
 
-``markdown
+```markdown
 # Context Analysis: <feature-name>
 
 ## 1. Executive summary

@@ -571,7 +571,7 @@ So `api-contract` is required before implementation.
 
 When acting as an orchestrator, respond with this structure:
 
-``markdown
+```markdown
 # SDD Routing
 
 ## 1. Request classification
@@ -709,7 +709,7 @@ Mark the status as `BLOCKED` if:
 
 When you check `BLOCKED`, indicate:
 
-``markdown
+```markdown
 ## Crash detected
 - Reason:
 - Impact:
@@ -735,7 +735,7 @@ If critical information is missing:
 
 Example:
 
-``markdown
+```markdown
 ## Operating assumption
 I assume that permission control should be applied on backend and frontend, but that backend is the source of truth.
 ```
@@ -780,7 +780,7 @@ Request:
 
 Expected response from the orchestrator:
 
-``markdown
+```markdown
 # SDD Routing## 1. Request classification
 - Main type: feature
 - Secondary types: permissions, ui_change, api_change, security

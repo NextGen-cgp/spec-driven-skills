@@ -1,5 +1,5 @@
 ---
-name: sdd-migration-rollback
+name: sdd-migration-rollback-skill
 version: 1.0.0
 description: Design migration, rollback, backfill, compatibility and data verification plans within a Spec Driven Development flow. Use it when the technical spec or API/Data contract requires persistent changes to existing databases, models, states, indexes, constraints or data.
 ---

@@ -287,7 +287,7 @@ Follow this process in order:1. Read the original petition.
 
 The main output must follow this structure:
 
-``markdown
+```markdown
 # Functional Specification: <feature-name>
 
 ## 1.Summary

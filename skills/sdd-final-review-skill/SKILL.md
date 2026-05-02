@@ -440,7 +440,7 @@ FINAL_REVIEW_BLOCKED
 
 When you take action, always respond with this structure:
 
-``markdown
+```markdown
 #FinalReview
 
 ## Decision
